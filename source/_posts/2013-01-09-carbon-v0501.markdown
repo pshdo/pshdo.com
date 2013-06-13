@@ -1,0 +1,101 @@
+---
+layout: post
+title: Carbon v0.5.0.1 Released
+date: 2013-01-09 00:21
+comments: false
+tags: [Announcements, Carbon]
+permalink: /archive/2013/1/9/carbon-v0501.html
+---
+
+OK.  The guilt was too overwhelming.  I've released Carbon v0.5.0.1, which adds a bunch of aliases for the functions renamed in v0.5.0.0.  This should make upgrading from previous releases easier.  
+
+I've also renamed all functions with plural nouns in their names to use singular nouns instead, to better conform with [PowerShell standards](http://msdn.microsoft.com/en-us/library/windows/desktop/dd878270(v=vs.85).aspx#SD01). But don't worry, I've learned my lesson!  There are aliases in place for all name changes so you won't have to change any of your exising scripts.  This is a 100% backwards-compatible release with v0.5.0.0. (Thanks to [Jason Stangroome](http://codeassassin.com) for the feedback!)  
+
+[Go get it](http://bitbucket.org/splatteredbits/carbon/downloads) and please keep the feedback coming.
+
+## Enhancements
+
+### Active Directory
+ 
+ * Renamed `Format-ADSpecialCharacters` to [Format-ADSearchFilterValue](http://get-carbon.org/help/Format-ADSearchFilterValue.html), with backwards-compatible alias.
+ 
+### Certificates
+
+ * Renamed `Get-SslCertificateBindings` to [Get-SslCertificateBinding](http://get-carbon.org/help/Get-SslCertificateBinding.html), with backwards-compatible alias.
+ * Added `Remove-Certificate` alias for [Uninstall-Certificate](http://get-carbon.org/help/Uninstall-Certificate.html), for backwards-compatibility with earlier releases.
+ 
+### COM
+
+ * Renamed `Get-ComPermissions` to [Get-ComPermission](http://get-carbon.org/help/Get-ComPermission.html), with backwards-compatible alias.
+ * Renamed `Grant-ComPermissions` to [Grant-ComPermission](http://get-carbon.org/help/Grant-ComPermission.html), with backwards-compatible alias.
+ * Renamed `Revoke-ComPermissions` to [Revoke-ComPermission](http://get-carbon.org/help/Revoke-ComPermission.html), with backwards-compatible alias.
+ 
+### Firewall
+
+ * Renamed `Get-FirewallRules` to [Get-FirewallRule](http://get-carbon.org/help/Get-FirewallRule.html), with backwards-compatible alias.
+ 
+### IIS
+
+ * Renamed `Add-IisServerManagerMembers` to [Add-IisServerManagerMember](http://get-carbon.org/help/Add-IisServerManagerMember.html), with backwards-compatible alias.
+ * Added `StatusCode` alias for [Set-IisHttpRedirect's](http://get-carbon.org/help/Set-IisHttpRedirect.html) `HttpResponseStatus` parameter, for backwards-compatibility with earlier releases.
+ * Added `Test-IisAppPoolExists` alias for [Test-IisAppPool](http://get-carbon.org/help/Test-IisAppPool.html), for backwards-compatibility with earlier releases.
+ * Added `Remove-IisWebsite` alias for [Uninstall-IisWebsite](http://get-carbon.org/help/Uninstall-IisWebsite.html), for backwards-compatibility with earlier releases.
+ 
+### Internet Explorer
+
+ * Renamed `Enable-IEActivationPermissions` to [Enable-IEActivationPermission](http://get-carbon.org/help/Enable-IEActivationPermission.html), with backwards-compatible alias.
+ 
+### MSMQ
+
+ * Renamed `Grant-MsmqMessageQueuePermissions` to [Grant-MsmqMessageQueuePermission](http://get-carbon.org/help/Grant-MsmqMessageQueuePermission.html), with backwards-compatible alias.
+ * Added `Remove-MsmqMessageQueue` alias for [Uninstall-MsmqMessageQueue](http://get-carbon.org/help/Uninstall-MsmqMessageQueue.html), for backwards-compatibility with earlier releases.
+
+### Path
+
+ * Added `ConvertTo-FullPath` alias for [Resolve-FullPath](http://get-carbon.org/help/Resolve-FullPath.html), for backwards-compatibility with earlier releases.
+ * Added `Get-PathCanonicalCase` alias for [Resolve-PathCase](http://get-carbon.org/help/Resolve-PathCase.html), for backwards-compatibility with earlier releases.
+	
+### Performance Counters
+
+ * Renamed `Get-PerformanceCounters` to [Get-PerformanceCounter](http://get-carbon.org/help/Get-PerformanceCounter.html), with backwards-compatible alias.
+
+### PowerShell
+
+ * Renamed `Add-TrustedHosts` to [Add-TrustedHost](http://get-carbon.org/help/Add-TrustedHost.html), with backwards-compatible alias.
+ * Renamed `Add-TrustedHost`'s `Entries` parameter to `Entry`, with backwards-compatible alias.
+ * Renamed `Clear-TrustedHosts` to [Clear-TrustedHost](http://get-carbon.org/help/Clear-TrustedHost.html), with backwards-compatible alias. 
+ * Renamed `Complete-Jobs` to [Complete-Job](http://get-carbon.org/help/Complete-Job.html), with backwards-compatible alias.
+ * Renamed `Complete-Job`'s `Jobs` parameter to `Job`, with backwards-compatible alias.
+ * Renamed `Get-TrustedHosts` to [Get-TrustedHost](http://get-carbon.org/help/Get-TrustedHost.html), with backwards-compatible alias.
+ * Renamed `Set-TrustedHosts` to [Set-TrustedHost](http://get-carbon.org/help/Set-TrustedHost.html), with backwards-compatible alias.
+ * Renamed `Set-TrustedHost`'s `Entries` parameter to `Entry`, with backwards-compatible alias.
+ 
+### Security
+
+ * Renamed `Assert-AdminPrivileges` to [Assert-AdminPrivilege](http://get-carbon.org/help/Assert-AdminPrivilege.html), with backwards-compatible alias.
+ * Renamed `ConvertTo-InheritanceFlags` to [ConvertTo-InheritanceFlag](http://get-carbon.org/help/ConvertTo-InheritanceFlag.html), with backwards-compatible alias.
+ * Renamed `ConvertTo-InheritanceFlag`'s `ContainerInheritanceFlags` parameter to `ConvertTo-InheritanceFlag`, with backwards-compatible alias.
+ * Renamed `ConvertTo-PropagationFlags` to [ConvertTo-PropagationFlag](http://get-carbon.org/help/ConvertTo-PropagationFlag.html), with backwards-compatible alias.
+ * Renamed `ConvertTo-PropagationFlag`'s `ContainerInheritanceFlags` parameter to `ConvertTo-InheritanceFlag`, with backwards-compatible alias.
+ * Renamed `Get-Permissions` to [Get-Permission](http://get-carbon.org/help/Get-Permission.html), with backwards-compatible alias.
+ * Renamed `Grant-Permissions` to [Grant-Permission](http://get-carbon.org/help/Grant-Permission.html), with backwards-compatible alias.
+ * Renamed `Grant-Permission`'s `Permissions` parameter to `Permission`, with backwards-compatible alias.
+ * Renamed `Test-AdminPrivileges` to [Test-AdminPrivilege](http://get-carbon.org/help/Test-AdminPrivilege.html), with backwards-compatible alias.
+ 
+### Service
+
+ * Renamed `Get-ServicePermissions` to [Get-ServicePermission](http://get-carbon.org/help/Get-ServicePermission.html), with backwards-compatible alias.
+ * Added `Remove-Service` alias for [Uninstall-Service](http://get-carbon.org/help/Uninstall-Service.html), for backwards-compatibility with earlier releases.
+ 
+### Users and Groups
+
+ * Renamed `Add-GroupMembers` to [Add-GroupMember](http://get-carbon.org/help/Add-GroupMember.html), with backwards-compatible alias.
+ * Renamed `Add-GroupMember`'s `Members` parameter to `Member`.
+ * Added `Remove-User` alias for [Uninstall-User](http://get-carbon.org/help/Uninstall-User.html), for backwards-compatibility with earlier releases.
+
+### Windows Features
+
+ * Added `Install-WindowsFeatures` alias for [Install-WindowsFeature](http://get-carbon.org/help/Install-WindowsFeature.html), for backwards-compatibility with earlier releases.
+ * Added `Features` alias for  [Install-WindowsFeature's](http://get-carbon.org/help/Install-WindowsFeature.html) `Name` parameter, for backwards-compatibility with earlier releases.
+ * Added `Uninstall-WindowsFeatures` alias for [Uninstall-WindowsFeature](http://get-carbon.org/help/Uninstall-WindowsFeature.html), for backwards-compatibility with earlier releases.
+ * Added `Features` alias for  [Uninstall-WindowsFeature's](http://get-carbon.org/help/Uninstall-WindowsFeature.html) `Name` parameter, for backwards-compatibility with earlier releases.

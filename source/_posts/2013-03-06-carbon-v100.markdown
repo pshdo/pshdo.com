@@ -1,0 +1,59 @@
+---
+layout: post
+title: Carbon v1.0.0 Released
+date: 2013-03-06 11:42
+comments: false
+tags: [Announcements, Carbon]
+permalink: /archive/2013/3/6/carbon-v100-released.html
+---
+
+I'm extremely happy to announce the release of [Carbon](http://get-carbon.org) v1.0.0.  Thanks to everyone who's already started using Carbon.  Please continue to provide feedback.  I love to hear from everyone that's using it, good or bad.  Also, now that we're at v1.0, don't hesitate to **spread the word**! 
+
+If you're on v0.5.0.1, you should be able to upgrade with little or no work as this release is includes mostly fixes for bugs found in that release. 
+
+[Get the bits here!](https://bitbucket.org/splatteredbits/carbon/downloads) 
+
+## Upgrade Instructions
+
+ * Remove the `Quiet` parameter from the `Import-Carbon.ps1` script.
+ * If you're nesting Carbon as a sub-module of another module, ***STOP***.  This causes havoc.  Create an `Import-*.ps1` script for your module which imports Carbon before importing your own module.  Update your scripts to import your module with your fancy new `Import-*.ps1` script.  See [Best Practices for Importing PowerShell Modules](http://pshdo.com/archive/2012/6/4/best-practices-for-importing-powershell-modules.html) for details.
+
+## Enhancements
+
+### General
+
+ * The `Import-Carbon.ps1` script no longer checks if Carbon is a sub-module of another module, so the `Quiet` parameter was removed.  ***Please don't nest Carbon in your modules!***  It will cause havoc.
+ * `Import-Carbon.ps1` will no longer stop execution if an error occurs during an import (i.e. the `$ErrorActionPreference = 'Stop'` line was removed).  
+
+### Services
+
+ * Renamed [Install-Service](http://get-carbon.org/help/Install-Service.html)'s `Dependencies` parameter to `Dependency` (with backwards-compatible alias), to follow PowerShell naming standards.
+ 
+### Users and Groups
+
+ * [Install-User](http://get-carbon.org/help/Install-User.html): you can now set a user's full name with the optional `FullName` parameter.
+
+## Bug Fixes
+
+### IIS
+
+ * Added `Test-IisWebsiteExists` alias for [Test-IisWebsite](http://get-carbon.org/help/Test-IisWebsite.html), for backwards-compatibility with earlier releases.
+
+### Security
+
+ * [Grant-Permission](http://get-carbon.org/help/Grant-Permission.html) returns boolean values to the pipeline when clearing access rules.
+ * Added `Unprotect-AclAccessRules` alias for [Protect-Acl](http://get-carbon.org/help/Protect-Acl.html), for backwards-compatibility with earlier releases.
+ * Updated v0.5.0.0 section of release notes to include a note that `Unprotect-AclAccessRules` was renamed to [Protect-Acl](http://get-carbon.org/help/Protect-Acl.html).
+ 
+ 
+### Service
+
+ * [Install-Service](http://get-carbon.org/help/Install-Service.html) fails if `Dependency` parameter doesn't have a value.  Sometimes.
+
+### Shares
+
+ * [Install-SmbShare](http://get-carbon.org/help/Install-SmbShare.html) fails if a principal name contains a space.
+
+### Users and Groups
+
+ * [Add-GroupMember](http://get-carbon.org/help/Add-GroupMember.html) doesn't handle when the .NET Active Directory throws an exception when adding members to a group, causing script termination.

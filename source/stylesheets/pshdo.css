@@ -1,0 +1,10 @@
+body > header
+{
+	background-color: #00008b;
+}
+
+body > header h1
+{
+	font-family: Consolas, Monaco, monospace;
+	font-weight: bold;
+}

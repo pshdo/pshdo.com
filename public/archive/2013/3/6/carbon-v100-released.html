@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon v1.0.0 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="I’m extremely happy to announce the release of Carbon v1.0.0. Thanks to everyone who’s already started using Carbon. Please continue to provide &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/archive/2013/3/6/carbon-v100-released.html">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon v1.0.0 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-06T11:42:00-08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I’m extremely happy to announce the release of <a href="http://get-carbon.org">Carbon</a> v1.0.0.  Thanks to everyone who’s already started using Carbon.  Please continue to provide feedback.  I love to hear from everyone that’s using it, good or bad.  Also, now that we’re at v1.0, don’t hesitate to <strong>spread the word</strong>! </p>
+
+<p>If you’re on v0.5.0.1, you should be able to upgrade with little or no work as this release is includes mostly fixes for bugs found in that release. </p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits here!</a> </p>
+
+<h2 id="upgrade-instructions">Upgrade Instructions</h2>
+
+<ul>
+  <li>Remove the <code>Quiet</code> parameter from the <code>Import-Carbon.ps1</code> script.</li>
+  <li>If you’re nesting Carbon as a sub-module of another module, <strong><em>STOP</em></strong>.  This causes havoc.  Create an <code>Import-*.ps1</code> script for your module which imports Carbon before importing your own module.  Update your scripts to import your module with your fancy new <code>Import-*.ps1</code> script.  See <a href="http://pshdo.com/archive/2012/6/4/best-practices-for-importing-powershell-modules.html">Best Practices for Importing PowerShell Modules</a> for details.</li>
+</ul>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="general">General</h3>
+
+<ul>
+  <li>The <code>Import-Carbon.ps1</code> script no longer checks if Carbon is a sub-module of another module, so the <code>Quiet</code> parameter was removed.  <strong><em>Please don’t nest Carbon in your modules!</em></strong>  It will cause havoc.</li>
+  <li><code>Import-Carbon.ps1</code> will no longer stop execution if an error occurs during an import (i.e. the <code>$ErrorActionPreference = 'Stop'</code> line was removed).  </li>
+</ul>
+
+<h3 id="services">Services</h3>
+
+<ul>
+  <li>Renamed <a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a>’s <code>Dependencies</code> parameter to <code>Dependency</code> (with backwards-compatible alias), to follow PowerShell naming standards.</li>
+</ul>
+
+<h3 id="users-and-groups">Users and Groups</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-User.html">Install-User</a>: you can now set a user’s full name with the optional <code>FullName</code> parameter.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li>Added <code>Test-IisWebsiteExists</code> alias for <a href="http://get-carbon.org/help/Test-IisWebsite.html">Test-IisWebsite</a>, for backwards-compatibility with earlier releases.</li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> returns boolean values to the pipeline when clearing access rules.</li>
+  <li>Added <code>Unprotect-AclAccessRules</code> alias for <a href="http://get-carbon.org/help/Protect-Acl.html">Protect-Acl</a>, for backwards-compatibility with earlier releases.</li>
+  <li>Updated v0.5.0.0 section of release notes to include a note that <code>Unprotect-AclAccessRules</code> was renamed to <a href="http://get-carbon.org/help/Protect-Acl.html">Protect-Acl</a>.</li>
+</ul>
+
+<h3 id="service">Service</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> fails if <code>Dependency</code> parameter doesn’t have a value.  Sometimes.</li>
+</ul>
+
+<h3 id="shares">Shares</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> fails if a principal name contains a space.</li>
+</ul>
+
+<h3 id="users-and-groups-1">Users and Groups</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Add-GroupMember.html">Add-GroupMember</a> doesn’t handle when the .NET Active Directory throws an exception when adding members to a group, causing script termination.</li>
+</ul>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-06T11:42:00-08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/archive/2013/3/6/carbon-v100-released.html" data-via="pshdo" data-counturl="http://pshdo.com/archive/2013/3/6/carbon-v100-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/archive/2013/1/9/carbon-v0501.html" title="Previous Post: Carbon v0.5.0.1 Released">&laquo; Carbon v0.5.0.1 Released</a>
+      
+      
+        <a class="basic-alignment right" href="/archive/2013/3/14/getting-x509certificate2s-issued-from-and-issued-to-properti.html" title="Next Post: Getting X509Certificate2's "Issued From" and "Issued To" Properties in PowerShell">Getting X509Certificate2's "Issued From" and "Issued To" Properties in PowerShell &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section style="margin-top:2em;">
+
+	<p>
+		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
+		
+		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
+	</p>
+
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/archive/2013/4/25/who-is-modifying-that-file.html">Who Is Modifying That File?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/archive/2013/4/25/serilog.html">Serilog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/archive/2013/4/1/carbon-v11-released.html">Carbon v1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/archive/2013/3/29/stupid-feed-tricks.html">Stupid Feed Tricks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/archive/2013/3/25/powershell-check-if-processes-are-waiting-and-prompting-for.html">PowerShell: Check if Processes Are Waiting and Prompting for User Input</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
