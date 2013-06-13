@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Getting X509Certificate2's "Issued From" and "Issued To" Properties in PowerShell - > pshdo</title>
+  <title>Desired State Configuration with PowerShell - > pshdo</title>
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="One of my problems with the X509Certificate2 object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To &hellip;">
+  <meta name="description" content="I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s Desired State Configuration in Windows Server 2012 R2 PowerShell talk &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pshdo.com/archive/2013/3/14/getting-x509certificate2s-issued-from-and-issued-to-properti.html">
+  <link rel="canonical" href="http://pshdo.com/2013/06/desired-state-configuration-with-powershell.html">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Getting X509Certificate2's "Issued From" and "Issued to" Properties in PowerShell</h1>
+      <h1 class="entry-title">Desired State Configuration With PowerShell</h1>
     
     
       <p class="meta">
@@ -83,40 +83,16 @@
   
 
 
-<time datetime="2013-03-14T14:36:00-07:00" pubdate data-updated="true">Mar 14<span>th</span>, 2013</time>
+<time datetime="2013-06-13T13:17:00-07:00" pubdate data-updated="true">Jun 13<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>One of my problems with the <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To&rdquo; data, properties which show by default when viewing certificates in the Windows Certificate MMC snap-in. This makes it difficult to match certificates you see the Certificates MMC with certificates you see in PowerShell.</p>
+<div class="entry-content"><p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.  </p>
 
-<p>Today I <a href="http://social.msdn.microsoft.com/Forums/en-US/csharpgeneral/thread/a74e3465-7e36-43a9-a83a-fb28a629218f">discovered</a> the <a href="http://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2.getnameinfo.aspx">GetNameInfo method</a>, which can return the &ldquo;Issued To/By&rdquo; text seen in the Certificates MMC snap-in:</p>
-
-<pre><code>Get-ChildItem cert:\CurrentUser\My |
-    Format-Table @{ Label = 'IssuedTo'; Expression = { $_.GetNameInfo( 'SimpleName', $false ) } },@{ Label = 'IssuedBy' ;Expression = { $_.GetNameInfo( 'SimpleName', $true ) } }
-</code></pre>
-
-<p>Here it is a little clearer:</p>
-
-<pre><code>$cert.GetNameInfo( 'SimpleName', $false ) # This is IssuedTo.
-$cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
-</code></pre>
-
-<p>You could also pipe your certificates to <a href="http://technet.microsoft.com/en-us/library/hh849879.aspx">Add-Member</a>:</p>
-
-<pre><code>Get-ChildItem cert:\CurrentUser\My |
-    Add-Member ScriptProperty -Name IssuedTo -Value { $this.GetNameInfo( 'SimpleName', $false) } -PassThru |
-    Add-Member ScriptProperty -Name IssuedBy -Value { $this.GetNameInfo( 'SimpleName', $true ) } -PassThru |
-    Format-Table -Property IssuedTo,IssuedBy -AutoSize
-</code></pre>
-
-<p>The next version of <a href="http://get-carbon.org">Carbon</a> will add <code>IssuedBy</code> and <code>IssuedTo</code> properties to <code>X509Certificate2</code> objects, so you can do this instead:</p>
-
-<pre><code>Get-ChildItem cert:\CurrentUser\My |
-    Format-Table IssuedTo,IssuedBy -AutoSize
-</code></pre>
+<p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
 </div>
 
 
@@ -139,7 +115,7 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
   
 
 
-<time datetime="2013-03-14T14:36:00-07:00" pubdate data-updated="true">Mar 14<span>th</span>, 2013</time>
+<time datetime="2013-06-13T13:17:00-07:00" pubdate data-updated="true">Jun 13<span>th</span>, 2013</time>
       
 
 
@@ -147,7 +123,7 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/archive/2013/3/14/getting-x509certificate2s-issued-from-and-issued-to-properti.html" data-via="pshdo" data-counturl="http://pshdo.com/archive/2013/3/14/getting-x509certificate2s-issued-from-and-issued-to-properti.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2013/06/desired-state-configuration-with-powershell.html" data-via="pshdo" data-counturl="http://pshdo.com/2013/06/desired-state-configuration-with-powershell.html" >Tweet</a>
   
   
   
@@ -156,10 +132,8 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/archive/2013/3/6/carbon-v100-released.html" title="Previous Post: Carbon v1.0.0 Released">&laquo; Carbon v1.0.0 Released</a>
+        <a class="basic-alignment left" href="/archive/2013/4/25/who-is-modifying-that-file.html" title="Previous Post: Who Is Modifying That File?">&laquo; Who Is Modifying That File?</a>
       
-      
-        <a class="basic-alignment right" href="/archive/2013/3/18/monitoring-windows-process-start-and-exit-events.html" title="Next Post: Monitoring Windows Process Start and Exit Events">Monitoring Windows Process Start and Exit Events &raquo;</a>
       
     </p>
   </footer>
