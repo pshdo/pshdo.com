@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I&rsquo;m extremely proud to announce Carbon v0.4.0.0, my favorite release so far. This release contains some backwards incompatible changes, so be &hellip;">
+  <meta name="description" content="I’m extremely proud to announce Carbon v0.4.0.0, my favorite release so far. This release contains some backwards incompatible changes, so be sure to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,11 +90,11 @@
   </header>
 
 
-<div class="entry-content"><p>I&rsquo;m extremely proud to announce Carbon v0.4.0.0, my favorite release so far.  This release contains <strong>some backwards incompatible changes</strong>, so be sure to read the <em>Upgrade Instructions</em>.</p>
+<div class="entry-content"><p>I’m extremely proud to announce Carbon v0.4.0.0, my favorite release so far.  This release contains <strong>some backwards incompatible changes</strong>, so be sure to read the <em>Upgrade Instructions</em>.</p>
 
-<p>This release contains three major new feature sets.  First, I&rsquo;ve created new functions for <strong>granting/getting/revoking Windows security privileges/rights</strong> (e.g. the Logon As a Service right). Before this, Carbon used Microsoft&rsquo;s legacy <code>ntrights.exe</code> program for managing these privileges.</p>
+<p>This release contains three major new feature sets.  First, I’ve created new functions for <strong>granting/getting/revoking Windows security privileges/rights</strong> (e.g. the Logon As a Service right). Before this, Carbon used Microsoft’s legacy <code>ntrights.exe</code> program for managing these privileges.</p>
 
-<p>Second, there are new functions for <strong>setting/getting/revoking ACLs on Windows services</strong>.  These service ACLs regulate who can control a service, read a service&rsquo;s properties, etc.  They replace Microsoft&rsquo;s legacy <code>subinacl.exe</code> program.</p>
+<p>Second, there are new functions for <strong>setting/getting/revoking ACLs on Windows services</strong>.  These service ACLs regulate who can control a service, read a service’s properties, etc.  They replace Microsoft’s legacy <code>subinacl.exe</code> program.</p>
 
 <p>Lastly, thanks to Jonathan Valdez, the <strong><a href="http://get-carbon.org/help/Grant-Permissions.html">Grant-Permissions</a> function now has the ability to control inheritance and propagation flags</strong>.</p>
 
@@ -105,8 +105,8 @@
 <h2 id="upgrade-instructions">Upgrade Instructions</h2>
 <ul>
   <li>If you install a manual or disabled Windows service with <a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a>, you now have to call <code>Start-Service</code> yourself.  <code>Install-Service</code> only starts services whose startup type is set to <code>Automatic</code> (which is the default).</li>
-  <li>We&rsquo;ve stopped distributing Microsoft&rsquo;s <code>subinacl.exe</code> program. We didn&rsquo;t have permission to distribute.  Plus its no longer supported. If any of your scripts used <code>Invoke-SubInAcl</code>, you&rsquo;ll want to <a href="http://www.microsoft.com/en-us/download/details.aspx?id=23510">download <code>subinacl.exe</code> yourself</a> and copy <code>Invoke-SubInAcl</code> before upgrading (you can find it in the Carbon directory in the <code>Services.ps1</code> file.</li>
-  <li>If you&rsquo;re using <code>Grant-Permission</code> without named parameters, the <code>Path</code> parameter moved from position 3 to position 1.  Re-order your parameters accordingly.</li>
+  <li>We’ve stopped distributing Microsoft’s <code>subinacl.exe</code> program. We didn’t have permission to distribute.  Plus its no longer supported. If any of your scripts used <code>Invoke-SubInAcl</code>, you’ll want to <a href="http://www.microsoft.com/en-us/download/details.aspx?id=23510">download <code>subinacl.exe</code> yourself</a> and copy <code>Invoke-SubInAcl</code> before upgrading (you can find it in the Carbon directory in the <code>Services.ps1</code> file.</li>
+  <li>If you’re using <code>Grant-Permission</code> without named parameters, the <code>Path</code> parameter moved from position 3 to position 1.  Re-order your parameters accordingly.</li>
   <li>Rename usages of <code>Set-IisDirectoryBrowsing</code> to <code>Enable-IisDirectoryBrowsing</code>.  If you use named parameters, rename its <code>Directory</code> paremter to <code>Path</code>.</li>
   <li>Replace usages of <code>Set-HgrcDefaultPushUrl</code> with <code>Set-IniEntry</code> instead, e.g. <code>Set-IniEntry -Path 'Path\to\repo\.hg\hgrc' -Section paths -Name 'default.push' -Value 'DefaultPushUrl'</code></li>
   <li>Rename usages of <code>Test-IisWebsiteExists</code> with <code>Test-IisWebsite</code>.</li>
@@ -116,21 +116,21 @@
 <h2 id="enhancements">Enhancements</h2>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-Privileges.html">Get-Privileges</a>, <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a>, <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>, and <a href="http://get-carbon.org/help/Test-Privilege.html">Test-Privilege</a> for managing an identity&rsquo;s security operation privileges.</li>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> now uses <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> to grant custom service identities the <code>SeServiceLogonRight</code> privilege. This replaces usage of Microsoft&rsquo;s legacy <a href="http://support.microsoft.com/kb/315276">ntrights.exe</a>, which we probably didn&rsquo;t have permission to distribute.</li>
+  <li>Created <a href="http://get-carbon.org/help/Get-Privileges.html">Get-Privileges</a>, <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a>, <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>, and <a href="http://get-carbon.org/help/Test-Privilege.html">Test-Privilege</a> for managing an identity’s security operation privileges.</li>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> now uses <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> to grant custom service identities the <code>SeServiceLogonRight</code> privilege. This replaces usage of Microsoft’s legacy <a href="http://support.microsoft.com/kb/315276">ntrights.exe</a>, which we probably didn’t have permission to distribute.</li>
   <li>Created <a href="http://get-carbon.org/help/Get-ServicePermissions.html">Get-ServicePermissions</a> function for getting the permissions for a service, i.e. what users can control a service.</li>
-  <li>Created <a href="http://get-carbon.org/help/Assert-Service.html">Assert-Service</a> function to write an error if a service doesn&rsquo;t exist.</li>
+  <li>Created <a href="http://get-carbon.org/help/Assert-Service.html">Assert-Service</a> function to write an error if a service doesn’t exist.</li>
   <li>Created <a href="http://get-carbon.org/help/Get-ServiceAcl.html">Get-ServiceAcl</a> function to get the discretionary access control list (DACL) for a service.</li>
   <li>Created <a href="http://get-carbon.org/help/Get-ServiceSecurityDescriptor.html">Get-ServiceSecurityDescriptor</a> function to get the raw security descriptor for a service.</li>
   <li>Created <a href="http://get-carbon.org/help/Grant-ServicePermission.html">Grant-ServicePermission</a> function to grant service control permissions to an identity.</li>
-  <li>Created <a href="http://get-carbon.org/help/Revoke-ServicePermission.html">Revoke-ServicePermission</a> function to revoke all of an identity&rsquo;s permissioms to control a service.</li>
-  <li>Created <a href="http://get-carbon.org/help/Set-ServiceAcl.html">Set-ServiceAcl</a> function to set a service&rsquo;s discretionary access control list (DACL).</li>
+  <li>Created <a href="http://get-carbon.org/help/Revoke-ServicePermission.html">Revoke-ServicePermission</a> function to revoke all of an identity’s permissioms to control a service.</li>
+  <li>Created <a href="http://get-carbon.org/help/Set-ServiceAcl.html">Set-ServiceAcl</a> function to set a service’s discretionary access control list (DACL).</li>
   <li>Created <a href="http://get-carbon.org/help/Test-Service.html">Test-Service</a> function to check if a service exists <em>without</em> writing an error.</li>
   <li>Removed <code>Invoke-SubInAcl</code> function and the <code>subinacl.exe</code> program.  Use the <a href="http://get-carbon.org/help/Grant-ServicePermission.html">Grant-ServicePermission</a> and <a href="http://get-carbon.org/help/Revoke-ServicePermission.html">Revoke-ServicePermission</a> functions instead.  If you still need <code>subinacl.exe</code>, please <a href="http://www.microsoft.com/en-us/download/details.aspx?id=23510">download it from Microsoft</a>.  </li>
   <li><a href="http://get-carbon.org/help/Grant-Permissions.html">Grant-Permissions</a> now supports controlling inheritance and propagation flags via the <code>ApplyTo</code> parameter, which should be a value of the new <code>Carbon.Security.ContainerInheritanceFlags</code> enumeration, which encapsualtes all the valid combinations of inheritance/propagation flags.  See the help for <code>Grant-Permissions</code> for more information.  Thanks to Jonathan Valdez for the feature request and initial code.</li>
   <li>Created <a href="http://get-carbon.org/help/ConvertTo-InheritanceFlags.html">ConvertTo-InheritanceFlags</a> function for converting a <code>Carbon.Security.ContainerInheritanceFlags</code> to the necessary/applicable <code>System.Security.AccessControl.InheritanceFlags</code>.</li>
   <li>Created <a href="http://get-carbon.org/help/ConvertTo-PropagationFlags.html">ConvertTo-PropagationFlags</a> function for converting a <code>Carbon.Security.ContainerInheritanceFlags</code> to the necessary/applicable <code>System.Security.AccessControl.PropagationFlags</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Get-Permissions.html">Get-Permissions</a> function for getting the non-inherited permissions on a file, directory, registry key, or registry value with the ability to return a specific identity&rsquo;s permissions and/or inherited permissions.</li>
+  <li>Created <a href="http://get-carbon.org/help/Get-Permissions.html">Get-Permissions</a> function for getting the non-inherited permissions on a file, directory, registry key, or registry value with the ability to return a specific identity’s permissions and/or inherited permissions.</li>
   <li>Renamed <code>Set-IisDirectoryBrowsing</code> to <a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Enable-IisDirectoryBrowsing</a> and renamed its <code>Directory</code> parameter to <code>Path</code>.</li>
   <li>Removed <code>Set-HgrcDefaultPushUrl</code>.  Use <a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Set-IniEntry</a> instead.</li>
   <li>Renamed <code>Test-IisWebsiteExists</code> to <a href="http://get-carbon.org/help/Test-IisWebsite.html">Test-IisWebsite</a> to adhere to PowerShell naming conventions.</li>
@@ -211,6 +211,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/06/carbon-v12-released.html">Carbon v1.2 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/06/desired-state-configuration-with-powershell.html">Desired State Configuration With PowerShell</a>
       </li>
     
@@ -224,10 +228,6 @@
     
       <li class="post">
         <a href="/archive/2013/4/1/carbon-v11-released.html">Carbon v1.1 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/archive/2013/3/29/stupid-feed-tricks.html">Stupid Feed Tricks</a>
       </li>
     
   </ul>

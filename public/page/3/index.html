@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I&rsquo;ve released Carbon v0.2.3. Download it from BitBucket. It&rsquo;s mostly documentation updates, but I snuck a couple of bug fixes in there. &hellip;">
+  <meta name="description" content="I’ve released Carbon v0.2.4. Download it from BitBucket. This release is 100% documentation improvements. (Anyone out there notice a this week’s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +70,73 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/archive/2012/6/28/carbon-v024-released.html">Carbon v0.2.4 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-28T12:07:00-07:00" pubdate data-updated="true">Jun 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’ve released <a href="http://get-carbon.org">Carbon</a> v0.2.4.  <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Download it from BitBucket.</a>  This release is 100% <a href="http://get-carbon.org/help">documentation</a> improvements.  (Anyone out there notice a this week’s theme?)</p>
+
+<h2 id="enhancements">Enhancements</h2>
+<p>Improved documentation for:</p>
+
+<ul>
+  <li>Get-PathCanonicalCase</li>
+  <li>Get-PathRelativeTo</li>
+  <li>New-Junction</li>
+  <li>New-TempDir</li>
+  <li>Remove-Junction</li>
+  <li>Test-PathIsJunction</li>
+  <li>Reset-HostsFile</li>
+  <li>Set-HostsEntry</li>
+  <li>Add-IisDefaultDocument</li>
+  <li>Get-IisHttpRedirect</li>
+  <li>Get-IisVersion</li>
+  <li>Get-IisWebsite</li>
+  <li>Install-IisApplication</li>
+  <li>Install-IisAppPool</li>
+  <li>Install-IisVirtualDirectory</li>
+  <li>Install-IisWebsite</li>
+  <li>Invoke-AppCmd</li>
+  <li>Remove-IisWebsite</li>
+  <li>Set-IisAnonymousAuthentication</li>
+  <li>Set-IisBasicAuthentication</li>
+  <li>Set-IisDirectoryBrowsing</li>
+  <li>Set-IisHttpRedirect</li>
+  <li>Set-IisSslFlags</li>
+  <li>Set-IisWebsiteSslCertifiate</li>
+  <li>Set-IisWindowsAuthentication</li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/archive/2012/6/27/carbon-v023-released.html">Carbon v0.2.3 Released</a></h1>
     
     
@@ -93,7 +160,7 @@
   </header>
 
 
-  <div class="entry-content"><p>I&rsquo;ve released Carbon v0.2.3. <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Download it from BitBucket.</a>  It&rsquo;s mostly documentation updates, but I snuck a couple of bug fixes in there.</p>
+  <div class="entry-content"><p>I’ve released Carbon v0.2.3. <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Download it from BitBucket.</a>  It’s mostly documentation updates, but I snuck a couple of bug fixes in there.</p>
 
 <h2 id="enhancements">Enhancements</h2>
 
@@ -116,7 +183,7 @@
 
 <h2 id="bug-fixes">Bug fixes</h2>
 <ul>
-  <li><a href="http://get-carbon.org/help/Invoke-WindowsInstaller.html">Invoke-WindowsInstaller</a> doesn&rsquo;t validate that installer path ends in &lsquo;.msi&rsquo;.</li>
+  <li><a href="http://get-carbon.org/help/Invoke-WindowsInstaller.html">Invoke-WindowsInstaller</a> doesn’t validate that installer path ends in ‘.msi’.</li>
   <li><a href="http://get-carbon.org/help/Invoke-WindowsInstaller.html">Invoke-WindowsInstaller</a> not showing correct exit code when installation fails.</li>
 </ul>
 </div>
@@ -154,7 +221,7 @@
   </header>
 
 
-  <div class="entry-content"><p>I&rsquo;ve released Carbon v0.2.2.  <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Download it from BitBucket.</a>  There were a bunch of documentation improvements, along with the following:</p>
+  <div class="entry-content"><p>I’ve released Carbon v0.2.2.  <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Download it from BitBucket.</a>  There were a bunch of documentation improvements, along with the following:</p>
 
 <h2 id="enhancements">Enhancements</h2>
 
@@ -206,7 +273,7 @@
 
   <div class="entry-content"><h2 id="importing-modules-is-messy">Importing Modules Is Messy</h2>
 
-<p>An error users encounter with <a href="http://get-carbon.org">Carbon</a> is double-importing its extended type data file.  If Carbon has been imported in another module (i.e. Carbon is a sub-module of that module), when you use <code>Import-Module</code> to import Carbon, PowerShell will sometimes complain about not being able to load Carbon&rsquo;s extended data file:</p>
+<p>An error users encounter with <a href="http://get-carbon.org">Carbon</a> is double-importing its extended type data file.  If Carbon has been imported in another module (i.e. Carbon is a sub-module of that module), when you use <code>Import-Module</code> to import Carbon, PowerShell will sometimes complain about not being able to load Carbon’s extended data file:</p>
 
 <pre><code>&gt; Import-Module SubModuleWhichImportsCarbon
 &gt; Import-Module Carbon
@@ -214,12 +281,12 @@ Import-Module : The following error occurred while loading the extended type dat
 Microsoft.PowerShell, Carbon.types.ps1xml : File skipped because it was already present from "Microsoft.PowerShell".
 </code></pre>
 
-<p>I&rsquo;ve tried a bunch of things to mitigate this error.  I&rsquo;ve always just wanted to import Carbon with one line of code:</p>
+<p>I’ve tried a bunch of things to mitigate this error.  I’ve always just wanted to import Carbon with one line of code:</p>
 
 <pre><code>Import-Module Carbon
 </code></pre>
 
-<p>At first, I tried using the <code>-Force</code> parameter to <code>Import-Module</code>, but that didn&rsquo;t work.  Then I tried removing Carbon if it was present before importing it again:</p>
+<p>At first, I tried using the <code>-Force</code> parameter to <code>Import-Module</code>, but that didn’t work.  Then I tried removing Carbon if it was present before importing it again:</p>
 
 <pre><code>if( (Get-Module Carbon) )
 {
@@ -228,9 +295,9 @@ Microsoft.PowerShell, Carbon.types.ps1xml : File skipped because it was already 
 Import-Module Carbon
 </code></pre>
 
-<p>Unfortunately, the above code doesn&rsquo;t work when Carbon is a sub-module because <code>Get-Module</code> doesn&rsquo;t return sub-modules.  </p>
+<p>Unfortunately, the above code doesn’t work when Carbon is a sub-module because <code>Get-Module</code> doesn’t return sub-modules.  </p>
 
-<p>Next, I updated all my modules that imported Carbon to check for and remove any stand-alone Carbon modules before importing Carbon.  I basically added the code above to all the modules that used Carbon.  This approach worked most of the time, but there were still weird edge cases that caused the double-import error.  The only solution left, I thought, was to re-write all my scripts to add additional code to detect a Carbon sub-module.  That&rsquo;s a lot of scripts to update and a lot of duplicate code between scripts.</p>
+<p>Next, I updated all my modules that imported Carbon to check for and remove any stand-alone Carbon modules before importing Carbon.  I basically added the code above to all the modules that used Carbon.  This approach worked most of the time, but there were still weird edge cases that caused the double-import error.  The only solution left, I thought, was to re-write all my scripts to add additional code to detect a Carbon sub-module.  That’s a lot of scripts to update and a lot of duplicate code between scripts.</p>
 
 <h2 id="the-solution">The Solution</h2>
 
@@ -265,9 +332,9 @@ Import-Module Carbon
 
 <h2 id="therefore-what">Therefore, What?</h2>
 
-<p>When writing a module, <strong>always write and include a script that safely imports the module</strong>.  I recommend using the above code as a template.  If you&rsquo;re using a module that doesn&rsquo;t include a safe import scrpt, write one yourself.  Test for a variable or function that is specific to the module.  (That&rsquo;s not fool-proof, however.  Users can always import individual functions and variables from your module.  In that case, the function/variable you&rsquo;re detecting may not have been imported, and the detection will fail.)  </p>
+<p>When writing a module, <strong>always write and include a script that safely imports the module</strong>.  I recommend using the above code as a template.  If you’re using a module that doesn’t include a safe import scrpt, write one yourself.  Test for a variable or function that is specific to the module.  (That’s not fool-proof, however.  Users can always import individual functions and variables from your module.  In that case, the function/variable you’re detecting may not have been imported, and the detection will fail.)  </p>
 
-<p><strong>Don&rsquo;t</strong> detect the presence of your assemblies or types.  They remain loaded even if your module has been removed.</p>
+<p><strong>Don’t</strong> detect the presence of your assemblies or types.  They remain loaded even if your module has been removed.</p>
 </div>
   
   
@@ -303,11 +370,11 @@ Import-Module Carbon
   </header>
 
 
-  <div class="entry-content"><p>The current version of the <a href="http://get-carbon.org">Carbon</a> help is now <a href="http://get-carbon.org/help/">online</a>.  There are still a lot of functions that have little to no documentation.  Now that I&rsquo;ve put it online, and have automated scripts that will generate it for me, I&rsquo;ll be steadily improving the documentation.  It&rsquo;s my number one priority before I release version 1.0.</p>
+  <div class="entry-content"><p>The current version of the <a href="http://get-carbon.org">Carbon</a> help is now <a href="http://get-carbon.org/help/">online</a>.  There are still a lot of functions that have little to no documentation.  Now that I’ve put it online, and have automated scripts that will generate it for me, I’ll be steadily improving the documentation.  It’s my number one priority before I release version 1.0.</p>
 
-<p>I&rsquo;m using a heavily-modified version of <a href="http://poshcode.org/587">Out-Html</a> to <a href="https://bitbucket.org/splatteredbits/carbon/src/tip/Out-Html.ps1">convert the built-in help to HTML</a>.  All the description and example explanations in the help are written using <a href="http://daringfireball.net/projects/markdown">Markdown</a>, and I&rsquo;m using <a href="http://code.google.com/p/markdownsharp/">MarkdownSharp</a> to convert to HTML.</p>
+<p>I’m using a heavily-modified version of <a href="http://poshcode.org/587">Out-Html</a> to <a href="https://bitbucket.org/splatteredbits/carbon/src/tip/Out-Html.ps1">convert the built-in help to HTML</a>.  All the description and example explanations in the help are written using <a href="http://daringfireball.net/projects/markdown">Markdown</a>, and I’m using <a href="http://code.google.com/p/markdownsharp/">MarkdownSharp</a> to convert to HTML.</p>
 
-<p>The only outstanding improvement I&rsquo;d like to make to the online help is to create links from type names to their MSDN documentation.</p>
+<p>The only outstanding improvement I’d like to make to the online help is to create links from type names to their MSDN documentation.</p>
 </div>
   
   
@@ -343,7 +410,7 @@ Import-Module Carbon
   </header>
 
 
-  <div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+  <div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn’t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
 
 <pre><code>&gt; Get-ChildItem .
 
@@ -387,7 +454,7 @@ Mode                LastWriteTime     Length Name
 
 <p>Yikes!  I would expect it to write an error or just return nothing.</p>
 
-<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
+<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn’t match the filter, like this:</p>
 
 <pre><code>function Remove-ExtraFiles($Items, $Exclude)
 {
@@ -455,11 +522,11 @@ Mode                LastWriteTime     Length Name
 
   <div class="entry-content"><p>In Feburary 2011, I finally got tired of using MSBuild as a scripting language.  There are great frameworks out there that make it bearable, but trying to use a build language to script and program is a recipe for disaster and bloated scripts. </p>
 
-<p>I don&rsquo;t know what finally motivated me to learn PowerShell.  I ordered every PowerShell book from the library, but returned them as soon as I started Lee Holmes&rsquo; <a href="http://shop.oreilly.com/product/9780596528492.do">PowerShell Cookbook</a>. Within a few days, I was writing scripts.  A year later, I have a hard time writing MSBuild.</p>
+<p>I don’t know what finally motivated me to learn PowerShell.  I ordered every PowerShell book from the library, but returned them as soon as I started Lee Holmes’ <a href="http://shop.oreilly.com/product/9780596528492.do">PowerShell Cookbook</a>. Within a few days, I was writing scripts.  A year later, I have a hard time writing MSBuild.</p>
 
-<p>I&rsquo;m still kicking myself for waiting as long as I did.  I had heard lots of respectable developers extol PowerShell, but I never set aside the time to learn it.  What a waste.</p>
+<p>I’m still kicking myself for waiting as long as I did.  I had heard lots of respectable developers extol PowerShell, but I never set aside the time to learn it.  What a waste.</p>
 
-<p>If you&rsquo;re a .NET developer, and still using cmd as your command prompt, or even worse cygwin (shudder), shame on you!  Take a deep breath, two days off, and read Lee Holmes&rsquo; book.  You&rsquo;ll never look back.</p>
+<p>If you’re a .NET developer, and still using cmd as your command prompt, or even worse cygwin (shudder), shame on you!  Take a deep breath, two days off, and read Lee Holmes’ book.  You’ll never look back.</p>
 </div>
   
   
@@ -490,6 +557,10 @@ Mode                LastWriteTime     Length Name
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/06/carbon-v12-released.html">Carbon v1.2 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/06/desired-state-configuration-with-powershell.html">Desired State Configuration With PowerShell</a>
       </li>
     
@@ -503,10 +574,6 @@ Mode                LastWriteTime     Length Name
     
       <li class="post">
         <a href="/archive/2013/4/1/carbon-v11-released.html">Carbon v1.1 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/archive/2013/3/29/stupid-feed-tricks.html">Stupid Feed Tricks</a>
       </li>
     
   </ul>

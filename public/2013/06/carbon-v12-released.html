@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon v1.2 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="Carbon v1.2 is out, is backwards compatible with v1.0 and v1.1 and supports PowerShell 3. (Future releases of Carbon will most likely only support &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2013/06/carbon-v12-released.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon v1.2 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-25T21:02:00-07:00" pubdate data-updated="true">Jun 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Carbon v1.2 is out, is <a href="http://semver.org">backwards compatible</a> with v1.0 and v1.1 and supports PowerShell 3.  (Future releases of Carbon will most likely <em>only</em> support PowerShell 3.)  This release features mostly new functionality, including new functions for managing NTFS compression and performing XDT transformations.  Thanks to Mark Sargent and Philip Teilmeier for contributing enhancements.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="general">General</h3>
+
+<ul>
+  <li>Carbon should now work under PowerShell v3.0!</li>
+</ul>
+
+<h3 id="certificates">Certificates</h3>
+
+<ul>
+  <li>Added support for IPv6 addresses to <a href="http://get-carbon.org/help/Get-SslCertificateBinding.html">Get-SslCertificateBinding</a>, <a href="http://get-carbon.org/help/Remove-SslCertificateBinding.html">Remove-SslCertificateBinding</a>, and <a href="http://get-carbon.org/help/Set-SslCertificateBinding.html">Set-SslCertificateBinding</a>.</li>
+</ul>
+
+<h3 id="net">.NET</h3>
+
+<ul>
+  <li>Added <code>ProviderName</code> parameter to <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString </a> for setting a connection string’s <code>providerName</code> attribute/value.</li>
+</ul>
+
+<h3 id="file-system">File System</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Disable-NtfsCompression.html">Disable-NtfsCompression</a> function for disabling NTFS compression on files/directories.</li>
+  <li>Created <a href="http://get-carbon.org/help/Enable-NtfsCompression.html">Enable-NtfsCompression</a> function for enabling NTFS compression on files/directories.</li>
+  <li>Created <a href="http://get-carbon.org/help/Test-NtfsCompression.html">Test-NtfsCompression</a> function for testing if NTFS compression is enabled on a file/directory.</li>
+</ul>
+
+<h3 id="iis">IIS</h3>
+<ul>
+  <li>The <a href="http://msdn.microsoft.com/en-us/library/microsoft.web.administration.site.aspx">site object</a> returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now as a <code>CommitChanges</code> method so you can persist modifications you make to the site.</li>
+  <li><a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now returns all websites if no <code>SiteName</code> is given.</li>
+  <li>Created <a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> function for explicitly setting a website’s ID.</li>
+</ul>
+
+<h3 id="ini">INI</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Remove-IniEntry.html">Remove-IniEntry</a> function for removing entries/settings from an INI file.</li>
+</ul>
+
+<h3 id="performance-counters">Performance Counters</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> now supports installing a base performance counter.  Thanks to Philip Teilmeier for the contribution.</li>
+  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a>’s <code>Description</code> parameter is now optional.</li>
+</ul>
+
+<h3 id="powershell">PowerShell</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now defaults to running under the current CLR, instead of defaulting to a v2.0 CLR.  This makes upgrading to PowerShell v3.0 easier.</li>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now writes an error and returns if running PowerShell v3.0 and you want to run under a v2.0 CLR.  Unfortunately, PowerShell v3.0 requires .NET 4.0, so you can’t run anything on an earlier CLR.</li>
+</ul>
+
+<h3 id="privileges">Privileges</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now supports case-insensitive privilege names.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> to better handle when passing a privilege name with the wrong case.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> documentation to make it clear privilege names are case-sensitive.</li>
+</ul>
+
+<h3 id="xml">XML</h3>
+
+<ul>
+  <li>New <a href="http://get-carbon.org/help/Convert-XmlFile.html">Convert-XmlFile</a>, for transforming an XML file with Microsoft’s XDT (XML Data Transformation) technology.  Thanks to Mark Sargent for the contribution.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="general-1">General</h3>
+
+<ul>
+  <li>Deleted the obsolete variable <code>$CarbonImported</code>.  Carbon no longer exports any of its variables.</li>
+</ul>
+
+<h3 id="certificates-1">Certificates</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Get-SslCertificateBinding.html">Get-SslCertificateBinding</a> can’t parse bindings to IPv6 addresses.</li>
+</ul>
+
+<h3 id="performance-counters-1">Performance Counters</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> couldn’t be used to create counters that used/required a base counter. Thanks to Philip Teilmeier for the contribution.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-25T21:02:00-07:00" pubdate data-updated="true">Jun 25<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/announcements/'>Announcements</a>, <a class='category' href='/categories/carbon/'>Carbon,</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2013/06/carbon-v12-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2013/06/carbon-v12-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/06/desired-state-configuration-with-powershell.html" title="Previous Post: Desired State Configuration with PowerShell">&laquo; Desired State Configuration with PowerShell</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section style="margin-top:2em;">
+
+	<p>
+		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
+		
+		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
+	</p>
+
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/06/carbon-v12-released.html">Carbon v1.2 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/06/desired-state-configuration-with-powershell.html">Desired State Configuration With PowerShell</a>
+      </li>
+    
+      <li class="post">
+        <a href="/archive/2013/4/25/who-is-modifying-that-file.html">Who Is Modifying That File?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/archive/2013/4/25/serilog.html">Serilog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/archive/2013/4/1/carbon-v11-released.html">Carbon v1.1 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
