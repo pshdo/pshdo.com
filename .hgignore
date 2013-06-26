@@ -1,1 +1,4 @@
-glob:.sass-cache\**\*.*
+syntax: regexp
+^.sass-cache
+^\.git
+\.DS_Store
