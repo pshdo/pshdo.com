@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Carbon v1.3 Released - > pshdo</title>
+  <title>Carbon v1.5 Released - > pshdo</title>
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon v1.3 is out, is backwards compatible with v1.0 through v1.2. This release improves PowerShell 3 compatibility, updates Invoke-PowerShell so it &hellip;">
+  <meta name="description" content="Carbon v1.5 is out and is backwards compatible with v1.0 through v1.4. This release adds a few new features and some bug fixes to improve PowerShell &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pshdo.com/2013/07/carbon-v13-released.html">
+  <link rel="canonical" href="http://pshdo.com/2013/09/carbon-v15-released.html">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Carbon v1.3 Released</h1>
+      <h1 class="entry-title">Carbon v1.5 Released</h1>
     
     
       <p class="meta">
@@ -83,45 +83,64 @@
   
 
 
-<time datetime="2013-07-08T21:39:00-07:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time>
+<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.3 is out, is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.2.  This release  improves PowerShell 3 compatibility, updates <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> so it can run scripts, and adds <a href="http://get-carbon.org/help/ConvertTo-Base64.html">ConvertTo-Base64</a> and <a href="http://get-carbon.org/help/ConvertFrom-Base64.html">ConvertFrom-Base64</a> functions.</p>
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.4.  This release adds a few new features and some bug fixes to improve PowerShell 3 support.</p>
 
-<p>Thanks to <a href="http://blog.codeassassin.com/">Jason Stangroome</a> for the feedback that contributed to the work done in this release.</p>
+<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn&rsquo;t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You&rsquo;re welcome.  <code>;-)</code></p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
 
 <h2 id="enhancements">Enhancements</h2>
 
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> now attempts to start a website whose ID has changed, since IIS stops a website whenever its ID changes.</li>
+</ul>
+
+<h3 id="network">Network</h3>
+
+<ul>
+  <li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer&rsquo;s network interfaces.</li>
+  <li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer&rsquo;s network interfaces.</li>
+</ul>
+
+<h3 id="path">Path</h3>
+
+<ul>
+  <li>Added <a href="http://get-carbon.org/help/Test-UncPath.html">Test-UncPath</a> function for testing if a path is a UNC or not.</li>
+</ul>
+
 <h3 id="powershell">PowerShell</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now supports running an external script.</li>
-  <li>Added <code>OutputFormat</code> argument to <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> so your scripts/script blocks can return XML results instead of plain text.</li>
-  <li>Renamed <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a>&rsquo;s <code>Args</code> parameter to <code>ArgumentList</code> (with backwards compatibile <code>Args</code> alias).</li>
-  <li>Renamed <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a>&rsquo;s <code>Command</code> parameter to <code>ScriptBlock</code> (with backwards-compatible <code>Command</code> alias).</li>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs 64-bit PowerShell from 32-bit PowerShell.</li>
-  <li><a href="http://get-carbon.org/help/Get-PowerShellPath.html">Get-PowerShellPath</a> now returns path for 64-bit PowerShell when running 32-bit PowerShell.</li>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs script blocks in PowerShell 3 under a v2.0 CLR.</li>
 </ul>
 
-<h3 id="text">Text</h3>
+<h3 id="shares">Shares</h3>
 
 <ul>
-  <li>Created new <a href="http://get-carbon.org/help/ConvertTo-Base64.html">ConvertTo-Base64</a> function for encoding strings in base-64.</li>
-  <li>Created new <a href="http://get-carbon.org/help/ConvertFrom-Base64.html">ConvertFrom-Base64</a> function for decoding base-64 strings.</li>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share&rsquo;s directory if it doesn&rsquo;t exist.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
 
-<h3 id="net">.NET</h3>
+<h3 id="certificates">Certificates</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> weren&rsquo;t able to set .NET 2.0 app settings and connections string when running under PowerShell 3.</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn&rsquo;t have permission to write to Windows&rsquo; MachineKeys directory.  It now writes an error instead.</li>
+</ul>
+
+<h3 id="powershell-1">PowerShell</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn&rsquo;t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
 </ul>
 </div>
 
@@ -145,7 +164,7 @@
   
 
 
-<time datetime="2013-07-08T21:39:00-07:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time>
+<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
       
 
 
@@ -153,7 +172,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2013/07/carbon-v13-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2013/07/carbon-v13-released.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2013/09/carbon-v15-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2013/09/carbon-v15-released.html" >Tweet</a>
   
   
   
@@ -162,10 +181,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2013/06/carbon-v12-released.html" title="Previous Post: Carbon v1.2 Released">&laquo; Carbon v1.2 Released</a>
+        <a class="basic-alignment left" href="/2013/08/carbon-v14-released.html" title="Previous Post: Carbon v1.4 Released">&laquo; Carbon v1.4 Released</a>
       
-      
-        <a class="basic-alignment right" href="/2013/08/carbon-v14-released.html" title="Next Post: Carbon v1.4 Released">Carbon v1.4 Released &raquo;</a>
       
     </p>
   </footer>

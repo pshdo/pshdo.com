@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I’m currently writing a PowerShell script that will commit changes to a Mercurial repository, then push those changes out to our central Mercurial &hellip;">
+  <meta name="description" content="I&rsquo;m currently writing a PowerShell script that will commit changes to a Mercurial repository, then push those changes out to our central &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,9 +90,9 @@
   </header>
 
 
-<div class="entry-content"><p>I’m currently writing a PowerShell script that will commit changes to a <a href="http://mercurial.selenic.com">Mercurial</a> repository, then push those changes out to our central Mercurial server.  If there are new changes on the server, the script will need to pull those changes down before it pushes, merge them, commit the merge, then re-push to the server.  Rinse and repeat until the push succeeds.  Because it will run under our continuous integration build server, it needs to be able to run headless (i.e., non-interactively).</p>
+<div class="entry-content"><p>I&rsquo;m currently writing a PowerShell script that will commit changes to a <a href="http://mercurial.selenic.com">Mercurial</a> repository, then push those changes out to our central Mercurial server.  If there are new changes on the server, the script will need to pull those changes down before it pushes, merge them, commit the merge, then re-push to the server.  Rinse and repeat until the push succeeds.  Because it will run under our continuous integration build server, it needs to be able to run headless (i.e., non-interactively).</p>
 
-<p>During a merge, Mercurial will sometimes prompt the user for input (e.g. if a file was deleted by someone, but modified by someone else, Mercurial asks if you want to keep the change or keep the deletion).  Prompting for input won’t work under a continuous integration server because no one’s around to answer.  So, my script needs to detect when Mercurial is prompting for input, kill it, then notify those responsible that manual intervention is necessary.</p>
+<p>During a merge, Mercurial will sometimes prompt the user for input (e.g. if a file was deleted by someone, but modified by someone else, Mercurial asks if you want to keep the change or keep the deletion).  Prompting for input won&rsquo;t work under a continuous integration server because no one&rsquo;s around to answer.  So, my script needs to detect when Mercurial is prompting for input, kill it, then notify those responsible that manual intervention is necessary.</p>
 
 <p>Google turned up <em><a href="http://stackoverflow.com/questions/1704791/is-my-process-waiting-for-input">Is My Process Waiting for Input?</a></em> on StackOverflow.  The .NET <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx">System.Net.Diagnostics.Process</a> class has a <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.process.threads.aspx">Threads</a> property, which is a collection of <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.aspx">ProcessThread</a> objects.  If a process is waiting for input, one of its threads will be in a wait state (i.e. its <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.threadstate.aspx">ThreadState</a> property will be <code>Wait</code>), waiting for user input (i.e., its <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.waitreason.aspx">WaitReason</a> property will be <code>UserRequest</code>).</p>
 
@@ -104,7 +104,7 @@
 }
 </code></pre>
 
-<p>Of course, this is the easy part.  Here’s my final script.  In addition to using <code>Start-Process</code> to start the merge so we can monitor the process while its running, it redirects STDOUT and STDERR to files, so we can see it in our build log.</p>
+<p>Of course, this is the easy part.  Here&rsquo;s my final script.  In addition to using <code>Start-Process</code> to start the merge so we can monitor the process while its running, it redirects STDOUT and STDERR to files, so we can see it in our build log.</p>
 
 <pre><code># Create some files for storing STDOUT and STDERR streams
 $randomFileName = [IO.Path]::GetRandomFileName()
@@ -241,6 +241,14 @@ finally
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2013/09/carbon-v15-released.html">Carbon v1.5 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/08/carbon-v14-released.html">Carbon v1.4 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/07/carbon-v13-released.html">Carbon v1.3 Released</a>
       </li>
     
@@ -250,14 +258,6 @@ finally
     
       <li class="post">
         <a href="/2013/06/desired-state-configuration-with-powershell.html">Desired State Configuration With PowerShell</a>
-      </li>
-    
-      <li class="post">
-        <a href="/archive/2013/4/25/who-is-modifying-that-file.html">Who Is Modifying That File?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/archive/2013/4/25/serilog.html">Serilog</a>
       </li>
     
   </ul>
