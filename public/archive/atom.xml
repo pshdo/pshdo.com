@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2013-09-06T09:46:29-07:00</updated>
+  <updated>2013-10-03T16:15:00-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon v1.5.1 Released]]></title>
+    <link href="http://pshdo.com/2013/10/carbon-v151-released.html"/>
+    <updated>2013-10-03T16:10:00-07:00</updated>
+    <id>http://pshdo.com/2013/10/carbon-v151-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> v1.5.1 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.5.  It supports PowerShell 2.  It contains two bug fixes.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> wasn&rsquo;t consistently starting a website after changing its ID.</li>
+</ul>
+
+<h3 id="shares">Shares</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> writes an error when running under strict mode.  (It has an unused variable which uses an undefined variable to create its value.  Removed the unused variable.)</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Carbon v1.5 Released]]></title>
@@ -1176,36 +1202,6 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
   <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/36/get-powershellpath-returns-the-wrong-path">Fix issue #36</a>: <a href="http://get-carbon.org/help/Get-PowershellPath.html">Get-PowerShellPath</a> returns the wrong path when running x86 PowerShell on x64 computers.</li>
   <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/37/invoke-powershell-should-write-an-error">Fix issue #37</a>: <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> should write an error when running as x86 on Windows x64 without the x86 flag (i.e. 32-bit PowerShell can&rsquo;t launch a 64-bit PowerShell, so throw an error in that situation).</li>
   <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/38/set-trustedhosts-passing-an-empty-value">Fix issue #38</a>: <a href="http://get-carbon.org/help/Set-TrustedHosts.html">Set-TrustedHosts</a>: passing an empty value for the Entries parameter clears the hosts list.  The <code>Entries</code> parameter is now required.  To clear the trusted hosts list, use <code>Clear-TrustedHosts</code>.</li>
-</ul>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Go get it!</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Carbon v0.2.7 Released]]></title>
-    <link href="http://pshdo.com/archive/2012/9/3/carbon-v027-released.html"/>
-    <updated>2012-09-03T09:25:00-07:00</updated>
-    <id>http://pshdo.com/archive/2012/9/3/carbon-v027-released</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve released version 0.2.7 of Carbon this morning.  This release contains only new functionality:</p>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<p>New functions for working with the registry:</p>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Get-RegistryKeyValue.html">Get-RegistryKeyValue</a>: Get a value from a registry key.</li>
-  <li><a href="http://get-carbon.org/help/Install-RegistryKey.html">Install-RegistryKey</a>: Create a new registry key.</li>
-  <li><a href="http://get-carbon.org/help/Remove-RegistryKeyValue.html">Remove-RegistryKeyValue</a>: Remove a value from a registry key.</li>
-  <li><a href="http://get-carbon.org/help/Set-RegistryKeyValue.html">Set-RegistryKeyValue</a>: Set/create a value in a registry key.</li>
-  <li><a href="http://get-carbon.org/help/Test-RegistryKeyValue.html">Test-RegistryKeyValue</a>: Test if a value exists in a registry key.</li>
-</ul>
-
-<p>Other enhancements:</p>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Unprotect-AclAccessRules.html">Unprotect-AclAccessRules</a>: Turns off inherited access rules on an item in the file system or registry.</li>
-  <li>Added a <code>Clear</code> parameter to the <a href="http://get-carbon.org/help/Grant-Permissions.html">Grant-Permissions</a> function for clearing any non-inherited permissions on a file system/registry item.</li>
 </ul>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Go get it!</a></p>

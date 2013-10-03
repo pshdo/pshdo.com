@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Beware Get-ChildItem - > pshdo</title>
+  <title>Carbon v1.5.1 Released - > pshdo</title>
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn&rsquo;t behaving as I expected. Passing it $null, @(), or '' will return the contents of the &hellip;">
+  <meta name="description" content="Carbon v1.5.1 is out and is backwards compatible with v1.0 through v1.5. It supports PowerShell 2. It contains two bug fixes. Get the bits at &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pshdo.com/archive/2012/5/4/beware-get-childitem.html">
+  <link rel="canonical" href="http://pshdo.com/2013/10/carbon-v151-released.html">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Beware Get-ChildItem</h1>
+      <h1 class="entry-title">Carbon v1.5.1 Released</h1>
     
     
       <p class="meta">
@@ -83,88 +83,31 @@
   
 
 
-<time datetime="2012-05-04T16:05:00-07:00" pubdate data-updated="true">May 4<span>th</span>, 2012</time>
+<time datetime="2013-10-03T16:10:00-07:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5.1 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.5.  It supports PowerShell 2.  It contains two bug fixes.</p>
 
-<pre><code>&gt; Get-ChildItem .
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
 
+<h2 id="bug-fixes">Bug Fixes</h2>
 
-   Directory: C:\Temp\BewareGetChildItem
+<h3 id="iis">IIS</h3>
 
-Mode                LastWriteTime     Length Name
-----                -------------     ------ ----
--a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+<ul>
+  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> wasn&rsquo;t consistently starting a website after changing its ID.</li>
+</ul>
 
+<h3 id="shares">Shares</h3>
 
-&gt; Get-ChildItem $null
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> writes an error when running under strict mode.  (It has an unused variable which uses an undefined variable to create its value.  Removed the unused variable.)</li>
+</ul>
 
-
-   Directory: C:\Temp\BewareGetChildItem
-
-Mode                LastWriteTime     Length Name
-----                -------------     ------ ----
--a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
-
-
-&gt; Get-ChildItem @()
-
-
-   Directory: C:\Temp\BewareGetChildItem
-
-Mode                LastWriteTime     Length Name
-----                -------------     ------ ----
--a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
-
-
-&gt; Get-ChildItem ''
-
-
-   Directory: C:\Temp\BewareGetChildItem
-
-Mode                LastWriteTime     Length Name
-----                -------------     ------ ----
--a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
-</code></pre>
-
-<p>Yikes!  I would expect it to write an error or just return nothing.</p>
-
-<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
-
-<pre><code>function Remove-ExtraFiles($Items, $Exclude)
-{
-    Get-ChildItem $Items -Exclude $Exclude -Recurse |
-        Where-Object { -not $_.PsIsContainer } |
-        Remove-Item
-}
-</code></pre>
-
-<p>I was testing this script when I saw that files under my local directory were getting deleted.  By the time I killed the script, it was too late: the last two hours of work were gone.  It turns out that <code>Remove-ExtraFiles</code> was getting called with an empty array as the <code>$Items</code> parameter value.</p>
-
-<p>In my case, the solution was to add some validation to the <code>$Items</code> parameter:</p>
-
-<pre><code>function Remove-ExtraFiles
-{
-    param(
-        [Parameter(Mandatory=$true)]
-        [string[]]
-        $Items,
-        
-        [string[]]
-        $Exclude)
-    )
-    Get-ChildItem $Items -Exclude $Exclude -Recurse |
-        Where-Object { -not $_.PsIsContainer } |
-        Remove-Item
-}
-</code></pre>
-
-<p>Making the parameter mandatory causes a script error if calling <code>Remove-ExtraFiles</code> with null, an empty array, or an empty string.</p>
 </div>
 
 
@@ -187,7 +130,7 @@ Mode                LastWriteTime     Length Name
   
 
 
-<time datetime="2012-05-04T16:05:00-07:00" pubdate data-updated="true">May 4<span>th</span>, 2012</time>
+<time datetime="2013-10-03T16:10:00-07:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time>
       
 
 
@@ -195,7 +138,7 @@ Mode                LastWriteTime     Length Name
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/archive/2012/5/4/beware-get-childitem.html" data-via="pshdo" data-counturl="http://pshdo.com/archive/2012/5/4/beware-get-childitem.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2013/10/carbon-v151-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2013/10/carbon-v151-released.html" >Tweet</a>
   
   
   
@@ -204,10 +147,8 @@ Mode                LastWriteTime     Length Name
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/archive/2012/4/30/new-website.html" title="Previous Post: New-Website">&laquo; New-Website</a>
+        <a class="basic-alignment left" href="/2013/09/carbon-v15-released.html" title="Previous Post: Carbon v1.5 Released">&laquo; Carbon v1.5 Released</a>
       
-      
-        <a class="basic-alignment right" href="/archive/2012/5/30/online-carbon-help.html" title="Next Post: Online Carbon Help">Online Carbon Help &raquo;</a>
       
     </p>
   </footer>
