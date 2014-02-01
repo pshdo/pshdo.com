@@ -11,13 +11,13 @@ I'm currently writing a PowerShell script that will commit changes to a [Mercuri
 
 During a merge, Mercurial will sometimes prompt the user for input (e.g. if a file was deleted by someone, but modified by someone else, Mercurial asks if you want to keep the change or keep the deletion).  Prompting for input won't work under a continuous integration server because no one's around to answer.  So, my script needs to detect when Mercurial is prompting for input, kill it, then notify those responsible that manual intervention is necessary.
 
-Google turned up *[Is My Process Waiting for Input?](http://stackoverflow.com/questions/1704791/is-my-process-waiting-for-input)* on StackOverflow.  The .NET [System.Net.Diagnostics.Process](http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx) class has a [Threads](http://msdn.microsoft.com/en-us/library/system.diagnostics.process.threads.aspx) property, which is a collection of [ProcessThread](http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.aspx) objects.  If a process is waiting for input, one of its threads will be in a wait state (i.e. its [ThreadState](http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.threadstate.aspx) property will be `Wait`), waiting for user input (i.e., its [WaitReason](http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.waitreason.aspx) property will be `UserRequest`).
+Google turned up *[Is My Process Waiting for Input?](http://stackoverflow.com/questions/1704791/is-my-process-waiting-for-input)* on StackOverflow.  The .NET [System.Net.Diagnostics.Process](http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx) class has a [Threads](http://msdn.microsoft.com/en-us/library/system.diagnostics.process.threads.aspx) property, which is a collection of [ProcessThread](http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.aspx) objects.  If a process is waiting for input, one of its threads will be in a wait state (i.e. its [ThreadState](http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.threadstate.aspx) property will be `Wait`), waiting for user input (i.e., its [WaitReason](http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.waitreason.aspx) property will be `LpcReply`).
 
 So, to get all process in PowerShell that are waiting for user input, you can do something like this:
 
     Get-Process | Where-Object { 
         Select-Object -ExpandProperty Threads | 
-            Where-Object { $_.ThreadState -eq 'Wait' -and $_.WaitReason -eq 'UserRequest' }
+            Where-Object { $_.ThreadState -eq 'Wait' -and $_.WaitReason -eq 'LpcReply' }
     }
 
 Of course, this is the easy part.  Here's my final script.  In addition to using `Start-Process` to start the merge so we can monitor the process while its running, it redirects STDOUT and STDERR to files, so we can see it in our build log.
@@ -45,7 +45,7 @@ Of course, this is the easy part.  Here's my final script.  In addition to using
             # If the merge every prompts the user for input, kill it.
             Start-Sleep -Milliseconds 100
             $waitingForInput = $mergeProcess.Threads | 
-                                    Where-Object { $_.ThreadState -eq 'Wait' -and $_.WaitReason -eq 'UserRequest' }
+                                    Where-Object { $_.ThreadState -eq 'Wait' -and $_.WaitReason -eq 'LpcReply' }
             if( $waitingForInput )
             {
                 Write-Error -Message ('Stopping non-interactive merge: Mercurial is prompting for input.') `
