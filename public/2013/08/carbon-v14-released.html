@@ -92,7 +92,7 @@
 
 <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.4 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.3.  This release adds a few new features and some bug fixes introduced in v1.3.</p>
 
-<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We&rsquo;ll be moving the build server to PowerShell 3 sometime around August 15th, which means that&rsquo;s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
+<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We’ll be moving the build server to PowerShell 3 sometime around August 15th, which means that’s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
 
@@ -101,14 +101,14 @@
 <h3 id="file-system">File System</h3>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn&rsquo;t exist, respectively.</li>
+  <li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn’t exist, respectively.</li>
 </ul>
 
 <h3 id="iis">IIS</h3>
 
 <ul>
-  <li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don&rsquo;t have to traverse down into the default application&rsquo;s default virtual directory object to get it.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. &lsquo;..&rsquo;) to a full path.  It turns out IIS doesn&rsquo;t like paths with relative parts.</li>
+  <li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don’t have to traverse down into the default application’s default virtual directory object to get it.</li>
+  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. ‘..’) to a full path.  It turns out IIS doesn’t like paths with relative parts.</li>
   <li>Created <a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a> function to get <code>Microsoft.Web.Administration.Application</code> objects for all or specific applications under a website.</li>
   <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> now uses the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>.</li>
 </ul>
@@ -130,7 +130,7 @@
 <h3 id="net">.NET</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn&rsquo;t allow running scripts.</li>
+  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn’t allow running scripts.</li>
 </ul>
 </div>
 
@@ -200,6 +200,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a>
       </li>
     
@@ -215,10 +219,6 @@
         <a href="/2013/07/carbon-v13-released.html">Carbon v1.3 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2013/06/carbon-v12-released.html">Carbon v1.2 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -229,7 +229,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Aaron Jensen -
+  Copyright &copy; 2014 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

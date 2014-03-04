@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn&rsquo;t behaving as I expected. Passing it $null, @(), or '' will return the contents of the &hellip;">
+  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn’t behaving as I expected. Passing it $null, @(), or '' will return the contents of the current &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,7 +90,7 @@
   </header>
 
 
-<div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+<div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn’t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
 
 <pre><code>&gt; Get-ChildItem .
 
@@ -134,7 +134,7 @@ Mode                LastWriteTime     Length Name
 
 <p>Yikes!  I would expect it to write an error or just return nothing.</p>
 
-<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
+<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn’t match the filter, like this:</p>
 
 <pre><code>function Remove-ExtraFiles($Items, $Exclude)
 {
@@ -233,6 +233,10 @@ Mode                LastWriteTime     Length Name
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a>
       </li>
     
@@ -248,10 +252,6 @@ Mode                LastWriteTime     Length Name
         <a href="/2013/07/carbon-v13-released.html">Carbon v1.3 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2013/06/carbon-v12-released.html">Carbon v1.2 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -262,7 +262,7 @@ Mode                LastWriteTime     Length Name
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Aaron Jensen -
+  Copyright &copy; 2014 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

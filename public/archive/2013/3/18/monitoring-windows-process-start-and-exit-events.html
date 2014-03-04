@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Part of my build server management responsibilities include trying to figure out why things are going wrong. I don&rsquo;t know about other &hellip;">
+  <meta name="description" content="Part of my build server management responsibilities include trying to figure out why things are going wrong. I don’t know about other environments, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,17 +90,17 @@
   </header>
 
 
-<div class="entry-content"><p>Part of my build server management responsibilities include trying to figure out why things are going wrong.  I don&rsquo;t know about other environments, but our builds run a lot of processes. For example, we use <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">Robocopy</a> to individually deploy a website&rsquo;s sub-directories.  When things go wrong, it&rsquo;s hard to debug because these robocopy processes start and stop so quickly, I don&rsquo;t have time to double-click them in <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a>. I usually resorted to adding lines in our deployment script to output the Robocopy command line and exit code, then running the build, waiting for it to finish, then inspecting the build logs.  </p>
+<div class="entry-content"><p>Part of my build server management responsibilities include trying to figure out why things are going wrong.  I don’t know about other environments, but our builds run a lot of processes. For example, we use <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">Robocopy</a> to individually deploy a website’s sub-directories.  When things go wrong, it’s hard to debug because these robocopy processes start and stop so quickly, I don’t have time to double-click them in <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a>. I usually resorted to adding lines in our deployment script to output the Robocopy command line and exit code, then running the build, waiting for it to finish, then inspecting the build logs.  </p>
 
 <p><em>Ugh.</em></p>
 
 <p>Last week, I discovered that <a href="http://technet.microsoft.com/en-us/sysinternals/bb896645.aspx">Process Monitor</a> captures process start and exit events.  Just the information I need in these situations.</p>
 
-<p>Open Process Monitor, and click the &ldquo;Filter&rdquo; button.</p>
+<p>Open Process Monitor, and click the “Filter” button.</p>
 
 <p><img src="/storage/screenshots/procmon/ProcessMonitorFilterButton.png" alt="" /></p>
 
-<p>Create a new condition that matches when the <code>Operation</code> column contains the word <code>process</code> (don&rsquo;t forget to click the <code>Add</code> button).</p>
+<p>Create a new condition that matches when the <code>Operation</code> column contains the word <code>process</code> (don’t forget to click the <code>Add</code> button).</p>
 
 <p><img src="/storage/screenshots/procmon/ProcessMonitorFilterOperationContainsProcess.png" alt="" /></p>
 
@@ -108,7 +108,7 @@
 
 <p><img src="/storage/screenshots/procmon/ProcessMonitorProcessStartExitEvents.png" alt="" /></p>
 
-<p>If you double-click the start event, you&rsquo;ll be able to see the entire command line and all the process&rsquo;s environment variables.</p>
+<p>If you double-click the start event, you’ll be able to see the entire command line and all the process’s environment variables.</p>
 
 <p>Thanks to the <a href="http://technet.microsoft.com/en-us/sysinternals/bb545021.aspx">Windows Sysinternals team</a> for the great tools.</p>
 </div>
@@ -179,6 +179,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a>
       </li>
     
@@ -194,10 +198,6 @@
         <a href="/2013/07/carbon-v13-released.html">Carbon v1.3 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2013/06/carbon-v12-released.html">Carbon v1.2 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -208,7 +208,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Aaron Jensen -
+  Copyright &copy; 2014 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

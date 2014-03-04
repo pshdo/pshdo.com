@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon v1.5.1 is out and is backwards compatible with v1.0 through v1.5. It supports PowerShell 2. It contains two bug fixes. Get the bits at &hellip;">
+  <meta name="description" content="Carbon 1.6 is out and is backwards compatible with 1.0 through 1.5.1. It supports PowerShell 2. It contains a few bug fixes and many enhancements. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +70,159 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-01T12:14:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.6 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.5.1.  It supports PowerShell 2.  It contains a few bug fixes and many enhancements.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="file-system">File System</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> doesn’t delete a junction when given a relative path to the junction.</li>
+</ul>
+
+<h3 id="services">Services</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> doesn’t properly resolve a service’s path.</li>
+</ul>
+
+<h3 id="shares">Shares</h3>
+
+<ul>
+  <li>Fixed <a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> example to use correct syntax. <a href="https://bitbucket.org/splatteredbits/carbon/issue/111">#111.</a></li>
+</ul>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="hosts-file">Hosts File</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Remove-HostsEntry.html">Remove-HostsEntry</a> function for removing hostnames from a hosts file.</li>
+</ul>
+
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Join-IisVirtualPath.html">Join-IisVirtualPath</a> for joining paths used by the IIS APIs.</li>
+  <li>Renamed all IIS <code>Path</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
+    <ul>
+      <li><a href="http://get-carbon.org/help/Disable-IisSecurityAuthentication.html">Disable-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Enable-IisDirectoryBrowsing</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IisSecurityAuthentication.html">Enable-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IisSsl.html">Enable-IisSsl</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisConfigurationSection.html">Get-IisConfigurationSection</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisHttpHeader.html">Get-IisHttpHeader</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisHttpRedirect.html">Get-IisHttpRedirect</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisSecurityAuthentication.html">Get-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisHttpHeader.html">Set-IisHttpHeader</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisHttpRedirect.html">Set-IisHttpRedirect</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisWindowsAuthentication.html">Set-IisWindowsAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Test-IisConfigurationSection.html">Test-IisConfigurationSection</a></li>
+      <li><a href="http://get-carbon.org/help/Test-IisSecurityAuthentication.html">Test-IisSecurityAuthentication</a></li>
+    </ul>
+  </li>
+  <li>Renamed <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a>’s <code>SiteName</code> parameter to <code>Name</code> (with a backwards-compatible alias).</li>
+  <li>Renamed all IIS <code>Name</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
+    <ul>
+      <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
+      <li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
+    </ul>
+  </li>
+  <li>Renamed all IIS <code>Path</code> parameters which represented physical paths to <code>PhysicalPath</code> (with backwards-compatible aliases):
+    <ul>
+      <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
+      <li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
+      <li><a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="net">.NET</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Test-DotNet.html">Test-DotNet</a> for testing if v2 or v4 of the .NET framework is installed.</li>
+</ul>
+
+<h3 id="path">Path</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Get-PathProvider.html">Get-PathProvider</a> function for getting a path’s PowerShell provider.</li>
+</ul>
+
+<h3 id="powershell">PowerShell</h3>
+
+<ul>
+  <li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to test if the appropriate .NET framework is installed if the user chooses an explicit runtime to use.</li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> function for checking if a user/group has a set of permissions and, optionally, a set of inheritance and propagation flags on a file, directory, or registry key.</li>
+  <li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> now automatically includes the <code>Synchronize</code> permission when checking for exact permissions, since this permission is always on and can never be removed from a file/directory.</li>
+</ul>
+
+<h3 id="services-1">Services</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-User.html">Install-Service</a> no longer requires a password, in order to support <a href="http://technet.microsoft.com/en-us/library/dd548356.aspx">managed service accounts and virtual accounts</a>.  We have no idea if this works, since we can’t test locally.  Please let us know if this fix works for you. <a href="https://bitbucket.org/splatteredbits/carbon/issue/114">#114</a></li>
+</ul>
+
+<h3 id="users-and-groups">Users and Groups</h3>
+
+<ul>
+  <li>Updated <a href="http://get-carbon.org/help/Install-User.html">Install-User</a> to support passwords longer than 14 characters.  Thanks to <a href="http://www.jamescrowley.co.uk/">James Crowley</a> for the fix.</li>
+</ul>
+
+<h3 id="windows-features">Windows Features</h3>
+
+<ul>
+  <li>Marked Assert-WindowsFeatureFunctionsSupported as an internal function.  Please don’t use.  It will be removed from future versions of PowerShell.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Test-WindowsFeature</a> to work on Windows 8/2012.</li>
+  <li>Created new <code>Carbon.Identity</code> class for representing identities.  It also contains a static <code>FindByName</code> method which uses The Windows <code>LookupAccountName</code> function to find full account names, domains, and sids.  </li>
+  <li>Updated <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can’t be found.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can’t be found.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a></h1>
     
     
@@ -102,7 +255,7 @@
 <h3 id="iis">IIS</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> wasn&rsquo;t consistently starting a website after changing its ID.</li>
+  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> wasn’t consistently starting a website after changing its ID.</li>
 </ul>
 
 <h3 id="shares">Shares</h3>
@@ -148,7 +301,7 @@
 
   <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.4.  This release adds a few new features and some bug fixes to improve PowerShell 3 support.</p>
 
-<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn&rsquo;t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You&rsquo;re welcome.  <code>;-)</code></p>
+<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn’t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You’re welcome.  <code>;-)</code></p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
 
@@ -163,8 +316,8 @@
 <h3 id="network">Network</h3>
 
 <ul>
-  <li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer&rsquo;s network interfaces.</li>
-  <li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer&rsquo;s network interfaces.</li>
+  <li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer’s network interfaces.</li>
+  <li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer’s network interfaces.</li>
 </ul>
 
 <h3 id="path">Path</h3>
@@ -182,7 +335,7 @@
 <h3 id="shares">Shares</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share&rsquo;s directory if it doesn&rsquo;t exist.</li>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share’s directory if it doesn’t exist.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -190,13 +343,13 @@
 <h3 id="certificates">Certificates</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn&rsquo;t have permission to write to Windows&rsquo; MachineKeys directory.  It now writes an error instead.</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn’t have permission to write to Windows’ MachineKeys directory.  It now writes an error instead.</li>
 </ul>
 
 <h3 id="powershell-1">PowerShell</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn&rsquo;t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn’t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
 </ul>
 </div>
   
@@ -235,7 +388,7 @@
 
   <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.4 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.3.  This release adds a few new features and some bug fixes introduced in v1.3.</p>
 
-<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We&rsquo;ll be moving the build server to PowerShell 3 sometime around August 15th, which means that&rsquo;s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
+<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We’ll be moving the build server to PowerShell 3 sometime around August 15th, which means that’s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
 
@@ -244,14 +397,14 @@
 <h3 id="file-system">File System</h3>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn&rsquo;t exist, respectively.</li>
+  <li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn’t exist, respectively.</li>
 </ul>
 
 <h3 id="iis">IIS</h3>
 
 <ul>
-  <li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don&rsquo;t have to traverse down into the default application&rsquo;s default virtual directory object to get it.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. &lsquo;..&rsquo;) to a full path.  It turns out IIS doesn&rsquo;t like paths with relative parts.</li>
+  <li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don’t have to traverse down into the default application’s default virtual directory object to get it.</li>
+  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. ‘..’) to a full path.  It turns out IIS doesn’t like paths with relative parts.</li>
   <li>Created <a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a> function to get <code>Microsoft.Web.Administration.Application</code> objects for all or specific applications under a website.</li>
   <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> now uses the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>.</li>
 </ul>
@@ -273,7 +426,7 @@
 <h3 id="net">.NET</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn&rsquo;t allow running scripts.</li>
+  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn’t allow running scripts.</li>
 </ul>
 </div>
   
@@ -323,8 +476,8 @@
 <ul>
   <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now supports running an external script.</li>
   <li>Added <code>OutputFormat</code> argument to <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> so your scripts/script blocks can return XML results instead of plain text.</li>
-  <li>Renamed <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a>&rsquo;s <code>Args</code> parameter to <code>ArgumentList</code> (with backwards compatibile <code>Args</code> alias).</li>
-  <li>Renamed <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a>&rsquo;s <code>Command</code> parameter to <code>ScriptBlock</code> (with backwards-compatible <code>Command</code> alias).</li>
+  <li>Renamed <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a>’s <code>Args</code> parameter to <code>ArgumentList</code> (with backwards compatibile <code>Args</code> alias).</li>
+  <li>Renamed <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a>’s <code>Command</code> parameter to <code>ScriptBlock</code> (with backwards-compatible <code>Command</code> alias).</li>
   <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs 64-bit PowerShell from 32-bit PowerShell.</li>
   <li><a href="http://get-carbon.org/help/Get-PowerShellPath.html">Get-PowerShellPath</a> now returns path for 64-bit PowerShell when running 32-bit PowerShell.</li>
 </ul>
@@ -341,7 +494,7 @@
 <h3 id="net">.NET</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> weren&rsquo;t able to set .NET 2.0 app settings and connections string when running under PowerShell 3.</li>
+  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> weren’t able to set .NET 2.0 app settings and connections string when running under PowerShell 3.</li>
 </ul>
 </div>
   
@@ -399,7 +552,7 @@
 <h3 id="net">.NET</h3>
 
 <ul>
-  <li>Added <code>ProviderName</code> parameter to <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString </a> for setting a connection string&rsquo;s <code>providerName</code> attribute/value.</li>
+  <li>Added <code>ProviderName</code> parameter to <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString </a> for setting a connection string’s <code>providerName</code> attribute/value.</li>
 </ul>
 
 <h3 id="file-system">File System</h3>
@@ -414,7 +567,7 @@
 <ul>
   <li>The <a href="http://msdn.microsoft.com/en-us/library/microsoft.web.administration.site.aspx">site object</a> returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now as a <code>CommitChanges</code> method so you can persist modifications you make to the site.</li>
   <li><a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now returns all websites if no <code>SiteName</code> is given.</li>
-  <li>Created <a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> function for explicitly setting a website&rsquo;s ID.</li>
+  <li>Created <a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> function for explicitly setting a website’s ID.</li>
 </ul>
 
 <h3 id="ini">INI</h3>
@@ -427,14 +580,14 @@
 
 <ul>
   <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> now supports installing a base performance counter.  Thanks to Philip Teilmeier for the contribution.</li>
-  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a>&rsquo;s <code>Description</code> parameter is now optional.</li>
+  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a>’s <code>Description</code> parameter is now optional.</li>
 </ul>
 
 <h3 id="powershell">PowerShell</h3>
 
 <ul>
   <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now defaults to running under the current CLR, instead of defaulting to a v2.0 CLR.  This makes upgrading to PowerShell v3.0 easier.</li>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now writes an error and returns if running PowerShell v3.0 and you want to run under a v2.0 CLR.  Unfortunately, PowerShell v3.0 requires .NET 4.0, so you can&rsquo;t run anything on an earlier CLR.</li>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now writes an error and returns if running PowerShell v3.0 and you want to run under a v2.0 CLR.  Unfortunately, PowerShell v3.0 requires .NET 4.0, so you can’t run anything on an earlier CLR.</li>
 </ul>
 
 <h3 id="privileges">Privileges</h3>
@@ -448,7 +601,7 @@
 <h3 id="xml">XML</h3>
 
 <ul>
-  <li>New <a href="http://get-carbon.org/help/Convert-XmlFile.html">Convert-XmlFile</a>, for transforming an XML file with Microsoft&rsquo;s XDT (XML Data Transformation) technology.  Thanks to Mark Sargent for the contribution.</li>
+  <li>New <a href="http://get-carbon.org/help/Convert-XmlFile.html">Convert-XmlFile</a>, for transforming an XML file with Microsoft’s XDT (XML Data Transformation) technology.  Thanks to Mark Sargent for the contribution.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -462,13 +615,13 @@
 <h3 id="certificates-1">Certificates</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Get-SslCertificateBinding.html">Get-SslCertificateBinding</a> can&rsquo;t parse bindings to IPv6 addresses.</li>
+  <li><a href="http://get-carbon.org/help/Get-SslCertificateBinding.html">Get-SslCertificateBinding</a> can’t parse bindings to IPv6 addresses.</li>
 </ul>
 
 <h3 id="performance-counters-1">Performance Counters</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> couldn&rsquo;t be used to create counters that used/required a base counter. Thanks to Philip Teilmeier for the contribution.</li>
+  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> couldn’t be used to create counters that used/required a base counter. Thanks to Philip Teilmeier for the contribution.</li>
 </ul>
 
 </div>
@@ -506,7 +659,7 @@
   </header>
 
 
-  <div class="entry-content"><p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.  </p>
+  <div class="entry-content"><p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen’s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.  </p>
 
 <p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
 </div>
@@ -621,7 +774,7 @@
 <h2 id="upgrade-instructions">Upgrade Instructions</h2>
 
 <ul>
-  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won&rsquo;t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
+  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won’t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
 </ul>
 
 <h2 id="enhancements">Enhancements</h2>
@@ -643,7 +796,7 @@
 <h3 id="computer">Computer</h3>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn&rsquo;t in the path.</li>
+  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn’t in the path.</li>
 </ul>
 
 <h3 id="iis">IIS</h3>
@@ -655,14 +808,14 @@
   <li>Created <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a> for removing a file extension to MIME type mapping for the IIS web server.</li>
   <li>Created <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> for creating/setting a file extension to MIME type mapping for the IIS web server.</li>
   <li>When creating an app pool that runs under a custom, non-service account, <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> grants that user the <code>SeBatchLogonRight</code>.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn&rsquo;t exist (i.e. if the value of the <code>Username</code> parameter doesn&rsquo;t exist).</li>
+  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn’t exist (i.e. if the value of the <code>Username</code> parameter doesn’t exist).</li>
 </ul>
 
 <h3 id="privileges">Privileges</h3>
 
 <ul>
   <li>Improved exception handling in <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
-  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn&rsquo;t exist.</li>
+  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn’t exist.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -670,70 +823,14 @@
 <h3 id="computer-1">Computer</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can&rsquo;t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user&rsquo;s <code>PATH</code> environment variable.</li>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can’t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user’s <code>PATH</code> environment variable.</li>
 </ul>
 
 <h3 id="users-and-groups">Users and Groups</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can&rsquo;t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
+  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can’t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
 </ul>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/archive/2013/3/29/stupid-feed-tricks.html">Stupid Feed Tricks</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-29T03:58:00-07:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://inessential.com/2013/03/18/brians_stupid_feed_tricks">Brent Simmons, who goes on to quote Brian Reischl:</a></p>
-
-<blockquote>
-  <p>At NewsGator and Sepia Labs I worked with Brian Reischl, one of the server-side guys. Among other things, he worked on NewsGator’s RSS content service, which reads n million feeds once an hour.</p>
-</blockquote>
-
-<blockquote>
-  <p>(I don’t know if I can say what n is. It surprised me when I heard it. The system is still running, by the way.)</p>
-</blockquote>
-
-<blockquote>
-  <p>Brian is intimately acquainted with the different ways feeds can be screwed up. So he posted <a href="https://docs.google.com/document/d/1cvq67iQpk2C7ufOsefsfKnGCXeUIv46NQHbnHkm8PtU/edit?usp=sharing">Stupid Feed Tricks</a> on Google Docs.</p>
-</blockquote>
-
-<blockquote>
-  <p>I quote the entire thing below for people like me who don’t have Google accounts. The below is all by Brian:</p>
-</blockquote>
-
-<p>He then goes on to list several dozen edge cases the feed reader had to handle. </p>
-
-<p><strong>Writing software is hard.</strong></p>
 </div>
   
   
@@ -764,6 +861,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a>
       </li>
     
@@ -779,10 +880,6 @@
         <a href="/2013/07/carbon-v13-released.html">Carbon v1.3 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2013/06/carbon-v12-released.html">Carbon v1.2 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -792,7 +889,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Aaron Jensen -
+  Copyright &copy; 2014 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
