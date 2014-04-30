@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon 1.6 is out and is backwards compatible with 1.0 through 1.5.1. It supports PowerShell 2. It contains a few bug fixes and many enhancements. &hellip;">
+  <meta name="description" content="Carbon 1.7 is out and is backwards compatible with 1.0 through 1.6. It supports PowerShell 2. It contains mostly bug fixes and some enhancements. Get &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,96 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-30T13:40:00-07:00" pubdate data-updated="true">Apr 30<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.7 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.6.  It supports PowerShell 2. It contains mostly bug fixes and some enhancements.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<p>There is now <a href="http://www.freelists.org/list/carbon">a Carbon support mailing list</a>.</p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="general">General</h3>
+
+<ul>
+  <li>Import-Carbon.ps1 now supports the <code>-WhatIf</code> switch.</li>
+  <li>Import-Carbon.ps1 now hides verbose log messages when removing/importing Carbon even when supplying the <code>-Verbose</code> switch because I think the verbose output is too verbose and not helpful at all.</li>
+  <li>Import-Carbon.ps1 now supports adding a prefix when importing the Carbon module (with the <code>Prefix</code> parameter) to avoid name collisions and <a href="http://blogs.msdn.com/b/powershell/archive/2014/04/07/what-s-in-a-name-using-the-ps-prefix.aspx">follow best practices</a>.</li>
+</ul>
+
+<h3 id="certificates">Certificates</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Get-CertificateStore.html">Get-CertificateStore</a> now supports non-standard, custom certificate stores.</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> now supports non-standard, custom certificate stores.</li>
+  <li><a href="http://get-carbon.org/help/Install-Certificate.html">Install-Certificate</a> now supports non-standard, custom certificate stores.</li>
+  <li><a href="http://get-carbon.org/help/Uninstall-Certificate.html">Uninstall-Certificate</a> now supports non-standard, custom certificate stores.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="general-1">General</h3>
+
+<ul>
+  <li>No more silent errors when importing Carbon on Windows 2012 R2.</li>
+</ul>
+
+<h3 id="certificates-1">Certificates</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> no longer writes a silent error when a certificate does not exist. Instead, no error is written.</li>
+</ul>
+
+<h3 id="file-system">File System</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> fails when target path is hidden.</li>
+  <li><a href="http://get-carbon.org/help/Test-NtfsCompression.html">Test-NtfsCompression</a> fails when file/directory is hidden.</li>
+  <li><a href="http://get-carbon.org/help/Test-PathIsJunction.html">Test-PathIsJunction</a> fails when tested directory is hidden.</li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> fails when item is hidden.</li>
+  <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> doesn’t handle non-existent paths, causing cascading errors.</li>
+  <li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> always returns <code>$false</code> when testing leaf-level permissions and the <code>ApplyTo</code> parameter is provided, i.e. it doesn’t ignore inheritance/propagation flags on leaves.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -741,103 +831,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/archive/2013/4/1/carbon-v11-released.html">Carbon v1.1 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-01T13:32:00-07:00" pubdate data-updated="true">Apr 1<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Carbon v1.1 is out. It is <a href="http://semver.org">backwards-compatible</a> with v1.0.  <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket</a>.</p>
-
-<h2 id="upgrade-instructions">Upgrade Instructions</h2>
-
-<ul>
-  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won’t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
-</ul>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<h3 id="general">General</h3>
-
-<ul>
-  <li>Fixed some typos and ommissions in the v0.5.0.1 and v0.5.0.0 sections of the release notes.</li>
-  <li>Updated <code>Import-Carbon.ps1</code> script to import Carbon regardless of the name of the directory Carbon is installed in.</li>
-</ul>
-
-<h3 id="certificates">Certificates</h3>
-
-<ul>
-  <li>Added <code>IssuedTo</code> and <code>IssuedBy</code> properties to <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> objects.  The values match what the Certificates MMC snap-in displays.</li>
-  <li>Added <code>DisplayName</code> property to <a href="http://msdn.microsoft.com/en-us/library/d228271e.aspx">X509Store</a> objects, to show the names of the stores as they are displayed in the Certificates MMC snap-in.</li>
-</ul>
-
-<h3 id="computer">Computer</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn’t in the path.</li>
-</ul>
-
-<h3 id="iis">IIS</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-IisHttpHeader.html">Get-IisHttpHeader</a> for getting the custom HTTP headers for a website or one of its sub-directories.</li>
-  <li>Created <a href="http://get-carbon.org/help/Set-IisHttpHeader.html">Set-IisHttpHeader</a> for creating/setting a custom HTTP header for a website or one of its sub-directories.</li>
-  <li>Created <a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a> for getting the file extension to MIME type mappings for the IIS web server.</li>
-  <li>Created <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a> for removing a file extension to MIME type mapping for the IIS web server.</li>
-  <li>Created <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> for creating/setting a file extension to MIME type mapping for the IIS web server.</li>
-  <li>When creating an app pool that runs under a custom, non-service account, <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> grants that user the <code>SeBatchLogonRight</code>.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn’t exist (i.e. if the value of the <code>Username</code> parameter doesn’t exist).</li>
-</ul>
-
-<h3 id="privileges">Privileges</h3>
-
-<ul>
-  <li>Improved exception handling in <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
-  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn’t exist.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<h3 id="computer-1">Computer</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can’t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user’s <code>PATH</code> environment variable.</li>
-</ul>
-
-<h3 id="users-and-groups">Users and Groups</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can’t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -861,6 +854,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
       </li>
     
@@ -874,10 +871,6 @@
     
       <li class="post">
         <a href="/2013/08/carbon-v14-released.html">Carbon v1.4 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/07/carbon-v13-released.html">Carbon v1.3 Released</a>
       </li>
     
   </ul>
