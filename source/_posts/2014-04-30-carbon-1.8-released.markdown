@@ -11,6 +11,8 @@ tags: Carbon, Announcements
 
 Our first public alpha release of [Carbon](http://get-carbon.org) 2.0 is out (version 2.0-alpha.26). The focus of version 2.0 is on making necessary, backwards-incompatible changes and ***adding DSC resources and functions***. [We still have some backwards-incompatible changes to make.](https://bitbucket.org/splatteredbits/carbon/issues?status=new&status=open&q=2.0) before we get to the final version of 2.0.
 
+[Download from BitBucket.](https://bitbucket.org/splatteredbits/carbon/downloads)
+
 The highlight of this release are seven new DSC resources:
 
  * [Carbon_EnvironmentVariable](http://get-carbon.org/help/2.0/Carbon_Environment.html)
