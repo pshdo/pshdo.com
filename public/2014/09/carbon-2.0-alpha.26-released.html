@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon 1.8 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="Carbon 1.8 is out and is backwards compatible with 1.0 through 1.7. It supports PowerShell 2 and 3. Highlights include: Carbon now uses Write-Verbose &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2014/09/carbon-2.0-alpha.26-released.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon 1.8 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-07T10:14:00-07:00" pubdate data-updated="true">Sep 7<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.8 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.7.  It supports PowerShell 2 and 3. Highlights include:</p>
+
+<ul>
+  <li>Carbon now uses <code>Write-Verbose</code> instead of <code>Write-Host</code>.</li>
+  <li>New functions:
+    <ul>
+      <li><a href="http://get-carbon.org/help/Get-ProgramInstallInfo.html">Get-ProgramInstallInfo</a> (gets installed programs)</li>
+      <li><a href="http://get-carbon.org/help/New-RsaKeyPair.html">New-RsaKeyPair</a> (generates RSA public/private key pair)</li>
+      <li><a href="http://get-carbon.org/help/Revoke-Permission.html">Revoke-Permission</a> (revokes permissions)</li>
+      <li><a href="http://get-carbon.org/help/Get-ServiceConfiguration.html">Get-ServiceConfiguration</a> (gets extended service information: username, failure actions, etc.)</li>
+      <li><a href="http://get-carbon.org/help/Compress-Item.html">Compress-Item</a> (create ZIP file)</li>
+      <li><a href="http://get-carbon.org/help/Test-ZipFile.html">Test-ZipFile</a> (tests if a file is a ZIP file)</li>
+      <li><a href="http://get-carbon.org/help/Expand-Item.html">Expand-Item</a> (decompresses ZIP file)</li>
+    </ul>
+  </li>
+  <li><a href="http://get-carbon.org/help/Get-Permission.html">Get-Permission</a>, <a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a>, and <a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> now supports certificate private keys/key containers.</li>
+  <li><a href="http://get-carbon.org/help/Get-FirewallRule.html">Get-FirewallRule</a> now returns additional rule information: interface type, security, source, description, program, and service.</li>
+  <li>Lots of improved error handling.</li>
+  <li>Some bug fixes.</li>
+</ul>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="general">General</h3>
+
+<ul>
+  <li>The following functions now write messages with <code>Write-Verbose</code> instead of <code>Write-Host</code>. See <a href="http://www.jsnover.com/blog/2013/12/07/write-host-considered-harmful/">Write-Host Considered Harmful</a>.
+    <ul>
+      <li><a href="http://get-carbon.org/help/Add-GroupMember.html">Add-GroupMember</a></li>
+      <li><a href="http://get-carbon.org/help/Clear-TrustedHost.html">Clear-TrustedHost</a></li>
+      <li><a href="http://get-carbon.org/help/Convert-XmlFile.html">Convert-XmlFile</a></li>
+      <li><a href="http://get-carbon.org/help/Disable-FirewallStatefulFtp.html">Disable-FirewallStatefulFtp</a></li>
+      <li><a href="http://get-carbon.org/help/Disable-IEEnhancedSecurityConfiguration.html">Disable-IEEnhancedSecurityConfiguration</a></li>
+      <li><a href="http://get-carbon.org/help/Disable-IisSecurityAuthentication.html">Disable-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Disable-NtfsCompression.html">Disable-NtfsCompression</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-FirewallStatefulFtp.html">Enable-FirewallStatefulFtp</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IEActivationPermission.html">Enable-IEActivationPermission</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IisSecurityAuthentication.html">Enable-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-NtfsCompression.html">Enable-NtfsCompression</a></li>
+      <li><a href="http://get-carbon.org/help/Grant-ComPermission.html">Grant-ComPermission</a></li>
+      <li><a href="http://get-carbon.org/help/Grant-MsmqMessageQueuePermission.html">Grant-MsmqMessageQueuePermission</a></li>
+      <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a></li>
+      <li><a href="http://get-carbon.org/help/Grant-ServiceControlPermission.html">Grant-ServiceControlPermission</a></li>
+      <li><a href="http://get-carbon.org/help/Install-Group.html">Install-Group</a></li>
+      <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
+      <li><a href="http://get-carbon.org/help/Install-MsmqMessageQueue.html">Install-MsmqMessageQueue</a></li>
+      <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a></li>
+      <li><a href="http://get-carbon.org/help/Install-RegistryKey.html">Install-RegistryKey</a></li>
+      <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a></li>
+      <li><a href="http://get-carbon.org/help/Install-User.html">Install-User</a></li>
+      <li><a href="http://get-carbon.org/help/Install-WindowsFeature.html">Install-WindowsFeature</a></li>
+      <li><a href="http://get-carbon.org/help/Invoke-WindowsInstaller.html">Invoke-WindowsInstaller</a></li>
+      <li><a href="http://get-carbon.org/help/Lock-IisConfigurationSection.html">Lock-IisConfigurationSection</a></li>
+      <li><a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a></li>
+      <li><a href="http://get-carbon.org/help/Protect-Acl.html">Protect-Acl</a></li>
+      <li><a href="http://get-carbon.org/help/Remove-IniEntry.html">Remove-IniEntry</a> </li>
+      <li><a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a></li>
+      <li><a href="http://get-carbon.org/help/Remove-SslCertificateBinding.html">Remove-SslCertificateBinding</a></li>
+      <li><a href="http://get-carbon.org/help/Reset-HostsFile.html">Reset-HostsFile</a></li>
+      <li><a href="http://get-carbon.org/help/Reset-MsmqQueueManagerID.html">Reset-MsmqQueueManagerID</a></li>
+      <li><a href="http://get-carbon.org/help/Revoke-ComPermission.html">Revoke-ComPermission</a></li>
+      <li><a href="http://get-carbon.org/help/Revoke-ServicePermission.html">Revoke-ServicePermission</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisHttpHeader.html">Set-IisHttpHeader</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisWindowsAuthentication.html">Set-IisWindowsAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IniEntry.html">Set-IniEntry</a></li>
+      <li><a href="http://get-carbon.org/help/Set-RegistryKeyValue.html">Set-RegistryKeyValue</a></li>
+      <li><a href="http://get-carbon.org/help/Set-SslCertificateBinding.html">Set-SslCertificateBinding</a></li>
+      <li><a href="http://get-carbon.org/help/Uninstall-IisAppPool.html">Uninstall-IisAppPool</a></li>
+      <li><a href="http://get-carbon.org/help/Uninstall-WindowsFeature.html">Uninstall-WindowsFeature</a></li>
+      <li><a href="http://get-carbon.org/help/Unlock-IisConfigurationSection.html">Unlock-IisConfigurationSection</a></li>
+    </ul>
+  </li>
+  <li>The following internal functions (which we warned you not to use!) are no longer exported:
+    <ul>
+      <li>Add-IisServerManagerMember</li>
+      <li>Get-IdentityPrincipalContext</li>
+      <li>Invoke-ConsoleCommand</li>
+      <li>ConvertTo-ProviderAccessControlRights</li>
+      <li>Assert-WindowsFeatureFunctionsSupported</li>
+      <li>Resolve-WindowsFeatureName</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="certificates">Certificates</h3>
+
+<ul>
+  <li>Improving error handling when <a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> fails to load a certificate from a file.</li>
+  <li><a href="http://get-carbon.org/help/Install-Certificate.html">Install-Certificate</a> now supports installing with an <code>X509Certificate2</code> object instead of just a path to a certificate.</li>
+  <li><a href="http://get-carbon.org/help/Remove-SslCertificateBinding.html">Remove-SslCertificateBinding</a>: improved error handling.</li>
+  <li><a href="http://get-carbon.org/help/Set-SslCertificateBinding.html">Set-SslCertificateBinding</a>: improved error handling.</li>
+  <li>Improved documentation for <a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a>.</li>
+  <li>Added extended script property <code>StoreName</code> to <code>X509Store</code> objects to return the store’s <code>System.Security.Cryptography.X509Certificates.StoreName</code> value.</li>
+  <li>Added a table view/format for <code>X509Store</code> objects. PowerShell’s default view is a list, so you’ll have to explicitly format the objects as a table, e.g. <code>dir cert:\LocalMachine | Format-Table</code>.</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a>’s <code>Path</code> parameter now supports wildcards and certificate provider paths, e.g. <code>cert:\</code>.</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> now writes an error if a certificate isn’t found when getting a certificate by its path.</li>
+</ul>
+
+<h3 id="computer">Computer</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Get-ProgramInstallInfo.html">Get-ProgramInstallInfo</a> function to get the information displayed by the <code>Programs and Features</code> UI.</li>
+</ul>
+
+<h3 id="cryptography">Cryptography</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Protect-String.html">Protect-String</a> can now encrypt strings as a specific user. Use the <code>Credential</code> parameter.</li>
+  <li>Created <a href="http://get-carbon.org/help/New-RsaKeyPair.html">New-RsaKeyPair</a> for creating public/private RSA key pair using <code>makecert.exe</code> and <code>pkv2pfx.exe</code>. Requires that you’ve installed a Windows SDK.</li>
+  <li><a href="http://get-carbon.org/help/Protect-String.html">Protect-String</a> can now encrypt strings using an RSA public key.</li>
+  <li><a href="http://get-carbon.org/help/Unprotect-String.html">Unprotect-String</a> can now decrypt strings using an RSA private key.</li>
+</ul>
+
+<h3 id="file-system">File System</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Disable-NtfsCompression.html">Disable-NtfsCompression</a>: improved error handling.</li>
+  <li><a href="http://get-carbon.org/help/Enable-NtfsCompression.html">Enable-NtfsCompression</a>: improved error handling.</li>
+  <li>Created <a href="http://get-carbon.org/help/Compress-Item.html">Compress-Item</a> function for compressing files/directories into a ZIP file.</li>
+  <li>Created <a href="http://get-carbon.org/help/Test-ZipFile.html">Test-ZipFile</a> function for testing if a file is a ZIP file.</li>
+  <li>Created <a href="http://get-carbon.org/help/Expand-Item.html">Expand-Item</a> function for decompressing a ZIP file.</li>
+  <li><a href="http://get-carbon.org/help/New-TempDirectory.html">New-TempDirectory</a> now supports adding a prefix to the temporary directory’s name, so you can more easily track down those scripts/processes that don’t clean up after themselves.</li>
+</ul>
+
+<h3 id="firewall">Firewall</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Disable-FirewallStatefulFtp.html">Disable-FirewallStatefulFtp</a>: improved error handling.</li>
+  <li>Added <code>Name</code> and <code>LiteralName</code> parameters to <a href="http://get-carbon.org/help/Get-FirewallRule.html">Get-FirewallRule</a> to return specific rules instead of all of them.</li>
+  <li><a href="http://get-carbon.org/help/Get-FirewallRule.html">Get-FirewallRule</a>, now returns <code>Carbon.Firewall.Rule</code> objects, instead of anonymous hashes.</li>
+  <li>Added default table format for <a href="http://get-carbon.org/help/Get-FirewallRule.html">Get-FirewallRule</a> output.</li>
+  <li><a href="http://get-carbon.org/help/Get-FirewallRule.html">Get-FirewallRule</a> now returns additional rule information: interface type, security, source, description, program, and service. Who knew <code>netsh advfirewall firewall rule show</code> had a <code>verbose</code> switch? RTFM.</li>
+</ul>
+
+<h3 id="ini">INI</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Remove-IniEntry.html">Remove-IniEntry</a> now handles case-sensitive INI files.</li>
+  <li><a href="http://get-carbon.org/help/Set-IniEntry.html">Set-IniEntry</a> now handles case-sensitive INI files.</li>
+  <li><a href="http://get-carbon.org/help/Split-Ini.html">Split-Ini</a> now handles case-sensitive INI files.</li>
+</ul>
+
+<h3 id="msi">MSI</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Invoke-WindowsInstaller.html">Invoke-WindowsInstaller</a>: improved error message if installation fails.</li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+  <li>Creating <a href="http://get-carbon.org/help/Revoke-Permission.html">Revoke-Permission</a> function for revoking a user’s permission to a file, directory, registry key, or certificate’s private key/key container.</li>
+  <li>Creating <a href="http://get-carbon.org/help/ConvertTo-ContainerInheritanceFlags.html">ConvertTo-ContainerInheritanceFlags</a> function for converting  <code>System.Security.AccessControl.InheritanceFlags</code> and <code>System.Security.AccessControl.PropagationFlag</code> values into a <code>Carbon.Security.ContainerInheritanceFlags</code> value.</li>
+  <li><a href="http://get-carbon.org/help/Get-Permission.html">Get-Permission</a> now supports returning the permissions on private keys/key containers.</li>
+  <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> now supports granting permissions on private keys//key containers.</li>
+  <li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> now supports testing permissions on certificate private keys/key containers.</li>
+</ul>
+
+<h3 id="services">Services</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Get-ServiceConfiguration.html">Get-ServiceConfiguration</a> function for loading a service’s configuration: description, account name/username, failure actions, etc.</li>
+  <li>Added the following extended type data to <code>System.ServiceController.Service</code>:
+    <ul>
+      <li>Description</li>
+      <li>ErrorControl</li>
+      <li>FailureProgram</li>
+      <li>FirstFailure</li>
+      <li>LoadOrderGroup</li>
+      <li>Path</li>
+      <li>RebootDelay</li>
+      <li>RebootDelayMinutes</li>
+      <li>RebootMessage</li>
+      <li>ResetPeriod</li>
+      <li>ResetPeriodDays</li>
+      <li>RestartDelay</li>
+      <li>RestartDelayMinutes</li>
+      <li>SecondFailure</li>
+      <li>StartMode</li>
+      <li>StartType</li>
+      <li>TagID</li>
+      <li>ThirdFailure</li>
+      <li>UserName</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="general-1">General</h3>
+
+<ul>
+  <li>Importing Carbon gives an error if <code>PATH</code> environment variable contains an empty path.</li>
+  <li>Improved the error handling in the following functions so they properly catch exceptions and write friendlier errors:
+    <ul>
+      <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a></li>
+      <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a></li>
+      <li><a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="certificates-1">Certificates</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> couldn’t open CA/CertificateAuthority store (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/130/get-certificate-doesnt-find-any">#130</a>).</li>
+  <li>Extended script property <code>DisplayName</code> on <code>X509Store</code> objects returning wrong store name for custom stores, now returns an empty string.</li>
+</ul>
+
+<h3 id="file-system-1">File System</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Disable-NtfsCompression.html">Disable-NtfsCompression</a> now <em>really</em> supports multiple paths.</li>
+  <li><a href="http://get-carbon.org/help/Enable-NtfsCompression.html">Enable-NtfsCompression</a> now <em>really</em> supports multiple paths.</li>
+</ul>
+
+<h3 id="path">Path</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Resolve-PathCase.html">Resolve-PathCase</a> didn’t work under Windows 2012 R2.</li>
+</ul>
+
+<h3 id="users-and-groups">Users and Groups</h3>
+
+<ul>
+  <li>The <code>Carbon.Identity.FindByName</code> method and the <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> and <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> functions now handle identity names with <code>.</code> for the domain/machine name, e.g. <code>.\Administrator</code>.</li>
+  <li>The <code>Carbon.Identity.FullName</code> property returns the wrong value when domain is empty/null, e.g. <code>Resolve-IdentityName -Name 'Everyone'</code> returns <code>\Everyone</code>, when it should return <code>Everyone</code>.</li>
+  <li>The <code>Carbon.Identity.FindByName</code> method and the <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> and <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> functions unable to resolve <code>LocalSystem</code> account (which is actually <code>NT AUTHORITY\SYSTEM</code>).</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-07T10:14:00-07:00" pubdate data-updated="true">Sep 7<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2014/09/carbon-2.0-alpha.26-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2014/09/carbon-2.0-alpha.26-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/04/carbon-1-dot-7-released.html" title="Previous Post: Carbon 1.7 Released">&laquo; Carbon 1.7 Released</a>
+      
+      
+        <a class="basic-alignment right" href="/2014/09/carbon-1.8-released.html" title="Next Post: Carbon 2.0-alpha.26 Released">Carbon 2.0-alpha.26 Released &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section style="margin-top:2em;">
+
+	<p>
+		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
+		
+		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
+	</p>
+
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/09/carbon-1.8-released.html">Carbon 2.0-alpha.26 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/carbon-2.0-alpha.26-released.html">Carbon 1.8 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
