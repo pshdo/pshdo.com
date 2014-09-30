@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2014-09-29T21:51:41-07:00</updated>
+  <updated>2014-09-29T21:54:09-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Carbon 2.0-alpha.26 Released]]></title>
-    <link href="http://pshdo.com/2014/09/carbon-1.8-released.html"/>
+    <link href="http://pshdo.com/2014/09/carbon-2.0-alpha.26-released.html"/>
     <updated>2014-09-29T21:33:00-07:00</updated>
-    <id>http://pshdo.com/2014/09/carbon-1.8-released</id>
+    <id>http://pshdo.com/2014/09/carbon-2.0-alpha.26-released</id>
     <content type="html"><![CDATA[<h2 id="overview">Overview</h2>
 
 <p>Our first public alpha release of <a href="http://get-carbon.org">Carbon</a> 2.0 is out (version 2.0-alpha.26). The focus of version 2.0 is on making necessary, backwards-incompatible changes and <strong><em>adding DSC resources and functions</em></strong>. <a href="https://bitbucket.org/splatteredbits/carbon/issues?status=new&amp;status=open&amp;q=2.0">We still have some backwards-incompatible changes to make.</a> before we get to the final version of 2.0.</p>
@@ -207,9 +207,9 @@
   
   <entry>
     <title type="html"><![CDATA[Carbon 1.8 Released]]></title>
-    <link href="http://pshdo.com/2014/09/carbon-2.0-alpha.26-released.html"/>
+    <link href="http://pshdo.com/2014/09/carbon-1.8-released.html"/>
     <updated>2014-09-07T10:14:00-07:00</updated>
-    <id>http://pshdo.com/2014/09/carbon-2.0-alpha.26-released</id>
+    <id>http://pshdo.com/2014/09/carbon-1.8-released</id>
     <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 1.8 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.7.  It supports PowerShell 2 and 3. Highlights include:</p>
 
 <ul>

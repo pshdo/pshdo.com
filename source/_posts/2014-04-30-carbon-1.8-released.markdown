@@ -1,159 +1,198 @@
 ---
 layout: post
-title: "Carbon 2.0-alpha.26 Released"
-date: 2014-09-29 21:33
+title: "Carbon 1.8 Released"
+date: 2014-09-07 10:14
 comments: false
 categories: 
 tags: Carbon, Announcements
 ---
 
-## Overview
+[Carbon](http://get-carbon.org) 1.8 is out and is [backwards compatible](http://semver.org) with 1.0 through 1.7.  It supports PowerShell 2 and 3. Highlights include:
 
-Our first public alpha release of [Carbon](http://get-carbon.org) 2.0 is out (version 2.0-alpha.26). The focus of version 2.0 is on making necessary, backwards-incompatible changes and ***adding DSC resources and functions***. [We still have some backwards-incompatible changes to make.](https://bitbucket.org/splatteredbits/carbon/issues?status=new&status=open&q=2.0) before we get to the final version of 2.0.
-
-[Download from BitBucket.](https://bitbucket.org/splatteredbits/carbon/downloads)
-
-The highlight of this release are seven new DSC resources:
-
- * [Carbon_EnvironmentVariable](http://get-carbon.org/help/2.0/Carbon_Environment.html)
- * [Carbon_FirewallRule](http://get-carbon.org/help/2.0/Carbon_FirewallRule.html)
- * [Carbon_IniFile](http://get-carbon.org/help/2.0/Carbon_Environment.html)
- * [Carbon_Privilege](http://get-carbon.org/help/2.0/Carbon_Privilege.html) 
- * [Carbon_Permission](http://get-carbon.org/help/2.0/Carbon_Permission.html)
- * [Carbon_Script](http://get-carbon.org/help/2.0/Carbon_Script.html)
- * [Carbon_Service](http://get-carbon.org/help/2.0/Carbon_Service.html)
-
-and these DSC-related functions:
-
- * [Clear-DscLocalResourceCache](http://get-carbon.org/help/2.0/Clear-DscLocalResourceCache.html)
- * [Clear-MofAuthoringMetadata](http://get-carbon.org/help/2.0/Clear-MofAuthoringMetadata.html)
- * [Copy-DscResource](http://get-carbon.org/help/2.0/Copy-DscResource.html)
- * [Get-DscError](http://get-carbon.org/help/2.0/Get-DscError.html)
- * [Get-DscWinEvent](http://get-carbon.org/help/2.0/Get-DscWinEvent.html)
- * [Initialize-Lcm](http://get-carbon.org/help/2.0/Initialize-Lcm.html)
- * [Start-DscPullConfiguration](http://get-carbon.org/help/2.0/Start-DscPullConfiguration.html)
- * [Test-DscTargetResource](http://get-carbon.org/help/2.0/Test-DscTargetResource.html) 
- * [Write-DscError](http://get-carbon.org/help/2.0/Write-DscError.html)
-
-Enjoy!
-
-## Upgrade Instructions
-
-This is a backwards-incompatible release. 
-
- * Upgrade to PowerShell 4. (PowerShell 3 *might* work. We don't know because we don't have any computers available to test on.)
- * Remove usages of `Complete-Job`.  We removed it because it was total crap.  Use PowerShell's `Wait-Job` cmdlet instead.
- * [Grant-Permission](http://get-carbon.org/help/2.0/Grant-Permission.html) now only grants permissions on an object if those permissions aren't present.  To preserve previous behaviour, add the `-Force` switch to all `Grant-Permission` usages.
- * The following commands now return objects to the pipeline. Depending on your usage, you may need to pipe their output to `Out-Null`, assign their return values to `$null`, or do nothing.
-     * [Grant-Permission](http://get-carbon.org/help/2.0/Grant-Permission.html)
-     * [Install-Group](http://get-carbon.org/help/2.0/Install-Group.html)
-     * [Install-Junction](http://get-carbon.org/help/2.0/Install-Junction.html)
-     * [Install-User](http://get-carbon.org/help/2.0/Install-User.html)
-     * [Grant-ComPermissions](http://get-carbon.org/help/2.0/Grant-ComPermissions.html)
-     * [Install-Service](http://get-carbon.org/help/2.0/Grant-ComPermissions.html)
- * The following commands no longer return the stdout from various console applications. To see that output, use the `-Verbose` switch. Remove any usage of the output you were processing.
-     * [Disable-FirewallStatefulFtp](http://get-carbon.org/help/2.0/Disable-FirewallStatefulFtp.html)
-     * [Enable-FirewallStatefulFtp](http://get-carbon.org/help/2.0/Enable-FirewallStatefulFtp.html)
-     * [Remove-SslCertificateBinding](http://get-carbon.org/help/2.0/Remove-SslCertificateBinding.html)
- * [Set-SslCertificateBinding](http://get-carbon.org/help/2.0/Set-SslCertificateBinding.html) now returns `Carbon.Certificates.SslCertificateBinding` objects instead of netsh output. Update any code that uses the old `Set-SslCertificateBinding` output.
- * Ensure that all thumbprints passed to [Set-SslCertificateBinding](http://get-carbon.org/help/2.0/Set-SslCertificateBinding.html) are valid (40 character hex strings).
- * Add the new `-PasswordNeverExpires` switch to usages of [Install-User](http://get-carbon.org/help/2.0/Install-User.html): it no longer sets the `PasswordNeverExpires` flag for a user by default.
- * Use the `FullName` property on objects returned by [Resolve-Identity](http://get-carbon.org/help/2.0/Resolve-Identity.html) (nAce `Resolve-IdentityName`): it now returns a `Carbon.Identity` object instead of the identity's name, e.g. `Resolve-Identity -Name $userName | Select-Object -Expand 'FullName'`.
- * Add `-ErrorAction SilentlyContinue` or `-ErrorAction Ignore` to usages of [Resolve-Identity](http://get-carbon.org/help/2.0/Resolve-Identity.html) (nAce `Resolve-IdentityName`): it now writes an error if it can't resolve a name.
- * Use the `Sid` property on objects returned by [Test-Identity](http://get-carbon.org/help/2.0/Test-Identity.html) when using the `PassThru` switch: it now returns a `Carbon.Identity` object if the identity exists *and* you use the `-PassThru` switch, e.g. `Test-Identity -Name $userName -PassThru | Select-Object -Expand 'Sid'`.
- * Check that all IP addresses passed to [Set-HostsEntry](http://get-carbon.org/help/2.0/Set-HostsEntry.html) are valid IP v4 or v6 addresses.  [Set-HostsEntry](http://get-carbon.org/help/2.0/Set-HostsEntry.html)'s IPAddress parameter is now a `System.Net.IPAddress` object.  Previously it was a string validated with a regular expression, so you *should* be OK.
- * Remove the `Exportable` switch from any usages of [Install-Certificate](http://get-carbon.org/help/2.0/Install-Certificate.html) when installing from an `X509Certificate2` object, since that switch only gets used when installing a certificate from a file.
- * Rename usages of `[Carbon.AdvApi32]` class to `[Carbon.Service.ServiceSecurity]`.
- * Rename usages of `[Carbon.Lsa]` class to `[Carbon.Security.Privilege]`.
- * Rename usages of `[Carbon.Win32]` class to `[Carbon.FileSystem.Path]`.
- * Rename usages of `[Carbon.HandleInfo]` class to `[Carbon.Win32.HandleInfo]`.
- * Remove usages of `[Carbon.Lsa]::LookupPrivilegeValue` class method. It was incorrectly exposed as a public method.
- * Remove usages of `[Carbon.Kernel32]::LocalFree` class method. It was incorrectly exposed as a public method.
+ * Carbon now uses `Write-Verbose` instead of `Write-Host`.
+ * New functions:
+    * [Get-ProgramInstallInfo](http://get-carbon.org/help/Get-ProgramInstallInfo.html) (gets installed programs)
+    * [New-RsaKeyPair](http://get-carbon.org/help/New-RsaKeyPair.html) (generates RSA public/private key pair)
+    * [Revoke-Permission](http://get-carbon.org/help/Revoke-Permission.html) (revokes permissions)
+    * [Get-ServiceConfiguration](http://get-carbon.org/help/Get-ServiceConfiguration.html) (gets extended service information: username, failure actions, etc.)
+    * [Compress-Item](http://get-carbon.org/help/Compress-Item.html) (create ZIP file)
+    * [Test-ZipFile](http://get-carbon.org/help/Test-ZipFile.html) (tests if a file is a ZIP file)
+    * [Expand-Item](http://get-carbon.org/help/Expand-Item.html) (decompresses ZIP file)
+ * [Get-Permission](http://get-carbon.org/help/Get-Permission.html), [Grant-Permission](http://get-carbon.org/help/Grant-Permission.html), and [Test-Permission](http://get-carbon.org/help/Test-Permission.html) now supports certificate private keys/key containers.
+ * [Get-FirewallRule](http://get-carbon.org/help/Get-FirewallRule.html) now returns additional rule information: interface type, security, source, description, program, and service.
+ * Lots of improved error handling.
+ * Some bug fixes.
  
+
+[Get the bits at BitBucket.](https://bitbucket.org/splatteredbits/carbon/downloads)
+
 ## Enhancements
 
+### General
+
+ * The following functions now write messages with `Write-Verbose` instead of `Write-Host`. See [Write-Host Considered Harmful](http://www.jsnover.com/blog/2013/12/07/write-host-considered-harmful/).
+    * [Add-GroupMember](http://get-carbon.org/help/Add-GroupMember.html)
+    * [Clear-TrustedHost](http://get-carbon.org/help/Clear-TrustedHost.html)
+    * [Convert-XmlFile](http://get-carbon.org/help/Convert-XmlFile.html)
+    * [Disable-FirewallStatefulFtp](http://get-carbon.org/help/Disable-FirewallStatefulFtp.html)
+    * [Disable-IEEnhancedSecurityConfiguration](http://get-carbon.org/help/Disable-IEEnhancedSecurityConfiguration.html)
+    * [Disable-IisSecurityAuthentication](http://get-carbon.org/help/Disable-IisSecurityAuthentication.html)
+    * [Disable-NtfsCompression](http://get-carbon.org/help/Disable-NtfsCompression.html)
+    * [Enable-FirewallStatefulFtp](http://get-carbon.org/help/Enable-FirewallStatefulFtp.html)
+    * [Enable-IEActivationPermission](http://get-carbon.org/help/Enable-IEActivationPermission.html)
+    * [Enable-IisSecurityAuthentication](http://get-carbon.org/help/Enable-IisSecurityAuthentication.html)
+    * [Enable-NtfsCompression](http://get-carbon.org/help/Enable-NtfsCompression.html)
+    * [Grant-ComPermission](http://get-carbon.org/help/Grant-ComPermission.html)
+    * [Grant-MsmqMessageQueuePermission](http://get-carbon.org/help/Grant-MsmqMessageQueuePermission.html)
+    * [Grant-Permission](http://get-carbon.org/help/Grant-Permission.html)
+    * [Grant-ServiceControlPermission](http://get-carbon.org/help/Grant-ServiceControlPermission.html)
+    * [Install-Group](http://get-carbon.org/help/Install-Group.html)
+    * [Install-IisApplication](http://get-carbon.org/help/Install-IisApplication.html)
+    * [Install-MsmqMessageQueue](http://get-carbon.org/help/Install-MsmqMessageQueue.html)
+    * [Install-PerformanceCounter](http://get-carbon.org/help/Install-PerformanceCounter.html)
+    * [Install-RegistryKey](http://get-carbon.org/help/Install-RegistryKey.html)
+    * [Install-Service](http://get-carbon.org/help/Install-Service.html)
+    * [Install-User](http://get-carbon.org/help/Install-User.html)
+    * [Install-WindowsFeature](http://get-carbon.org/help/Install-WindowsFeature.html)
+    * [Invoke-WindowsInstaller](http://get-carbon.org/help/Invoke-WindowsInstaller.html)
+    * [Lock-IisConfigurationSection](http://get-carbon.org/help/Lock-IisConfigurationSection.html)
+    * [New-Junction](http://get-carbon.org/help/New-Junction.html)
+    * [Protect-Acl](http://get-carbon.org/help/Protect-Acl.html)
+    * [Remove-IniEntry](http://get-carbon.org/help/Remove-IniEntry.html) 
+    * [Remove-Junction](http://get-carbon.org/help/Remove-Junction.html)
+    * [Remove-SslCertificateBinding](http://get-carbon.org/help/Remove-SslCertificateBinding.html)
+    * [Reset-HostsFile](http://get-carbon.org/help/Reset-HostsFile.html)
+    * [Reset-MsmqQueueManagerID](http://get-carbon.org/help/Reset-MsmqQueueManagerID.html)
+    * [Revoke-ComPermission](http://get-carbon.org/help/Revoke-ComPermission.html)
+    * [Revoke-ServicePermission](http://get-carbon.org/help/Revoke-ServicePermission.html)
+    * [Set-IisHttpHeader](http://get-carbon.org/help/Set-IisHttpHeader.html)
+    * [Set-IisMimeMap](http://get-carbon.org/help/Set-IisMimeMap.html)
+    * [Set-IisWebsiteID](http://get-carbon.org/help/Set-IisWebsiteID.html)
+    * [Set-IisWindowsAuthentication](http://get-carbon.org/help/Set-IisWindowsAuthentication.html)
+    * [Set-IniEntry](http://get-carbon.org/help/Set-IniEntry.html)
+    * [Set-RegistryKeyValue](http://get-carbon.org/help/Set-RegistryKeyValue.html)
+    * [Set-SslCertificateBinding](http://get-carbon.org/help/Set-SslCertificateBinding.html)
+    * [Uninstall-IisAppPool](http://get-carbon.org/help/Uninstall-IisAppPool.html)
+    * [Uninstall-WindowsFeature](http://get-carbon.org/help/Uninstall-WindowsFeature.html)
+    * [Unlock-IisConfigurationSection](http://get-carbon.org/help/Unlock-IisConfigurationSection.html)
+ * The following internal functions (which we warned you not to use!) are no longer exported:
+    * Add-IisServerManagerMember
+    * Get-IdentityPrincipalContext
+    * Invoke-ConsoleCommand
+    * ConvertTo-ProviderAccessControlRights
+    * Assert-WindowsFeatureFunctionsSupported
+    * Resolve-WindowsFeatureName
+    
 ### Certificates
 
- * [Remove-SslCertificateBinding](http://get-carbon.org/help/2.0/Remove-SslCertificateBinding.html) now writes messages with `Write-Verbose` instead of `Write-Host`. Improved error handling.
- * [Set-SslCertificateBinding](http://get-carbon.org/help/2.0/Remove-SslCertificateBinding.html) now returns `Carbon.Certificates.SslCertificateBinding` object for the binding instead of `netsh` output. Improved error handling. Writes messages with `Write-Verbose` instead of `Write-Host`. Thumbprints are now validated.
- * The `Exportable` switch is now only allowed by [Install-Certificate](http://get-carbon.org/help/2.0/Install-Certificate.html) when installing a certificate from a file. Previously, you could supply the switch when installing from an X509Certificate2 object but it was ignored.
-
-### COM
-
- * [Grant-ComPermission](http://get-carbon.org/help/2.0/Grant-ComPermission.html) now returns a `Carbon.Security.ComAccessRule`. Also, it now writes messages with `Write-Verbose` instead of `Write-Host`.
- * [Revoke-ComPermission](http://get-carbon.org/help/2.0/Revoke-ComPermission.html) now writes messages with `Write-Verbose` instead of `Write-Host`.
+ * Improving error handling when [Get-Certificate](http://get-carbon.org/help/Get-Certificate.html) fails to load a certificate from a file.
+ * [Install-Certificate](http://get-carbon.org/help/Install-Certificate.html) now supports installing with an `X509Certificate2` object instead of just a path to a certificate.
+ * [Remove-SslCertificateBinding](http://get-carbon.org/help/Remove-SslCertificateBinding.html): improved error handling.
+ * [Set-SslCertificateBinding](http://get-carbon.org/help/Set-SslCertificateBinding.html): improved error handling.
+ * Improved documentation for [Get-Certificate](http://get-carbon.org/help/Get-Certificate.html).
+ * Added extended script property `StoreName` to `X509Store` objects to return the store's `System.Security.Cryptography.X509Certificates.StoreName` value.
+ * Added a table view/format for `X509Store` objects. PowerShell's default view is a list, so you'll have to explicitly format the objects as a table, e.g. `dir cert:\LocalMachine | Format-Table`.
+ * [Get-Certificate](http://get-carbon.org/help/Get-Certificate.html)'s `Path` parameter now supports wildcards and certificate provider paths, e.g. `cert:\`.
+ * [Get-Certificate](http://get-carbon.org/help/Get-Certificate.html) now writes an error if a certificate isn't found when getting a certificate by its path.
 
 ### Computer
 
- * Changed [Test-OSIs32Bit](http://get-carbon.org/help/2.0/Test-OSIs32Bit.html) and [Test-OSIs64Bit](http://get-carbon.org/help/2.0/Test-OSIs64Bit.html) functions to use the Environment class's new [Is64BitOperatingSystem](http://msdn.microsoft.com/en-us/library/system.environment.is64bitoperatingsystem.aspx) property.
- 
-### DSC
+ * Created [Get-ProgramInstallInfo](http://get-carbon.org/help/Get-ProgramInstallInfo.html) function to get the information displayed by the `Programs and Features` UI.
 
- * Created `Carbon_EnvironmentVariable` resource for creating/removing machine-level environment variables.
- * New [Clear-DscLocalResourceCache](http://get-carbon.org/help/2.0/Clear-DscLocalResourceCache.html) function for clearing the local LCM's DSC resource. This makes developing resources easier.
- * Created `Carbon_IniFile` resource for managing settings in INI files.
- * Created `Carbon_FirewallRule` resource for configuring firewall rules.
- * New [Test-DscTargetResource](http://get-carbon.org/help/2.0/Test-DscTargetResource.html) function for comparing target/desired resource states across DSC resources.
- * Created `Carbon_Privilege` resource for configuring and identity's privileges.
- * Created `Carbon_Permission` resource for configuring file, directory, registry, and certificate permissions.
- * Created `Carbon_Service` resource for configuring Windows services.
- * Created `Carbon_Script` resource for running custom PowerShell scripts, with support for passing arguments.
- * Created [Copy-DscResource](http://get-carbon.org/help/2.0/Copy-DscResource.html) function for copying DSC resources (ZIP files, MSI archives, MOF files, etc.), including timestamps, checksums, and copying only changed files.
- * Created [Clear-MofAuthoringMetadata](http://get-carbon.org/help/2.0/Clear-MofAuthoringMetadata.html) function for removing authoring metadata from .mof files.
- * Created [Get-DscWinEvent](http://get-carbon.org/help/2.0/Get-DscWinEvent.html) function for getting DSC events written to a computer's DSC event log.
- * Created [Get-DscError](http://get-carbon.org/help/2.0/Get-DscError.html) function for getting any DSC errors written to a computer's DSC event log.
- * Created [Write-DscError](http://get-carbon.org/help/2.0/Write-DscError.html) function for writing DSC `ErrorLogRecord` objects as errors.
- * Created [Start-DscPullConfiguration](http://get-carbon.org/help/2.0/Start-DscPullConfiguration.html) function for starting a configuration check on a computer whose computer is configured to use the PULL refresh mode.
- * Created [Initialize-Lcm](http://get-carbon.org/help/2.0/Initialize-Lcm.html) function for configuring the DSC Local Configuration Manager on computers, including installing the private key needed for decrypting credentials.
+### Cryptography
+
+ * [Protect-String](http://get-carbon.org/help/Protect-String.html) can now encrypt strings as a specific user. Use the `Credential` parameter.
+ * Created [New-RsaKeyPair](http://get-carbon.org/help/New-RsaKeyPair.html) for creating public/private RSA key pair using `makecert.exe` and `pkv2pfx.exe`. Requires that you've installed a Windows SDK.
+ * [Protect-String](http://get-carbon.org/help/Protect-String.html) can now encrypt strings using an RSA public key.
+ * [Unprotect-String](http://get-carbon.org/help/Unprotect-String.html) can now decrypt strings using an RSA private key.
  
 ### File System
 
- * [Disable-NtfsCompression](http://get-carbon.org/help/2.0/Disable-NtfsCompression.html) now writes messages with `Write-Verbose` instead of `Write-Host`. Improved error handling.
- * [Enable-NtfsCompression](http://get-carbon.org/help/2.0/Enable-NtfsCompression.html) now writes messages with `Write-Verbose` instead of `Write-Host`. Improved error handling.
- * [Install-Junction](http://get-carbon.org/help/2.0/Install-Junction.html) now returns `System.IO.DirectoryInfo` objects for any new target directories and any new/updated junctions.
+ * [Disable-NtfsCompression](http://get-carbon.org/help/Disable-NtfsCompression.html): improved error handling.
+ * [Enable-NtfsCompression](http://get-carbon.org/help/Enable-NtfsCompression.html): improved error handling.
+ * Created [Compress-Item](http://get-carbon.org/help/Compress-Item.html) function for compressing files/directories into a ZIP file.
+ * Created [Test-ZipFile](http://get-carbon.org/help/Test-ZipFile.html) function for testing if a file is a ZIP file.
+ * Created [Expand-Item](http://get-carbon.org/help/Expand-Item.html) function for decompressing a ZIP file.
+ * [New-TempDirectory](http://get-carbon.org/help/New-TempDirectory.html) now supports adding a prefix to the temporary directory's name, so you can more easily track down those scripts/processes that don't clean up after themselves.
 
 ### Firewall
 
- * [Disable-FirewallStatefulFtp](http://get-carbon.org/help/2.0/Disable-FirewallStatefulFtp.html) no longer returns `netsh` output. Use the `-Verbose` switch to see the output.
- * [Enable-FirewallStatefulFtp](http://get-carbon.org/help/2.0/Enable-FirewallStatefulFtp.html) no longer returns `netsh` output. Use the `-Verbose` switch to see the output.
+ * [Disable-FirewallStatefulFtp](http://get-carbon.org/help/Disable-FirewallStatefulFtp.html): improved error handling.
+ * Added `Name` and `LiteralName` parameters to [Get-FirewallRule](http://get-carbon.org/help/Get-FirewallRule.html) to return specific rules instead of all of them.
+ * [Get-FirewallRule](http://get-carbon.org/help/Get-FirewallRule.html), now returns `Carbon.Firewall.Rule` objects, instead of anonymous hashes.
+ * Added default table format for [Get-FirewallRule](http://get-carbon.org/help/Get-FirewallRule.html) output.
+ * [Get-FirewallRule](http://get-carbon.org/help/Get-FirewallRule.html) now returns additional rule information: interface type, security, source, description, program, and service. Who knew `netsh advfirewall firewall rule show` had a `verbose` switch? RTFM.
 
-### Hosts File
+### INI
 
- * [Set-HostsEntry](http://get-carbon.org/help/2.0/Set-HostsEntry.html)'s IPAddress parameter is now a `System.Net.IPAddress` object.  Previously it was a string validated with a regular expression.
+ * [Remove-IniEntry](http://get-carbon.org/help/Remove-IniEntry.html) now handles case-sensitive INI files.
+ * [Set-IniEntry](http://get-carbon.org/help/Set-IniEntry.html) now handles case-sensitive INI files.
+ * [Split-Ini](http://get-carbon.org/help/Split-Ini.html) now handles case-sensitive INI files.
 
-### PowerShell
+### MSI
 
- * Changed [Test-PowerShellIs32Bit](http://get-carbon.org/help/2.0/Test-PowerShellIs32Bit.html) and [Test-PowerShellIs64Bit](http://get-carbon.org/help/2.0/Test-PowerShellIs64Bit.html) functions to use the Environment class's new [Is64BitProcess](http://msdn.microsoft.com/en-us/library/system.environment.is64bitprocess.aspx) property.
- * Removed `Complete-Job` function.  It was total crap.
- * Created [Get-PowerShellModuleInstallPath](http://get-carbon.org/help/2.0/Get-PowerShellModuleInstallPath.html) function for getting the path where new module's should be installed. Beginning with PowerShell 4, modules should get installed into `$env:ProgramFiles\Windows PowerShell\Modules`. Under PowerShell 3, it is `$PSHome\Modules`. This function returns the correct location for the version of PowerShell you're using.
- 
+ * [Invoke-WindowsInstaller](http://get-carbon.org/help/Invoke-WindowsInstaller.html): improved error message if installation fails.
+
 ### Security
 
- * [Grant-Permission](http://get-carbon.org/help/2.0/Grant-Permission.html) now only grants permissions on an object if those permissions aren't present.  To preserve previous behaviour, add the `-Force` switch to all `Grant-Permission` usages.
- * [Grant-Permission](http://get-carbon.org/help/2.0/Grant-Permission.html) returns `System.Security.AccessControl.FileSystemRule` or `System.Security.AccessControl.RegistryRule` whenever it updates an item's permissions.  It no longer writes a message to the host.
+ * Creating [Revoke-Permission](http://get-carbon.org/help/Revoke-Permission.html) function for revoking a user's permission to a file, directory, registry key, or certificate's private key/key container.
+ * Creating [ConvertTo-ContainerInheritanceFlags](http://get-carbon.org/help/ConvertTo-ContainerInheritanceFlags.html) function for converting  `System.Security.AccessControl.InheritanceFlags` and `System.Security.AccessControl.PropagationFlag` values into a `Carbon.Security.ContainerInheritanceFlags` value.
+ * [Get-Permission](http://get-carbon.org/help/Get-Permission.html) now supports returning the permissions on private keys/key containers.
+ * [Grant-Permission](http://get-carbon.org/help/Grant-Permission.html) now supports granting permissions on private keys//key containers.
+ * [Test-Permission](http://get-carbon.org/help/Test-Permission.html) now supports testing permissions on certificate private keys/key containers.
 
-### Service
+### Services
 
- * [Install-Service](http://get-carbon.org/help/2.0/Grant-ComPermissions.html) now writes messages with `Write-Verbose` instead of `Write-Host`.
- * [Install-Service](http://get-carbon.org/help/2.0/Grant-ComPermissions.html) now returns a `System.ServiceProcess.ServiceController` object when installation/configuration is successful.
- 
+ * Created [Get-ServiceConfiguration](http://get-carbon.org/help/Get-ServiceConfiguration.html) function for loading a service's configuration: description, account name/username, failure actions, etc.
+ * Added the following extended type data to `System.ServiceController.Service`:
+   * Description
+   * ErrorControl
+   * FailureProgram
+   * FirstFailure
+   * LoadOrderGroup
+   * Path
+   * RebootDelay
+   * RebootDelayMinutes
+   * RebootMessage
+   * ResetPeriod
+   * ResetPeriodDays
+   * RestartDelay
+   * RestartDelayMinutes
+   * SecondFailure
+   * StartMode
+   * StartType
+   * TagID
+   * ThirdFailure
+   * UserName
+
+
+## Bug Fixes
+
+### General
+
+ * Importing Carbon gives an error if `PATH` environment variable contains an empty path.
+ * Improved the error handling in the following functions so they properly catch exceptions and write friendlier errors:
+   * [Get-Certificate](http://get-carbon.org/help/Get-Certificate.html)
+   * [Grant-Privilege](http://get-carbon.org/help/Grant-Privilege.html)
+   * [Revoke-Privilege](http://get-carbon.org/help/Revoke-Privilege.html)
+
+### Certificates
+
+ * [Get-Certificate](http://get-carbon.org/help/Get-Certificate.html) couldn't open CA/CertificateAuthority store (fixes issue [#130](https://bitbucket.org/splatteredbits/carbon/issue/130/get-certificate-doesnt-find-any)).
+ * Extended script property `DisplayName` on `X509Store` objects returning wrong store name for custom stores, now returns an empty string.
+
+### File System
+
+ * [Disable-NtfsCompression](http://get-carbon.org/help/Disable-NtfsCompression.html) now *really* supports multiple paths.
+ * [Enable-NtfsCompression](http://get-carbon.org/help/Enable-NtfsCompression.html) now *really* supports multiple paths.
+
+### Path
+
+ * [Resolve-PathCase](http://get-carbon.org/help/Resolve-PathCase.html) didn't work under Windows 2012 R2.
+
 ### Users and Groups
 
- * Re-wrote [Install-User](http://get-carbon.org/help/2.0/Install-User.html) to use .NET's [System.DirectoryServices.AccountManagement](http://msdn.microsoft.com/en-us/library/system.directoryservices.accountmanagement.aspx) API (introduced with .NET 3.5) instead of the `net.exe` command-line program.
- * Added `PasswordNeverExpires` switch to [Install-User](http://get-carbon.org/help/2.0/Install-User.html) for creating accounts with passwords that expire.  This is a breaking change: this flag used to set this flag by default.
- * Added `UserCannotChangePassword` switch to [Install-User](http://get-carbon.org/help/2.0/Install-User.html) to prevent user from changing his password.
- * Added [Get-User](http://get-carbon.org/help/2.0/Get-User.html) function for getting a local user or all local users.
- * Added [Get-Group](http://get-carbon.org/help/2.0/Get-Group.html) function for getting a local group or all local groups.
- * Renamed [Install-Group](http://get-carbon.org/help/2.0/Install-Group.html)'s `Members` parameter to `Member` (with backwards-compatible alias).
- * [Install-Group](http://get-carbon.org/help/2.0/Install-Group.html) re-written to use .NET's `System.DirectoryServices.AccountManagement` API (introduced with .NET 3.5).
- * [Install-Group](http://get-carbon.org/help/2.0/Install-Group.html) now returns the group added or updated.
- * [Add-MemberToGroup](http://get-carbon.org/help/2.0/Add-MemberToGroup.html) re-written to use .NET's `System.DirectoryServices.AccountManagement` API (introduced with .NET 3.5).
- * [Resolve-IdentityName](http://get-carbon.org/help/2.0/Resolve-IdentityName.html) now writes an error if it can't resolve a name.  Use `-ErrorAction SilentlyContinue` or `-ErrorAction Ignore` to preserve old behavior.
- * [Uninstall-User](http://get-carbon.org/help/2.0/Uninstall-User.html) re-written to use .NET's `System.DirectoryServices.AccountManagement` API (introduced with .NET 3.5).
- * [Test-User](http://get-carbon.org/help/2.0/Test-User.html) re-written to use .NET's `System.DirectoryServices.AccountManagement` API (introduced with .NET 3.5).
- * Created [Test-Group](http://get-carbon.org/help/2.0/Test-Group.html) function for checking if a *local* group exists.
- * `Resolve-IdentityName` renamed to [Resolve-Identity](http://get-carbon.org/help/2.0/Resolve-Identity.html), but it has a backwards-compatible alias, so you shouldn't have to do anything.
- * [Resolve-Identity](http://get-carbon.org/help/2.0/Resolve-Identity.html) (nAce `Resolve-IdentityName`) now returns a `Carbon.Identity` object instead of the identity's name.  Update scripts to use the `FullName` property to get the old return value, e.g. `Resolve-Identity -Name $userName -PassThru | Select-Object -Expand 'FullName'`.
- * [Resolve-Identity](http://get-carbon.org/help/2.0/Resolve-Identity.html) (nAce `Resolve-IdentityName`) now writes an error if it can't resolve a name.  Use `-ErrorAction SilentlyContinue` or `-ErrorAction Ignore` to preserve old behavior.
- * [Test-Identity](http://get-carbon.org/help/2.0/Test-Identity.html) now returns a `Carbon.Identity` object if the identity exists *and* you use the `-PassThru` switch.  It used to return the identity's name.  Update scripts to use the `FullName` property to get the old return value, e.g. `Test-Identity -Name $userName -PassThru | Select-Object -Expand 'FullName'`.
- * Added [Remove-GroupMember](http://get-carbon.org/help/2.0/Remove-GroupMember.html) function. Thanks to [Philip Kluss](https://bitbucket.org/philkloose) for the contribution. 
+ * The `Carbon.Identity.FindByName` method and the [Resolve-IdentityName](http://get-carbon.org/help/Resolve-IdentityName.html) and [Test-Identity](http://get-carbon.org/help/Test-Identity.html) functions now handle identity names with `.` for the domain/machine name, e.g. `.\Administrator`.
+ * The `Carbon.Identity.FullName` property returns the wrong value when domain is empty/null, e.g. `Resolve-IdentityName -Name 'Everyone'` returns `\Everyone`, when it should return `Everyone`.
+ * The `Carbon.Identity.FindByName` method and the [Resolve-IdentityName](http://get-carbon.org/help/Resolve-IdentityName.html) and [Test-Identity](http://get-carbon.org/help/Test-Identity.html) functions unable to resolve `LocalSystem` account (which is actually `NT AUTHORITY\SYSTEM`).
+
