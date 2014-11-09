@@ -1,0 +1,67 @@
+---
+layout: post
+title: "Carbon 1.9.0 Released"
+date: 2014-11-08 23:18
+comments: true
+categories: Carbon, Announcements
+---
+
+[Carbon](http://get-carbon.org) 1.9 is out and is [backwards compatible](http://semver.org) with 1.0 through 1.8.  It supports PowerShell 2 and 3.
+
+[Download from Bitbucket.](https://bitbucket.org/splatteredbits/carbon/downloads/Carbon-1.9.0.zip)
+
+This is the last minor release for version 1.0. Future 1.0-compatible releases will *only* contain bug fixes, no new features. It takes too much time to maintain two versions, and I'd rather spend my time getting 2.0 out the door.  Carbon 2.0 will require PowerShell 4.0, so start planning.
+
+## Enhancements
+
+### Certificates
+
+ * Added `KeyStorageFlags` parameter to [Get-Certificate](http://get-carbon.org/help/Get-Certificate.html) when loading a certificate from a file for better control when storing the certificate.
+ 
+### Hosts File
+
+ * [Set-HostsEntry](http://get-carbon.org/help/Set-HostsEntry.html) now handles writing to an in-use/locked hosts file, retrying up to 10 times before writing an error, waiting a random amount of time (from 0 to 1000 milliseconds) between each retry attempt.
+
+### IIS
+
+ * [Get-IisMimeMap](http://get-carbon.org/help/Get-IisMimeMap.html), [Remove-IisMimeMap](http://get-carbon.org/help/Remove-IisMimeMap.html), and [Set-IisMimeMap](http://get-carbon.org/help/Set-IisMimeMap.html) now support managing MIME types for websites, virtual directories, and applications.
+
+### Scheduled Tasks
+
+ * Created [Get-ScheduledTask](http://get-carbon.org/help/Get-ScheduledTask.html) function for getting the scheduled tasks on the local computer using `schtasks.exe`.
+ * Created [Install-ScheduledTask](http://get-carbon.org/help/Install-ScheduledTask.html) function for installing a scheduled task using `schtasks.exe`.
+ * Created [Test-ScheduledTask](http://get-carbon.org/help/Test-ScheduledTask.html) function for testing if a scheduled tasks on the local computer exists using `schtasks.exe`.
+ * Created [Uninstall-ScheduledTask](http://get-carbon.org/help/Uninstall-ScheduledTask.html) function for deleting a scheduled task using `schtasks.exe`.
+ 
+### Services
+
+ * [Install-Service](http://get-carbon.org/help/Install-Service.html) now supports setting a command to run when a service fails.
+ 
+## Bug Fixes
+
+### General
+
+ * `Import-Carbon` fails when `-WhatIf` switch is used.
+ * Importing Carbon no longer writes an error if the `PATH` environment variable contains a path to a non-existent drive (issue [#134](https://bitbucket.org/splatteredbits/carbon/issue/134/import-carbon-fails-with-path-environment)).
+ 
+### INI
+
+ * [Set-IniEntry](http://get-carbon.org/help/Set-IniEntry.html) fails when adding the first section-less setting to a file.
+ 
+### Internet Explorer
+
+ * [Enable-IEActivationPermission](http://get-carbon.org/help/Enable-IEActivationPermission.html) no longer returns the `hkcr:` drive.
+ 
+### Security
+
+ * Fixed an error that occurs when setting permissions on a private key fails: the error message is created using an invalid format string (issue [#133](https://bitbucket.org/splatteredbits/carbon/issue/133/set-cryptokeysecurity-invalid-parameters)).
+ * Fixed an exception that gets thrown when setting a private key's permissions and the only certificate key is AT_SIGNATURE (issue [#132](https://bitbucket.org/splatteredbits/carbon/issue/132/set-cryptokeysecurity-throws-exception)).
+ 
+### Services
+
+ * [Install-Service](http://get-carbon.org/help/Install-Service.html) stops Windows service even when no settings/configuration has changed (fixes issue [#131](https://bitbucket.org/splatteredbits/carbon/issue/131/install-service-always-restarts-service)). 
+ * [Install-Service](http://get-carbon.org/help/Install-Service.html) didn't clear services depended on during a re-install.
+ * [Install-Service](http://get-carbon.org/help/Install-Service.html) wasn't restarting a manual service if it was running when configuration began.
+ * [Uninstall-Service](http://get-carbon.org/help/Uninstall-Service.html) hard codes the path to the Windows directory (fixes issue [#143](https://bitbucket.org/splatteredbits/carbon/issue/143/uninstall-service-script-has-hard-coded)). Thanks to [Travis Mathison](https://bitbucket.org/tdmathison) for the fix.
+
+

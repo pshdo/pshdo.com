@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon 1.9.0 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="Carbon 1.9 is out and is backwards compatible with 1.0 through 1.8. It supports PowerShell 2 and 3. Download This is the last minor release for &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2014/11/carbon-1.9.0-released.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon 1.9.0 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-08T23:18:00-08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.9 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.8.  It supports PowerShell 2 and 3.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads/Carbon-1.9.0.zip">Download</a></p>
+
+<p>This is the last minor release for version 1.0. Future 1.0-compatible releases will <em>only</em> contain bug fixes, no new features. It takes too much time to maintain two versions, and I’d rather spend my time getting 2.0 out the door.  Carbon 2.0 will require PowerShell 4.0, so start planning.</p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="certificates">Certificates</h3>
+
+<ul>
+  <li>Added <code>KeyStorageFlags</code> parameter to <a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> when loading a certificate from a file for better control when storing the certificate.</li>
+</ul>
+
+<h3 id="hosts-file">Hosts File</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Set-HostsEntry.html">Set-HostsEntry</a> now handles writing to an in-use/locked hosts file, retrying up to 10 times before writing an error, waiting a random amount of time (from 0 to 1000 milliseconds) between each retry attempt.</li>
+</ul>
+
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a>, <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a>, and <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> now support managing MIME types for websites, virtual directories, and applications.</li>
+</ul>
+
+<h3 id="scheduled-tasks">Scheduled Tasks</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Get-ScheduledTask.html">Get-ScheduledTask</a> function for getting the scheduled tasks on the local computer using <code>schtasks.exe</code>.</li>
+  <li>Created <a href="http://get-carbon.org/help/Install-ScheduledTask.html">Install-ScheduledTask</a> function for installing a scheduled task using <code>schtasks.exe</code>.</li>
+  <li>Created <a href="http://get-carbon.org/help/Test-ScheduledTask.html">Test-ScheduledTask</a> function for testing if a scheduled tasks on the local computer exists using <code>schtasks.exe</code>.</li>
+  <li>Created <a href="http://get-carbon.org/help/Uninstall-ScheduledTask.html">Uninstall-ScheduledTask</a> function for deleting a scheduled task using <code>schtasks.exe</code>.</li>
+</ul>
+
+<h3 id="services">Services</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> now supports setting a command to run when a service fails.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="general">General</h3>
+
+<ul>
+  <li><code>Import-Carbon</code> fails when <code>-WhatIf</code> switch is used.</li>
+  <li>Importing Carbon no longer writes an error if the <code>PATH</code> environment variable contains a path to a non-existent drive (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/134/import-carbon-fails-with-path-environment">#134</a>).</li>
+</ul>
+
+<h3 id="ini">INI</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Set-IniEntry.html">Set-IniEntry</a> fails when adding the first section-less setting to a file.</li>
+</ul>
+
+<h3 id="internet-explorer">Internet Explorer</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Enable-IEActivationPermission.html">Enable-IEActivationPermission</a> no longer returns the <code>hkcr:</code> drive.</li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+  <li>Fixed an error that occurs when setting permissions on a private key fails: the error message is created using an invalid format string (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/133/set-cryptokeysecurity-invalid-parameters">#133</a>).</li>
+  <li>Fixed an exception that gets thrown when setting a private key’s permissions and the only certificate key is AT_SIGNATURE (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/132/set-cryptokeysecurity-throws-exception">#132</a>).</li>
+</ul>
+
+<h3 id="services-1">Services</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> stops Windows service even when no settings/configuration has changed (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/131/install-service-always-restarts-service">#131</a>). </li>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> didn’t clear services depended on during a re-install.</li>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> wasn’t restarting a manual service if it was running when configuration began.</li>
+  <li><a href="http://get-carbon.org/help/Uninstall-Service.html">Uninstall-Service</a> hard codes the path to the Windows directory (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/143/uninstall-service-script-has-hard-coded">#143</a>). Thanks to <a href="https://bitbucket.org/tdmathison">Travis Mathison</a> for the fix.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-08T23:18:00-08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/announcements/'>Announcements</a>, <a class='category' href='/categories/carbon/'>Carbon,</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2014/11/carbon-1.9.0-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2014/11/carbon-1.9.0-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/09/carbon-2.0-alpha.26-released.html" title="Previous Post: Carbon 2.0-alpha.26 Released">&laquo; Carbon 2.0-alpha.26 Released</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section style="margin-top:2em;">
+
+	<p>
+		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
+		
+		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
+	</p>
+
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/carbon-2.0-alpha.26-released.html">Carbon 2.0-alpha.26 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/09/carbon-1.8-released.html">Carbon 1.8 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

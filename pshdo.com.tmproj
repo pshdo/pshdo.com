@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>source/_posts/2014-04-30-carbon-1.8-released.markdown</string>
+	<string>source/_posts/2014-04-30-carbon-2.0-alpha.26-released.markdown</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,133 +21,24 @@
 	<integer>388</integer>
 	<key>metaData</key>
 	<dict>
-		<key>source/_posts/2013-07-08-carbon-v13-released.markdown</key>
+		<key>source/_posts/2014-04-30-carbon-2.0-alpha.26-released.markdown</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>129</integer>
+				<integer>83</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>94</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>129</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-		</dict>
-		<key>source/_posts/2013-10-03-carbon-v151-released.markdown</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-		</dict>
-		<key>source/_posts/2014-02-01-carbon-1-dot-6-released.markdown</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>59</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>130</integer>
-			<key>firstVisibleLine</key>
-			<integer>16</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>33</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>59</integer>
-			</dict>
-		</dict>
-		<key>source/_posts/2014-04-30-carbon-1.8-released.markdown</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>287</integer>
-				<key>line</key>
-				<integer>196</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>9</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>287</integer>
-				<key>line</key>
-				<integer>196</integer>
-			</dict>
+			<integer>70</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>source/_posts/2014-02-01-carbon-1-dot-6-released.markdown</string>
-		<string>source/_posts/2014-04-30-carbon-1.8-released.markdown</string>
-		<string>source/_posts/2013-07-08-carbon-v13-released.markdown</string>
-		<string>source/_posts/2013-10-03-carbon-v151-released.markdown</string>
+		<string>source/_posts/2014-04-30-carbon-2.0-alpha.26-released.markdown</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
