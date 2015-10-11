@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2015-10-10T20:29:41-07:00</updated>
+  <updated>2015-10-10T20:52:26-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -15,10 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[Carbon 2.0.0 Released]]></title>
-    <link href="http://pshdo.com/2015/10/carbon-2-dot-0-0-released.html"/>
+    <link href="http://pshdo.com/2015/10/carbon-2.0.0-released.html"/>
     <updated>2015-10-10T20:29:00-07:00</updated>
-    <id>http://pshdo.com/2015/10/carbon-2-dot-0-0-released</id>
-    <content type="html"><![CDATA[
+    <id>http://pshdo.com/2015/10/carbon-2.0.0-released</id>
+    <content type="html"><![CDATA[<p>Carbon 2.0.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<p>System.Object[]</p>
 ]]></content>
   </entry>
   
