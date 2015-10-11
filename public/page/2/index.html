@@ -57,6 +57,7 @@
 <ul class="main-navigation">
 	<li><a href="/about">About</a></li>
 	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
 </ul>
 
 </nav>
@@ -114,7 +115,7 @@
 <h3 id="net">.NET</h3>
 
 <ul>
-  <li>Added <code>ProviderName</code> parameter to <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString </a> for setting a connection string&rsquo;s <code>providerName</code> attribute/value.</li>
+  <li>Added <code>ProviderName</code> parameter to <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString </a> for setting a connection string’s <code>providerName</code> attribute/value.</li>
 </ul>
 
 <h3 id="file-system">File System</h3>
@@ -129,7 +130,7 @@
 <ul>
   <li>The <a href="http://msdn.microsoft.com/en-us/library/microsoft.web.administration.site.aspx">site object</a> returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now as a <code>CommitChanges</code> method so you can persist modifications you make to the site.</li>
   <li><a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now returns all websites if no <code>SiteName</code> is given.</li>
-  <li>Created <a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> function for explicitly setting a website&rsquo;s ID.</li>
+  <li>Created <a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> function for explicitly setting a website’s ID.</li>
 </ul>
 
 <h3 id="ini">INI</h3>
@@ -142,14 +143,14 @@
 
 <ul>
   <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> now supports installing a base performance counter.  Thanks to Philip Teilmeier for the contribution.</li>
-  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a>&rsquo;s <code>Description</code> parameter is now optional.</li>
+  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a>’s <code>Description</code> parameter is now optional.</li>
 </ul>
 
 <h3 id="powershell">PowerShell</h3>
 
 <ul>
   <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now defaults to running under the current CLR, instead of defaulting to a v2.0 CLR.  This makes upgrading to PowerShell v3.0 easier.</li>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now writes an error and returns if running PowerShell v3.0 and you want to run under a v2.0 CLR.  Unfortunately, PowerShell v3.0 requires .NET 4.0, so you can&rsquo;t run anything on an earlier CLR.</li>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now writes an error and returns if running PowerShell v3.0 and you want to run under a v2.0 CLR.  Unfortunately, PowerShell v3.0 requires .NET 4.0, so you can’t run anything on an earlier CLR.</li>
 </ul>
 
 <h3 id="privileges">Privileges</h3>
@@ -163,7 +164,7 @@
 <h3 id="xml">XML</h3>
 
 <ul>
-  <li>New <a href="http://get-carbon.org/help/Convert-XmlFile.html">Convert-XmlFile</a>, for transforming an XML file with Microsoft&rsquo;s XDT (XML Data Transformation) technology.  Thanks to Mark Sargent for the contribution.</li>
+  <li>New <a href="http://get-carbon.org/help/Convert-XmlFile.html">Convert-XmlFile</a>, for transforming an XML file with Microsoft’s XDT (XML Data Transformation) technology.  Thanks to Mark Sargent for the contribution.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -177,13 +178,13 @@
 <h3 id="certificates-1">Certificates</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Get-SslCertificateBinding.html">Get-SslCertificateBinding</a> can&rsquo;t parse bindings to IPv6 addresses.</li>
+  <li><a href="http://get-carbon.org/help/Get-SslCertificateBinding.html">Get-SslCertificateBinding</a> can’t parse bindings to IPv6 addresses.</li>
 </ul>
 
 <h3 id="performance-counters-1">Performance Counters</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> couldn&rsquo;t be used to create counters that used/required a base counter. Thanks to Philip Teilmeier for the contribution.</li>
+  <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> couldn’t be used to create counters that used/required a base counter. Thanks to Philip Teilmeier for the contribution.</li>
 </ul>
 
 </div>
@@ -221,7 +222,7 @@
   </header>
 
 
-  <div class="entry-content"><p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.  </p>
+  <div class="entry-content"><p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen’s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.  </p>
 
 <p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
 </div>
@@ -336,7 +337,7 @@
 <h2 id="upgrade-instructions">Upgrade Instructions</h2>
 
 <ul>
-  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won&rsquo;t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
+  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won’t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
 </ul>
 
 <h2 id="enhancements">Enhancements</h2>
@@ -358,7 +359,7 @@
 <h3 id="computer">Computer</h3>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn&rsquo;t in the path.</li>
+  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn’t in the path.</li>
 </ul>
 
 <h3 id="iis">IIS</h3>
@@ -370,14 +371,14 @@
   <li>Created <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a> for removing a file extension to MIME type mapping for the IIS web server.</li>
   <li>Created <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> for creating/setting a file extension to MIME type mapping for the IIS web server.</li>
   <li>When creating an app pool that runs under a custom, non-service account, <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> grants that user the <code>SeBatchLogonRight</code>.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn&rsquo;t exist (i.e. if the value of the <code>Username</code> parameter doesn&rsquo;t exist).</li>
+  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn’t exist (i.e. if the value of the <code>Username</code> parameter doesn’t exist).</li>
 </ul>
 
 <h3 id="privileges">Privileges</h3>
 
 <ul>
   <li>Improved exception handling in <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
-  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn&rsquo;t exist.</li>
+  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn’t exist.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -385,13 +386,13 @@
 <h3 id="computer-1">Computer</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can&rsquo;t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user&rsquo;s <code>PATH</code> environment variable.</li>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can’t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user’s <code>PATH</code> environment variable.</li>
 </ul>
 
 <h3 id="users-and-groups">Users and Groups</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can&rsquo;t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
+  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can’t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
 </ul>
 </div>
   
@@ -484,9 +485,9 @@
   </header>
 
 
-  <div class="entry-content"><p>I&rsquo;m currently writing a PowerShell script that will commit changes to a <a href="http://mercurial.selenic.com">Mercurial</a> repository, then push those changes out to our central Mercurial server.  If there are new changes on the server, the script will need to pull those changes down before it pushes, merge them, commit the merge, then re-push to the server.  Rinse and repeat until the push succeeds.  Because it will run under our continuous integration build server, it needs to be able to run headless (i.e., non-interactively).</p>
+  <div class="entry-content"><p>I’m currently writing a PowerShell script that will commit changes to a <a href="http://mercurial.selenic.com">Mercurial</a> repository, then push those changes out to our central Mercurial server.  If there are new changes on the server, the script will need to pull those changes down before it pushes, merge them, commit the merge, then re-push to the server.  Rinse and repeat until the push succeeds.  Because it will run under our continuous integration build server, it needs to be able to run headless (i.e., non-interactively).</p>
 
-<p>During a merge, Mercurial will sometimes prompt the user for input (e.g. if a file was deleted by someone, but modified by someone else, Mercurial asks if you want to keep the change or keep the deletion).  Prompting for input won&rsquo;t work under a continuous integration server because no one&rsquo;s around to answer.  So, my script needs to detect when Mercurial is prompting for input, kill it, then notify those responsible that manual intervention is necessary.</p>
+<p>During a merge, Mercurial will sometimes prompt the user for input (e.g. if a file was deleted by someone, but modified by someone else, Mercurial asks if you want to keep the change or keep the deletion).  Prompting for input won’t work under a continuous integration server because no one’s around to answer.  So, my script needs to detect when Mercurial is prompting for input, kill it, then notify those responsible that manual intervention is necessary.</p>
 
 <p>Google turned up <em><a href="http://stackoverflow.com/questions/1704791/is-my-process-waiting-for-input">Is My Process Waiting for Input?</a></em> on StackOverflow.  The .NET <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx">System.Net.Diagnostics.Process</a> class has a <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.process.threads.aspx">Threads</a> property, which is a collection of <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.aspx">ProcessThread</a> objects.  If a process is waiting for input, one of its threads will be in a wait state (i.e. its <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.threadstate.aspx">ThreadState</a> property will be <code>Wait</code>), waiting for user input (i.e., its <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.waitreason.aspx">WaitReason</a> property will be <code>LpcReply</code>).</p>
 
@@ -498,7 +499,7 @@
 }
 </code></pre>
 
-<p>Of course, this is the easy part.  Here&rsquo;s my final script.  In addition to using <code>Start-Process</code> to start the merge so we can monitor the process while its running, it redirects STDOUT and STDERR to files, so we can see it in our build log.</p>
+<p>Of course, this is the easy part.  Here’s my final script.  In addition to using <code>Start-Process</code> to start the merge so we can monitor the process while its running, it redirects STDOUT and STDERR to files, so we can see it in our build log.</p>
 
 <pre><code># Create some files for storing STDOUT and STDERR streams
 $randomFileName = [IO.Path]::GetRandomFileName()
@@ -602,17 +603,17 @@ finally
   </header>
 
 
-  <div class="entry-content"><p>Part of my build server management responsibilities include trying to figure out why things are going wrong.  I don&rsquo;t know about other environments, but our builds run a lot of processes. For example, we use <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">Robocopy</a> to individually deploy a website&rsquo;s sub-directories.  When things go wrong, it&rsquo;s hard to debug because these robocopy processes start and stop so quickly, I don&rsquo;t have time to double-click them in <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a>. I usually resorted to adding lines in our deployment script to output the Robocopy command line and exit code, then running the build, waiting for it to finish, then inspecting the build logs.  </p>
+  <div class="entry-content"><p>Part of my build server management responsibilities include trying to figure out why things are going wrong.  I don’t know about other environments, but our builds run a lot of processes. For example, we use <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">Robocopy</a> to individually deploy a website’s sub-directories.  When things go wrong, it’s hard to debug because these robocopy processes start and stop so quickly, I don’t have time to double-click them in <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a>. I usually resorted to adding lines in our deployment script to output the Robocopy command line and exit code, then running the build, waiting for it to finish, then inspecting the build logs.  </p>
 
 <p><em>Ugh.</em></p>
 
 <p>Last week, I discovered that <a href="http://technet.microsoft.com/en-us/sysinternals/bb896645.aspx">Process Monitor</a> captures process start and exit events.  Just the information I need in these situations.</p>
 
-<p>Open Process Monitor, and click the &ldquo;Filter&rdquo; button.</p>
+<p>Open Process Monitor, and click the “Filter” button.</p>
 
 <p><img src="/storage/screenshots/procmon/ProcessMonitorFilterButton.png" alt="" /></p>
 
-<p>Create a new condition that matches when the <code>Operation</code> column contains the word <code>process</code> (don&rsquo;t forget to click the <code>Add</code> button).</p>
+<p>Create a new condition that matches when the <code>Operation</code> column contains the word <code>process</code> (don’t forget to click the <code>Add</code> button).</p>
 
 <p><img src="/storage/screenshots/procmon/ProcessMonitorFilterOperationContainsProcess.png" alt="" /></p>
 
@@ -620,7 +621,7 @@ finally
 
 <p><img src="/storage/screenshots/procmon/ProcessMonitorProcessStartExitEvents.png" alt="" /></p>
 
-<p>If you double-click the start event, you&rsquo;ll be able to see the entire command line and all the process&rsquo;s environment variables.</p>
+<p>If you double-click the start event, you’ll be able to see the entire command line and all the process’s environment variables.</p>
 
 <p>Thanks to the <a href="http://technet.microsoft.com/en-us/sysinternals/bb545021.aspx">Windows Sysinternals team</a> for the great tools.</p>
 </div>
@@ -658,9 +659,9 @@ finally
   </header>
 
 
-  <div class="entry-content"><p>One of my problems with the <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To&rdquo; data, properties which show by default when viewing certificates in the Windows Certificate MMC snap-in. This makes it difficult to match certificates you see the Certificates MMC with certificates you see in PowerShell.</p>
+  <div class="entry-content"><p>One of my problems with the <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> object is that it doesn’t expose properties for the “Issued From” and “Issued To” data, properties which show by default when viewing certificates in the Windows Certificate MMC snap-in. This makes it difficult to match certificates you see the Certificates MMC with certificates you see in PowerShell.</p>
 
-<p>Today I <a href="http://social.msdn.microsoft.com/Forums/en-US/csharpgeneral/thread/a74e3465-7e36-43a9-a83a-fb28a629218f">discovered</a> the <a href="http://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2.getnameinfo.aspx">GetNameInfo method</a>, which can return the &ldquo;Issued To/By&rdquo; text seen in the Certificates MMC snap-in:</p>
+<p>Today I <a href="http://social.msdn.microsoft.com/Forums/en-US/csharpgeneral/thread/a74e3465-7e36-43a9-a83a-fb28a629218f">discovered</a> the <a href="http://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2.getnameinfo.aspx">GetNameInfo method</a>, which can return the “Issued To/By” text seen in the Certificates MMC snap-in:</p>
 
 <pre><code>Get-ChildItem cert:\CurrentUser\My |
     Format-Table @{ Label = 'IssuedTo'; Expression = { $_.GetNameInfo( 'SimpleName', $false ) } },@{ Label = 'IssuedBy' ;Expression = { $_.GetNameInfo( 'SimpleName', $true ) } }
@@ -720,9 +721,9 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
   </header>
 
 
-  <div class="entry-content"><p>I&rsquo;m extremely happy to announce the release of <a href="http://get-carbon.org">Carbon</a> v1.0.0.  Thanks to everyone who&rsquo;s already started using Carbon.  Please continue to provide feedback.  I love to hear from everyone that&rsquo;s using it, good or bad.  Also, now that we&rsquo;re at v1.0, don&rsquo;t hesitate to <strong>spread the word</strong>! </p>
+  <div class="entry-content"><p>I’m extremely happy to announce the release of <a href="http://get-carbon.org">Carbon</a> v1.0.0.  Thanks to everyone who’s already started using Carbon.  Please continue to provide feedback.  I love to hear from everyone that’s using it, good or bad.  Also, now that we’re at v1.0, don’t hesitate to <strong>spread the word</strong>! </p>
 
-<p>If you&rsquo;re on v0.5.0.1, you should be able to upgrade with little or no work as this release is includes mostly fixes for bugs found in that release. </p>
+<p>If you’re on v0.5.0.1, you should be able to upgrade with little or no work as this release is includes mostly fixes for bugs found in that release. </p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits here!</a> </p>
 
@@ -730,7 +731,7 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
 
 <ul>
   <li>Remove the <code>Quiet</code> parameter from the <code>Import-Carbon.ps1</code> script.</li>
-  <li>If you&rsquo;re nesting Carbon as a sub-module of another module, <strong><em>STOP</em></strong>.  This causes havoc.  Create an <code>Import-*.ps1</code> script for your module which imports Carbon before importing your own module.  Update your scripts to import your module with your fancy new <code>Import-*.ps1</code> script.  See <a href="http://pshdo.com/archive/2012/6/4/best-practices-for-importing-powershell-modules.html">Best Practices for Importing PowerShell Modules</a> for details.</li>
+  <li>If you’re nesting Carbon as a sub-module of another module, <strong><em>STOP</em></strong>.  This causes havoc.  Create an <code>Import-*.ps1</code> script for your module which imports Carbon before importing your own module.  Update your scripts to import your module with your fancy new <code>Import-*.ps1</code> script.  See <a href="http://pshdo.com/archive/2012/6/4/best-practices-for-importing-powershell-modules.html">Best Practices for Importing PowerShell Modules</a> for details.</li>
 </ul>
 
 <h2 id="enhancements">Enhancements</h2>
@@ -738,20 +739,20 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
 <h3 id="general">General</h3>
 
 <ul>
-  <li>The <code>Import-Carbon.ps1</code> script no longer checks if Carbon is a sub-module of another module, so the <code>Quiet</code> parameter was removed.  <strong><em>Please don&rsquo;t nest Carbon in your modules!</em></strong>  It will cause havoc.</li>
+  <li>The <code>Import-Carbon.ps1</code> script no longer checks if Carbon is a sub-module of another module, so the <code>Quiet</code> parameter was removed.  <strong><em>Please don’t nest Carbon in your modules!</em></strong>  It will cause havoc.</li>
   <li><code>Import-Carbon.ps1</code> will no longer stop execution if an error occurs during an import (i.e. the <code>$ErrorActionPreference = 'Stop'</code> line was removed).  </li>
 </ul>
 
 <h3 id="services">Services</h3>
 
 <ul>
-  <li>Renamed <a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a>&rsquo;s <code>Dependencies</code> parameter to <code>Dependency</code> (with backwards-compatible alias), to follow PowerShell naming standards.</li>
+  <li>Renamed <a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a>’s <code>Dependencies</code> parameter to <code>Dependency</code> (with backwards-compatible alias), to follow PowerShell naming standards.</li>
 </ul>
 
 <h3 id="users-and-groups">Users and Groups</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-User.html">Install-User</a>: you can now set a user&rsquo;s full name with the optional <code>FullName</code> parameter.</li>
+  <li><a href="http://get-carbon.org/help/Install-User.html">Install-User</a>: you can now set a user’s full name with the optional <code>FullName</code> parameter.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -773,7 +774,7 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
 <h3 id="service">Service</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> fails if <code>Dependency</code> parameter doesn&rsquo;t have a value.  Sometimes.</li>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> fails if <code>Dependency</code> parameter doesn’t have a value.  Sometimes.</li>
 </ul>
 
 <h3 id="shares">Shares</h3>
@@ -785,7 +786,7 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
 <h3 id="users-and-groups-1">Users and Groups</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Add-GroupMember.html">Add-GroupMember</a> doesn&rsquo;t handle when the .NET Active Directory throws an exception when adding members to a group, causing script termination.</li>
+  <li><a href="http://get-carbon.org/help/Add-GroupMember.html">Add-GroupMember</a> doesn’t handle when the .NET Active Directory throws an exception when adding members to a group, causing script termination.</li>
 </ul>
 </div>
   

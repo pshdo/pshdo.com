@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn&rsquo;t behaving as I expected. Passing it $null, @(), or '' will return the contents of the &hellip;">
+  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn’t behaving as I expected. Passing it $null, @(), or '' will return the contents of the current &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -57,6 +57,7 @@
 <ul class="main-navigation">
 	<li><a href="/about">About</a></li>
 	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
 </ul>
 
 </nav>
@@ -90,7 +91,7 @@
   </header>
 
 
-<div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+<div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn’t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
 
 <pre><code>&gt; Get-ChildItem .
 
@@ -134,7 +135,7 @@ Mode                LastWriteTime     Length Name
 
 <p>Yikes!  I would expect it to write an error or just return nothing.</p>
 
-<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
+<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn’t match the filter, like this:</p>
 
 <pre><code>function Remove-ExtraFiles($Items, $Exclude)
 {
