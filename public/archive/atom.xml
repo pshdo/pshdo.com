@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2015-10-10T20:54:39-07:00</updated>
+  <updated>2015-10-10T20:59:36-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -362,6 +362,424 @@ Carbon 2.0.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Install
 </ul>
 
 <h3 id="enhancements-2">Enhancements</h3>
+
+<ul>
+  <li><code>Import-Carbon.ps1</code> is more intelligent about when it tries to re-load Carbon. It will force a re-import of Carbon if any of Carbon&rsquo;s files have changed or the version has changed.</li>
+  <li>Created <code>Uninstall-Junction</code> for uninstalling a junction in an idempotent way (i.e. without errors). Thanks to <a href="https://vk.com/kostanew">Konstantin Ushenin</a> for the contribution.</li>
+  <li>Improved error handling in <code>Remove-Junction</code>.</li>
+  <li><code>Install-Service</code>:
+    <ul>
+      <li>Now supports service startup parameters/arguments.</li>
+      <li>No longer returns <code>ServiceController</code> objects by default. This should improve backwards-compatability. Added a <code>PassThru</code> switch you can use to get a <code>ServiceController</code> object returned to you.</li>
+      <li>Improved error handling. It now uses <code>net helpmsg</code> to get helpful error messages based on sc.exe exit codes.</li>
+      <li>Improved handling of arguments/services with spaces in them under PowerShell 5.</li>
+      <li>Added <code>Credential</code> parameter for increased security and to follow PowerShell guidelines.</li>
+      <li>Now supports setting a service&rsquo;s description and display name.</li>
+      <li>Starting the service now respects caller&rsquo;s error action preference. Before, <code>Start-Service</code> would write an error even if somone called <code>Install-Service</code> with an <code>Ignore</code> or <code>SilentlyContinue</code> error action preference.</li>
+    </ul>
+  </li>
+  <li>New <code>Test-TypeDataMember</code> for testing if a type has an extended type member defined.</li>
+  <li><code>Install-IisAppPool</code> no longer returns appcmd.exe output.</li>
+  <li>Added <code>PassThru</code> parameter to <code>Install-IisAppPool</code> to control when a <code>Microsoft.Web.Administration.ApplicationPool</code> for the installed app pool is returned.</li>
+  <li><code>Get-ServiceConfiguration</code> and Carbon&rsquo;s extended type data for <code>System.ServiceProcess.ServiceController</code> objects now supports services from remote computers.</li>
+  <li><code>Uninstall-ScheduledTask</code> now retries when un-installing a task fails with &ldquo;The function attempted to use a name that is reserved for use by another transaction.&rdquo; error.</li>
+  <li>Added new <code>FileIndex</code>, <code>LinkCount</code>, and <code>VolumeSerialNumber</code> extended type data on <code>System.IO.FileInfo</code> objects for getting a file&rsquo;s index, its hard link count, and volume serial number, respectively.</li>
+  <li><code>Grant-Permission</code> now only returns an access rule object when the new <code>PassThru</code> switch is used. In previous 2.0 alpha releases, it only returned something when permissions on an object were added or changed.</li>
+  <li><code>Install-User</code> only returns a user object when the new <code>PassThru</code> switch is used. In previous 2.0 alpha releases, it only returned an object if a user was created or updated.</li>
+  <li><code>Grant-ComPermissions</code> only returns an access rule object when the new <code>PassThru</code> switch is used. In previous 2.0 alpha releases, it only returned an object if permissions were changed.</li>
+  <li><code>Install-IisApplication</code> only returns an IIS application object when the new <code>PassThru</code> switch is used. In previous 2.0 alpha releases, it only returned an object if the application was created or modified.</li>
+  <li>Created <code>Get-Msi</code> function for reading MSI information and properties from an MSI file.</li>
+  <li><code>Carbon.Computer.ProgramInstallInfo</code> objects (returned from <code>Get-ProgramInstallInfo</code>) now have <code>ProductCode</code> and <code>User</code> properties. If a program doesn&rsquo;t have a product code, it is set to <code>[Guid]::Empty</code>. The <code>User</code> property is only set for per-user software installs.</li>
+  <li><code>Invoke-WindowsInstaller</code> renamed <code>Install-Msi</code>, with a backwards-compatibility-preserving alias.</li>
+  <li><code>Install-Msi</code> now supports wildcards for MSI path to install.</li>
+  <li><code>Install-Msi</code> now only installs an MSI if it isn&rsquo;t already installed. To preserve the previous behavior and always install, add the <code>-Force</code> switch to all <code>Invoke-WindowsInstaller</code>`Install-Msi` usages.</li>
+  <li>Added <code>SiteID</code> parameter to <code>Install-IisWebsite</code> for setting a website&rsquo;s IIS ID.</li>
+  <li>Put the <code>Resolve-IdentityName</code> function back. It was removed from previous alpha releases.</li>
+  <li><code>Install-IisWebsite</code> no longer deletes and re-creates websites. This may or may not be a breaking change in your environment.</li>
+  <li><code>Install-SmbShare</code> no longer returns net.exe output, instead writing it to the verbose stream. To see previous output, use the <code>-Verbose</code> switch.</li>
+  <li>Changed <code>-PasswordNeverExpires</code> switch to  <code>PasswordExpires</code> on <code>Install-User</code> for improved backwards-compatability.</li>
+  <li><code>Set-SslCertificateBinding</code> no longer returns binding objects by default. Use new <code>PassThru</code> switch to get the old behavior.</li>
+  <li>The product version of the Carbon assembly now includes pre-release version information, as defined by the <a href="http://semver.org">Semantic Versioning specification</a>. To get this version, run <code>Get-Item Carbon.dll | Select-Object -ExpandProperty 'VersionInfo' | Select-Object -ExpandProperty 'ProductVersion'</code></li>
+  <li>The Carbon NuGet package now supports installing and uninstalling using Chocolatey.</li>
+  <li>Added <code>AsSecureString</code> switch to <code>Unprotect-String</code> which causes <code>Unprotect-String</code> to return a secure string instead of a normal string.</li>
+  <li><code>Unprotect-String</code> now accepts a <code>SecureString</code> as the value for the <code>Password</code> parameter, which is the password for the private key used to decrypt from password-protected RSA certificate file.</li>
+  <li>Added <code>Credential</code> parameter to <code>Install-IisAppPool</code> for increased security and to follow PowerShell guidelines.</li>
+  <li>Added <code>Credential</code> parameter to <code>Install-User</code> for increased security and to follow PowerShell guidelines.</li>
+  <li><code>Install-IisVirtualDirectory</code> now modifies existing virtual directories in place, instead of deleting and re-creating.</li>
+  <li><code>Invoke-AppCmd</code> is now obsolete and will be removed from a future version of Carbon. Switch to Carbon&rsquo;s IIS functions, or use <code>Get-IisConfigurationSection</code> to get <code>ConfigurationElement</code> objects from the <code>Microsoft.Web.Administration</code> API that you can modify.</li>
+  <li>Added <code>Description</code> and <code>DisplayName</code> properties to <code>Carbon_Service</code> for setting a service&rsquo;s description and display name.</li>
+  <li><code>Grant-Permission</code> now writes an error if you don&rsquo;t have access to a private key. Previously, it would skip the key without any messages.</li>
+  <li><code>Resolve-Identity</code> now converts SIDs to a <code>Carbon.Identity</code> object. The SID may be a string (SID in SDDL form), byte array, or a <code>SecurityIdentifier</code> object.</li>
+  <li><code>Get-FileSharePermission</code> gets the sharing permissions on a file/SMB share (<em>not</em> the NTFS file system permissions).</li>
+  <li>Created <code>Get-FileShare</code> function. It uses WMI to get <code>Win32_Share</code> objects for the file shares installed on the local computer.</li>
+  <li>Renamed <code>Install-SmbShare</code> to <code>Install-FileShare</code>, with a backwards-compatible alias in place.</li>
+  <li>Added <code>SID</code> parameter to <code>Resolve-IdentityName</code> to resolve a SID into its identity name.</li>
+  <li>Created <code>ConvertTo-SecurityIdentifer</code> function to convert a binary, string, or <code>System.Security.Principal.SecurityIdentifier</code> object into a <code>System.Security.Principal.SecurityIdentifier</code> object.</li>
+  <li><code>Install-FileShare</code> (fka <code>Install-SmbShare</code>):
+    <ul>
+      <li>Re-written to use WMI isntead of <code>net.exe</code>.</li>
+      <li>Modifies existing shares in place, instead of deleting and re-creating, <em>unless</em> the share&rsquo;s path changes. Changing a share&rsquo;s path requires the old share to be deleted and a new one created.</li>
+    </ul>
+  </li>
+  <li><code>Carbon_FirewallRule</code> now fails with an error if it finds multiple firewall rules with the same name.</li>
+  <li><code>Set-RegistryKeyValue</code>: 
+    <ul>
+      <li>Added <code>UDWord</code> and <code>UQWord</code> parameters for setting registry key values to unsigned integers (i.e. integer values greater than <code>[int]::MaxValue</code> and <code>[long]::MaxValue</code>). Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/165/set-registrykeyvalue">issue #165: Set-RegistryKeyValue rejects unsigned integers larger than [int]::MaxValue</a>.</li>
+      <li>Deprecated <code>Quiet</code> switch.</li>
+      <li>Only sets value if the value is changed. Use the <code>Force</code> parameter to preserve previous behavior.</li>
+    </ul>
+  </li>
+  <li><code>Uninstall-Service</code> no longer returns sc.exe stdout.</li>
+</ul>
+
+<hr />
+<p>layout: post
+title: &ldquo;Carbon 2.0.0 Released&rdquo;
+date: 2015-10-10 20:29
+comments: true
+categories: 
+&mdash;
+Carbon 2.0.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="overview-1">Overview</h2>
+
+<p>Carbon version 2.0 is a <em>huge</em> release, with lots of new enhancements and bug fixes. We hope you like them. Carbon 2.0 now requires PowerShell 4, so it is not backwards-compatabile with Carbon 1.x. Because of this, we made some additional backwards-incompatible changes. See the <code>Upgrade Instructions</code> section for things to look out for.</p>
+
+<p>If you&rsquo;re upgrading from a previous 2.0 alpha release, you&rsquo;ll want to review the changes since your alpha version (found after the <em>Upgrade Instructions</em> section). We improved backwards-compatability with Carbon 1.x since the last alpha release, but that broke compatability with the alphas. </p>
+
+<h2 id="upgrade-instructions-1">Upgrade Instructions</h2>
+
+<p>Make sure you&rsquo;re running PowerShell 4. </p>
+
+<p><code>Install-Certificate</code>&rsquo;s parameters have changed:</p>
+
+<ul>
+  <li>Remove the <code>Exportable</code> switch from any usages of <code>Install-Certificate</code> when installing from an <code>X509Certificate2</code> <em>object</em>, since that switch only gets used when installing a certificate from a file.</li>
+</ul>
+
+<p>Some functions now return different objects and/or the objects returned have changed:</p>
+
+<ul>
+  <li>Use the <code>Sid</code> property on objects returned by <code>Test-Identity</code> when using the <code>PassThru</code> switch: it now returns a <code>Carbon.Identity</code> object if the identity exists <em>and</em> you use the <code>-PassThru</code> switch, e.g. <code>Test-Identity -Name $userName -PassThru | Select-Object -Expand 'Sid'</code>.</li>
+  <li>Update usages of <code>Carbon.Computer.ProgramInstallInfo</code>&rsquo;s <code>Version</code> property (returned by <code>Get-ProgramInstallInfo</code>). It was an <code>int</code> and is now a <a href="http://msdn.microsoft.com/en-us/library/y0hf9t2e.aspx">Version</a> object.</li>
+</ul>
+
+<p>The Carbon assembly was re-organized. If you were reaching into <code>Carbon.dll</code> (<strong><em>NOT RECOMMENDED</em></strong>), you&rsquo;ll want to:</p>
+
+<ul>
+  <li>Rename usages of <code>[Carbon.AdvApi32]</code> class to <code>[Carbon.Service.ServiceSecurity]</code>.</li>
+  <li>Rename usages of <code>[Carbon.Lsa]</code> class to <code>[Carbon.Security.Privilege]</code>.</li>
+  <li>Rename usages of <code>[Carbon.Win32]</code> class to <code>[Carbon.FileSystem.Path]</code>.</li>
+  <li>Rename usages of <code>[Carbon.HandleInfo]</code> class to <code>[Carbon.Win32.HandleInfo]</code>.</li>
+  <li>Remove usages of <code>[Carbon.Lsa]::LookupPrivilegeValue</code> class method. It was incorrectly exposed as a public method.</li>
+  <li>Remove usages of <code>[Carbon.Kernel32]::LocalFree</code> class method. It was incorrectly exposed as a public method.</li>
+</ul>
+
+<p>The following commands no longer return the stdout output from the console applications each one calls. To see the old output, use the <code>-Verbose</code> switch. Remove any usage of the output you were processing.</p>
+
+<ul>
+  <li>All IIS functions.</li>
+  <li><code>Disable-FirewallStatefulFtp</code></li>
+  <li><code>Enable-FirewallStatefulFtp</code></li>
+  <li><code>Install-Service</code></li>
+  <li><code>Install-SmbShare</code></li>
+  <li><code>Remove-SslCertificateBinding</code></li>
+  <li><code>Set-SslCertificateBinding</code></li>
+  <li><code>Uninstall-Service</code></li>
+</ul>
+
+<p>The following functions&rsquo; internal behavior has changed. This may or may not impact you.</p>
+
+<ul>
+  <li><code>Grant-Permission</code> now only grants permissions on an object if those permissions aren&rsquo;t present.  To preserve previous behavior, add the <code>-Force</code> switch to all <code>Grant-Permission</code> usages.</li>
+  <li><code>Grant-Permission</code> now writes an error if you don&rsquo;t have access to a private key. Previously, it would skip the key without any messages.</li>
+  <li><code>Install-Msi</code> (fka <code>Invoke-WindowsInstaller</code>) now only installs the MSI if it isn&rsquo;t already installed. To preserve the previous behavior and always install, add the <code>-Force</code> switch to all <code>Invoke-WindowsInstaller</code>`Install-Msi` usages.</li>
+  <li>All IIS functions were re-written to use the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>.</li>
+  <li><code>Install-IisWebsite</code> no longer deletes and re-creates websites. If a website exists, it updates its configuration to match parameters passed in. To preserve previous behavior and delete the website before installing, use the <code>-Force</code> switch.</li>
+  <li><code>Install-IisVirtualDirectory</code> no longer deletes and re-creates virtual directories. If a virtual directory exists, its configuration is updated in place. To preserve previous behavior and delete the virtual directory before installing, use the <code>Force</code> switch.</li>
+  <li><code>Install-FileShare</code> (fka <code>Install-SmbShare</code>) no longer deletes and re-creates the share, instead it modifies existing shares in place. To preserve previous behavior and delete existing shares before re-creating, use the <code>Force</code> switch.</li>
+  <li><code>Set-RegistryKeyValue</code> only sets the value if the value doesn&rsquo;t exist or the current value is different than the desired value.</li>
+</ul>
+
+<p>We&rsquo;ve added parameter validation to some functions. This shouldn&rsquo;t impact anybody, since if you were passing data that breaks this new validation, the function wouldn&rsquo;t have worked even in previous versions of Carbon.</p>
+
+<ul>
+  <li>Ensure that all thumbprints passed to <code>Set-SslCertificateBinding</code> are valid (40 character hex strings), since it now validates thumbprints.</li>
+  <li>Check that all IP addresses passed to <code>Set-HostsEntry</code> are valid IP v4 or v6 addresses.  <code>Set-HostsEntry</code>&rsquo;s IPAddress parameter is now a <code>System.Net.IPAddress</code> object.  Previously it was a string validated with a regular expression, so you <em>should</em> be OK.</li>
+</ul>
+
+<p>All Carbon functions now respect each caller&rsquo;s common parameters (e.g. <code>-Verbose</code>, <code>-ErrorAction</code>, etc.). This means if you pass a common parameter to a script that calls a Carbon function, that Carbon function will use that common parameter. This may or may not impact you.</p>
+
+<h2 id="bug-fixes-3">Bug Fixes</h2>
+
+<ul>
+  <li>Carbon&rsquo;s <code>System.ServiceProcess.ServiceController</code> extended type data causes errors when PowerShell formats <code>System.ServiceProcess.ServiceController</code> objects that represent services on remote computers.</li>
+  <li><code>Compress-Item</code> doesn&rsquo;t remove handled errors from global error array.</li>
+  <li><code>Grant-Permission</code> fails with an unhelpful error message if it is unable to get the ACL on a private key.</li>
+  <li><code>Install-Msi</code> didn&rsquo;t properly detect when installation failed.</li>
+  <li><code>Install-ScheduledTask</code> fails under PowerShell 5 to create a scheduled task to run on Sunday.</li>
+  <li><code>Install-Service</code>:
+    <ul>
+      <li>No longer writes a warning about being unable to stop an already stopped service (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/158/install-service-extraneous-warning-about">issue #158</a>).</li>
+      <li>Starting the service now respects caller&rsquo;s error action preference. Before, <code>Start-Service</code> would write an error even if somone called <code>Install-Service</code> with an <code>Ignore</code> or <code>SilentlyContinue</code> error action preference.</li>
+      <li>Service arguments that are quoted still get quoted. Now, quotes are trimmed before arguments are quoted.</li>
+    </ul>
+  </li>
+  <li><code>Set-EnvironmentVariable</code> fails to set process-level environment variable. </li>
+  <li><code>Set-HostsEntry</code> fails to preserve whitespace if existing lines end with a comment/description. Thanks to <a href="https://vk.com/kostanew">Konstantin Ushenin</a> for the fix.</li>
+</ul>
+
+<h2 id="enhancements-3">Enhancements</h2>
+
+<h3 id="general-1">General</h3>
+
+<ul>
+  <li>Carbon now requires PowerShell 4.</li>
+  <li><code>Import-Carbon.ps1</code> is more intelligent about when it tries to re-load Carbon. It will force a re-import of Carbon if any of Carbon&rsquo;s files have changed or the version has changed.</li>
+  <li>Added new <code>FileIndex</code>, <code>LinkCount</code>, and <code>VolumeSerialNumber</code> extended type data on <code>System.IO.FileInfo</code> objects for getting a file&rsquo;s index, its hard link count, and volume serial number, respectively.</li>
+  <li>The product version of the Carbon assembly now includes pre-release version information, as defined by the <a href="http://semver.org">Semantic Versioning specification</a>. To get this version, run <code>Get-Item Carbon.dll | Select-Object -ExpandProperty 'VersionInfo' | Select-Object -ExpandProperty 'ProductVersion'</code>.</li>
+  <li>The Carbon NuGet package now supports installing and uninstalling under Chocolatey.</li>
+  <li>All IIS functions were re-written to use the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>. As a side effect, they no longer return <code>appcmd.exe</code> console output.</li>
+  <li>The following functions no longer use <code>Write-Host</code>. Instead, they use <code>Write-Verbose</code>:
+    <ul>
+      <li><code>Disable-NtfsCompression</code></li>
+      <li><code>Enable-NtfsCompression</code></li>
+      <li><code>Grant-ComPermission</code></li>
+      <li><code>Grant-Permission</code></li>
+      <li><code>Install-Service</code> </li>
+      <li><code>Remove-SslCertificateBinding</code> </li>
+      <li><code>Revoke-ComPermission</code> </li>
+    </ul>
+  </li>
+  <li>Created default, table-based display formats for <code>System.DirectoryServices.AccountManagement.UserPrincipal</code>, <code>System.DirectoryServices.AccountManagement.GroupPrincipal</code>, <code>Microsoft.Web.Administration.ApplicationPool</code>, <code>Microsoft.Web.Administration.Site</code>, and <code>Microsoft.Web.Administration.Application</code> objects.</li>
+  <li>Re-organized Carbon&rsquo;s internal directory structure. You shouldn&rsquo;t be reaching into Carbon&rsquo;s internals, so this shouldn&rsquo;t matter, but wanted to let everyone know just in case.</li>
+</ul>
+
+<h3 id="new-functions-1">New Functions</h3>
+
+<ul>
+  <li><code>Clear-DscLocalResourceCache</code> clears the local LCM&rsquo;s DSC resource. This makes developing resources easier.</li>
+  <li><code>Clear-MofAuthoringMetadata</code> removes authoring metadata from .mof files.</li>
+  <li><code>Copy-DscResource</code> copies DSC resources (ZIP files, MSI archives, MOF files, etc.), including timestamps, checksums, and copying only changed files.</li>
+  <li><code>ConvertTo-SecurityIdentifer</code> converts a binary, string, or <code>System.Security.Principal.SecurityIdentifier</code> object into a <code>System.Security.Principal.SecurityIdentifier</code> object.</li>
+  <li><code>Get-DscError</code> gets any DSC errors that were written to a computer&rsquo;s DSC event log.</li>
+  <li><code>Get-DscWinEvent</code> gets DSC events that were written to a computer&rsquo;s DSC event log.</li>
+  <li><code>Get-FileSharePermission</code> gets the sharing permissions on a file/SMB share (<em>not</em> the NTFS file system permissions).</li>
+  <li><code>Get-FileShare</code> uses WMI to get <code>Win32_Share</code> objects for the file shares installed on the local computer.</li>
+  <li><code>Get-Group</code> gets a local group or all local groups.</li>
+  <li><code>Get-Msi</code> reads installer information and properties from an MSI file.</li>
+  <li><code>Get-PowerShellModuleInstallPath</code> gets the path where new module&rsquo;s should be installed. Beginning with PowerShell 4, modules should get installed into <code>$env:ProgramFiles\Windows PowerShell\Modules</code>. Under PowerShell 3, it is <code>$PSHome\Modules</code>. This function returns the correct location for the version of PowerShell you&rsquo;re using.</li>
+  <li><code>Get-User</code> gets a local user or all local users.</li>
+  <li><code>Initialize-Lcm</code> configures the DSC Local Configuration Manager on computers, including installing the private key needed for decrypting credentials.</li>
+  <li><code>Remove-GroupMember</code> removes a user/group from a local group. Thanks to <a href="https://bitbucket.org/philkloose">Philip Kluss</a> for the contribution. </li>
+  <li><code>Resolve-Identity</code> converts a system, local, or domain principal name or a SID (as a <code>SecurityIdentifer</code>, string SDDL, or byte array) into its canonical representation and includes extended identity information: domain, type, and SID.</li>
+  <li><code>Start-DscPullConfiguration</code> starts a configuration check on a computer that is configured to use the PULL refresh mode.</li>
+  <li><code>Test-DscTargetResource</code> compares target resource with desired resource. Helpful when writing <code>Test-TargetResource</code> functions.</li>
+  <li><code>Test-Group</code> checks if a <em>local</em> group exists.</li>
+  <li><code>Test-FileShare</code> uses WMI to check if a file/SMB share exists on the local computer.</li>
+  <li><code>Test-TypeDataMember</code> tests if a type has an extended type member defined.</li>
+  <li><code>Uninstall-FileShare</code> uninstalls/removes a file share, if it exists.</li>
+  <li><code>Write-DscError</code> writes DSC <code>ErrorLogRecord</code> objects as errors.</li>
+</ul>
+
+<h3 id="new-dsc-resources-1">New DSC Resources</h3>
+
+<ul>
+  <li><code>Carbon_EnvironmentVariable</code> creates/removes machine-level environment variables.</li>
+  <li><code>Carbon_FirewallRule</code> configures firewall rules.</li>
+  <li><code>Carbon_IniFile</code> manages the contents of INI files.</li>
+  <li><code>Carbon_Permission</code> configures file, directory, registry, and certificate permissions.</li>
+  <li><code>Carbon_Privilege</code> configures an identity&rsquo;s privileges.</li>
+  <li><code>Carbon_ScheduledTask</code> configures scheduled tasks with <code>schtasks.exe</code>.</li>
+  <li><code>Carbon_Service</code> configures Windows services.</li>
+</ul>
+
+<h3 id="added-passthru-switches-1">Added <code>PassThru</code> Switches</h3>
+
+<p>Added a <code>PassThru</code> switch to the following functions, which will return objects of the given type:</p>
+
+<ul>
+  <li><code>Grant-ComPermission</code>: <code>Carbon.Security.ComAccessRule</code>, representing the granted permission.</li>
+  <li><code>Grant-Permission</code>: <code>System.Security.AccessControl.AccessRule</code>, representing the granted permission.</li>
+  <li><code>Install-Group</code>: <code>System.DirectoryServices.AccountManagement.GroupPrincipal</code>, representing the group. </li>
+  <li><code>Install-IisApplication</code>: <code>Microsoft.Web.Administration.Application</code>, representing the application.</li>
+  <li><code>Install-IisWebsite</code>: <code>Microsoft.Web.Administration.Site</code>, representing the website.</li>
+  <li><code>Install-Junction</code>: <code>System.IO.DirectoryInfo</code>, representing new target directories and any new/updated junctions.</li>
+  <li><code>Install-Service</code>: <code>System.ServiceProcess.ServiceController</code>, representing the service.</li>
+  <li><code>Install-User</code>: <code>System.DirectoryServices.AccountManagement.UserPrincipal</code>, representing the user.</li>
+  <li><code>Set-SslCertificateBinding</code>: <code>Carbon.Certificates.SslCertificateBinding</code>, representing the configured binding.</li>
+</ul>
+
+<h3 id="no-more-console-output-1">No More Console Output</h3>
+
+<p>The following functions no longer return the console output of the program each one runs. Instead, the output is written to the verbose stream (i.e. use the <code>-Verbose</code> switch to see it).</p>
+
+<ul>
+  <li><code>Disable-FirewallStatefulFtp</code></li>
+  <li><code>Enable-FirewallStatefulFtp</code></li>
+  <li><code>Install-Service</code></li>
+  <li><code>Remove-SslCertificateBinding</code></li>
+  <li><code>Set-SslCertificateBinding</code></li>
+  <li><code>Uninstall-Service</code></li>
+</ul>
+
+<h3 id="obsolete-functions-and-parameters-1">Obsolete Functions and Parameters</h3>
+
+<p>The following functions are now obsolete. Please don&rsquo;t use them and stop using them if you are. They will be removed from a future major version of Carbon. You&rsquo;ll get warnings if you use them.</p>
+
+<ul>
+  <li><code>Complete-Job</code>: It&rsquo;s total crap. Use PowerShell&rsquo;s <code>Wait-Job</code> cmdlet instead.</li>
+  <li><code>Invoke-AppCmd</code>: Switch to Carbon&rsquo;s IIS functions, or use <code>Get-IisConfigurationSection</code> to get <code>ConfigurationElement</code> objects from the <code>Microsoft.Web.Administration</code> API that you can modify.</li>
+  <li><code>Resolve-NetPath</code>: Switch to something else. Carbon doesn&rsquo;t use <code>net.exe</code> anymore.</li>
+</ul>
+
+<p>The following functions now have obsolete parameters, which will be removed from a future major version of Carbon. You&rsquo;ll get warnings if you use them.</p>
+
+<ul>
+  <li><code>Install-IisAppPool's</code> <code>UserName</code> and <code>Password</code> parameters. Use the new <code>Credential</code> parameter instead.</li>
+  <li><code>Install-Msi's</code> <code>Quiet</code> switch. <code>Install-Msi</code> always installs in quiet mode. Please remove usages.</li>
+  <li><code>Install-Service's</code> <code>Password</code> parameter. Use the new <code>Credential</code> parameter instead.</li>
+  <li><code>Install-User's</code> <code>UserName</code> and <code>Password</code> parameters. Use the new <code>Credential</code> parameter instead.</li>
+  <li><code>Set-RegistryKeyValue</code>&rsquo;s <code>Quiet</code> parameter. Please remove usages.</li>
+</ul>
+
+<h3 id="renamed-functions-1">Renamed Functions</h3>
+
+<p>The following functions were renamed, but with backwards-compatible aliases in place, so you shouldn&rsquo;t have to change any code.</p>
+
+<ul>
+  <li><code>Invoke-WindowsInstaller</code> -&gt; <code>Install-Msi</code></li>
+  <li><code>Install-SmbShare</code> -&gt; <code>Install-FileShare</code></li>
+</ul>
+
+<h3 id="switch-to-systemdirectoryservicesaccountmanagement-api-for-usergroup-management-1">Switch to System.DirectoryServices.AccountManagement API for User/Group Management</h3>
+
+<p>The following functions were re-written to use the <code>System.DirectoryServices.AccountManagement</code> API, introduced in .NET 3.5.</p>
+
+<ul>
+  <li><code>Add-MemberToGroup</code></li>
+  <li><code>Install-Group</code></li>
+  <li><code>Install-User</code> </li>
+  <li><code>Test-User</code></li>
+  <li><code>Uninstall-User</code></li>
+</ul>
+
+<h3 id="miscellaneous-changes-1">Miscellaneous Changes</h3>
+
+<ul>
+  <li><code>Get-IisAppPool</code>
+    <ul>
+      <li>Now return all application pools installed on the local computer when called with no parameters.</li>
+      <li>Added a default table format for <code>Microsoft.Web.Administration.ApplicationPool</code> objects.</li>
+    </ul>
+  </li>
+  <li><code>Get-ProgramInstallInfo</code>
+    <ul>
+      <li>Return object&rsquo;s <code>Version</code> property changed from an <code>int</code> to a <a href="http://msdn.microsoft.com/en-us/library/y0hf9t2e.aspx">Version</a> object.</li>
+      <li>Return object&rsquo;s now have <code>ProductCode</code> and <code>User</code> properties. If a program doesn&rsquo;t have a product code, it is set to <code>[Guid]::Empty</code>. The <code>User</code> property is only set for per-user software installs.</li>
+    </ul>
+  </li>
+  <li><code>Get-ServiceConfiguration</code> now supports services from remote computers.</li>
+  <li><code>Grant-Permission</code> now only grants permissions on an object if those permissions aren&rsquo;t present.  To preserve previous behavior, add the <code>-Force</code> switch to all <code>Grant-Permission</code> usages.</li>
+  <li><code>Install-Certificate's</code> <code>Exportable</code> switch is now only allowed when installing a certificate from a file. Previously, you could supply the switch when installing from an X509Certificate2 object but it was ignored.</li>
+  <li><code>Install-Group's</code> <code>Members</code> parameter renamed to <code>Member</code> (with backwards-compatible alias).</li>
+  <li>Added <code>Credential</code> parameter to <code>Install-IisAppPool</code> for increased security and to follow PowerShell guidelines.</li>
+  <li><code>Install-IisVirtualDirectory</code> no longer deletes and re-creates existing virtual directories, but modifies existing virtual directories in place.</li>
+  <li><code>Install-IisWebsite</code>
+    <ul>
+      <li>Added <code>SiteID</code> parameter tfor setting a website&rsquo;s IIS ID.</li>
+      <li>No longer deletes and re-creates websites, but modifies existing websites in place. This may or may not be a breaking change in your environment.</li>
+    </ul>
+  </li>
+  <li><code>Install-Msi</code>
+    <ul>
+      <li><code>Path</code> parameter now supports wildcards.</li>
+      <li>Now only installs an MSI if it isn&rsquo;t already installed. To preserve the previous behavior and always install, add the <code>-Force</code> switch to all <code>Invoke-WindowsInstaller</code>`Install-Msi` usages.</li>
+    </ul>
+  </li>
+  <li><code>Install-Service</code>
+    <ul>
+      <li>Now supports service startup parameters/arguments via the <code>ArgumentList</code> parameter.</li>
+      <li>Improved error handling and messages. It now uses <code>net helpmsg</code> to get helpful error messages based on sc.exe exit codes.</li>
+      <li>Added <code>Credential</code> parameter for increased security and to follow PowerShell guidelines.</li>
+      <li>Added <code>Description</code> parameter for setting a service&rsquo;s description.</li>
+      <li>Added <code>DisplayName</code> parameter for setting a service&rsquo;s display name.</li>
+    </ul>
+  </li>
+  <li><code>Install-FileShare</code> (fka <code>Install-SmbShare</code>):
+    <ul>
+      <li>Re-written to use WMI isntead of <code>net.exe</code>, so it no longer returns any console output.</li>
+      <li>Modifies existing shares in place, instead of deleting and re-creating, <em>unless</em> the share&rsquo;s path changes. Changing a share&rsquo;s path requires the old share to be deleted and a new one created.</li>
+    </ul>
+  </li>
+  <li><code>Install-User</code>
+    <ul>
+      <li>Added <code>PasswordExpires</code> switch for creating accounts with passwords that expire.</li>
+      <li>Added <code>UserCannotChangePassword</code> to prevent user from changing his password.</li>
+    </ul>
+  </li>
+  <li><code>Remove-SslCertificateBinding</code> has better error handling.</li>
+  <li>Added <code>SID</code> parameter to <code>Resolve-IdentityName</code> to resolve a SID into its identity name.</li>
+  <li><code>Set-HostsEntry's</code> <code>IPAddress</code> parameter is now a <code>System.Net.IPAddress</code> object. It used to be a string validated with a regular expression.</li>
+  <li><code>Set-RegistryKeyValue</code>: 
+    <ul>
+      <li>Added <code>UDWord</code> and <code>UQWord</code> parameters for setting registry key values to unsigned integers (i.e. integer values greater than <code>[int]::MaxValue</code> and <code>[long]::MaxValue</code>). Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/165/set-registrykeyvalue">issue #165: Set-RegistryKeyValue rejects unsigned integers larger than [int]::MaxValue</a>.</li>
+      <li>Deprecated <code>Quiet</code> switch.</li>
+      <li>Only sets the value if the value doesn&rsquo;t exist or the current value is different than the desired value. Use the <code>Force</code> parameter to preserve previous behavior.</li>
+    </ul>
+  </li>
+  <li><code>Test-Identity</code> now returns a <code>Carbon.Identity</code> object if the identity exists <em>and</em> you use the <code>-PassThru</code> switch. It used to return the identity&rsquo;s SID. Update scripts to use the <code>FullName</code> property to get the old return value, e.g. <code>Test-Identity -Name $userName -PassThru | Select-Object -Expand 'FullName'</code>.</li>
+  <li><code>Test-OSIs32Bit</code> now uses the Environment class&rsquo;s new <a href="http://msdn.microsoft.com/en-us/library/system.environment.is64bitoperatingsystem.aspx">Is64BitOperatingSystem</a> property.</li>
+  <li><code>Test-OSIs64Bit</code> now uses the Environment class&rsquo;s new <a href="http://msdn.microsoft.com/en-us/library/system.environment.is64bitoperatingsystem.aspx">Is64BitOperatingSystem</a> property.</li>
+  <li><code>Test-PowerShellIs32Bit</code> now uses the <code>Environment</code> class&rsquo;s new <a href="http://msdn.microsoft.com/en-us/library/system.environment.is64bitprocess.aspx">Is64BitProcess</a> property.</li>
+  <li><code>Test-PowerShellIs64Bit</code> now uses the <code>Environment</code> class&rsquo;s new <a href="http://msdn.microsoft.com/en-us/library/system.environment.is64bitprocess.aspx">Is64BitProcess</a> property.</li>
+  <li><code>Uninstall-ScheduledTask</code> now retries when un-installing a task fails with &ldquo;The function attempted to use a name that is reserved for use by another transaction.&rdquo; error.</li>
+  <li><code>Unprotect-String</code>
+    <ul>
+      <li>Added <code>AsSecureString</code> switch, which will return a secure string instead of a normal string.</li>
+      <li>The <code>Password</code> parameter now accepts <code>SecureString</code> values.</li>
+    </ul>
+  </li>
+  <li><code>Initialize-Lcm</code>
+    <ul>
+      <li>Added support for PowerShell 5: <code>RefreshIntervalMinutes</code> default value changed to from 15 to 30; <code>RefreshIntervalMinutes</code> minimum value is now 30; <code>ConfigurationFrequency</code>&rsquo;s minimum value is now 1 (from 2).</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="changes-since-alpha26-1">Changes Since <code>alpha.26</code></h2>
+
+<h3 id="enhancements-4">Enhancements</h3>
+
+<ul>
+  <li>Includes all changes made in version 1.9.0.</li>
+  <li>PowerShell 4 is now required. Carbon won&rsquo;t even import under PowerShell 3.</li>
+  <li>Removed <code>Carbon_Script</code> resource. It only existed so I could pass values to my script blocks. Turns out, the built-in <code>Script</code> resource supports this with the <code>$using:</code> scope. Remember, your most important features is documentation!</li>
+  <li>Created a new <code>Carbon_ScheduledTask</code> DSC resource for managing scheduled tasks.</li>
+  <li>The <code>Version</code> property on the objects returned by <code>Get-ProgramInstallInfo</code> is now a proper .NET <code>Version</code> object instead of an integer.</li>
+</ul>
+
+<h3 id="bug-fixes-4">Bug Fixes</h3>
+
+<ul>
+  <li><code>Carbon_Permission</code> DSC resource fails when assigning multiple permissions</li>
+  <li>Grant-Permission fails when clearing multiple existing, non-inherited permission on an item.</li>
+</ul>
+
+<h2 id="changes-since-alpha31-1">Changes Since <code>alpha.31</code></h2>
+
+<h3 id="bug-fixes-5">Bug Fixes</h3>
+
+<ul>
+  <li><code>Set-HostsEntry</code> fails to preserve whitespace if existing lines end with a comment/description. Thanks to <a href="https://vk.com/kostanew">Konstantin Ushenin</a> for the fix.</li>
+  <li>Carbon&rsquo;s <code>System.ServiceProcess.ServiceController</code> extended type data causes errors when PowerShell formats <code>System.ServiceProcess.ServiceController</code> objects that represent services on remote computers.</li>
+  <li><code>Install-Msi</code> didn&rsquo;t properly detect when installation failed.</li>
+  <li><code>Set-EnvironmentVariable</code> fails to set process-level environment variable.</li>
+  <li><code>Compress-Item</code> doesn&rsquo;t remove handled errors from global error array.</li>
+  <li><code>Grant-Permission</code> fails with an unhelpful error message if it is unable to get the ACL on a private key.</li>
+</ul>
+
+<h3 id="enhancements-5">Enhancements</h3>
 
 <ul>
   <li><code>Import-Carbon.ps1</code> is more intelligent about when it tries to re-load Carbon. It will force a re-import of Carbon if any of Carbon&rsquo;s files have changed or the version has changed.</li>
