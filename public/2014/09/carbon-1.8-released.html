@@ -186,10 +186,10 @@
   <li><a href="http://get-carbon.org/help/Remove-SslCertificateBinding.html">Remove-SslCertificateBinding</a>: improved error handling.</li>
   <li><a href="http://get-carbon.org/help/Set-SslCertificateBinding.html">Set-SslCertificateBinding</a>: improved error handling.</li>
   <li>Improved documentation for <a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a>.</li>
-  <li>Added extended script property <code>StoreName</code> to <code>X509Store</code> objects to return the store’s <code>System.Security.Cryptography.X509Certificates.StoreName</code> value.</li>
-  <li>Added a table view/format for <code>X509Store</code> objects. PowerShell’s default view is a list, so you’ll have to explicitly format the objects as a table, e.g. <code>dir cert:\LocalMachine | Format-Table</code>.</li>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a>’s <code>Path</code> parameter now supports wildcards and certificate provider paths, e.g. <code>cert:\</code>.</li>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> now writes an error if a certificate isn’t found when getting a certificate by its path.</li>
+  <li>Added extended script property <code>StoreName</code> to <code>X509Store</code> objects to return the store&rsquo;s <code>System.Security.Cryptography.X509Certificates.StoreName</code> value.</li>
+  <li>Added a table view/format for <code>X509Store</code> objects. PowerShell&rsquo;s default view is a list, so you&rsquo;ll have to explicitly format the objects as a table, e.g. <code>dir cert:\LocalMachine | Format-Table</code>.</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a>&rsquo;s <code>Path</code> parameter now supports wildcards and certificate provider paths, e.g. <code>cert:\</code>.</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> now writes an error if a certificate isn&rsquo;t found when getting a certificate by its path.</li>
 </ul>
 
 <h3 id="computer">Computer</h3>
@@ -202,7 +202,7 @@
 
 <ul>
   <li><a href="http://get-carbon.org/help/Protect-String.html">Protect-String</a> can now encrypt strings as a specific user. Use the <code>Credential</code> parameter.</li>
-  <li>Created <a href="http://get-carbon.org/help/New-RsaKeyPair.html">New-RsaKeyPair</a> for creating public/private RSA key pair using <code>makecert.exe</code> and <code>pkv2pfx.exe</code>. Requires that you’ve installed a Windows SDK.</li>
+  <li>Created <a href="http://get-carbon.org/help/New-RsaKeyPair.html">New-RsaKeyPair</a> for creating public/private RSA key pair using <code>makecert.exe</code> and <code>pkv2pfx.exe</code>. Requires that you&rsquo;ve installed a Windows SDK.</li>
   <li><a href="http://get-carbon.org/help/Protect-String.html">Protect-String</a> can now encrypt strings using an RSA public key.</li>
   <li><a href="http://get-carbon.org/help/Unprotect-String.html">Unprotect-String</a> can now decrypt strings using an RSA private key.</li>
 </ul>
@@ -215,7 +215,7 @@
   <li>Created <a href="http://get-carbon.org/help/Compress-Item.html">Compress-Item</a> function for compressing files/directories into a ZIP file.</li>
   <li>Created <a href="http://get-carbon.org/help/Test-ZipFile.html">Test-ZipFile</a> function for testing if a file is a ZIP file.</li>
   <li>Created <a href="http://get-carbon.org/help/Expand-Item.html">Expand-Item</a> function for decompressing a ZIP file.</li>
-  <li><a href="http://get-carbon.org/help/New-TempDirectory.html">New-TempDirectory</a> now supports adding a prefix to the temporary directory’s name, so you can more easily track down those scripts/processes that don’t clean up after themselves.</li>
+  <li><a href="http://get-carbon.org/help/New-TempDirectory.html">New-TempDirectory</a> now supports adding a prefix to the temporary directory&rsquo;s name, so you can more easily track down those scripts/processes that don&rsquo;t clean up after themselves.</li>
 </ul>
 
 <h3 id="firewall">Firewall</h3>
@@ -245,7 +245,7 @@
 <h3 id="security">Security</h3>
 
 <ul>
-  <li>Creating <a href="http://get-carbon.org/help/Revoke-Permission.html">Revoke-Permission</a> function for revoking a user’s permission to a file, directory, registry key, or certificate’s private key/key container.</li>
+  <li>Creating <a href="http://get-carbon.org/help/Revoke-Permission.html">Revoke-Permission</a> function for revoking a user&rsquo;s permission to a file, directory, registry key, or certificate&rsquo;s private key/key container.</li>
   <li>Creating <a href="http://get-carbon.org/help/ConvertTo-ContainerInheritanceFlags.html">ConvertTo-ContainerInheritanceFlags</a> function for converting  <code>System.Security.AccessControl.InheritanceFlags</code> and <code>System.Security.AccessControl.PropagationFlag</code> values into a <code>Carbon.Security.ContainerInheritanceFlags</code> value.</li>
   <li><a href="http://get-carbon.org/help/Get-Permission.html">Get-Permission</a> now supports returning the permissions on private keys/key containers.</li>
   <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> now supports granting permissions on private keys//key containers.</li>
@@ -255,7 +255,7 @@
 <h3 id="services">Services</h3>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-ServiceConfiguration.html">Get-ServiceConfiguration</a> function for loading a service’s configuration: description, account name/username, failure actions, etc.</li>
+  <li>Created <a href="http://get-carbon.org/help/Get-ServiceConfiguration.html">Get-ServiceConfiguration</a> function for loading a service&rsquo;s configuration: description, account name/username, failure actions, etc.</li>
   <li>Added the following extended type data to <code>System.ServiceController.Service</code>:
     <ul>
       <li>Description</li>
@@ -299,7 +299,7 @@
 <h3 id="certificates-1">Certificates</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> couldn’t open CA/CertificateAuthority store (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/130/get-certificate-doesnt-find-any">#130</a>).</li>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> couldn&rsquo;t open CA/CertificateAuthority store (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/130/get-certificate-doesnt-find-any">#130</a>).</li>
   <li>Extended script property <code>DisplayName</code> on <code>X509Store</code> objects returning wrong store name for custom stores, now returns an empty string.</li>
 </ul>
 
@@ -313,7 +313,7 @@
 <h3 id="path">Path</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Resolve-PathCase.html">Resolve-PathCase</a> didn’t work under Windows 2012 R2.</li>
+  <li><a href="http://get-carbon.org/help/Resolve-PathCase.html">Resolve-PathCase</a> didn&rsquo;t work under Windows 2012 R2.</li>
 </ul>
 
 <h3 id="users-and-groups">Users and Groups</h3>
@@ -392,6 +392,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2015/10/carbon-2-dot-0-0-released.html">Carbon 2.0.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a>
       </li>
     
@@ -407,10 +411,6 @@
         <a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -421,7 +421,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Aaron Jensen -
+  Copyright &copy; 2015 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

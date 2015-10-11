@@ -92,7 +92,7 @@
 
 <div class="entry-content"><h2 id="importing-modules-is-messy">Importing Modules Is Messy</h2>
 
-<p>An error users encounter with <a href="http://get-carbon.org">Carbon</a> is double-importing its extended type data file.  If Carbon has been imported in another module (i.e. Carbon is a sub-module of that module), when you use <code>Import-Module</code> to import Carbon, PowerShell will sometimes complain about not being able to load Carbon’s extended data file:</p>
+<p>An error users encounter with <a href="http://get-carbon.org">Carbon</a> is double-importing its extended type data file.  If Carbon has been imported in another module (i.e. Carbon is a sub-module of that module), when you use <code>Import-Module</code> to import Carbon, PowerShell will sometimes complain about not being able to load Carbon&rsquo;s extended data file:</p>
 
 <pre><code>&gt; Import-Module SubModuleWhichImportsCarbon
 &gt; Import-Module Carbon
@@ -100,12 +100,12 @@ Import-Module : The following error occurred while loading the extended type dat
 Microsoft.PowerShell, Carbon.types.ps1xml : File skipped because it was already present from "Microsoft.PowerShell".
 </code></pre>
 
-<p>I’ve tried a bunch of things to mitigate this error.  I’ve always just wanted to import Carbon with one line of code:</p>
+<p>I&rsquo;ve tried a bunch of things to mitigate this error.  I&rsquo;ve always just wanted to import Carbon with one line of code:</p>
 
 <pre><code>Import-Module Carbon
 </code></pre>
 
-<p>At first, I tried using the <code>-Force</code> parameter to <code>Import-Module</code>, but that didn’t work.  Then I tried removing Carbon if it was present before importing it again:</p>
+<p>At first, I tried using the <code>-Force</code> parameter to <code>Import-Module</code>, but that didn&rsquo;t work.  Then I tried removing Carbon if it was present before importing it again:</p>
 
 <pre><code>if( (Get-Module Carbon) )
 {
@@ -114,9 +114,9 @@ Microsoft.PowerShell, Carbon.types.ps1xml : File skipped because it was already 
 Import-Module Carbon
 </code></pre>
 
-<p>Unfortunately, the above code doesn’t work when Carbon is a sub-module because <code>Get-Module</code> doesn’t return sub-modules.  </p>
+<p>Unfortunately, the above code doesn&rsquo;t work when Carbon is a sub-module because <code>Get-Module</code> doesn&rsquo;t return sub-modules.  </p>
 
-<p>Next, I updated all my modules that imported Carbon to check for and remove any stand-alone Carbon modules before importing Carbon.  I basically added the code above to all the modules that used Carbon.  This approach worked most of the time, but there were still weird edge cases that caused the double-import error.  The only solution left, I thought, was to re-write all my scripts to add additional code to detect a Carbon sub-module.  That’s a lot of scripts to update and a lot of duplicate code between scripts.</p>
+<p>Next, I updated all my modules that imported Carbon to check for and remove any stand-alone Carbon modules before importing Carbon.  I basically added the code above to all the modules that used Carbon.  This approach worked most of the time, but there were still weird edge cases that caused the double-import error.  The only solution left, I thought, was to re-write all my scripts to add additional code to detect a Carbon sub-module.  That&rsquo;s a lot of scripts to update and a lot of duplicate code between scripts.</p>
 
 <h2 id="the-solution">The Solution</h2>
 
@@ -151,9 +151,9 @@ Import-Module Carbon
 
 <h2 id="therefore-what">Therefore, What?</h2>
 
-<p>When writing a module, <strong>always write and include a script that safely imports the module</strong>.  I recommend using the above code as a template.  If you’re using a module that doesn’t include a safe import scrpt, write one yourself.  Test for a variable or function that is specific to the module.  (That’s not fool-proof, however.  Users can always import individual functions and variables from your module.  In that case, the function/variable you’re detecting may not have been imported, and the detection will fail.)  </p>
+<p>When writing a module, <strong>always write and include a script that safely imports the module</strong>.  I recommend using the above code as a template.  If you&rsquo;re using a module that doesn&rsquo;t include a safe import scrpt, write one yourself.  Test for a variable or function that is specific to the module.  (That&rsquo;s not fool-proof, however.  Users can always import individual functions and variables from your module.  In that case, the function/variable you&rsquo;re detecting may not have been imported, and the detection will fail.)  </p>
 
-<p><strong>Don’t</strong> detect the presence of your assemblies or types.  They remain loaded even if your module has been removed.</p>
+<p><strong>Don&rsquo;t</strong> detect the presence of your assemblies or types.  They remain loaded even if your module has been removed.</p>
 </div>
 
 
@@ -222,6 +222,10 @@ Import-Module Carbon
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2015/10/carbon-2-dot-0-0-released.html">Carbon 2.0.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a>
       </li>
     
@@ -237,10 +241,6 @@ Import-Module Carbon
         <a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -251,7 +251,7 @@ Import-Module Carbon
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Aaron Jensen -
+  Copyright &copy; 2015 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
