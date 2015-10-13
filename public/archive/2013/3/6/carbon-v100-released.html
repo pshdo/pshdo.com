@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I’m extremely happy to announce the release of Carbon v1.0.0. Thanks to everyone who’s already started using Carbon. Please continue to provide &hellip;">
+  <meta name="description" content="I&rsquo;m extremely happy to announce the release of Carbon v1.0.0. Thanks to everyone who&rsquo;s already started using Carbon. Please continue to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,9 +91,9 @@
   </header>
 
 
-<div class="entry-content"><p>I’m extremely happy to announce the release of <a href="http://get-carbon.org">Carbon</a> v1.0.0.  Thanks to everyone who’s already started using Carbon.  Please continue to provide feedback.  I love to hear from everyone that’s using it, good or bad.  Also, now that we’re at v1.0, don’t hesitate to <strong>spread the word</strong>! </p>
+<div class="entry-content"><p>I&rsquo;m extremely happy to announce the release of <a href="http://get-carbon.org">Carbon</a> v1.0.0.  Thanks to everyone who&rsquo;s already started using Carbon.  Please continue to provide feedback.  I love to hear from everyone that&rsquo;s using it, good or bad.  Also, now that we&rsquo;re at v1.0, don&rsquo;t hesitate to <strong>spread the word</strong>! </p>
 
-<p>If you’re on v0.5.0.1, you should be able to upgrade with little or no work as this release is includes mostly fixes for bugs found in that release. </p>
+<p>If you&rsquo;re on v0.5.0.1, you should be able to upgrade with little or no work as this release is includes mostly fixes for bugs found in that release. </p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits here!</a> </p>
 
@@ -101,7 +101,7 @@
 
 <ul>
   <li>Remove the <code>Quiet</code> parameter from the <code>Import-Carbon.ps1</code> script.</li>
-  <li>If you’re nesting Carbon as a sub-module of another module, <strong><em>STOP</em></strong>.  This causes havoc.  Create an <code>Import-*.ps1</code> script for your module which imports Carbon before importing your own module.  Update your scripts to import your module with your fancy new <code>Import-*.ps1</code> script.  See <a href="http://pshdo.com/archive/2012/6/4/best-practices-for-importing-powershell-modules.html">Best Practices for Importing PowerShell Modules</a> for details.</li>
+  <li>If you&rsquo;re nesting Carbon as a sub-module of another module, <strong><em>STOP</em></strong>.  This causes havoc.  Create an <code>Import-*.ps1</code> script for your module which imports Carbon before importing your own module.  Update your scripts to import your module with your fancy new <code>Import-*.ps1</code> script.  See <a href="http://pshdo.com/archive/2012/6/4/best-practices-for-importing-powershell-modules.html">Best Practices for Importing PowerShell Modules</a> for details.</li>
 </ul>
 
 <h2 id="enhancements">Enhancements</h2>
@@ -109,20 +109,20 @@
 <h3 id="general">General</h3>
 
 <ul>
-  <li>The <code>Import-Carbon.ps1</code> script no longer checks if Carbon is a sub-module of another module, so the <code>Quiet</code> parameter was removed.  <strong><em>Please don’t nest Carbon in your modules!</em></strong>  It will cause havoc.</li>
+  <li>The <code>Import-Carbon.ps1</code> script no longer checks if Carbon is a sub-module of another module, so the <code>Quiet</code> parameter was removed.  <strong><em>Please don&rsquo;t nest Carbon in your modules!</em></strong>  It will cause havoc.</li>
   <li><code>Import-Carbon.ps1</code> will no longer stop execution if an error occurs during an import (i.e. the <code>$ErrorActionPreference = 'Stop'</code> line was removed).  </li>
 </ul>
 
 <h3 id="services">Services</h3>
 
 <ul>
-  <li>Renamed <a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a>’s <code>Dependencies</code> parameter to <code>Dependency</code> (with backwards-compatible alias), to follow PowerShell naming standards.</li>
+  <li>Renamed <a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a>&rsquo;s <code>Dependencies</code> parameter to <code>Dependency</code> (with backwards-compatible alias), to follow PowerShell naming standards.</li>
 </ul>
 
 <h3 id="users-and-groups">Users and Groups</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-User.html">Install-User</a>: you can now set a user’s full name with the optional <code>FullName</code> parameter.</li>
+  <li><a href="http://get-carbon.org/help/Install-User.html">Install-User</a>: you can now set a user&rsquo;s full name with the optional <code>FullName</code> parameter.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -144,7 +144,7 @@
 <h3 id="service">Service</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> fails if <code>Dependency</code> parameter doesn’t have a value.  Sometimes.</li>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> fails if <code>Dependency</code> parameter doesn&rsquo;t have a value.  Sometimes.</li>
 </ul>
 
 <h3 id="shares">Shares</h3>
@@ -156,7 +156,7 @@
 <h3 id="users-and-groups-1">Users and Groups</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Add-GroupMember.html">Add-GroupMember</a> doesn’t handle when the .NET Active Directory throws an exception when adding members to a group, causing script termination.</li>
+  <li><a href="http://get-carbon.org/help/Add-GroupMember.html">Add-GroupMember</a> doesn&rsquo;t handle when the .NET Active Directory throws an exception when adding members to a group, causing script termination.</li>
 </ul>
 </div>
 
@@ -226,6 +226,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2015/10/carbon-2.0.0-released.html">Carbon 2.0.0 Released</a>
       </li>
     
@@ -239,10 +243,6 @@
     
       <li class="post">
         <a href="/2014/09/carbon-1.8-released.html">Carbon 1.8 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a>
       </li>
     
   </ul>

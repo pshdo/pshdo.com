@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Carbon 1.7 Released - > pshdo</title>
+  <title>Blade 0.15.0 Released - > pshdo</title>
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon 1.7 is out and is backwards compatible with 1.0 through 1.6. It supports PowerShell 2. It contains mostly bug fixes and some enhancements. Get &hellip;">
+  <meta name="description" content="Blade 0.15.0 is out. You can download Blade as a .ZIP archive or from the PowerShell Gallery. blade.ps1 no longer returns a Blade.RunResult object. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pshdo.com/2014/04/carbon-1-dot-7-released.html">
+  <link rel="canonical" href="http://pshdo.com/2015/10/blade-0.15.0-released.html">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Carbon 1.7 Released</h1>
+      <h1 class="entry-title">Blade 0.15.0 Released</h1>
     
     
       <p class="meta">
@@ -84,66 +84,19 @@
   
 
 
-<time datetime="2014-04-30T13:40:00-07:00" pubdate data-updated="true">Apr 30<span>th</span>, 2014</time>
+<time datetime="2015-10-12T17:17:00-07:00" pubdate data-updated="true">Oct 12<span>th</span>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.7 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.6.  It supports PowerShell 2. It contains mostly bug fixes and some enhancements.</p>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
-
-<p>There is now <a href="http://www.freelists.org/list/carbon">a Carbon support mailing list</a>.</p>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<h3 id="general">General</h3>
+<div class="entry-content"><p><a href="http://get-blade.org">Blade</a> 0.15.0 is out. You can <a href="http://get-blade.org/">download Blade as a .ZIP archive or from the PowerShell Gallery</a>.</p>
 
 <ul>
-  <li>Import-Carbon.ps1 now supports the <code>-WhatIf</code> switch.</li>
-  <li>Import-Carbon.ps1 now hides verbose log messages when removing/importing Carbon even when supplying the <code>-Verbose</code> switch because I think the verbose output is too verbose and not helpful at all.</li>
-  <li>Import-Carbon.ps1 now supports adding a prefix when importing the Carbon module (with the <code>Prefix</code> parameter) to avoid name collisions and <a href="http://blogs.msdn.com/b/powershell/archive/2014/04/07/what-s-in-a-name-using-the-ps-prefix.aspx">follow best practices</a>.</li>
-</ul>
-
-<h3 id="certificates">Certificates</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Get-CertificateStore.html">Get-CertificateStore</a> now supports non-standard, custom certificate stores.</li>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> now supports non-standard, custom certificate stores.</li>
-  <li><a href="http://get-carbon.org/help/Install-Certificate.html">Install-Certificate</a> now supports non-standard, custom certificate stores.</li>
-  <li><a href="http://get-carbon.org/help/Uninstall-Certificate.html">Uninstall-Certificate</a> now supports non-standard, custom certificate stores.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<h3 id="general-1">General</h3>
-
-<ul>
-  <li>No more silent errors when importing Carbon on Windows 2012 R2.</li>
-</ul>
-
-<h3 id="certificates-1">Certificates</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> no longer writes a silent error when a certificate does not exist. Instead, no error is written.</li>
-</ul>
-
-<h3 id="file-system">File System</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> fails when target path is hidden.</li>
-  <li><a href="http://get-carbon.org/help/Test-NtfsCompression.html">Test-NtfsCompression</a> fails when file/directory is hidden.</li>
-  <li><a href="http://get-carbon.org/help/Test-PathIsJunction.html">Test-PathIsJunction</a> fails when tested directory is hidden.</li>
-</ul>
-
-<h3 id="security">Security</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> fails when item is hidden.</li>
-  <li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> doesn&rsquo;t handle non-existent paths, causing cascading errors.</li>
-  <li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> always returns <code>$false</code> when testing leaf-level permissions and the <code>ApplyTo</code> parameter is provided, i.e. it doesn&rsquo;t ignore inheritance/propagation flags on leaves.</li>
+  <li><code>blade.ps1</code> no longer returns a <code>Blade.RunResult</code> object.</li>
+  <li>Improved verbose output to only show test fixtures and individual test names with results.</li>
+  <li>Fixed: NUnit output report fails to parse under Team City.</li>
 </ul>
 
 </div>
@@ -168,7 +121,7 @@
   
 
 
-<time datetime="2014-04-30T13:40:00-07:00" pubdate data-updated="true">Apr 30<span>th</span>, 2014</time>
+<time datetime="2015-10-12T17:17:00-07:00" pubdate data-updated="true">Oct 12<span>th</span>, 2015</time>
       
 
 
@@ -176,7 +129,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2014/04/carbon-1-dot-7-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2014/04/carbon-1-dot-7-released.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2015/10/blade-0.15.0-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2015/10/blade-0.15.0-released.html" >Tweet</a>
   
   
   
@@ -185,10 +138,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2014/02/carbon-1-dot-6-released.html" title="Previous Post: Carbon 1.6 Released">&laquo; Carbon 1.6 Released</a>
+        <a class="basic-alignment left" href="/2015/10/carbon-2.0.0-released.html" title="Previous Post: Carbon 2.0.0 Released">&laquo; Carbon 2.0.0 Released</a>
       
-      
-        <a class="basic-alignment right" href="/2014/09/carbon-1.8-released.html" title="Next Post: Carbon 1.8 Released">Carbon 1.8 Released &raquo;</a>
       
     </p>
   </footer>
