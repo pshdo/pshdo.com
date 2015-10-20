@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Blade 0.15.0 is out. You can download Blade as a .ZIP archive or from the PowerShell Gallery. blade.ps1 no longer returns a Blade.RunResult object. &hellip;">
+  <meta name="description" content="Carbon 2.0.1 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-19T23:08:00-07:00" pubdate data-updated="true">Oct 19<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.0.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<ul>
+  <li>Fixed: errors importing Carbon when IIS not installed on Windows 2012 R2 and Windows 10 (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/168">issue 168: Cannot import Carbon 2.0 module due to issues with IIS related functionality</a>).</li>
+  <li>Fixed Carbon copyright statements.</li>
+  <li>Improved Carbon&rsquo;s module description.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1539,83 +1582,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/08/carbon-v14-released.html">Carbon v1.4 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-10T03:50:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.4 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.3.  This release adds a few new features and some bug fixes introduced in v1.3.</p>
-
-<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We&rsquo;ll be moving the build server to PowerShell 3 sometime around August 15th, which means that&rsquo;s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<h3 id="file-system">File System</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn&rsquo;t exist, respectively.</li>
-</ul>
-
-<h3 id="iis">IIS</h3>
-
-<ul>
-  <li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don&rsquo;t have to traverse down into the default application&rsquo;s default virtual directory object to get it.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. &lsquo;..&rsquo;) to a full path.  It turns out IIS doesn&rsquo;t like paths with relative parts.</li>
-  <li>Created <a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a> function to get <code>Microsoft.Web.Administration.Application</code> objects for all or specific applications under a website.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> now uses the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>.</li>
-</ul>
-
-<h3 id="powershell">PowerShell</h3>
-
-<ul>
-  <li>Added <code>ExecutionPolicy</code> parameter to <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to allow setting a custom exeuction policy when using <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to run a script.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<h3 id="iis-1">IIS</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> not updating/changing physical path on existing application.</li>
-</ul>
-
-<h3 id="net">.NET</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn&rsquo;t allow running scripts.</li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1639,6 +1605,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
       </li>
     
@@ -1652,10 +1622,6 @@
     
       <li class="post">
         <a href="/2014/09/carbon-2.0-alpha.26-released.html">Carbon 2.0-alpha.26 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/09/carbon-1.8-released.html">Carbon 1.8 Released</a>
       </li>
     
   </ul>

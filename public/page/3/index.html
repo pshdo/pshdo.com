@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I&rsquo;m extremely happy to announce the release of Carbon v1.0.0. Thanks to everyone who&rsquo;s already started using Carbon. Please continue to &hellip;">
+  <meta name="description" content="One of my problems with the X509Certificate2 object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,68 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/archive/2013/3/14/getting-x509certificate2s-issued-from-and-issued-to-properti.html">Getting X509Certificate2&#8217;s &#8220;Issued From&#8221; and &#8220;Issued to&#8221; Properties in PowerShell</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-14T14:36:00-07:00" pubdate data-updated="true">Mar 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of my problems with the <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To&rdquo; data, properties which show by default when viewing certificates in the Windows Certificate MMC snap-in. This makes it difficult to match certificates you see the Certificates MMC with certificates you see in PowerShell.</p>
+
+<p>Today I <a href="http://social.msdn.microsoft.com/Forums/en-US/csharpgeneral/thread/a74e3465-7e36-43a9-a83a-fb28a629218f">discovered</a> the <a href="http://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2.getnameinfo.aspx">GetNameInfo method</a>, which can return the &ldquo;Issued To/By&rdquo; text seen in the Certificates MMC snap-in:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Format-Table @{ Label = 'IssuedTo'; Expression = { $_.GetNameInfo( 'SimpleName', $false ) } },@{ Label = 'IssuedBy' ;Expression = { $_.GetNameInfo( 'SimpleName', $true ) } }
+</code></pre>
+
+<p>Here it is a little clearer:</p>
+
+<pre><code>$cert.GetNameInfo( 'SimpleName', $false ) # This is IssuedTo.
+$cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
+</code></pre>
+
+<p>You could also pipe your certificates to <a href="http://technet.microsoft.com/en-us/library/hh849879.aspx">Add-Member</a>:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Add-Member ScriptProperty -Name IssuedTo -Value { $this.GetNameInfo( 'SimpleName', $false) } -PassThru |
+    Add-Member ScriptProperty -Name IssuedBy -Value { $this.GetNameInfo( 'SimpleName', $true ) } -PassThru |
+    Format-Table -Property IssuedTo,IssuedBy -AutoSize
+</code></pre>
+
+<p>The next version of <a href="http://get-carbon.org">Carbon</a> will add <code>IssuedBy</code> and <code>IssuedTo</code> properties to <code>X509Certificate2</code> objects, so you can do this instead:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Format-Table IssuedTo,IssuedBy -AutoSize
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -982,90 +1044,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/archive/2012/6/30/carbon-v026-released.html">Carbon v0.2.6 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-30T12:49:00-07:00" pubdate data-updated="true">Jun 30<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ve releaed <a href="http://get-carbon.org">Carbon</a> v0.2.6.  <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Download it from BitBucket.</a>  </p>
-
-<p>With this release, I&rsquo;ve completed all documentation for Carbon&rsquo;s 100+ functions.  Sample scripts and the HTML help files are also now included in the download package.  There&rsquo;s also one bug fix.  Here are the complete release notes:</p>
-
-<h2 id="enhancements">Enhancements</h2>
-<p>Improved documentation for:</p>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Grant-ServiceControlPermission.html">Grant-ServiceControlPermission</a></li>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a></li>
-  <li><a href="http://get-carbon.org/help/Invoke-SubInAcl.html">Invoke-SubInAcl</a></li>
-  <li><a href="http://get-carbon.org/help/Remove-Service.html">Remove-Service</a></li>
-  <li><a href="http://get-carbon.org/help/Restart-RemoteService.html">Restart-RemoteService</a></li>
-  <li><a href="http://get-carbon.org/help/Install-Share.html">Install-Share</a></li>
-  <li><a href="http://get-carbon.org/help/Add-GroupMembers.html">Add-GroupMembers</a></li>
-  <li><a href="http://get-carbon.org/help/Get-WmiLocalUserAccount.html">Get-WmiLocalUserAccount</a></li>
-  <li><a href="http://get-carbon.org/help/Install-Group.html">Install-Group</a></li>
-  <li><a href="http://get-carbon.org/help/Install-User.html">Install-User</a></li>
-  <li><a href="http://get-carbon.org/help/Remove-User.html">Remove-User</a></li>
-  <li><a href="http://get-carbon.org/help/Test-User.html">Test-User</a></li>
-  <li><a href="http://get-carbon.org/help/Install-WindowsFeatureIis.html">Install-WindowsFeatureIis</a></li>
-  <li><a href="http://get-carbon.org/help/Install-WindowsFeatureMsmq.html">Install-WindowsFeatureMsmq</a></li>
-  <li><a href="http://get-carbon.org/help/Install-WindowsFeatures.html">Install-WindowsFeatures</a></li>
-  <li><a href="http://get-carbon.org/help/Test-WindowsFeature.html">Test-WindowsFeature</a></li>
-  <li><a href="http://get-carbon.org/help/Uninstall-WindowsFeatures.html">Uninstall-WindowsFeatures</a></li>
-  <li><a href="http://get-carbon.org/help/Assert-FirewallConfigurable.html">Assert-FirewallConfigurable</a></li>
-  <li><a href="http://get-carbon.org/help/Disable-FirewallStatefulFtp.html">Disable-FirewallStatefulFtp</a></li>
-  <li><a href="http://get-carbon.org/help/Enable-FirewallStatefulFtp.html">Enable-FirewallStatefulFtp</a></li>
-  <li><a href="http://get-carbon.org/help/Get-FirewallRules.html">Get-FirewallRules</a></li>
-  <li><a href="http://get-carbon.org/help/Test-FirewallStatefulFtp.html">Test-FirewallStatefulFtp</a></li>
-  <li><a href="http://get-carbon.org/help/Find-ADUser.html">Find-ADUser</a></li>
-  <li><a href="http://get-carbon.org/help/Format-ADSpecialCharacters.html">Format-ADSpecialCharacters</a></li>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a></li>
-  <li><a href="http://get-carbon.org/help/Get-CertificateStore.html">Get-CertificateStore</a></li>
-  <li><a href="http://get-carbon.org/help/Set-HgrcDefaultPushUrl.html">Set-HgrcDefaultPushUrl</a></li>
-</ul>
-
-<p>Additional enhancements:</p>
-
-<ul>
-  <li>Help files and example scripts now included in Carbon download package.</li>
-  <li>Added test to help ensure all functions have proper documentation.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a> now validates the website bindings.</li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -1091,6 +1069,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
       </li>
     
@@ -1104,10 +1086,6 @@
     
       <li class="post">
         <a href="/2014/09/carbon-2.0-alpha.26-released.html">Carbon 2.0-alpha.26 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/09/carbon-1.8-released.html">Carbon 1.8 Released</a>
       </li>
     
   </ul>
