@@ -11,7 +11,7 @@ tags: Carbon, Announcements
 
 [Get the bits at BitBucket.](https://bitbucket.org/splatteredbits/carbon/downloads)
 
-There is now [a Carbon support mailing list](http://www.freelists.org/list/carbon).
+There is now [a Carbon support mailing list](https://groups.google.com/forum/#!forum/carbonps).
 
 ## Enhancements
 
