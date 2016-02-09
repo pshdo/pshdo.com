@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon 2.0.1 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
+  <meta name="description" content="Carbon 2.1.0 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,109 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-08T16:32:00-08:00" pubdate data-updated="true">Feb 8<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.1.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="new-functions">New Functions</h2>
+
+<ul>
+  <li><code>Get-HttpUrlAcl</code>: uses Windows API to return HTTP URL ACLs; replaces the <code>netsh http show urlacl</code> command.</li>
+  <li><code>Grant-HttpUrlPermission</code>: uses Windows API to grant listen/delegate permissions on HTTP URLs; replaces the <code>netsh http add urlacl</code> command.</li>
+  <li><code>Revoke-HttpUrlPermission</code>: uses Windows API to revoke all a user or group&rsquo;s permissions on HTTP URLs; replaces the <code>netsh http delete urlacl</code> command.</li>
+  <li><code>Install-Directory</code>: creates a directory (and any missing parents), if it doesn&rsquo;t exist already. Finally!</li>
+  <li><code>Uninstall-Directory</code>: removes a directory, if it exists. Finally!</li>
+  <li><code>Uninstall-Group</code>: uses the <code>DirectoryServices.AccountManagement</code> .NET API to remove a group, if it exists.</li>
+  <li><code>Test-GroupMember</code>: uses the <code>DirectoryServices.AccountManagemetn</code> .NET API to test if a principal is a member of a group.</li>
+</ul>
+
+<h2 id="new-dsc-resource">New DSC Resource</h2>
+
+<ul>
+  <li><code>Carbon_Group</code>: resource for configuring local groups.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: <code>Install-FileShare</code> always re-configures existing shares; it doesn&rsquo;t properly detect permissions that need to be removed.</li>
+  <li>Fixed: <code>Set-IniEntry</code> fails to preserve unicode characters with diacritics in INI entry names and values.</li>
+  <li>Fixed: <code>Remove-IniEntry</code> fails to preserve unicode characters with diacritics in INI entry names and values.</li>
+  <li>Fixed: <code>Set-HostsEntry</code> leaves trailing tabs and whitespace after all but the last line.</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns wrong path for PowerShell 4.</li>
+  <li>Fixed: <code>Protect-String</code> fails when Carbon is installed in a module path that contains spaces (<a href="https://bitbucket.org/splatteredbits/carbon/issues/174/protect-string-throws-when-module-path">fixes issue #174</a>).</li>
+  <li>Fixed: <code>New-RsaKeyPair</code> generates a key pair that isn&rsquo;t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
+  <li>Fixed: <code>Get-ScheduledTask</code> returns invalid task commands when those commands contain quotes (works around an issue where <code>schtasks.exe</code> CSV output can&rsquo;t be parsed correctly by <code>ConvertFrom-Csv</code>).</li>
+  <li>Fixed: <code>Add-GroupMember</code> and <code>Remove-GroupMember</code> fail when adding <code>Everyone</code> or <code>NT Service\*</code> accounts to a group (<a href="https://bitbucket.org/splatteredbits/carbon/issues/177/add-groupmembers-201-doesnt-like-vsa-names">fixes issue #177</a>).</li>
+  <li>Fixed: <code>Get-SheduledTask</code> writes an error if a scheduled task&rsquo;s XML definition is for an executable and doesn&rsquo;t contain an arguments element.</li>
+</ul>
+
+<h2 id="other-improvements">Other Improvements</h2>
+
+<ul>
+  <li>Obsolete function parameters will no longer show in Intellisense (added the <code>DontShow</code> parameter property).</li>
+  <li><code>Test-AdminPrivilege</code>: changed its verbose message to a debug message.</li>
+  <li><code>Set-HostsEntry</code>: 
+    <ul>
+      <li>only updates hosts file if it needs to change</li>
+      <li>added an improved verbose message when setting a hosts entry</li>
+      <li>improved error handling when hosts file can&rsquo;t be opened for reading</li>
+    </ul>
+  </li>
+  <li><code>Install-Certificate</code> can now install a certificate on a remote computer.</li>
+  <li><code>Initialize-Lcm</code> now uses <code>Install-Certificate</code> to install the decryption certificate on the remote computer.</li>
+  <li><code>Uninstall-Certificate</code> can now uninstall a certificate on a remote computer.</li>
+  <li>The following functions now write warning if you pass them a plain-text password. You should pass a <code>SecureString</code> instead.
+    <ul>
+      <li><code>Install-Certificate</code></li>
+      <li><code>Initialize-Lcm</code></li>
+    </ul>
+  </li>
+  <li><code>New-RsaKeyPair</code>:
+    <ul>
+      <li>Refactored to use <code>certreq.exe</code> instead of <code>makecert.exe</code> and <code>pvk2pfx.exe</code>.</li>
+      <li>Can now run non-interactively: added a <code>-Password</code> parameter used to protect the private key (it used to prompt you).</li>
+      <li>Fixed: generates a key pair that isn&rsquo;t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
+      <li>Made the <code>-ValidFrom</code> and <code>-Authority</code> parameters obsolete.</li>
+    </ul>
+  </li>
+  <li>Added some verbose messages to <code>Install-Group</code> and <code>Add-MemberToGroup</code> when they create/modify their objects.</li>
+  <li><code>Install-Group</code> only saves changes to a group if changes were made.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1495,93 +1598,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/09/carbon-v15-released.html">Carbon v1.5 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.4.  This release adds a few new features and some bug fixes to improve PowerShell 3 support.</p>
-
-<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn&rsquo;t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You&rsquo;re welcome.  <code>;-)</code></p>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<h3 id="iis">IIS</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> now attempts to start a website whose ID has changed, since IIS stops a website whenever its ID changes.</li>
-</ul>
-
-<h3 id="network">Network</h3>
-
-<ul>
-  <li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer&rsquo;s network interfaces.</li>
-  <li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer&rsquo;s network interfaces.</li>
-</ul>
-
-<h3 id="path">Path</h3>
-
-<ul>
-  <li>Added <a href="http://get-carbon.org/help/Test-UncPath.html">Test-UncPath</a> function for testing if a path is a UNC or not.</li>
-</ul>
-
-<h3 id="powershell">PowerShell</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs script blocks in PowerShell 3 under a v2.0 CLR.</li>
-</ul>
-
-<h3 id="shares">Shares</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share&rsquo;s directory if it doesn&rsquo;t exist.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<h3 id="certificates">Certificates</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn&rsquo;t have permission to write to Windows&rsquo; MachineKeys directory.  It now writes an error instead.</li>
-</ul>
-
-<h3 id="powershell-1">PowerShell</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn&rsquo;t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1605,6 +1621,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
       </li>
     
@@ -1620,10 +1640,6 @@
         <a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/09/carbon-2.0-alpha.26-released.html">Carbon 2.0-alpha.26 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -1633,7 +1649,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Aaron Jensen -
+  Copyright &copy; 2016 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

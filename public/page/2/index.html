@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon v1.4 is out and is backwards compatible with v1.0 through v1.3. This release adds a few new features and some bug fixes introduced in v1.3. &hellip;">
+  <meta name="description" content="Carbon v1.5 is out and is backwards compatible with v1.0 through v1.4. This release adds a few new features and some bug fixes to improve PowerShell &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,93 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/09/carbon-v15-released.html">Carbon v1.5 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.4.  This release adds a few new features and some bug fixes to improve PowerShell 3 support.</p>
+
+<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn&rsquo;t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You&rsquo;re welcome.  <code>;-)</code></p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> now attempts to start a website whose ID has changed, since IIS stops a website whenever its ID changes.</li>
+</ul>
+
+<h3 id="network">Network</h3>
+
+<ul>
+  <li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer&rsquo;s network interfaces.</li>
+  <li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer&rsquo;s network interfaces.</li>
+</ul>
+
+<h3 id="path">Path</h3>
+
+<ul>
+  <li>Added <a href="http://get-carbon.org/help/Test-UncPath.html">Test-UncPath</a> function for testing if a path is a UNC or not.</li>
+</ul>
+
+<h3 id="powershell">PowerShell</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs script blocks in PowerShell 3 under a v2.0 CLR.</li>
+</ul>
+
+<h3 id="shares">Shares</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share&rsquo;s directory if it doesn&rsquo;t exist.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="certificates">Certificates</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn&rsquo;t have permission to write to Windows&rsquo; MachineKeys directory.  It now writes an error instead.</li>
+</ul>
+
+<h3 id="powershell-1">PowerShell</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn&rsquo;t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -720,62 +807,6 @@ finally
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/archive/2013/3/18/monitoring-windows-process-start-and-exit-events.html">Monitoring Windows Process Start and Exit Events</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-18T14:14:00-07:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Part of my build server management responsibilities include trying to figure out why things are going wrong.  I don&rsquo;t know about other environments, but our builds run a lot of processes. For example, we use <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">Robocopy</a> to individually deploy a website&rsquo;s sub-directories.  When things go wrong, it&rsquo;s hard to debug because these robocopy processes start and stop so quickly, I don&rsquo;t have time to double-click them in <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a>. I usually resorted to adding lines in our deployment script to output the Robocopy command line and exit code, then running the build, waiting for it to finish, then inspecting the build logs.  </p>
-
-<p><em>Ugh.</em></p>
-
-<p>Last week, I discovered that <a href="http://technet.microsoft.com/en-us/sysinternals/bb896645.aspx">Process Monitor</a> captures process start and exit events.  Just the information I need in these situations.</p>
-
-<p>Open Process Monitor, and click the &ldquo;Filter&rdquo; button.</p>
-
-<p><img src="/storage/screenshots/procmon/ProcessMonitorFilterButton.png" alt="" /></p>
-
-<p>Create a new condition that matches when the <code>Operation</code> column contains the word <code>process</code> (don&rsquo;t forget to click the <code>Add</code> button).</p>
-
-<p><img src="/storage/screenshots/procmon/ProcessMonitorFilterOperationContainsProcess.png" alt="" /></p>
-
-<p>Click OK and Process Monitor will start to show process start and exit events. Start events will show the parent process ID and command line used to start the program. Exit events will show the exit/return code and CPU/memory statistics.</p>
-
-<p><img src="/storage/screenshots/procmon/ProcessMonitorProcessStartExitEvents.png" alt="" /></p>
-
-<p>If you double-click the start event, you&rsquo;ll be able to see the entire command line and all the process&rsquo;s environment variables.</p>
-
-<p>Thanks to the <a href="http://technet.microsoft.com/en-us/sysinternals/bb545021.aspx">Windows Sysinternals team</a> for the great tools.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -801,6 +832,10 @@ finally
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
       </li>
     
@@ -816,10 +851,6 @@ finally
         <a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a>
       </li>
     
-      <li class="post">
-        <a href="/2014/09/carbon-2.0-alpha.26-released.html">Carbon 2.0-alpha.26 Released</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -829,7 +860,7 @@ finally
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Aaron Jensen -
+  Copyright &copy; 2016 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
