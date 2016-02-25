@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Announcements - > pshdo</title>
+  <title>Carbon 2.1.1 Released - > pshdo</title>
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Category: Announcements">
+  <meta name="description" content="Carbon 2.1.1 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pshdo.comcategories/announcements/index.html">
+  <link rel="canonical" href="http://pshdo.com/2016/02/carbon-2.1.1-released.html">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -64,40 +64,99 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Announcements</h1>
+    
+      <h1 class="entry-title">Carbon 2.1.1 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-25T09:44:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2016</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.1.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
 
-  
-  <h2>2014</h2>
+<h2 id="bug-fixes">Bug Fixes</h2>
 
-<article>
-  
-<h1><a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a></h1>
-<time datetime="2014-11-08T23:18:00-08:00" pubdate><span class='month'>Nov</span> <span class='day'>08</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/announcements/'>Announcements</a>, <a class='category' href='/categories/carbon/'>Carbon,</a></span>
-</footer>
-
-
-</article>
+<ul>
+  <li>Fixed: unable to publish module to PowerShell Gallery because <code>RequiredAssemblies</code> module manifest data used an absolute path generated with <code>Join-Path</code> and <code>$PSScriptRoot</code>, which aren&rsquo;t allowed in module manifests.</li>
+  <li>Fixed: missing PowerShell Gallery tags, license URI, project URI, and release notes metadata.</li>
+  <li>Fixed: copyright date in module manifest is 2015.</li>
+  <li>Fixed: PowerShell gallery missing function list.</li>
+  <li>Fixed: Restricted user accounts can&rsquo;t import Carbon (<a href="https://bitbucket.org/splatteredbits/carbon/issues/180">issue #180</a>).</li>
+  <li>Fixed: <code>Carbon_Privilege</code> DSC resource fails to remove all a user&rsquo;s privileges (<a href="https://bitbucket.org/splatteredbits/carbon/issues/178">issue #178</a>).</li>
+  <li>Fixed: <code>Remove-IniEntry</code> fails to remove last INI entry in a file (<a href="https://bitbucket.org/splatteredbits/carbon/issues/179">issue #179</a>).</li>
+</ul>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-25T09:44:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2016</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2016/02/carbon-2.1.1-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2016/02/carbon-2.1.1-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2016/02/carbon-2.1.0-released.html" title="Previous Post: Carbon 2.1.0 Released">&laquo; Carbon 2.1.0 Released</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
 
 <aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
   
     <section style="margin-top:2em;">
 

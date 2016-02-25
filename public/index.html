@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon 2.1.0 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
+  <meta name="description" content="Carbon 2.1.1 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-25T09:44:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.1.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: unable to publish module to PowerShell Gallery because <code>RequiredAssemblies</code> module manifest data used an absolute path generated with <code>Join-Path</code> and <code>$PSScriptRoot</code>, which aren&rsquo;t allowed in module manifests.</li>
+  <li>Fixed: missing PowerShell Gallery tags, license URI, project URI, and release notes metadata.</li>
+  <li>Fixed: copyright date in module manifest is 2015.</li>
+  <li>Fixed: PowerShell gallery missing function list.</li>
+  <li>Fixed: Restricted user accounts can&rsquo;t import Carbon (<a href="https://bitbucket.org/splatteredbits/carbon/issues/180">issue #180</a>).</li>
+  <li>Fixed: <code>Carbon_Privilege</code> DSC resource fails to remove all a user&rsquo;s privileges (<a href="https://bitbucket.org/splatteredbits/carbon/issues/178">issue #178</a>).</li>
+  <li>Fixed: <code>Remove-IniEntry</code> fails to remove last INI entry in a file (<a href="https://bitbucket.org/splatteredbits/carbon/issues/179">issue #179</a>).</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1545,59 +1594,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-03T16:10:00-07:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5.1 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.5.  It supports PowerShell 2.  It contains two bug fixes.</p>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<h3 id="iis">IIS</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> wasn&rsquo;t consistently starting a website after changing its ID.</li>
-</ul>
-
-<h3 id="shares">Shares</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> writes an error when running under strict mode.  (It has an unused variable which uses an undefined variable to create its value.  Removed the unused variable.)</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1621,6 +1617,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
       </li>
     
@@ -1634,10 +1634,6 @@
     
       <li class="post">
         <a href="/2015/10/carbon-2.0.0-released.html">Carbon 2.0.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a>
       </li>
     
   </ul>
