@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I&rsquo;m currently writing a PowerShell script that will commit changes to a Mercurial repository, then push those changes out to our central &hellip;">
+  <meta name="description" content="Brent Simmons, who goes on to quote Brian Reischl: At NewsGator and Sepia Labs I worked with Brian Reischl, one of the server-side guys. Among other &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/archive/2013/3/29/stupid-feed-tricks.html">Stupid Feed Tricks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T03:58:00-07:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://inessential.com/2013/03/18/brians_stupid_feed_tricks">Brent Simmons, who goes on to quote Brian Reischl:</a></p>
+
+<blockquote>
+  <p>At NewsGator and Sepia Labs I worked with Brian Reischl, one of the server-side guys. Among other things, he worked on NewsGator’s RSS content service, which reads n million feeds once an hour.</p>
+</blockquote>
+
+<blockquote>
+  <p>(I don’t know if I can say what n is. It surprised me when I heard it. The system is still running, by the way.)</p>
+</blockquote>
+
+<blockquote>
+  <p>Brian is intimately acquainted with the different ways feeds can be screwed up. So he posted <a href="https://docs.google.com/document/d/1cvq67iQpk2C7ufOsefsfKnGCXeUIv46NQHbnHkm8PtU/edit?usp=sharing">Stupid Feed Tricks</a> on Google Docs.</p>
+</blockquote>
+
+<blockquote>
+  <p>I quote the entire thing below for people like me who don’t have Google accounts. The below is all by Brian:</p>
+</blockquote>
+
+<p>He then goes on to list several dozen edge cases the feed reader had to handle. </p>
+
+<p><strong>Writing software is hard.</strong></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1048,83 +1104,6 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/archive/2012/9/28/carbon-v030-released.html">Carbon v0.3.0 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-28T15:59:00-07:00" pubdate data-updated="true">Sep 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ve released version 0.3.0 of Carbon.  This release contains some minor enhancements, several bug fixes, and backwards-<strong>incompatible</strong> changes to the following functions:</p>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Set-IisSslFlags.html">Set-IisSslFlags</a></li>
-  <li><a href="http://get-carbon.org/help/Set-TrustedHosts.html">Set-TrustedHosts</a></li>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a></li>
-</ul>
-
-<h3 id="set-iissslflags">Set-IisSslFlags</h3>
-
-<p>This function was renamed to <code>Enable-IisSsl</code>.  Its <code>Enable128BitSsl</code> parameter was renamed to <code>Require128BitSsl</code>.  </p>
-
-<p>Configuring client certificates is now a little stricter/clearer.  You can no longer specify both <code>AcceptClientCertificates</code> and <code>RequireClientCertificates</code>.  Also, if you specify <code>RequireClientCertificates</code>, you must now also supply the <code>RequireSsl</code> switch (before, setting the <code>RequireClientCertificates</code> switch implicitly set the <code>RequireSsl</code> switch).</p>
-
-<h3 id="set-trustedhosts">Set-TrustedHosts</h3>
-
-<p>Make sure you&rsquo;re not calling <code>Set-TrustedHosts</code> with an empty array/value for the <code>Entries</code> parameter.  The function now throw an error in that situation.  If you need to clear the list of trusted hosts, use <code>Clear-TrustedHosts</code>.</p>
-
-<h3 id="invoke-powershell">Invoke-PowerShell</h3>
-
-<p>If you call <code>Invoke-PowerShell</code> without the <code>x86</code> switch and PowerShell is 32-bit, you&rsquo;ll get an error.  Under Windows x64, 32-bit PowerShell can&rsquo;t start the 64-bit instance because Windows redirects all access from C:\Windows\system32 to C:\Windows\SysWOW64.  If anyone knows how to get around this, let me know!</p>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<ul>
-  <li>Renamed <code>Set-IisSslFlags</code> to <code>Enable-IisSsl</code> to better reflect what it does.  Also, created parameter sets around client certificate settings so you can&rsquo;t configure them incorrectly.  (<a href="https://bitbucket.org/splatteredbits/carbon/issue/25/set-iissslflags-create-parameter-sets-to">Fixes #25: Set-IisSslFlags: Create parameter sets to accurately reflect what flags are allowed to be set simultaneously.</a>)</li>
-  <li>Added <code>WhatIf</code> support to <a href="http://get-carbon.org/help/Install-MsmqMessageQueue.html">Install-MsmqMessageQueue</a>.</li>
-  <li>Created new <a href="http://get-carbon.org/help/Clear-TrustedHosts.html">Clear-TrustedHosts</a> for clearing PowerShell&rsquo;s trusted hosts list.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<ul>
-  <li>Rename <a href="http://get-carbon.org/help/Set-IisSslFlags.html">Enable-IisSsl/Set-IisSslFlags&rsquo;s</a> <code>Enable128BitSsl</code> parameter to <code>Require128BitSsl</code>] (<a href="https://bitbucket.org/splatteredbits/carbon/issue/24/set-iissslflags-rename-the-enable128bitssl">Fix #24 Set-IisSslFlags: Rename the Enable128BitSsl parameter to Require128BitSsl</a>).</li>
-  <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/19/install-iisapppool-doesnt-change-an">Fix issue #19</a>: <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> doesn&rsquo;t change an existing 32-bit app pool to be a 64-bit app pool.</li>
-  <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/33/install-msmqmessagequeue-can-wait-forever">Fix issue #33</a>: <a href="http://get-carbon.org/help/Install-MsmqMessageQueue.html">Install-MsmqMessageQueue</a>: Can wait forever for a queue to get created.  It now waits 10 seconds.  </li>
-  <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/36/get-powershellpath-returns-the-wrong-path">Fix issue #36</a>: <a href="http://get-carbon.org/help/Get-PowershellPath.html">Get-PowerShellPath</a> returns the wrong path when running x86 PowerShell on x64 computers.</li>
-  <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/37/invoke-powershell-should-write-an-error">Fix issue #37</a>: <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> should write an error when running as x86 on Windows x64 without the x86 flag (i.e. 32-bit PowerShell can&rsquo;t launch a 64-bit PowerShell, so throw an error in that situation).</li>
-  <li><a href="https://bitbucket.org/splatteredbits/carbon/issue/38/set-trustedhosts-passing-an-empty-value">Fix issue #38</a>: <a href="http://get-carbon.org/help/Set-TrustedHosts.html">Set-TrustedHosts</a>: passing an empty value for the Entries parameter clears the hosts list.  The <code>Entries</code> parameter is now required.  To clear the trusted hosts list, use <code>Clear-TrustedHosts</code>.</li>
-</ul>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Go get it!</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -1150,6 +1129,10 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
       </li>
     
@@ -1163,10 +1146,6 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
     
       <li class="post">
         <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2015/10/carbon-2.0.0-released.html">Carbon 2.0.0 Released</a>
       </li>
     
   </ul>

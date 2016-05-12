@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon 2.2.0 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="Carbon 2.2.0 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2016/05/carbon-2.2.0-released.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon 2.2.0 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-05-11T21:55:00-07:00" pubdate data-updated="true">May 11<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.2.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<ul>
+  <li>Aded a <code>LiteralPath</code> parameter to <code>Test-PathIsJunction</code> for testing paths that contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li><code>Remove-Junction</code> now supports removing multiple junctions with wildcards.</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Remove-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Uninstall-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Created <code>Remove-DotNetAppSetting</code> function for removing app settings from .NET framework machine.config files.</li>
+  <li>Created <code>Read-File</code> function for reading text files and retrying if the read fails. Good for reading files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Created <code>Write-File</code> function for writing text files and retrying if the write fails. Good for writing files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Made the following functions obsolete:
+    <ul>
+      <li><code>Get-WindowsFeature</code></li>
+      <li><code>Install-Msmq</code></li>
+      <li><code>Install-WindowsFeature</code></li>
+      <li><code>Resolve-WindowsFeatureName</code></li>
+      <li><code>Uninstall-WindowsFeature</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: <code>Add-GroupMember</code>, over PowerShell remoting, fails to add a member to groups that have non-local users/groups (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/187/add-groupmember-fails-when-using">issue #187: Add-GroupMember fails when using PowerShell Remoting</a>)</li>
+  <li>Fixed: <code>Remove-GroupMember</code>, over PowerShell remoting, fails to remove a member from groups that have non-local users/groups.</li>
+  <li>Fixed: <code>Test-PathIsJunction</code> returns multiple results if the <code>Path</code> parameter contains wildcards and matches multiple items.</li>
+  <li>Fixed: <code>Install-Junction</code> can&rsquo;t install a junction whose path contains wildcard characters (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/190/install-junction-fails-when-the-path">issue #190</a>).</li>
+  <li>Fixed: <code>New-Junction</code> writes wrong error when creating an existing junction whose path contains wildcard characters.</li>
+  <li>Fixed: <code>Install-Service</code> doesn&rsquo;t update/change an existing service&rsquo;s account when using the <code>Credential</code> parameter (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/185/install-service-never-updates-logon-as-if">issue #185</a>).</li>
+  <li>Fixed: <code>Uninstall-FileShare</code> fails if a share&rsquo;s physical path doesn&rsquo;t exist.</li>
+  <li>Fixed (hopefully): <code>Get-FileSharePermission</code> writes an error if a share&rsquo;s security information is corrupted (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/188/get-filesharepermission-crashes-when-a">issue #188</a>). I was unable to reproduce the error, and the error was reported anonyously, so I did my best.</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns multiple paths if the standard PowerShell module path is listed twice in the <code>PSModulePath</code> environment variable.</li>
+  <li>Fixed: Chocolatey package fails if the standard PowerShell module path is listed twice in the<code>PSModulePath</code> environment (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/192/installation-of-carbon-via-chocolatey">issue #192</a>).</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> doesn&rsquo;t return the module install path if it doesn&rsquo;t exist. Sometimes it doesn&rsquo;t yet.</li>
+  <li>Fixed: <code>Carbon_ScheduledTask</code> and <code>Carbon_IniFile</code> DSC resources&rsquo; <code>Get-TargetResource</code> functions don&rsquo;t return correct resource properties and causes <code>Get-DscConfiguration</code> to fail (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/193/get-targetresource-returns-taskname-in-its">issue #193</a>).</li>
+  <li>Fixed: <code>Carbon_FirewallRule</code> DSC resource always re-installs a firewall rule if <code>Profile</code> property contains multiple values (i.e. it doesn&rsquo;t properly parse netsh output).</li>
+  <li>Fixed: <code>about_Carbon_Installation</code> help topic had a typo.</li>
+  <li>Fixed: <code>Set-HostsEntry</code> fails to stop when the hosts file is in use and can&rsquo;t be read.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-05-11T21:55:00-07:00" pubdate data-updated="true">May 11<span>th</span>, 2016</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2016/05/carbon-2.2.0-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2016/05/carbon-2.2.0-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2016/02/carbon-2.1.1-released.html" title="Previous Post: Carbon 2.1.1 Released">&laquo; Carbon 2.1.1 Released</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section style="margin-top:2em;">
+
+	<p>
+		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
+		
+		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
+	</p>
+
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

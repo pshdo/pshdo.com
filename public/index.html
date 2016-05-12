@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon 2.1.1 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
+  <meta name="description" content="Carbon 2.2.0 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,84 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-05-11T21:55:00-07:00" pubdate data-updated="true">May 11<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.2.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<ul>
+  <li>Aded a <code>LiteralPath</code> parameter to <code>Test-PathIsJunction</code> for testing paths that contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li><code>Remove-Junction</code> now supports removing multiple junctions with wildcards.</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Remove-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Uninstall-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Created <code>Remove-DotNetAppSetting</code> function for removing app settings from .NET framework machine.config files.</li>
+  <li>Created <code>Read-File</code> function for reading text files and retrying if the read fails. Good for reading files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Created <code>Write-File</code> function for writing text files and retrying if the write fails. Good for writing files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Made the following functions obsolete:
+    <ul>
+      <li><code>Get-WindowsFeature</code></li>
+      <li><code>Install-Msmq</code></li>
+      <li><code>Install-WindowsFeature</code></li>
+      <li><code>Resolve-WindowsFeatureName</code></li>
+      <li><code>Uninstall-WindowsFeature</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: <code>Add-GroupMember</code>, over PowerShell remoting, fails to add a member to groups that have non-local users/groups (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/187/add-groupmember-fails-when-using">issue #187: Add-GroupMember fails when using PowerShell Remoting</a>)</li>
+  <li>Fixed: <code>Remove-GroupMember</code>, over PowerShell remoting, fails to remove a member from groups that have non-local users/groups.</li>
+  <li>Fixed: <code>Test-PathIsJunction</code> returns multiple results if the <code>Path</code> parameter contains wildcards and matches multiple items.</li>
+  <li>Fixed: <code>Install-Junction</code> can&rsquo;t install a junction whose path contains wildcard characters (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/190/install-junction-fails-when-the-path">issue #190</a>).</li>
+  <li>Fixed: <code>New-Junction</code> writes wrong error when creating an existing junction whose path contains wildcard characters.</li>
+  <li>Fixed: <code>Install-Service</code> doesn&rsquo;t update/change an existing service&rsquo;s account when using the <code>Credential</code> parameter (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/185/install-service-never-updates-logon-as-if">issue #185</a>).</li>
+  <li>Fixed: <code>Uninstall-FileShare</code> fails if a share&rsquo;s physical path doesn&rsquo;t exist.</li>
+  <li>Fixed (hopefully): <code>Get-FileSharePermission</code> writes an error if a share&rsquo;s security information is corrupted (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/188/get-filesharepermission-crashes-when-a">issue #188</a>). I was unable to reproduce the error, and the error was reported anonyously, so I did my best.</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns multiple paths if the standard PowerShell module path is listed twice in the <code>PSModulePath</code> environment variable.</li>
+  <li>Fixed: Chocolatey package fails if the standard PowerShell module path is listed twice in the<code>PSModulePath</code> environment (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/192/installation-of-carbon-via-chocolatey">issue #192</a>).</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> doesn&rsquo;t return the module install path if it doesn&rsquo;t exist. Sometimes it doesn&rsquo;t yet.</li>
+  <li>Fixed: <code>Carbon_ScheduledTask</code> and <code>Carbon_IniFile</code> DSC resources&rsquo; <code>Get-TargetResource</code> functions don&rsquo;t return correct resource properties and causes <code>Get-DscConfiguration</code> to fail (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/193/get-targetresource-returns-taskname-in-its">issue #193</a>).</li>
+  <li>Fixed: <code>Carbon_FirewallRule</code> DSC resource always re-installs a firewall rule if <code>Profile</code> property contains multiple values (i.e. it doesn&rsquo;t properly parse netsh output).</li>
+  <li>Fixed: <code>about_Carbon_Installation</code> help topic had a typo.</li>
+  <li>Fixed: <code>Set-HostsEntry</code> fails to stop when the hosts file is in use and can&rsquo;t be read.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1441,159 +1519,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-01T12:14:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.6 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.5.1.  It supports PowerShell 2.  It contains a few bug fixes and many enhancements.</p>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<h3 id="file-system">File System</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> doesn&rsquo;t delete a junction when given a relative path to the junction.</li>
-</ul>
-
-<h3 id="services">Services</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> doesn&rsquo;t properly resolve a service&rsquo;s path.</li>
-</ul>
-
-<h3 id="shares">Shares</h3>
-
-<ul>
-  <li>Fixed <a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> example to use correct syntax. <a href="https://bitbucket.org/splatteredbits/carbon/issue/111">#111.</a></li>
-</ul>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<h3 id="hosts-file">Hosts File</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Remove-HostsEntry.html">Remove-HostsEntry</a> function for removing hostnames from a hosts file.</li>
-</ul>
-
-<h3 id="iis">IIS</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Join-IisVirtualPath.html">Join-IisVirtualPath</a> for joining paths used by the IIS APIs.</li>
-  <li>Renamed all IIS <code>Path</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
-    <ul>
-      <li><a href="http://get-carbon.org/help/Disable-IisSecurityAuthentication.html">Disable-IisSecurityAuthentication</a></li>
-      <li><a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Enable-IisDirectoryBrowsing</a></li>
-      <li><a href="http://get-carbon.org/help/Enable-IisSecurityAuthentication.html">Enable-IisSecurityAuthentication</a></li>
-      <li><a href="http://get-carbon.org/help/Enable-IisSsl.html">Enable-IisSsl</a></li>
-      <li><a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a></li>
-      <li><a href="http://get-carbon.org/help/Get-IisConfigurationSection.html">Get-IisConfigurationSection</a></li>
-      <li><a href="http://get-carbon.org/help/Get-IisHttpHeader.html">Get-IisHttpHeader</a></li>
-      <li><a href="http://get-carbon.org/help/Get-IisHttpRedirect.html">Get-IisHttpRedirect</a></li>
-      <li><a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a></li>
-      <li><a href="http://get-carbon.org/help/Get-IisSecurityAuthentication.html">Get-IisSecurityAuthentication</a></li>
-      <li><a href="http://get-carbon.org/help/Set-IisHttpHeader.html">Set-IisHttpHeader</a></li>
-      <li><a href="http://get-carbon.org/help/Set-IisHttpRedirect.html">Set-IisHttpRedirect</a></li>
-      <li><a href="http://get-carbon.org/help/Set-IisWindowsAuthentication.html">Set-IisWindowsAuthentication</a></li>
-      <li><a href="http://get-carbon.org/help/Test-IisConfigurationSection.html">Test-IisConfigurationSection</a></li>
-      <li><a href="http://get-carbon.org/help/Test-IisSecurityAuthentication.html">Test-IisSecurityAuthentication</a></li>
-    </ul>
-  </li>
-  <li>Renamed <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a>&rsquo;s <code>SiteName</code> parameter to <code>Name</code> (with a backwards-compatible alias).</li>
-  <li>Renamed all IIS <code>Name</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
-    <ul>
-      <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
-      <li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
-    </ul>
-  </li>
-  <li>Renamed all IIS <code>Path</code> parameters which represented physical paths to <code>PhysicalPath</code> (with backwards-compatible aliases):
-    <ul>
-      <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
-      <li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
-      <li><a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="net">.NET</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Test-DotNet.html">Test-DotNet</a> for testing if v2 or v4 of the .NET framework is installed.</li>
-</ul>
-
-<h3 id="path">Path</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-PathProvider.html">Get-PathProvider</a> function for getting a path&rsquo;s PowerShell provider.</li>
-</ul>
-
-<h3 id="powershell">PowerShell</h3>
-
-<ul>
-  <li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to test if the appropriate .NET framework is installed if the user chooses an explicit runtime to use.</li>
-</ul>
-
-<h3 id="security">Security</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> function for checking if a user/group has a set of permissions and, optionally, a set of inheritance and propagation flags on a file, directory, or registry key.</li>
-  <li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> now automatically includes the <code>Synchronize</code> permission when checking for exact permissions, since this permission is always on and can never be removed from a file/directory.</li>
-</ul>
-
-<h3 id="services-1">Services</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-User.html">Install-Service</a> no longer requires a password, in order to support <a href="http://technet.microsoft.com/en-us/library/dd548356.aspx">managed service accounts and virtual accounts</a>.  We have no idea if this works, since we can&rsquo;t test locally.  Please let us know if this fix works for you. <a href="https://bitbucket.org/splatteredbits/carbon/issue/114">#114</a></li>
-</ul>
-
-<h3 id="users-and-groups">Users and Groups</h3>
-
-<ul>
-  <li>Updated <a href="http://get-carbon.org/help/Install-User.html">Install-User</a> to support passwords longer than 14 characters.  Thanks to <a href="http://www.jamescrowley.co.uk/">James Crowley</a> for the fix.</li>
-</ul>
-
-<h3 id="windows-features">Windows Features</h3>
-
-<ul>
-  <li>Marked Assert-WindowsFeatureFunctionsSupported as an internal function.  Please don&rsquo;t use.  It will be removed from future versions of PowerShell.</li>
-  <li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Test-WindowsFeature</a> to work on Windows 8/2012.</li>
-  <li>Created new <code>Carbon.Identity</code> class for representing identities.  It also contains a static <code>FindByName</code> method which uses The Windows <code>LookupAccountName</code> function to find full account names, domains, and sids.  </li>
-  <li>Updated <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
-  <li>Updated <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1617,6 +1542,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
       </li>
     
@@ -1630,10 +1559,6 @@
     
       <li class="post">
         <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2015/10/carbon-2.0.0-released.html">Carbon 2.0.0 Released</a>
       </li>
     
   </ul>

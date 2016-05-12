@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="In Feburary 2011, I finally got tired of using MSBuild as a scripting language. There are great frameworks out there that make it bearable, but &hellip;">
+  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn&rsquo;t behaving as I expected. Passing it $null, @(), or '' will return the contents of the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,116 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/archive/2012/5/4/beware-get-childitem.html">Beware Get-ChildItem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-04T16:05:00-07:00" pubdate data-updated="true">May 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+
+<pre><code>&gt; Get-ChildItem .
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem $null
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem @()
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem ''
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+</code></pre>
+
+<p>Yikes!  I would expect it to write an error or just return nothing.</p>
+
+<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
+
+<pre><code>function Remove-ExtraFiles($Items, $Exclude)
+{
+    Get-ChildItem $Items -Exclude $Exclude -Recurse |
+        Where-Object { -not $_.PsIsContainer } |
+        Remove-Item
+}
+</code></pre>
+
+<p>I was testing this script when I saw that files under my local directory were getting deleted.  By the time I killed the script, it was too late: the last two hours of work were gone.  It turns out that <code>Remove-ExtraFiles</code> was getting called with an empty array as the <code>$Items</code> parameter value.</p>
+
+<p>In my case, the solution was to add some validation to the <code>$Items</code> parameter:</p>
+
+<pre><code>function Remove-ExtraFiles
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [string[]]
+        $Items,
+        
+        [string[]]
+        $Exclude)
+    )
+    Get-ChildItem $Items -Exclude $Exclude -Recurse |
+        Where-Object { -not $_.PsIsContainer } |
+        Remove-Item
+}
+</code></pre>
+
+<p>Making the parameter mandatory causes a script error if calling <code>Remove-ExtraFiles</code> with null, an empty array, or an empty string.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -131,6 +241,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
       </li>
     
@@ -144,10 +258,6 @@
     
       <li class="post">
         <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2015/10/carbon-2.0.0-released.html">Carbon 2.0.0 Released</a>
       </li>
     
   </ul>

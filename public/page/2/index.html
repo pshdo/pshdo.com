@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon v1.5.1 is out and is backwards compatible with v1.0 through v1.5. It supports PowerShell 2. It contains two bug fixes. Get the bits at &hellip;">
+  <meta name="description" content="Carbon 1.6 is out and is backwards compatible with 1.0 through 1.5.1. It supports PowerShell 2. It contains a few bug fixes and many enhancements. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,159 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-01T12:14:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.6 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.5.1.  It supports PowerShell 2.  It contains a few bug fixes and many enhancements.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="file-system">File System</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> doesn&rsquo;t delete a junction when given a relative path to the junction.</li>
+</ul>
+
+<h3 id="services">Services</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> doesn&rsquo;t properly resolve a service&rsquo;s path.</li>
+</ul>
+
+<h3 id="shares">Shares</h3>
+
+<ul>
+  <li>Fixed <a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> example to use correct syntax. <a href="https://bitbucket.org/splatteredbits/carbon/issue/111">#111.</a></li>
+</ul>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="hosts-file">Hosts File</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Remove-HostsEntry.html">Remove-HostsEntry</a> function for removing hostnames from a hosts file.</li>
+</ul>
+
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Join-IisVirtualPath.html">Join-IisVirtualPath</a> for joining paths used by the IIS APIs.</li>
+  <li>Renamed all IIS <code>Path</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
+    <ul>
+      <li><a href="http://get-carbon.org/help/Disable-IisSecurityAuthentication.html">Disable-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Enable-IisDirectoryBrowsing</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IisSecurityAuthentication.html">Enable-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Enable-IisSsl.html">Enable-IisSsl</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisConfigurationSection.html">Get-IisConfigurationSection</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisHttpHeader.html">Get-IisHttpHeader</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisHttpRedirect.html">Get-IisHttpRedirect</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a></li>
+      <li><a href="http://get-carbon.org/help/Get-IisSecurityAuthentication.html">Get-IisSecurityAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisHttpHeader.html">Set-IisHttpHeader</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisHttpRedirect.html">Set-IisHttpRedirect</a></li>
+      <li><a href="http://get-carbon.org/help/Set-IisWindowsAuthentication.html">Set-IisWindowsAuthentication</a></li>
+      <li><a href="http://get-carbon.org/help/Test-IisConfigurationSection.html">Test-IisConfigurationSection</a></li>
+      <li><a href="http://get-carbon.org/help/Test-IisSecurityAuthentication.html">Test-IisSecurityAuthentication</a></li>
+    </ul>
+  </li>
+  <li>Renamed <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a>&rsquo;s <code>SiteName</code> parameter to <code>Name</code> (with a backwards-compatible alias).</li>
+  <li>Renamed all IIS <code>Name</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
+    <ul>
+      <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
+      <li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
+    </ul>
+  </li>
+  <li>Renamed all IIS <code>Path</code> parameters which represented physical paths to <code>PhysicalPath</code> (with backwards-compatible aliases):
+    <ul>
+      <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
+      <li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
+      <li><a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="net">.NET</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Test-DotNet.html">Test-DotNet</a> for testing if v2 or v4 of the .NET framework is installed.</li>
+</ul>
+
+<h3 id="path">Path</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Get-PathProvider.html">Get-PathProvider</a> function for getting a path&rsquo;s PowerShell provider.</li>
+</ul>
+
+<h3 id="powershell">PowerShell</h3>
+
+<ul>
+  <li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to test if the appropriate .NET framework is installed if the user chooses an explicit runtime to use.</li>
+</ul>
+
+<h3 id="security">Security</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> function for checking if a user/group has a set of permissions and, optionally, a set of inheritance and propagation flags on a file, directory, or registry key.</li>
+  <li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> now automatically includes the <code>Synchronize</code> permission when checking for exact permissions, since this permission is always on and can never be removed from a file/directory.</li>
+</ul>
+
+<h3 id="services-1">Services</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-User.html">Install-Service</a> no longer requires a password, in order to support <a href="http://technet.microsoft.com/en-us/library/dd548356.aspx">managed service accounts and virtual accounts</a>.  We have no idea if this works, since we can&rsquo;t test locally.  Please let us know if this fix works for you. <a href="https://bitbucket.org/splatteredbits/carbon/issue/114">#114</a></li>
+</ul>
+
+<h3 id="users-and-groups">Users and Groups</h3>
+
+<ul>
+  <li>Updated <a href="http://get-carbon.org/help/Install-User.html">Install-User</a> to support passwords longer than 14 characters.  Thanks to <a href="http://www.jamescrowley.co.uk/">James Crowley</a> for the fix.</li>
+</ul>
+
+<h3 id="windows-features">Windows Features</h3>
+
+<ul>
+  <li>Marked Assert-WindowsFeatureFunctionsSupported as an internal function.  Please don&rsquo;t use.  It will be removed from future versions of PowerShell.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Test-WindowsFeature</a> to work on Windows 8/2012.</li>
+  <li>Created new <code>Carbon.Identity</code> class for representing identities.  It also contains a static <code>FindByName</code> method which uses The Windows <code>LookupAccountName</code> function to find full account names, domains, and sids.  </li>
+  <li>Updated <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -686,62 +839,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/archive/2013/3/29/stupid-feed-tricks.html">Stupid Feed Tricks</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-29T03:58:00-07:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://inessential.com/2013/03/18/brians_stupid_feed_tricks">Brent Simmons, who goes on to quote Brian Reischl:</a></p>
-
-<blockquote>
-  <p>At NewsGator and Sepia Labs I worked with Brian Reischl, one of the server-side guys. Among other things, he worked on NewsGator’s RSS content service, which reads n million feeds once an hour.</p>
-</blockquote>
-
-<blockquote>
-  <p>(I don’t know if I can say what n is. It surprised me when I heard it. The system is still running, by the way.)</p>
-</blockquote>
-
-<blockquote>
-  <p>Brian is intimately acquainted with the different ways feeds can be screwed up. So he posted <a href="https://docs.google.com/document/d/1cvq67iQpk2C7ufOsefsfKnGCXeUIv46NQHbnHkm8PtU/edit?usp=sharing">Stupid Feed Tricks</a> on Google Docs.</p>
-</blockquote>
-
-<blockquote>
-  <p>I quote the entire thing below for people like me who don’t have Google accounts. The below is all by Brian:</p>
-</blockquote>
-
-<p>He then goes on to list several dozen edge cases the feed reader had to handle. </p>
-
-<p><strong>Writing software is hard.</strong></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -767,6 +864,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
       </li>
     
@@ -780,10 +881,6 @@
     
       <li class="post">
         <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2015/10/carbon-2.0.0-released.html">Carbon 2.0.0 Released</a>
       </li>
     
   </ul>

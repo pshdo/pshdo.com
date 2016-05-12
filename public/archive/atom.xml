@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2016-02-25T10:11:53-08:00</updated>
+  <updated>2016-05-11T21:55:49-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon 2.2.0 Released]]></title>
+    <link href="http://pshdo.com/2016/05/carbon-2.2.0-released.html"/>
+    <updated>2016-05-11T21:55:00-07:00</updated>
+    <id>http://pshdo.com/2016/05/carbon-2.2.0-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.2.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<ul>
+  <li>Aded a <code>LiteralPath</code> parameter to <code>Test-PathIsJunction</code> for testing paths that contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li><code>Remove-Junction</code> now supports removing multiple junctions with wildcards.</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Remove-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Uninstall-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Created <code>Remove-DotNetAppSetting</code> function for removing app settings from .NET framework machine.config files.</li>
+  <li>Created <code>Read-File</code> function for reading text files and retrying if the read fails. Good for reading files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Created <code>Write-File</code> function for writing text files and retrying if the write fails. Good for writing files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Made the following functions obsolete:
+    <ul>
+      <li><code>Get-WindowsFeature</code></li>
+      <li><code>Install-Msmq</code></li>
+      <li><code>Install-WindowsFeature</code></li>
+      <li><code>Resolve-WindowsFeatureName</code></li>
+      <li><code>Uninstall-WindowsFeature</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: <code>Add-GroupMember</code>, over PowerShell remoting, fails to add a member to groups that have non-local users/groups (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/187/add-groupmember-fails-when-using">issue #187: Add-GroupMember fails when using PowerShell Remoting</a>)</li>
+  <li>Fixed: <code>Remove-GroupMember</code>, over PowerShell remoting, fails to remove a member from groups that have non-local users/groups.</li>
+  <li>Fixed: <code>Test-PathIsJunction</code> returns multiple results if the <code>Path</code> parameter contains wildcards and matches multiple items.</li>
+  <li>Fixed: <code>Install-Junction</code> can&rsquo;t install a junction whose path contains wildcard characters (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/190/install-junction-fails-when-the-path">issue #190</a>).</li>
+  <li>Fixed: <code>New-Junction</code> writes wrong error when creating an existing junction whose path contains wildcard characters.</li>
+  <li>Fixed: <code>Install-Service</code> doesn&rsquo;t update/change an existing service&rsquo;s account when using the <code>Credential</code> parameter (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/185/install-service-never-updates-logon-as-if">issue #185</a>).</li>
+  <li>Fixed: <code>Uninstall-FileShare</code> fails if a share&rsquo;s physical path doesn&rsquo;t exist.</li>
+  <li>Fixed (hopefully): <code>Get-FileSharePermission</code> writes an error if a share&rsquo;s security information is corrupted (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/188/get-filesharepermission-crashes-when-a">issue #188</a>). I was unable to reproduce the error, and the error was reported anonyously, so I did my best.</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns multiple paths if the standard PowerShell module path is listed twice in the <code>PSModulePath</code> environment variable.</li>
+  <li>Fixed: Chocolatey package fails if the standard PowerShell module path is listed twice in the<code>PSModulePath</code> environment (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/192/installation-of-carbon-via-chocolatey">issue #192</a>).</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> doesn&rsquo;t return the module install path if it doesn&rsquo;t exist. Sometimes it doesn&rsquo;t yet.</li>
+  <li>Fixed: <code>Carbon_ScheduledTask</code> and <code>Carbon_IniFile</code> DSC resources&rsquo; <code>Get-TargetResource</code> functions don&rsquo;t return correct resource properties and causes <code>Get-DscConfiguration</code> to fail (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/193/get-targetresource-returns-taskname-in-its">issue #193</a>).</li>
+  <li>Fixed: <code>Carbon_FirewallRule</code> DSC resource always re-installs a firewall rule if <code>Profile</code> property contains multiple values (i.e. it doesn&rsquo;t properly parse netsh output).</li>
+  <li>Fixed: <code>about_Carbon_Installation</code> help topic had a typo.</li>
+  <li>Fixed: <code>Set-HostsEntry</code> fails to stop when the hosts file is in use and can&rsquo;t be read.</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Carbon 2.1.1 Released]]></title>
@@ -1645,35 +1696,6 @@
 <ul>
   <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can&rsquo;t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Stupid Feed Tricks]]></title>
-    <link href="http://pshdo.com/archive/2013/3/29/stupid-feed-tricks.html"/>
-    <updated>2013-03-29T03:58:00-07:00</updated>
-    <id>http://pshdo.com/archive/2013/3/29/stupid-feed-tricks</id>
-    <content type="html"><![CDATA[<p><a href="http://inessential.com/2013/03/18/brians_stupid_feed_tricks">Brent Simmons, who goes on to quote Brian Reischl:</a></p>
-
-<blockquote>
-  <p>At NewsGator and Sepia Labs I worked with Brian Reischl, one of the server-side guys. Among other things, he worked on NewsGator’s RSS content service, which reads n million feeds once an hour.</p>
-</blockquote>
-
-<blockquote>
-  <p>(I don’t know if I can say what n is. It surprised me when I heard it. The system is still running, by the way.)</p>
-</blockquote>
-
-<blockquote>
-  <p>Brian is intimately acquainted with the different ways feeds can be screwed up. So he posted <a href="https://docs.google.com/document/d/1cvq67iQpk2C7ufOsefsfKnGCXeUIv46NQHbnHkm8PtU/edit?usp=sharing">Stupid Feed Tricks</a> on Google Docs.</p>
-</blockquote>
-
-<blockquote>
-  <p>I quote the entire thing below for people like me who don’t have Google accounts. The below is all by Brian:</p>
-</blockquote>
-
-<p>He then goes on to list several dozen edge cases the feed reader had to handle. </p>
-
-<p><strong>Writing software is hard.</strong></p>
 ]]></content>
   </entry>
   
