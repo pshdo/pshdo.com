@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Brent Simmons, who goes on to quote Brian Reischl: At NewsGator and Sepia Labs I worked with Brian Reischl, one of the server-side guys. Among other &hellip;">
+  <meta name="description" content="Carbon v1.1 is out. It is backwards-compatible with v1.0. Get the bits at BitBucket. Upgrade Instructions On Windows 2008 R2, custom identies that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,103 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/archive/2013/4/1/carbon-v11-released.html">Carbon v1.1 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-01T13:32:00-07:00" pubdate data-updated="true">Apr 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Carbon v1.1 is out. It is <a href="http://semver.org">backwards-compatible</a> with v1.0.  <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket</a>.</p>
+
+<h2 id="upgrade-instructions">Upgrade Instructions</h2>
+
+<ul>
+  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won&rsquo;t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
+</ul>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<h3 id="general">General</h3>
+
+<ul>
+  <li>Fixed some typos and ommissions in the v0.5.0.1 and v0.5.0.0 sections of the release notes.</li>
+  <li>Updated <code>Import-Carbon.ps1</code> script to import Carbon regardless of the name of the directory Carbon is installed in.</li>
+</ul>
+
+<h3 id="certificates">Certificates</h3>
+
+<ul>
+  <li>Added <code>IssuedTo</code> and <code>IssuedBy</code> properties to <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> objects.  The values match what the Certificates MMC snap-in displays.</li>
+  <li>Added <code>DisplayName</code> property to <a href="http://msdn.microsoft.com/en-us/library/d228271e.aspx">X509Store</a> objects, to show the names of the stores as they are displayed in the Certificates MMC snap-in.</li>
+</ul>
+
+<h3 id="computer">Computer</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn&rsquo;t in the path.</li>
+</ul>
+
+<h3 id="iis">IIS</h3>
+
+<ul>
+  <li>Created <a href="http://get-carbon.org/help/Get-IisHttpHeader.html">Get-IisHttpHeader</a> for getting the custom HTTP headers for a website or one of its sub-directories.</li>
+  <li>Created <a href="http://get-carbon.org/help/Set-IisHttpHeader.html">Set-IisHttpHeader</a> for creating/setting a custom HTTP header for a website or one of its sub-directories.</li>
+  <li>Created <a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a> for getting the file extension to MIME type mappings for the IIS web server.</li>
+  <li>Created <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a> for removing a file extension to MIME type mapping for the IIS web server.</li>
+  <li>Created <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> for creating/setting a file extension to MIME type mapping for the IIS web server.</li>
+  <li>When creating an app pool that runs under a custom, non-service account, <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> grants that user the <code>SeBatchLogonRight</code>.</li>
+  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn&rsquo;t exist (i.e. if the value of the <code>Username</code> parameter doesn&rsquo;t exist).</li>
+</ul>
+
+<h3 id="privileges">Privileges</h3>
+
+<ul>
+  <li>Improved exception handling in <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
+  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn&rsquo;t exist.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h3 id="computer-1">Computer</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can&rsquo;t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user&rsquo;s <code>PATH</code> environment variable.</li>
+</ul>
+
+<h3 id="users-and-groups">Users and Groups</h3>
+
+<ul>
+  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can&rsquo;t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1046,64 +1143,6 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/archive/2012/10/29/carbon-v031-released.html">Carbon v0.3.1 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-29T21:58:00-07:00" pubdate data-updated="true">Oct 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ve released Carbon v0.3.1, a 100% enhancement and new feature release.</p>
-
-<h2 id="new-features">New Features</h2>
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-ComPermissions.html">Get-ComPermissions</a> function for getting COM Access or Launch and Activation Permissions.  These are the permissions you see in Component Services (i.e. dcomcnfg) when you right-click <code>My Computer</code>, select <code>Properties</code>, click the <code>COM Security</code> tab then click the <code>Edit Default..</code> or <code>Edit Limits...</code> buttons under <strong>Access Permissions</strong> or <strong>Launch and Activation Permissions</strong>, respectively.</li>
-  <li>Created <a href="http://get-carbon.org/help/Grant-ComPermissions.html">Grant-ComPermissions</a> for granting COM Access and/or Launch and Activation permissions.</li>
-  <li>Created <a href="http://get-carbon.org/help/Revoke-ComPermissions.html">Revoke-ComPermissions</a> for revoking COM Access and/or Launch and ACtivation permissions.</li>
-  <li>Created <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> function for testing if user or group exists on the local computer or in a domain.</li>
-  <li>Created <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> function for determinig a user/group&rsquo;s canonical name.  For example, it converts <code>Administrators</code> into <code>BUILTIN\Administrators</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Reset-MsmqQueueManagerID.html">Reset-MsmqQueueManagerID</a> function, which resets MSMQ&rsquo;s Queue Manager ID.</li>
-</ul>
-
-<h2 id="enhancements">Enhancements</h2>
-<ul>
-  <li>Improved <a href="http://get-carbon.org/help/Disable-IEEnhancedSecurityConfiguration.html">Disable-IEEnhancedSecurityConfiguration</a> and <a href="http://get-carbon.org/help/Enable-IEActivationPermissions.html">Enable-IEActivationPermissions</a> for enabling Internet Explorer to run headless by non-priveleged users.</li>
-  <li>Changed the way <a href="http://get-carbon.org/help/Invoke-WindowsInstaller.html">Invoke-WindowsInstaller</a> waits for MSI to finish installing: instead of searching for any MSI process, it now searches for an MSI process that is a child of the current PowerShell process.</li>
-  <li>Simplified how <a href="http://get-carbon.org/help/Add-GroupMembers.html">Add-GroupMembers</a> adds group members.</li>
-  <li>The version number in the module manifest now gets updated correctly for each release.  You should now be able to tell what version you&rsquo;re running by looking in <code>Carbon\Carbon.psd1</code>, or, if Carbon is imported in your console, running <code>Get-Module Carbon | Select-Object Version</code>.</li>
-  <li>Improved the way the Windows Features functions detect the best way to manage Windows features.  The old way would write an error to the error stream, which bubbled up at weird times and made diagnosing real errors harder.</li>
-  <li>Added a <code>Quiet</code> parameter to <a href="http://get-carbon.org/help/Set-RegistryKeyValue.html">Set-RegistryKeyValue</a> so that <code>Write-Host</code> output is muffled.</li>
-</ul>
-
-<p>I&rsquo;m pretty proud of the COM functions.  I&rsquo;ll try to carve out some time in the next week to describe them in more detail and why they&rsquo;re important.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -1129,6 +1168,10 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
       </li>
     
@@ -1142,10 +1185,6 @@ $cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
     
       <li class="post">
         <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2015/10/blade-0.15.0-released.html">Blade 0.15.0 Released</a>
       </li>
     
   </ul>
