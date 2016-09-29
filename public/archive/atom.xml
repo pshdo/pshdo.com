@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2016-09-29T12:34:06-07:00</updated>
+  <updated>2016-09-29T12:35:36-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -69,33 +69,25 @@
     <link href="http://pshdo.com/2016/05/carbon-2.2.0-released.html"/>
     <updated>2016-05-11T21:55:00-07:00</updated>
     <id>http://pshdo.com/2016/05/carbon-2.2.0-released</id>
-    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.3.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.2.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
 
 <h2 id="enhancements">Enhancements</h2>
 
 <ul>
-  <li><code>Protect-String</code> can now encrypt with a key, password, or passphrase (i.e. it can now encrypt with symmetric encryption).</li>
-  <li><code>Unprotect-String</code> can now decrypt with a key, password, or passphrase (i.e. it can now decrypt using symmetric encryption).</li>
-  <li><code>Set-HostsEntry</code> now supports IPv6 addresses (<a href="https://bitbucket.org/splatteredbits/carbon/issues/181/community-set-hostsentry-add-support-for">fixes issue</a>).</li>
-  <li><code>Grant-Permission</code> now supports creating <code>Deny</code> access rules. Use the new <code>Type</code> parameter. <a href="https://bitbucket.org/splatteredbits/carbon/issues/152">Fixes issue #152.</a></li>
-  <li><code>Set-EnvironmentVariable</code>: 
+  <li>Aded a <code>LiteralPath</code> parameter to <code>Test-PathIsJunction</code> for testing paths that contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li><code>Remove-Junction</code> now supports removing multiple junctions with wildcards.</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Remove-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Added a <code>LiteralPath</code> parameter to <code>Uninstall-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+  <li>Created <code>Remove-DotNetAppSetting</code> function for removing app settings from .NET framework machine.config files.</li>
+  <li>Created <code>Read-File</code> function for reading text files and retrying if the read fails. Good for reading files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Created <code>Write-File</code> function for writing text files and retrying if the write fails. Good for writing files that get intermittently locked, like the Windows hosts file.</li>
+  <li>Made the following functions obsolete:
     <ul>
-      <li>Added <code>-Force</code> switch to make all variable modifications immediately visible in the current PowerShell process&rsquo;s <code>env:</code> drive. Restarts are no longer required.</li>
-      <li>You can now set an environment variable for other users. Use the <code>Credential</code> parameter to specify the user&rsquo;s credentials. <a href="https://bitbucket.org/splatteredbits/carbon/issues/151">Fixes issue #151.</a></li>
-    </ul>
-  </li>
-  <li><code>Remove-EnvironmentVariable</code>: 
-    <ul>
-      <li>Added <code>-Force</code> switch to make all variable removals immediately visible in the current PowerShell process&rsquo;s <code>env:</code> drive. Restarts are no longer required.</li>
-      <li>You can now remove variables from multiple targets/scopes at once.</li>
-      <li>You can now remove an environment variable for other users. Use the <code>Credential</code> parameter to specify the user&rsquo;s credentials.</li>
-    </ul>
-  </li>
-  <li><code>Invoke-PowerShell</code>:
-    <ul>
-      <li>It now runs PowerShell commands. Pass a string of PowerShell code with the <code>Command</code> parameter. </li>
-      <li>It now runs encoded PowerShell commands. Pass the string of PowerShell code with the <code>Command</code> parameter and use the <code>-Encode</code> switch.</li>
-      <li>It now runs scripts and commands as another user. Use the <code>Credential</code> parameter to pass the user&rsquo;s credentials along with the <code>FilePath</code> and <code>Command</code> parameters to run scripts and commands, respectively.</li>
+      <li><code>Get-WindowsFeature</code></li>
+      <li><code>Install-Msmq</code></li>
+      <li><code>Install-WindowsFeature</code></li>
+      <li><code>Resolve-WindowsFeatureName</code></li>
+      <li><code>Uninstall-WindowsFeature</code></li>
     </ul>
   </li>
 </ul>
@@ -103,13 +95,21 @@
 <h2 id="bug-fixes">Bug Fixes</h2>
 
 <ul>
-  <li>Fixed: <code>Set-RegistryKeyValue</code> fails when <code>-String</code> parameter&rsquo;s value is <code>$null</code> or empty (<a href="https://bitbucket.org/splatteredbits/carbon/issues/211/set-registrykeyvalue-null-string-invalid">fixes issue #211</a>).</li>
-  <li>Fixed: Can&rsquo;t import Carbon in a 32-bit PowerShell 4 session on a 64-bit operating system (<a href="https://bitbucket.org/splatteredbits/carbon/issues/199/community-issue-importing-carbon-on-x64">fixes issue #199</a>).</li>
-  <li>Fixed: Documentation for the <code>Install-ScheduledTask</code> function&rsquo;s <code>HighestAvailableRunLevel</code> is lying (<a href="https://bitbucket.org/splatteredbits/carbon/issues/205/documentation-install-scheduledtask-typo">fixes issue #205</a>).</li>
-  <li>Fixed: <code>Carbon_FirewallRule</code> fails when <code>Profile</code> property set to multiple values (<a href="https://bitbucket.org/splatteredbits/carbon/issues/209/dsc-carbon_firewallrule-does-not-accept">fixes issue #209</a>).</li>
-  <li>Fixed: <code>Install-IisAppPool</code> can&rsquo;t set .NET framework version to <code>No Managed Code</code> (<a href="https://bitbucket.org/splatteredbits/carbon/issues/210/install-iisapppool-need-to-be-able-to-set">fixes issue #210</a>).</li>
-  <li>Fixed: <code>Get-SslCertificateBinding</code> fails if the operating system&rsquo;s culture is not <code>en-US</code> (<a href="https://bitbucket.org/splatteredbits/carbon/issues/171/get-sslcertificatebinding-fails-when-os">fixes issue #171</a>).</li>
-  <li>Fixed: <code>Install-ScheduledTask</code> fails when creating a task that runs during a specific week of the month on Sundays. (You&rsquo;re going to love this: the underlying int value for <code>[DayOfWeek]::Sunday</code> is <code>0</code>, so when testing if a <code>DayOfWeek</code> typed variable set to <code>Sunday</code> has a value, it returns <code>$false</code>. This made <code>Install-ScheduledTask</code> add the <code>/D</code> parameter without a value.</li>
+  <li>Fixed: <code>Add-GroupMember</code>, over PowerShell remoting, fails to add a member to groups that have non-local users/groups (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/187/add-groupmember-fails-when-using">issue #187: Add-GroupMember fails when using PowerShell Remoting</a>)</li>
+  <li>Fixed: <code>Remove-GroupMember</code>, over PowerShell remoting, fails to remove a member from groups that have non-local users/groups.</li>
+  <li>Fixed: <code>Test-PathIsJunction</code> returns multiple results if the <code>Path</code> parameter contains wildcards and matches multiple items.</li>
+  <li>Fixed: <code>Install-Junction</code> can&rsquo;t install a junction whose path contains wildcard characters (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/190/install-junction-fails-when-the-path">issue #190</a>).</li>
+  <li>Fixed: <code>New-Junction</code> writes wrong error when creating an existing junction whose path contains wildcard characters.</li>
+  <li>Fixed: <code>Install-Service</code> doesn&rsquo;t update/change an existing service&rsquo;s account when using the <code>Credential</code> parameter (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/185/install-service-never-updates-logon-as-if">issue #185</a>).</li>
+  <li>Fixed: <code>Uninstall-FileShare</code> fails if a share&rsquo;s physical path doesn&rsquo;t exist.</li>
+  <li>Fixed (hopefully): <code>Get-FileSharePermission</code> writes an error if a share&rsquo;s security information is corrupted (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/188/get-filesharepermission-crashes-when-a">issue #188</a>). I was unable to reproduce the error, and the error was reported anonyously, so I did my best.</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns multiple paths if the standard PowerShell module path is listed twice in the <code>PSModulePath</code> environment variable.</li>
+  <li>Fixed: Chocolatey package fails if the standard PowerShell module path is listed twice in the<code>PSModulePath</code> environment (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/192/installation-of-carbon-via-chocolatey">issue #192</a>).</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> doesn&rsquo;t return the module install path if it doesn&rsquo;t exist. Sometimes it doesn&rsquo;t yet.</li>
+  <li>Fixed: <code>Carbon_ScheduledTask</code> and <code>Carbon_IniFile</code> DSC resources&rsquo; <code>Get-TargetResource</code> functions don&rsquo;t return correct resource properties and causes <code>Get-DscConfiguration</code> to fail (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/193/get-targetresource-returns-taskname-in-its">issue #193</a>).</li>
+  <li>Fixed: <code>Carbon_FirewallRule</code> DSC resource always re-installs a firewall rule if <code>Profile</code> property contains multiple values (i.e. it doesn&rsquo;t properly parse netsh output).</li>
+  <li>Fixed: <code>about_Carbon_Installation</code> help topic had a typo.</li>
+  <li>Fixed: <code>Set-HostsEntry</code> fails to stop when the hosts file is in use and can&rsquo;t be read.</li>
 </ul>
 
 ]]></content>
