@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2016-09-29T12:35:36-07:00</updated>
+  <updated>2016-11-09T11:00:10-08:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon 2.4.0 Released]]></title>
+    <link href="http://pshdo.com/2016/11/carbon-2.4.0-released.html"/>
+    <updated>2016-11-09T11:00:00-08:00</updated>
+    <id>http://pshdo.com/2016/11/carbon-2.4.0-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.4.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<ul>
+  <li><code>Protect-String</code> can now encrypt a <code>SecureString</code>. The <code>String</code> parameter&rsquo;s type was changed to <code>[object]</code>. When you pass in a <code>SecureString</code>, it is converted to an array of bytes, encrypted, and the array of bytes are cleared from memory.</li>
+  <li>Renamed <code>Protect-Acl</code> to <code>Disable-AclInheritance</code> to make it clearer what the function does. Created a <code>Protect-Acl</code> alias in place to preserve backwards-compatability.</li>
+  <li><code>Disable-AclInheritance</code> only disables inheritance if it is currently enabled.</li>
+  <li>Created <code>Enable-AclInheritance</code> to re-enable access rule inheritance on file system and registry ACLs. This function is paired with <code>Disable-AclInheritance</code>.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: <code>Get-ProgramInstallInfo</code> fails when a program&rsquo;s <code>Version</code> registry key value can&rsquo;t be converted into a <code>Version</code> object.</li>
+  <li>Fixed: <code>Test-Service</code> failed to detect if a device driver service is installed.</li>
+  <li>Fixed: <code>Install-Service</code> fails if a service depends on a device driver. (Note: in our testing, we can&rsquo;t get a device driver set as a dependency. If you know what the secret sauce is to get this to work with sc.exe (or another means), please let us know.)</li>
+  <li>Fixed: <code>Disable-AclInheritance</code> (ne <code>Protect-Acl</code>) fails when piped a registry key.</li>
+  <li>Fixed: <code>Get-PathProvider</code> fails when passed a fully-qualified registry key PowerShell path, e.g. <code>Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\Software</code>.</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Carbon 2.3.0 Released]]></title>
@@ -1668,15 +1697,6 @@
     <updated>2013-04-25T14:51:00-07:00</updated>
     <id>http://pshdo.com/archive/2013/4/25/who-is-modifying-that-file</id>
     <content type="html"><![CDATA[<p>Raymond Chen recently explained <a href="http://blogs.msdn.com/b/oldnewthing/archive/2013/04/18/10412074.aspx">how to turn on file system auditing</a> in Windows, which will help you figure out <strong>who keeps modifiying that file</strong>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Serilog]]></title>
-    <link href="http://pshdo.com/archive/2013/4/25/serilog.html"/>
-    <updated>2013-04-25T14:43:00-07:00</updated>
-    <id>http://pshdo.com/archive/2013/4/25/serilog</id>
-    <content type="html"><![CDATA[<p>I like the idea behind the new <a href="http://nblumhardt.com/2013/03/serilog/">Serilog</a> .NET logging framework: instead of logging strings, you actually log objects.  Cool idea.  The code is <a href="https://github.com/nblumhardt/serilog">hosted on Github</a>.</p>
 ]]></content>
   </entry>
   

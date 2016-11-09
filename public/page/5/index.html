@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="The current version of the Carbon help is now online. There are still a lot of functions that have little to no documentation. Now that I&rsquo;ve &hellip;">
+  <meta name="description" content="Importing Modules Is Messy An error users encounter with Carbon is double-importing its extended type data file. If Carbon has been imported in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,105 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/archive/2012/6/4/best-practices-for-importing-powershell-modules.html">Best Practices for Importing PowerShell Modules</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-04T14:59:00-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="importing-modules-is-messy">Importing Modules Is Messy</h2>
+
+<p>An error users encounter with <a href="http://get-carbon.org">Carbon</a> is double-importing its extended type data file.  If Carbon has been imported in another module (i.e. Carbon is a sub-module of that module), when you use <code>Import-Module</code> to import Carbon, PowerShell will sometimes complain about not being able to load Carbon&rsquo;s extended data file:</p>
+
+<pre><code>&gt; Import-Module SubModuleWhichImportsCarbon
+&gt; Import-Module Carbon
+Import-Module : The following error occurred while loading the extended type data file:
+Microsoft.PowerShell, Carbon.types.ps1xml : File skipped because it was already present from "Microsoft.PowerShell".
+</code></pre>
+
+<p>I&rsquo;ve tried a bunch of things to mitigate this error.  I&rsquo;ve always just wanted to import Carbon with one line of code:</p>
+
+<pre><code>Import-Module Carbon
+</code></pre>
+
+<p>At first, I tried using the <code>-Force</code> parameter to <code>Import-Module</code>, but that didn&rsquo;t work.  Then I tried removing Carbon if it was present before importing it again:</p>
+
+<pre><code>if( (Get-Module Carbon) )
+{
+	Remove-Module Carbon
+}
+Import-Module Carbon
+</code></pre>
+
+<p>Unfortunately, the above code doesn&rsquo;t work when Carbon is a sub-module because <code>Get-Module</code> doesn&rsquo;t return sub-modules.  </p>
+
+<p>Next, I updated all my modules that imported Carbon to check for and remove any stand-alone Carbon modules before importing Carbon.  I basically added the code above to all the modules that used Carbon.  This approach worked most of the time, but there were still weird edge cases that caused the double-import error.  The only solution left, I thought, was to re-write all my scripts to add additional code to detect a Carbon sub-module.  That&rsquo;s a lot of scripts to update and a lot of duplicate code between scripts.</p>
+
+<h2 id="the-solution">The Solution</h2>
+
+<p>Looking back, I can see that my brain was stuck in the rut of trying to solve the problem in each of my scripts using as few lines as possible.  It hit me the other day that I should write an <code>Import-Carbon.ps1</code> script which properly handles all the weird edge cases. With this script in place, I could update all my scripts that use Carbon to call <code>Import-Carbon.ps1</code> to do the import.</p>
+
+<pre><code>$PSScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
+&amp; (Join-Path $PSScriptRoot Tools\Carbon\Import-Carbon.ps1 -Resolve)
+</code></pre>
+
+<p>Finally!  One line of code to import a module.  And, only one place to change if additional weird edge cases pop up.</p>
+
+<h2 id="sub-module-detection">Sub-module Detection</h2>
+
+<p>Now, I just had to write code to detect a Carbon sub-module.  The best way to do this is to check for the presence of a variable or function specific to a module.  In this case, I use the <code>$CarbonImported</code> variable, which I added to Carbon for just this purpose:</p>
+
+<pre><code>if( (Get-Module Carbon) )
+{
+    Remove-Module Carbon
+}
+elseif( Test-Path "variable:CarbonImported" )
+{
+    $var = Get-Variable 'CarbonImported'
+    $varModule = Get-Module $var.Module
+    Write-Warning ("Carbon already present as nested module in {0} module ({1})." -f $var.Module, $varModule.ModuleBase)    
+    return
+}
+
+Import-Module Carbon
+</code></pre>
+
+<p>If Carbon is present as a sub-module, I write out a warning and return without attempting a re-import.  </p>
+
+<h2 id="therefore-what">Therefore, What?</h2>
+
+<p>When writing a module, <strong>always write and include a script that safely imports the module</strong>.  I recommend using the above code as a template.  If you&rsquo;re using a module that doesn&rsquo;t include a safe import scrpt, write one yourself.  Test for a variable or function that is specific to the module.  (That&rsquo;s not fool-proof, however.  Users can always import individual functions and variables from your module.  In that case, the function/variable you&rsquo;re detecting may not have been imported, and the detection will fail.)  </p>
+
+<p><strong>Don&rsquo;t</strong> detect the presence of your assemblies or types.  They remain loaded even if your module has been removed.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -281,6 +380,10 @@ Mode                LastWriteTime     Length Name
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2016/11/carbon-2.4.0-released.html">Carbon 2.4.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
       </li>
     
@@ -294,10 +397,6 @@ Mode                LastWriteTime     Length Name
     
       <li class="post">
         <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
       </li>
     
   </ul>
