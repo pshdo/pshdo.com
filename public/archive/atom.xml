@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2016-11-09T11:00:10-08:00</updated>
+  <updated>2017-02-21T10:57:11-08:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon 2.4.1 Released]]></title>
+    <link href="http://pshdo.com/2017/02/carbon-2.4.1-released.html"/>
+    <updated>2017-02-21T10:57:00-08:00</updated>
+    <id>http://pshdo.com/2017/02/carbon-2.4.1-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.4.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: <code>Carbon_Permission</code> fails when revoking permissions and the <code>Permissions</code> property doesn&rsquo;&lsquo;t have a value.</li>
+  <li>Fixed: <code>Protect-String</code> doesn&rsquo;t convert secure strings properly so they get encrypted with extra bytes in them.</li>
+  <li>Fixed: `Revoke-Permission&rsquo; fails when an identity has multiple access control entries on an item. Thanks to [bozho<em>](https://bitbucket.org/bozho</em>/) for reporting <a href="https://bitbucket.org/splatteredbits/carbon/issues/221/community-revoke-permission-fails-if-the">issue #221</a> and contributing the fix.</li>
+  <li>Fixed: <code>Compress-Item</code>&rsquo; writes an error when using the <code>WhatIf</code> switch.</li>
+  <li>Fixed: <code>Install-IisWebsite</code> help examples contain invalid/broken code (thanks to John Mitchell for reporting).</li>
+  <li>Fixed: <code>Install-Service</code> fails when password contains double quote character, i.e. <code>"</code> (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/219/community-install-service-fails-to">issue #219</a>).</li>
+  <li>Fixed: <code>Read-File</code> and <code>Write-File</code> fail to retry writing to a locked file when <code>$Global:Error</code> is full. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/217/community-error-handling-in-read-file-and">issue #217</a>. </li>
+  <li>Fixed: <code>Get-FirewallRule</code> sets the <code>EdgeTraversalPolicy</code> to <code>DeferUser</code> on rules whose policy is &ldquo;defer to application&rdquo;. </li>
+  <li>Fixed: <code>Get-FirewallRule</code> fails on non-english-speaking computers. (It was parsing the output of <code>netsh advfirewall</code>. Now it uses the Windows Firewall with Advanced Security API.) [Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/208/community-get-firewallrule-could-not-find">issue #208</a>.</li>
+  <li>Fixed: <code>Get-FirewallRule</code> incorrectly parsed interface types. It assumed interface type was one of multiple values. In reality, it can be set to one or more different values. The underlying enumeration and its values have been updated to be a set of flags (i.e. a bit field).</li>
+  <li>Fixed: <code>Carbon_FirewallRule</code> fails when Profile property has more than one value.</li>
+  <li>Fixed: <code>Get-ScheduledTask</code> doesn&rsquo;t handle when a scheduled task doesn&rsquo;t exist on Windows 2008.</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Carbon 2.4.0 Released]]></title>
@@ -1688,15 +1715,6 @@
     <content type="html"><![CDATA[<p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.  </p>
 
 <p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Who Is Modifying That File?]]></title>
-    <link href="http://pshdo.com/archive/2013/4/25/who-is-modifying-that-file.html"/>
-    <updated>2013-04-25T14:51:00-07:00</updated>
-    <id>http://pshdo.com/archive/2013/4/25/who-is-modifying-that-file</id>
-    <content type="html"><![CDATA[<p>Raymond Chen recently explained <a href="http://blogs.msdn.com/b/oldnewthing/archive/2013/04/18/10412074.aspx">how to turn on file system auditing</a> in Windows, which will help you figure out <strong>who keeps modifiying that file</strong>.</p>
 ]]></content>
   </entry>
   

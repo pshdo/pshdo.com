@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Setup Automation with PowerShell Slides - > pshdo</title>
+  <title>Carbon 2.4.1 Released - > pshdo</title>
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="For the twelve of you who attended, here are my slides from my Setup Automation with PowerShell session at Open Source Bridge 2012.
-">
+  <meta name="description" content="Carbon 2.4.1 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pshdo.com/archive/2012/7/7/setup-automation-with-powershell-slides.html">
+  <link rel="canonical" href="http://pshdo.com/2017/02/carbon-2.4.1-released.html">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -69,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Setup Automation With PowerShell Slides</h1>
+      <h1 class="entry-title">Carbon 2.4.1 Released</h1>
     
     
       <p class="meta">
@@ -85,14 +84,32 @@
   
 
 
-<time datetime="2012-07-07T16:23:00-07:00" pubdate data-updated="true">Jul 7<span>th</span>, 2012</time>
+<time datetime="2017-02-21T10:57:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2017</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>For the twelve of you who attended, <a href="/storage/slides/SetupAutomationWithPowerShell.pdf">here are my slides</a> from my <a href="http://opensourcebridge.org/sessions/829">Setup Automation with PowerShell session</a> at Open Source Bridge 2012.</p>
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.4.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>Fixed: <code>Carbon_Permission</code> fails when revoking permissions and the <code>Permissions</code> property doesn&rsquo;&lsquo;t have a value.</li>
+  <li>Fixed: <code>Protect-String</code> doesn&rsquo;t convert secure strings properly so they get encrypted with extra bytes in them.</li>
+  <li>Fixed: `Revoke-Permission&rsquo; fails when an identity has multiple access control entries on an item. Thanks to [bozho<em>](https://bitbucket.org/bozho</em>/) for reporting <a href="https://bitbucket.org/splatteredbits/carbon/issues/221/community-revoke-permission-fails-if-the">issue #221</a> and contributing the fix.</li>
+  <li>Fixed: <code>Compress-Item</code>&rsquo; writes an error when using the <code>WhatIf</code> switch.</li>
+  <li>Fixed: <code>Install-IisWebsite</code> help examples contain invalid/broken code (thanks to John Mitchell for reporting).</li>
+  <li>Fixed: <code>Install-Service</code> fails when password contains double quote character, i.e. <code>"</code> (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/219/community-install-service-fails-to">issue #219</a>).</li>
+  <li>Fixed: <code>Read-File</code> and <code>Write-File</code> fail to retry writing to a locked file when <code>$Global:Error</code> is full. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/217/community-error-handling-in-read-file-and">issue #217</a>. </li>
+  <li>Fixed: <code>Get-FirewallRule</code> sets the <code>EdgeTraversalPolicy</code> to <code>DeferUser</code> on rules whose policy is &ldquo;defer to application&rdquo;. </li>
+  <li>Fixed: <code>Get-FirewallRule</code> fails on non-english-speaking computers. (It was parsing the output of <code>netsh advfirewall</code>. Now it uses the Windows Firewall with Advanced Security API.) [Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/208/community-get-firewallrule-could-not-find">issue #208</a>.</li>
+  <li>Fixed: <code>Get-FirewallRule</code> incorrectly parsed interface types. It assumed interface type was one of multiple values. In reality, it can be set to one or more different values. The underlying enumeration and its values have been updated to be a set of flags (i.e. a bit field).</li>
+  <li>Fixed: <code>Carbon_FirewallRule</code> fails when Profile property has more than one value.</li>
+  <li>Fixed: <code>Get-ScheduledTask</code> doesn&rsquo;t handle when a scheduled task doesn&rsquo;t exist on Windows 2008.</li>
+</ul>
+
 </div>
 
 
@@ -115,7 +132,7 @@
   
 
 
-<time datetime="2012-07-07T16:23:00-07:00" pubdate data-updated="true">Jul 7<span>th</span>, 2012</time>
+<time datetime="2017-02-21T10:57:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2017</time>
       
 
 
@@ -123,7 +140,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/archive/2012/7/7/setup-automation-with-powershell-slides.html" data-via="pshdo" data-counturl="http://pshdo.com/archive/2012/7/7/setup-automation-with-powershell-slides.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2017/02/carbon-2.4.1-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2017/02/carbon-2.4.1-released.html" >Tweet</a>
   
   
   
@@ -132,10 +149,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/archive/2012/6/30/carbon-v026-released.html" title="Previous Post: Carbon v0.2.6 Released">&laquo; Carbon v0.2.6 Released</a>
+        <a class="basic-alignment left" href="/2016/11/carbon-2.4.0-released.html" title="Previous Post: Carbon 2.4.0 Released">&laquo; Carbon 2.4.0 Released</a>
       
-      
-        <a class="basic-alignment right" href="/archive/2012/9/3/carbon-v027-released.html" title="Next Post: Carbon v0.2.7 Released">Carbon v0.2.7 Released &raquo;</a>
       
     </p>
   </footer>

@@ -1,0 +1,26 @@
+---
+layout: post
+title: "Carbon 2.4.1 Released"
+date: 2017-02-21 10:57
+comments: true
+categories: 
+---
+
+[Carbon](http://get-carbon.org) 2.4.1 is out. You can [download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery](http://get-carbon.org/about_Carbon_Installation.html). It may take a week or two for the package to show up at chocolatey.org.
+
+
+## Bug Fixes
+
+ * Fixed: `Carbon_Permission` fails when revoking permissions and the `Permissions` property doesn''t have a value.
+ * Fixed: `Protect-String` doesn't convert secure strings properly so they get encrypted with extra bytes in them.
+ * Fixed: `Revoke-Permission' fails when an identity has multiple access control entries on an item. Thanks to [bozho_](https://bitbucket.org/bozho_/) for reporting [issue #221](https://bitbucket.org/splatteredbits/carbon/issues/221/community-revoke-permission-fails-if-the) and contributing the fix.
+ * Fixed: `Compress-Item`' writes an error when using the `WhatIf` switch.
+ * Fixed: `Install-IisWebsite` help examples contain invalid/broken code (thanks to John Mitchell for reporting).
+ * Fixed: `Install-Service` fails when password contains double quote character, i.e. `"` (fixes [issue #219](https://bitbucket.org/splatteredbits/carbon/issues/219/community-install-service-fails-to)).
+ * Fixed: `Read-File` and `Write-File` fail to retry writing to a locked file when `$Global:Error` is full. Fixes [issue #217](https://bitbucket.org/splatteredbits/carbon/issues/217/community-error-handling-in-read-file-and). 
+ * Fixed: `Get-FirewallRule` sets the `EdgeTraversalPolicy` to `DeferUser` on rules whose policy is "defer to application". 
+ * Fixed: `Get-FirewallRule` fails on non-english-speaking computers. (It was parsing the output of `netsh advfirewall`. Now it uses the Windows Firewall with Advanced Security API.) [Fixes [issue #208](https://bitbucket.org/splatteredbits/carbon/issues/208/community-get-firewallrule-could-not-find).
+ * Fixed: `Get-FirewallRule` incorrectly parsed interface types. It assumed interface type was one of multiple values. In reality, it can be set to one or more different values. The underlying enumeration and its values have been updated to be a set of flags (i.e. a bit field).
+ * Fixed: `Carbon_FirewallRule` fails when Profile property has more than one value.
+ * Fixed: `Get-ScheduledTask` doesn't handle when a scheduled task doesn't exist on Windows 2008.
+
