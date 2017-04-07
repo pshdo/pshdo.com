@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Carbon v0.2.2 Released - > pshdo</title>
+  <title>LibGit2 0.3.2 Released - > pshdo</title>
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I&rsquo;ve released Carbon v0.2.2. Download it from BitBucket. There were a bunch of documentation improvements, along with the following: &hellip;">
+  <meta name="description" content="LibGit2 0.3.2 is out and is available as a ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. Fixed: Copy-GitRepository &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pshdo.com/archive/2012/6/19/carbon-v022-released.html">
+  <link rel="canonical" href="http://pshdo.com/2017/04/libgit2-0.3.2-released.html">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Carbon v0.2.2 Released</h1>
+      <h1 class="entry-title">LibGit2 0.3.2 Released</h1>
     
     
       <p class="meta">
@@ -84,27 +84,18 @@
   
 
 
-<time datetime="2012-06-19T17:28:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2012</time>
+<time datetime="2017-04-07T11:26:00-07:00" pubdate data-updated="true">Apr 7<span>th</span>, 2017</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I&rsquo;ve released Carbon v0.2.2.  <a href="https://bitbucket.org/splatteredbits/carbon/downloads">Download it from BitBucket.</a>  There were a bunch of documentation improvements, along with the following:</p>
-
-<h2 id="enhancements">Enhancements</h2>
+<div class="entry-content"><p><a href="http://get-libgit2.org">LibGit2</a> 0.3.2 is out and is available <a href="http://get-libgit2.org/about_LibGit2_Installation.html">as a ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>.</p>
 
 <ul>
-  <li>Created Import-Carbon script to help users properly import Carbon.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug fixes</h2>
-
-<ul>
-  <li>Add-GroupMembers fails to add Administrators and ANONYMOUS LOGON built-in accounts.</li>
-  <li>Add-GroupMembers fails when adding built-in accounts multiple times.</li>
-  <li>Add-GroupMembers fails to add domain user to a local group.</li>
+  <li>Fixed: <code>Copy-GitRepository</code> intermittently fails when using SSH.</li>
+  <li>Fixed: <code>Copy-GitRepository</code> takes an order of magnitude longer than normal Git because it updates the clone&rsquo;s progress too frequently. It now only updates progress every 1/10th of a second, which has minimal impact on clone speed.</li>
 </ul>
 </div>
 
@@ -128,7 +119,7 @@
   
 
 
-<time datetime="2012-06-19T17:28:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2012</time>
+<time datetime="2017-04-07T11:26:00-07:00" pubdate data-updated="true">Apr 7<span>th</span>, 2017</time>
       
 
 
@@ -136,7 +127,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/archive/2012/6/19/carbon-v022-released.html" data-via="pshdo" data-counturl="http://pshdo.com/archive/2012/6/19/carbon-v022-released.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2017/04/libgit2-0.3.2-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2017/04/libgit2-0.3.2-released.html" >Tweet</a>
   
   
   
@@ -145,10 +136,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/archive/2012/6/4/best-practices-for-importing-powershell-modules.html" title="Previous Post: Best Practices for Importing PowerShell Modules">&laquo; Best Practices for Importing PowerShell Modules</a>
+        <a class="basic-alignment left" href="/2017/02/carbon-2.4.1-released.html" title="Previous Post: Carbon 2.4.1 Released">&laquo; Carbon 2.4.1 Released</a>
       
-      
-        <a class="basic-alignment right" href="/archive/2012/6/27/carbon-v023-released.html" title="Next Post: Carbon v0.2.3 Released">Carbon v0.2.3 Released &raquo;</a>
       
     </p>
   </footer>

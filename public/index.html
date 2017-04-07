@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="Carbon 2.4.1 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
+  <meta name="description" content="LibGit2 0.3.2 is out and is available as a ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. Fixed: Copy-GitRepository &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-04-07T11:26:00-07:00" pubdate data-updated="true">Apr 7<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-libgit2.org">LibGit2</a> 0.3.2 is out and is available <a href="http://get-libgit2.org/about_LibGit2_Installation.html">as a ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>.</p>
+
+<ul>
+  <li>Fixed: <code>Copy-GitRepository</code> intermittently fails when using SSH.</li>
+  <li>Fixed: <code>Copy-GitRepository</code> takes an order of magnitude longer than normal Git because it updates the clone&rsquo;s progress too frequently. It now only updates progress every 1/10th of a second, which has minimal impact on clone speed.</li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1016,119 +1057,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/11/carbon-1.9.0-released.html">Carbon 1.9.0 Released</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-11-08T23:18:00-08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.9 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.8.  It supports PowerShell 2 and 3.</p>
-
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads/Carbon-1.9.0.zip">Download from Bitbucket.</a></p>
-
-<p>This is the last minor release for version 1.0. Future 1.0-compatible releases will <em>only</em> contain bug fixes, no new features. It takes too much time to maintain two versions, and I&rsquo;d rather spend my time getting 2.0 out the door.  Carbon 2.0 will require PowerShell 4.0, so start planning.</p>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<h3 id="certificates">Certificates</h3>
-
-<ul>
-  <li>Added <code>KeyStorageFlags</code> parameter to <a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> when loading a certificate from a file for better control when storing the certificate.</li>
-</ul>
-
-<h3 id="hosts-file">Hosts File</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Set-HostsEntry.html">Set-HostsEntry</a> now handles writing to an in-use/locked hosts file, retrying up to 10 times before writing an error, waiting a random amount of time (from 0 to 1000 milliseconds) between each retry attempt.</li>
-</ul>
-
-<h3 id="iis">IIS</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a>, <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a>, and <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> now support managing MIME types for websites, virtual directories, and applications.</li>
-</ul>
-
-<h3 id="scheduled-tasks">Scheduled Tasks</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-ScheduledTask.html">Get-ScheduledTask</a> function for getting the scheduled tasks on the local computer using <code>schtasks.exe</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Install-ScheduledTask.html">Install-ScheduledTask</a> function for installing a scheduled task using <code>schtasks.exe</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Test-ScheduledTask.html">Test-ScheduledTask</a> function for testing if a scheduled tasks on the local computer exists using <code>schtasks.exe</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Uninstall-ScheduledTask.html">Uninstall-ScheduledTask</a> function for deleting a scheduled task using <code>schtasks.exe</code>.</li>
-</ul>
-
-<h3 id="services">Services</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> now supports setting a command to run when a service fails.</li>
-</ul>
-
-<h2 id="bug-fixes">Bug Fixes</h2>
-
-<h3 id="general">General</h3>
-
-<ul>
-  <li><code>Import-Carbon</code> fails when <code>-WhatIf</code> switch is used.</li>
-  <li>Importing Carbon no longer writes an error if the <code>PATH</code> environment variable contains a path to a non-existent drive (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/134/import-carbon-fails-with-path-environment">#134</a>).</li>
-</ul>
-
-<h3 id="ini">INI</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Set-IniEntry.html">Set-IniEntry</a> fails when adding the first section-less setting to a file.</li>
-</ul>
-
-<h3 id="internet-explorer">Internet Explorer</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Enable-IEActivationPermission.html">Enable-IEActivationPermission</a> no longer returns the <code>hkcr:</code> drive.</li>
-</ul>
-
-<h3 id="security">Security</h3>
-
-<ul>
-  <li>Fixed an error that occurs when setting permissions on a private key fails: the error message is created using an invalid format string (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/133/set-cryptokeysecurity-invalid-parameters">#133</a>).</li>
-  <li>Fixed an exception that gets thrown when setting a private key&rsquo;s permissions and the only certificate key is AT_SIGNATURE (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/132/set-cryptokeysecurity-throws-exception">#132</a>).</li>
-</ul>
-
-<h3 id="services-1">Services</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> stops Windows service even when no settings/configuration has changed (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/131/install-service-always-restarts-service">#131</a>). </li>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> didn&rsquo;t clear services depended on during a re-install.</li>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> wasn&rsquo;t restarting a manual service if it was running when configuration began.</li>
-  <li><a href="http://get-carbon.org/help/Uninstall-Service.html">Uninstall-Service</a> hard codes the path to the Windows directory (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/143/uninstall-service-script-has-hard-coded">#143</a>). Thanks to <a href="https://bitbucket.org/tdmathison">Travis Mathison</a> for the fix.</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1152,6 +1080,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2017/02/carbon-2.4.1-released.html">Carbon 2.4.1 Released</a>
       </li>
     
@@ -1165,10 +1097,6 @@
     
       <li class="post">
         <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
       </li>
     
   </ul>

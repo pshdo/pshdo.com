@@ -4,7 +4,7 @@
   <title><![CDATA[> pshdo]]></title>
   <link href="http://pshdo.com/archive/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2017-02-21T11:08:39-08:00</updated>
+  <updated>2017-04-07T11:27:07-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LibGit2 0.3.2 Released]]></title>
+    <link href="http://pshdo.com/2017/04/libgit2-0.3.2-released.html"/>
+    <updated>2017-04-07T11:26:00-07:00</updated>
+    <id>http://pshdo.com/2017/04/libgit2-0.3.2-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-libgit2.org">LibGit2</a> 0.3.2 is out and is available <a href="http://get-libgit2.org/about_LibGit2_Installation.html">as a ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>.</p>
+
+<ul>
+  <li>Fixed: <code>Copy-GitRepository</code> intermittently fails when using SSH.</li>
+  <li>Fixed: <code>Copy-GitRepository</code> takes an order of magnitude longer than normal Git because it updates the clone&rsquo;s progress too frequently. It now only updates progress every 1/10th of a second, which has minimal impact on clone speed.</li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Carbon 2.4.1 Released]]></title>
@@ -1704,17 +1718,6 @@
   <li><a href="http://get-carbon.org/help/Install-PerformanceCounter.html">Install-PerformanceCounter</a> couldn&rsquo;t be used to create counters that used/required a base counter. Thanks to Philip Teilmeier for the contribution.</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Desired State Configuration with PowerShell]]></title>
-    <link href="http://pshdo.com/2013/06/desired-state-configuration-with-powershell.html"/>
-    <updated>2013-06-13T13:17:00-07:00</updated>
-    <id>http://pshdo.com/2013/06/desired-state-configuration-with-powershell</id>
-    <content type="html"><![CDATA[<p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.  </p>
-
-<p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
 ]]></content>
   </entry>
   
