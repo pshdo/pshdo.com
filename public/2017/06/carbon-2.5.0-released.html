@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon 2.5.0 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="Carbon 2.5.0 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2017/06/carbon-2.5.0-released.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon 2.5.0 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-19T23:20:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.5.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2 id="enhancements">Enhancements</h2>
+
+<ul>
+  <li>Added <code>DelayedAutoStart</code> boolean property to objects returned by <code>Get-ServiceConfiguration</code>. This flag is <code>true</code> when a service is set to start automatically, delayed. <code>False</code> otherwise. Added extended </li>
+  <li>The <code>Install-Service</code> function and the <code>Carbon_Service</code> DSC resource can now set a service’s startup type to <code>Automatic (Delayed)</code>. Pass <code>Automatic</code> to the <code>StartupType</code> parameter and use the new <code>Delayed</code> switch. The <code>Delayed</code> switch is ignored unless <code>StartupType</code> is <code>Automatic</code>. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/216/community-add-automaticdelayed-in">issue #216</a>.</li>
+  <li>The <code>Uninstall-Certificate</code> function can now delete a certificate by just its thumbprint. The certificate will be uninstalled from <em>all</em> stores. You can pipe the thumbprint or a certificate object to <code>Uninstall-Certificate</code>.</li>
+  <li>Added an <code>EnsureRunning</code> switch to <code>Install-Service</code> function to ensure that any service is started after configuring. (By default, <code>Install-Service</code> leaves a service stopped if it was stopped when <code>Install-Service</code> begins.)</li>
+  <li>Added <code>IsSymbolicLink</code> extended type property to directory and file objects (i.e. <code>System.IO.DirectoryInfo</code> and <code>System.IO.FileInfo</code> objects).</li>
+  <li>Added <code>TargetPath</code> extended type property to file (i.e. <code>System.IO.FileInfo</code>) objects. If a file is a symbolic link, this property will return the file the link points to.</li>
+  <li>The <code>TargetPath</code> extended type property on directory (i.e. `System.IO.DirectoryInfo) objects now returns target paths when a directory is a symbolic link.</li>
+  <li><code>Initiazlie-Lcm</code> can’t be used on Windows Server 2016 and later to put the DSC local configuration manager into pull mode. <code>Initialize-Lcm</code> now writes an error when you try.</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li><code>Install-Service</code> and the <code>Carbon_Service</code> DSC resource write errors when a service is running and its startup type is changed to <code>Disabled</code>.</li>
+  <li>The <code>Carbon_ScheduledTask</code> DSC resource writes incorrect information to verbose log when the current and desired credential for the scheduled task are different.</li>
+  <li>The <code>Carbon_ScheduledTask</code> DSC resource doesn’t correctly detect when a task’s identity has changed (it wasn’t converting usernames to their canonical representation before comparing the existing identity with the desired identity).</li>
+  <li>Fixed: Importing Carbon in 32-bit PowerShell fails on a 64-bit operating system. DSC isn’t available so the <code>Initialize-Lcm</code> function can’t be exported. Thanks to <a href="https://bitbucket.org/McAndersDK/">Anders Andersson</a> for contribuging the fix.</li>
+  <li>Fixed: <code>Install-Service</code> and <code>Carbon_Service</code> DSC resource fail to change the identity a service runs as if switching from a custom account to the default <code>NetworkService</code> account.</li>
+  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-19T23:20:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2017</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2017/06/carbon-2.5.0-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2017/06/carbon-2.5.0-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2017/04/libgit2-0.3.2-released.html" title="Previous Post: LibGit2 0.3.2 Released">&laquo; LibGit2 0.3.2 Released</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section style="margin-top:2em;">
+
+	<p>
+		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
+		
+		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
+	</p>
+
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/02/carbon-2.4.1-released.html">Carbon 2.4.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/11/carbon-2.4.0-released.html">Carbon 2.4.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
