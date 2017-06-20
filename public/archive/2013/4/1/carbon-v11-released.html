@@ -96,7 +96,7 @@
 <h2 id="upgrade-instructions">Upgrade Instructions</h2>
 
 <ul>
-  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won&rsquo;t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
+  <li>On Windows 2008 R2, custom identies that run IIS app pools need the <code>SeBatchLogonRight</code>.  <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> now grants this privilege on all operating systems.  If this won’t work in your environment, you can remove these privileges with <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
 </ul>
 
 <h2 id="enhancements">Enhancements</h2>
@@ -118,7 +118,7 @@
 <h3 id="computer">Computer</h3>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn&rsquo;t in the path.</li>
+  <li>Created <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> for getting the path to the Windows <code>net.exe</code> command/application.  Updated all functions that call <code>net.exe</code> to use this function to resolve its path.  Thanks to Paul Aage Aasheim for discovering that when running login scripts, <code>net.exe</code> isn’t in the path.</li>
 </ul>
 
 <h3 id="iis">IIS</h3>
@@ -130,14 +130,14 @@
   <li>Created <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a> for removing a file extension to MIME type mapping for the IIS web server.</li>
   <li>Created <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> for creating/setting a file extension to MIME type mapping for the IIS web server.</li>
   <li>When creating an app pool that runs under a custom, non-service account, <a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> grants that user the <code>SeBatchLogonRight</code>.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn&rsquo;t exist (i.e. if the value of the <code>Username</code> parameter doesn&rsquo;t exist).</li>
+  <li><a href="http://get-carbon.org/help/Install-IisAppPool.html">Install-IisAppPool</a> writes an error if its user account doesn’t exist (i.e. if the value of the <code>Username</code> parameter doesn’t exist).</li>
 </ul>
 
 <h3 id="privileges">Privileges</h3>
 
 <ul>
   <li>Improved exception handling in <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>.</li>
-  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn&rsquo;t exist.</li>
+  <li><a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> and <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a> now write an error message if an identity doesn’t exist.</li>
 </ul>
 
 <h2 id="bug-fixes">Bug Fixes</h2>
@@ -145,13 +145,13 @@
 <h3 id="computer-1">Computer</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can&rsquo;t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user&rsquo;s <code>PATH</code> environment variable.</li>
+  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> can’t find <code>net.exe</code> when running as part of a Windows logon script.  Thanks to Paul Aage Aasheim for identifying and reporting this bug.  All usages of the <code>net.exe</code> application were updated to use the new <a href="http://get-carbon.org/help/Resolve-NetPath.html">Resolve-NetPath</a> function, which get the path to <code>net.exe</code> without assuming it is in the user’s <code>PATH</code> environment variable.</li>
 </ul>
 
 <h3 id="users-and-groups">Users and Groups</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can&rsquo;t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
+  <li><a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> no longer writes an error if it can’t find a fully-qualified local user, e.g. <code>$env:COMPUTERNAME\Username</code>.</li>
 </ul>
 </div>
 
@@ -221,6 +221,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
       </li>
     
@@ -234,10 +238,6 @@
     
       <li class="post">
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
       </li>
     
   </ul>

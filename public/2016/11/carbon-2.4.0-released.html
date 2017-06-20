@@ -96,7 +96,7 @@
 <h2 id="enhancements">Enhancements</h2>
 
 <ul>
-  <li><code>Protect-String</code> can now encrypt a <code>SecureString</code>. The <code>String</code> parameter&rsquo;s type was changed to <code>[object]</code>. When you pass in a <code>SecureString</code>, it is converted to an array of bytes, encrypted, and the array of bytes are cleared from memory.</li>
+  <li><code>Protect-String</code> can now encrypt a <code>SecureString</code>. The <code>String</code> parameter’s type was changed to <code>[object]</code>. When you pass in a <code>SecureString</code>, it is converted to an array of bytes, encrypted, and the array of bytes are cleared from memory.</li>
   <li>Renamed <code>Protect-Acl</code> to <code>Disable-AclInheritance</code> to make it clearer what the function does. Created a <code>Protect-Acl</code> alias in place to preserve backwards-compatability.</li>
   <li><code>Disable-AclInheritance</code> only disables inheritance if it is currently enabled.</li>
   <li>Created <code>Enable-AclInheritance</code> to re-enable access rule inheritance on file system and registry ACLs. This function is paired with <code>Disable-AclInheritance</code>.</li>
@@ -105,9 +105,9 @@
 <h2 id="bug-fixes">Bug Fixes</h2>
 
 <ul>
-  <li>Fixed: <code>Get-ProgramInstallInfo</code> fails when a program&rsquo;s <code>Version</code> registry key value can&rsquo;t be converted into a <code>Version</code> object.</li>
+  <li>Fixed: <code>Get-ProgramInstallInfo</code> fails when a program’s <code>Version</code> registry key value can’t be converted into a <code>Version</code> object.</li>
   <li>Fixed: <code>Test-Service</code> failed to detect if a device driver service is installed.</li>
-  <li>Fixed: <code>Install-Service</code> fails if a service depends on a device driver. (Note: in our testing, we can&rsquo;t get a device driver set as a dependency. If you know what the secret sauce is to get this to work with sc.exe (or another means), please let us know.)</li>
+  <li>Fixed: <code>Install-Service</code> fails if a service depends on a device driver. (Note: in our testing, we can’t get a device driver set as a dependency. If you know what the secret sauce is to get this to work with sc.exe (or another means), please let us know.)</li>
   <li>Fixed: <code>Disable-AclInheritance</code> (ne <code>Protect-Acl</code>) fails when piped a registry key.</li>
   <li>Fixed: <code>Get-PathProvider</code> fails when passed a fully-qualified registry key PowerShell path, e.g. <code>Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\Software</code>.</li>
 </ul>
@@ -180,6 +180,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
       </li>
     
@@ -193,10 +197,6 @@
     
       <li class="post">
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
       </li>
     
   </ul>

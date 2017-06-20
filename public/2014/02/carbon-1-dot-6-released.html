@@ -100,13 +100,13 @@
 <h3 id="file-system">File System</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> doesn&rsquo;t delete a junction when given a relative path to the junction.</li>
+  <li><a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> doesn’t delete a junction when given a relative path to the junction.</li>
 </ul>
 
 <h3 id="services">Services</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> doesn&rsquo;t properly resolve a service&rsquo;s path.</li>
+  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> doesn’t properly resolve a service’s path.</li>
 </ul>
 
 <h3 id="shares">Shares</h3>
@@ -146,7 +146,7 @@
       <li><a href="http://get-carbon.org/help/Test-IisSecurityAuthentication.html">Test-IisSecurityAuthentication</a></li>
     </ul>
   </li>
-  <li>Renamed <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a>&rsquo;s <code>SiteName</code> parameter to <code>Name</code> (with a backwards-compatible alias).</li>
+  <li>Renamed <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a>’s <code>SiteName</code> parameter to <code>Name</code> (with a backwards-compatible alias).</li>
   <li>Renamed all IIS <code>Name</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
     <ul>
       <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
@@ -171,7 +171,7 @@
 <h3 id="path">Path</h3>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-PathProvider.html">Get-PathProvider</a> function for getting a path&rsquo;s PowerShell provider.</li>
+  <li>Created <a href="http://get-carbon.org/help/Get-PathProvider.html">Get-PathProvider</a> function for getting a path’s PowerShell provider.</li>
 </ul>
 
 <h3 id="powershell">PowerShell</h3>
@@ -190,7 +190,7 @@
 <h3 id="services-1">Services</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-User.html">Install-Service</a> no longer requires a password, in order to support <a href="http://technet.microsoft.com/en-us/library/dd548356.aspx">managed service accounts and virtual accounts</a>.  We have no idea if this works, since we can&rsquo;t test locally.  Please let us know if this fix works for you. <a href="https://bitbucket.org/splatteredbits/carbon/issue/114">#114</a></li>
+  <li><a href="http://get-carbon.org/help/Install-User.html">Install-Service</a> no longer requires a password, in order to support <a href="http://technet.microsoft.com/en-us/library/dd548356.aspx">managed service accounts and virtual accounts</a>.  We have no idea if this works, since we can’t test locally.  Please let us know if this fix works for you. <a href="https://bitbucket.org/splatteredbits/carbon/issue/114">#114</a></li>
 </ul>
 
 <h3 id="users-and-groups">Users and Groups</h3>
@@ -202,11 +202,11 @@
 <h3 id="windows-features">Windows Features</h3>
 
 <ul>
-  <li>Marked Assert-WindowsFeatureFunctionsSupported as an internal function.  Please don&rsquo;t use.  It will be removed from future versions of PowerShell.</li>
+  <li>Marked Assert-WindowsFeatureFunctionsSupported as an internal function.  Please don’t use.  It will be removed from future versions of PowerShell.</li>
   <li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Test-WindowsFeature</a> to work on Windows 8/2012.</li>
   <li>Created new <code>Carbon.Identity</code> class for representing identities.  It also contains a static <code>FindByName</code> method which uses The Windows <code>LookupAccountName</code> function to find full account names, domains, and sids.  </li>
-  <li>Updated <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
-  <li>Updated <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can’t be found.</li>
+  <li>Updated <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can’t be found.</li>
 </ul>
 
 </div>
@@ -277,6 +277,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
       </li>
     
@@ -290,10 +294,6 @@
     
       <li class="post">
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
       </li>
     
   </ul>

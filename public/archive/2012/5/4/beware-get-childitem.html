@@ -9,7 +9,7 @@
   <meta name="author" content="Aaron Jensen">
 
   
-  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn&rsquo;t behaving as I expected. Passing it $null, @(), or '' will return the contents of the &hellip;">
+  <meta name="description" content="I discovered today that the Get-ChildItem cmdlet wasn’t behaving as I expected. Passing it $null, @(), or '' will return the contents of the current &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,7 +91,7 @@
   </header>
 
 
-<div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+<div class="entry-content"><p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn’t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
 
 <pre><code>&gt; Get-ChildItem .
 
@@ -135,7 +135,7 @@ Mode                LastWriteTime     Length Name
 
 <p>Yikes!  I would expect it to write an error or just return nothing.</p>
 
-<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
+<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn’t match the filter, like this:</p>
 
 <pre><code>function Remove-ExtraFiles($Items, $Exclude)
 {
@@ -234,6 +234,10 @@ Mode                LastWriteTime     Length Name
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
       </li>
     
@@ -247,10 +251,6 @@ Mode                LastWriteTime     Length Name
     
       <li class="post">
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
       </li>
     
   </ul>

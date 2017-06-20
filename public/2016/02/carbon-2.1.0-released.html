@@ -98,8 +98,8 @@
 <ul>
   <li><code>Get-HttpUrlAcl</code>: uses Windows API to return HTTP URL ACLs; replaces the <code>netsh http show urlacl</code> command.</li>
   <li><code>Grant-HttpUrlPermission</code>: uses Windows API to grant listen/delegate permissions on HTTP URLs; replaces the <code>netsh http add urlacl</code> command.</li>
-  <li><code>Revoke-HttpUrlPermission</code>: uses Windows API to revoke all a user or group&rsquo;s permissions on HTTP URLs; replaces the <code>netsh http delete urlacl</code> command.</li>
-  <li><code>Install-Directory</code>: creates a directory (and any missing parents), if it doesn&rsquo;t exist already. Finally!</li>
+  <li><code>Revoke-HttpUrlPermission</code>: uses Windows API to revoke all a user or group’s permissions on HTTP URLs; replaces the <code>netsh http delete urlacl</code> command.</li>
+  <li><code>Install-Directory</code>: creates a directory (and any missing parents), if it doesn’t exist already. Finally!</li>
   <li><code>Uninstall-Directory</code>: removes a directory, if it exists. Finally!</li>
   <li><code>Uninstall-Group</code>: uses the <code>DirectoryServices.AccountManagement</code> .NET API to remove a group, if it exists.</li>
   <li><code>Test-GroupMember</code>: uses the <code>DirectoryServices.AccountManagemetn</code> .NET API to test if a principal is a member of a group.</li>
@@ -114,16 +114,16 @@
 <h2 id="bug-fixes">Bug Fixes</h2>
 
 <ul>
-  <li>Fixed: <code>Install-FileShare</code> always re-configures existing shares; it doesn&rsquo;t properly detect permissions that need to be removed.</li>
+  <li>Fixed: <code>Install-FileShare</code> always re-configures existing shares; it doesn’t properly detect permissions that need to be removed.</li>
   <li>Fixed: <code>Set-IniEntry</code> fails to preserve unicode characters with diacritics in INI entry names and values.</li>
   <li>Fixed: <code>Remove-IniEntry</code> fails to preserve unicode characters with diacritics in INI entry names and values.</li>
   <li>Fixed: <code>Set-HostsEntry</code> leaves trailing tabs and whitespace after all but the last line.</li>
   <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns wrong path for PowerShell 4.</li>
   <li>Fixed: <code>Protect-String</code> fails when Carbon is installed in a module path that contains spaces (<a href="https://bitbucket.org/splatteredbits/carbon/issues/174/protect-string-throws-when-module-path">fixes issue #174</a>).</li>
-  <li>Fixed: <code>New-RsaKeyPair</code> generates a key pair that isn&rsquo;t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
-  <li>Fixed: <code>Get-ScheduledTask</code> returns invalid task commands when those commands contain quotes (works around an issue where <code>schtasks.exe</code> CSV output can&rsquo;t be parsed correctly by <code>ConvertFrom-Csv</code>).</li>
+  <li>Fixed: <code>New-RsaKeyPair</code> generates a key pair that isn’t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
+  <li>Fixed: <code>Get-ScheduledTask</code> returns invalid task commands when those commands contain quotes (works around an issue where <code>schtasks.exe</code> CSV output can’t be parsed correctly by <code>ConvertFrom-Csv</code>).</li>
   <li>Fixed: <code>Add-GroupMember</code> and <code>Remove-GroupMember</code> fail when adding <code>Everyone</code> or <code>NT Service\*</code> accounts to a group (<a href="https://bitbucket.org/splatteredbits/carbon/issues/177/add-groupmembers-201-doesnt-like-vsa-names">fixes issue #177</a>).</li>
-  <li>Fixed: <code>Get-SheduledTask</code> writes an error if a scheduled task&rsquo;s XML definition is for an executable and doesn&rsquo;t contain an arguments element.</li>
+  <li>Fixed: <code>Get-SheduledTask</code> writes an error if a scheduled task’s XML definition is for an executable and doesn’t contain an arguments element.</li>
 </ul>
 
 <h2 id="other-improvements">Other Improvements</h2>
@@ -135,7 +135,7 @@
     <ul>
       <li>only updates hosts file if it needs to change</li>
       <li>added an improved verbose message when setting a hosts entry</li>
-      <li>improved error handling when hosts file can&rsquo;t be opened for reading</li>
+      <li>improved error handling when hosts file can’t be opened for reading</li>
     </ul>
   </li>
   <li><code>Install-Certificate</code> can now install a certificate on a remote computer.</li>
@@ -151,7 +151,7 @@
     <ul>
       <li>Refactored to use <code>certreq.exe</code> instead of <code>makecert.exe</code> and <code>pvk2pfx.exe</code>.</li>
       <li>Can now run non-interactively: added a <code>-Password</code> parameter used to protect the private key (it used to prompt you).</li>
-      <li>Fixed: generates a key pair that isn&rsquo;t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
+      <li>Fixed: generates a key pair that isn’t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
       <li>Made the <code>-ValidFrom</code> and <code>-Authority</code> parameters obsolete.</li>
     </ul>
   </li>
@@ -227,6 +227,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
         <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
       </li>
     
@@ -240,10 +244,6 @@
     
       <li class="post">
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
       </li>
     
   </ul>
