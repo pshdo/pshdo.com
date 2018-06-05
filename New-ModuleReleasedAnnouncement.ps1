@@ -27,6 +27,13 @@ try
     $moduleNameLower = $ModuleName.ToLower()
     $postWildcard = Join-Path -Path $postsRoot -ChildPath ('*-{0}-{1}-released.markdown' -f $moduleNameLower,$Version)
 
+    if( -not (Get-Command -Name 'bundle') )
+    {
+        gem install bundler
+    }
+
+    bundle install
+
     if( -not (Test-Path -Path $postWildcard -PathType Leaf) )
     {
         bundle exec rake ("new_post[{0} {1} Released]" -f $ModuleName,$Version)
@@ -76,18 +83,6 @@ try
     
     bundle exec rake generate
 
-    hg addremove
-
-    if( hg status )
-    {
-        hg commit -m ('{0} {1} Released' -f $ModuleName,$Version)
-        hg log -rtip
-    }
-
-    if( hg out )
-    {
-        hg push
-    }
 }
 finally
 {
