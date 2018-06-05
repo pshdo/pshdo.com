@@ -3,8 +3,7 @@ layout: post
 title: Best Practices for Importing PowerShell Modules
 date: 2012-06-04 14:59
 comments: false
-tags: ["best practice", modules, powershell]
-permalink: /archive/2012/6/4/best-practices-for-importing-powershell-modules.html
+categories: ["Best Practices", Modules, PowerShell]
 ---
 ## Importing Modules Is Messy
 

@@ -3,8 +3,7 @@ layout: post
 title: Carbon v1.0.0 Released
 date: 2013-03-06 11:42
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2013/3/6/carbon-v100-released.html
+categories: [Announcements, Carbon]
 ---
 
 I'm extremely happy to announce the release of [Carbon](http://get-carbon.org) v1.0.0.  Thanks to everyone who's already started using Carbon.  Please continue to provide feedback.  I love to hear from everyone that's using it, good or bad.  Also, now that we're at v1.0, don't hesitate to **spread the word**! 

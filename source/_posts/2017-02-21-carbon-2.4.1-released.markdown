@@ -3,7 +3,7 @@ layout: post
 title: "Carbon 2.4.1 Released"
 date: 2017-02-21 10:57
 comments: true
-categories: 
+categories: [ Announcements, Carbon ]
 ---
 
 [Carbon](http://get-carbon.org) 2.4.1 is out. You can [download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery](http://get-carbon.org/about_Carbon_Installation.html). It may take a week or two for the package to show up at chocolatey.org.

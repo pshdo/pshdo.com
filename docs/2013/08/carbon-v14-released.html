@@ -84,7 +84,7 @@
   
 
 
-<time datetime="2013-08-10T03:50:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+<time datetime="2013-08-10T03:50:00-07:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -93,46 +93,51 @@
 
 <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.4 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.3.  This release adds a few new features and some bug fixes introduced in v1.3.</p>
 
-<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We’ll be moving the build server to PowerShell 3 sometime around August 15th, which means that’s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
+<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We&rsquo;ll be moving the build server to PowerShell 3 sometime around August 15th, which means that&rsquo;s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
 
-<h2 id="enhancements">Enhancements</h2>
+<h2>Enhancements</h2>
 
-<h3 id="file-system">File System</h3>
-
-<ul>
-  <li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn’t exist, respectively.</li>
-</ul>
-
-<h3 id="iis">IIS</h3>
+<h3>File System</h3>
 
 <ul>
-  <li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don’t have to traverse down into the default application’s default virtual directory object to get it.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. ‘..’) to a full path.  It turns out IIS doesn’t like paths with relative parts.</li>
-  <li>Created <a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a> function to get <code>Microsoft.Web.Administration.Application</code> objects for all or specific applications under a website.</li>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> now uses the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>.</li>
+<li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn&rsquo;t exist, respectively.</li>
 </ul>
 
-<h3 id="powershell">PowerShell</h3>
+
+<h3>IIS</h3>
 
 <ul>
-  <li>Added <code>ExecutionPolicy</code> parameter to <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to allow setting a custom exeuction policy when using <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to run a script.</li>
+<li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don&rsquo;t have to traverse down into the default application&rsquo;s default virtual directory object to get it.</li>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. &lsquo;..&rsquo;) to a full path.  It turns out IIS doesn&rsquo;t like paths with relative parts.</li>
+<li>Created <a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a> function to get <code>Microsoft.Web.Administration.Application</code> objects for all or specific applications under a website.</li>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> now uses the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>.</li>
 </ul>
 
-<h2 id="bug-fixes">Bug Fixes</h2>
 
-<h3 id="iis-1">IIS</h3>
+<h3>PowerShell</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> not updating/changing physical path on existing application.</li>
+<li>Added <code>ExecutionPolicy</code> parameter to <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to allow setting a custom exeuction policy when using <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to run a script.</li>
 </ul>
 
-<h3 id="net">.NET</h3>
+
+<h2>Bug Fixes</h2>
+
+<h3>IIS</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn’t allow running scripts.</li>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> not updating/changing physical path on existing application.</li>
 </ul>
+
+
+<h3>.NET</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn&rsquo;t allow running scripts.</li>
+</ul>
+
 </div>
 
 
@@ -155,10 +160,7 @@
   
 
 
-<time datetime="2013-08-10T03:50:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
-      
-
-
+<time datetime="2013-08-10T03:50:00-07:00" pubdate data-updated="true"></time>
     </p>
     
       <div class="sharing">
@@ -188,17 +190,13 @@
 		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
 	</p>
   
-    <section style="margin-top:2em;">
-
-	<p>
-		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
-		
-		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
-	</p>
-
-</section><section>
+    <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
     
       <li class="post">
         <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
@@ -220,8 +218,28 @@
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
       </li>
     
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
   </ul>
 </section>
+
+
+
+
 
   
 </aside>
@@ -230,7 +248,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Aaron Jensen -
+  Copyright &copy; 2018 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

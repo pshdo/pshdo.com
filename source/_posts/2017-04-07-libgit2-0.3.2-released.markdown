@@ -3,7 +3,7 @@ layout: post
 title: "LibGit2 0.3.2 Released"
 date: 2017-04-07 11:26
 comments: true
-categories: 
+categories: [ Announcements, GitAutomation ]
 ---
 
 [LibGit2](http://get-libgit2.org) 0.3.2 is out and is available [as a ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery](http://get-libgit2.org/about_LibGit2_Installation.html).

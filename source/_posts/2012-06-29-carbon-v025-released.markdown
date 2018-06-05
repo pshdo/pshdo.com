@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.2.5 Released
 date: 2012-06-29 10:26
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2012/6/28/carbon-v025-released.html
+categories: [Announcements, Carbon]
 ---
 
 I've released [Carbon](http://get-carbon.org) v0.2.5.  [Download it from BitBucket.](https://bitbucket.org/splatteredbits/carbon/downloads) It's 100% [documentation updates](http://get-carbon.org).  I've now completed documentation on 80% of Carbon's functions.  Hopefully I'll be able to finish the final 20% today.

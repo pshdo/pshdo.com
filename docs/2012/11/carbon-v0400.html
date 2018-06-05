@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon v0.4.0.0 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="I&rsquo;m extremely proud to announce Carbon v0.4.0.0, my favorite release so far. This release contains some backwards incompatible changes, so be &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2012/11/carbon-v0400.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon v0.4.0.0 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-17T20:33:00-08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;m extremely proud to announce Carbon v0.4.0.0, my favorite release so far.  This release contains <strong>some backwards incompatible changes</strong>, so be sure to read the <em>Upgrade Instructions</em>.</p>
+
+<p>This release contains three major new feature sets.  First, I&rsquo;ve created new functions for <strong>granting/getting/revoking Windows security privileges/rights</strong> (e.g. the Logon As a Service right). Before this, Carbon used Microsoft&rsquo;s legacy <code>ntrights.exe</code> program for managing these privileges.</p>
+
+<p>Second, there are new functions for <strong>setting/getting/revoking ACLs on Windows services</strong>.  These service ACLs regulate who can control a service, read a service&rsquo;s properties, etc.  They replace Microsoft&rsquo;s legacy <code>subinacl.exe</code> program.</p>
+
+<p>Lastly, thanks to Jonathan Valdez, the <strong><a href="http://get-carbon.org/help/Grant-Permissions.html">Grant-Permissions</a> function now has the ability to control inheritance and propagation flags</strong>.</p>
+
+<p>As usualy, the full release notes are below and <a href="http://get-carbon.org/releasenotes.html">at the Carbon website</a>.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Go get it!</a></p>
+
+<h2>Upgrade Instructions</h2>
+
+<ul>
+<li>If you install a manual or disabled Windows service with <a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a>, you now have to call <code>Start-Service</code> yourself.  <code>Install-Service</code> only starts services whose startup type is set to <code>Automatic</code> (which is the default).</li>
+<li>We&rsquo;ve stopped distributing Microsoft&rsquo;s <code>subinacl.exe</code> program. We didn&rsquo;t have permission to distribute.  Plus its no longer supported. If any of your scripts used <code>Invoke-SubInAcl</code>, you&rsquo;ll want to <a href="http://www.microsoft.com/en-us/download/details.aspx?id=23510">download <code>subinacl.exe</code> yourself</a> and copy <code>Invoke-SubInAcl</code> before upgrading (you can find it in the Carbon directory in the <code>Services.ps1</code> file.</li>
+<li>If you&rsquo;re using <code>Grant-Permission</code> without named parameters, the <code>Path</code> parameter moved from position 3 to position 1.  Re-order your parameters accordingly.</li>
+<li>Rename usages of <code>Set-IisDirectoryBrowsing</code> to <code>Enable-IisDirectoryBrowsing</code>.  If you use named parameters, rename its <code>Directory</code> paremter to <code>Path</code>.</li>
+<li>Replace usages of <code>Set-HgrcDefaultPushUrl</code> with <code>Set-IniEntry</code> instead, e.g. <code>Set-IniEntry -Path 'Path\to\repo\.hg\hgrc' -Section paths -Name 'default.push' -Value 'DefaultPushUrl'</code></li>
+<li>Rename usages of <code>Test-IisWebsiteExists</code> with <code>Test-IisWebsite</code>.</li>
+<li>Rename usages of <code>Get-FullPath</code> with <code>ConvertTo-FullPath</code>.</li>
+</ul>
+
+
+<h2>Enhancements</h2>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Get-Privileges.html">Get-Privileges</a>, <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a>, <a href="http://get-carbon.org/help/Revoke-Privilege.html">Revoke-Privilege</a>, and <a href="http://get-carbon.org/help/Test-Privilege.html">Test-Privilege</a> for managing an identity&rsquo;s security operation privileges.</li>
+<li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> now uses <a href="http://get-carbon.org/help/Grant-Privilege.html">Grant-Privilege</a> to grant custom service identities the <code>SeServiceLogonRight</code> privilege. This replaces usage of Microsoft&rsquo;s legacy <a href="http://support.microsoft.com/kb/315276">ntrights.exe</a>, which we probably didn&rsquo;t have permission to distribute.</li>
+<li>Created <a href="http://get-carbon.org/help/Get-ServicePermissions.html">Get-ServicePermissions</a> function for getting the permissions for a service, i.e. what users can control a service.</li>
+<li>Created <a href="http://get-carbon.org/help/Assert-Service.html">Assert-Service</a> function to write an error if a service doesn&rsquo;t exist.</li>
+<li>Created <a href="http://get-carbon.org/help/Get-ServiceAcl.html">Get-ServiceAcl</a> function to get the discretionary access control list (DACL) for a service.</li>
+<li>Created <a href="http://get-carbon.org/help/Get-ServiceSecurityDescriptor.html">Get-ServiceSecurityDescriptor</a> function to get the raw security descriptor for a service.</li>
+<li>Created <a href="http://get-carbon.org/help/Grant-ServicePermission.html">Grant-ServicePermission</a> function to grant service control permissions to an identity.</li>
+<li>Created <a href="http://get-carbon.org/help/Revoke-ServicePermission.html">Revoke-ServicePermission</a> function to revoke all of an identity&rsquo;s permissioms to control a service.</li>
+<li>Created <a href="http://get-carbon.org/help/Set-ServiceAcl.html">Set-ServiceAcl</a> function to set a service&rsquo;s discretionary access control list (DACL).</li>
+<li>Created <a href="http://get-carbon.org/help/Test-Service.html">Test-Service</a> function to check if a service exists <em>without</em> writing an error.</li>
+<li>Removed <code>Invoke-SubInAcl</code> function and the <code>subinacl.exe</code> program.  Use the <a href="http://get-carbon.org/help/Grant-ServicePermission.html">Grant-ServicePermission</a> and <a href="http://get-carbon.org/help/Revoke-ServicePermission.html">Revoke-ServicePermission</a> functions instead.  If you still need <code>subinacl.exe</code>, please <a href="http://www.microsoft.com/en-us/download/details.aspx?id=23510">download it from Microsoft</a>.</li>
+<li><a href="http://get-carbon.org/help/Grant-Permissions.html">Grant-Permissions</a> now supports controlling inheritance and propagation flags via the <code>ApplyTo</code> parameter, which should be a value of the new <code>Carbon.Security.ContainerInheritanceFlags</code> enumeration, which encapsualtes all the valid combinations of inheritance/propagation flags.  See the help for <code>Grant-Permissions</code> for more information.  Thanks to Jonathan Valdez for the feature request and initial code.</li>
+<li>Created <a href="http://get-carbon.org/help/ConvertTo-InheritanceFlags.html">ConvertTo-InheritanceFlags</a> function for converting a <code>Carbon.Security.ContainerInheritanceFlags</code> to the necessary/applicable <code>System.Security.AccessControl.InheritanceFlags</code>.</li>
+<li>Created <a href="http://get-carbon.org/help/ConvertTo-PropagationFlags.html">ConvertTo-PropagationFlags</a> function for converting a <code>Carbon.Security.ContainerInheritanceFlags</code> to the necessary/applicable <code>System.Security.AccessControl.PropagationFlags</code>.</li>
+<li>Created <a href="http://get-carbon.org/help/Get-Permissions.html">Get-Permissions</a> function for getting the non-inherited permissions on a file, directory, registry key, or registry value with the ability to return a specific identity&rsquo;s permissions and/or inherited permissions.</li>
+<li>Renamed <code>Set-IisDirectoryBrowsing</code> to <a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Enable-IisDirectoryBrowsing</a> and renamed its <code>Directory</code> parameter to <code>Path</code>.</li>
+<li>Removed <code>Set-HgrcDefaultPushUrl</code>.  Use <a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Set-IniEntry</a> instead.</li>
+<li>Renamed <code>Test-IisWebsiteExists</code> to <a href="http://get-carbon.org/help/Test-IisWebsite.html">Test-IisWebsite</a> to adhere to PowerShell naming conventions.</li>
+<li>Renamed <code>Get-FullPath</code> to <a href="http://get-carbon.org/help/ConvertTo-FullPath.html">ConvertTo-FullPath</a> to adhere to PowerShell naming conventions.</li>
+</ul>
+
+
+<h1>Bug fixes</h1>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> no longer tries to start a service if its <code>StartupType</code> is set to <code>Manual</code> or <code>Disabled</code>.</li>
+<li><code>Path</code> is now the first parameter to <a href="http://get-carbon.org/help/Grant-Permissions.html">Grant-Permissions</a> (it was the third) to match PowerShell standards/patterns.</li>
+<li><a href="http://get-carbon.org/help/Find-ADUser.html">Find-ADUser</a> writes an error and returns null instead of throwing an exception.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-17T20:33:00-08:00" pubdate data-updated="true"></time>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2012/11/carbon-v0400.html" data-via="pshdo" data-counturl="http://pshdo.com/2012/11/carbon-v0400.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/10/carbon-v031-released.html" title="Previous Post: Carbon v0.3.1 Released">&laquo; Carbon v0.3.1 Released</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/12/carbon-v0401.html" title="Next Post: Carbon v0.4.0.1 Released">Carbon v0.4.0.1 Released &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/02/carbon-2.4.1-released.html">Carbon 2.4.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/11/carbon-2.4.0-released.html">Carbon 2.4.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

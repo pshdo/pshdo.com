@@ -3,7 +3,7 @@ layout: post
 title: "Carbon v1.3 Released"
 date: 2013-07-08 21:39
 comments: false
-tags: Carbon, Announcements
+categories: Carbon, Announcements
 ---
 
 [Carbon](http://get-carbon.org) v1.3 is out, is [backwards compatible](http://semver.org) with v1.0 through v1.2.  This release  improves PowerShell 3 compatibility, updates [Invoke-PowerShell](http://get-carbon.org/help/Invoke-PowerShell.html) so it can run scripts, and adds [ConvertTo-Base64](http://get-carbon.org/help/ConvertTo-Base64.html) and [ConvertFrom-Base64](http://get-carbon.org/help/ConvertFrom-Base64.html) functions.

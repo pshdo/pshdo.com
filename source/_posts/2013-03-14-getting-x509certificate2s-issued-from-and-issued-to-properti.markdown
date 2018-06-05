@@ -3,8 +3,7 @@ layout: post
 title: Getting X509Certificate2's "Issued From" and "Issued To" Properties in PowerShell
 date: 2013-03-14 14:36
 comments: false
-tags: [Carbon, X509Certificate2, PowerShell]
-permalink: /archive/2013/3/14/getting-x509certificate2s-issued-from-and-issued-to-properti.html
+categories: [Carbon, X509Certificate2, PowerShell]
 ---
 
 One of my problems with the [X509Certificate2](http://msdn.microsoft.com/en-us/library/ms148409.aspx) object is that it doesn't expose properties for the "Issued From" and "Issued To" data, properties which show by default when viewing certificates in the Windows Certificate MMC snap-in. This makes it difficult to match certificates you see the Certificates MMC with certificates you see in PowerShell.

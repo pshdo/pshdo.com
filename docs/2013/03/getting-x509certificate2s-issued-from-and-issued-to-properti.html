@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Getting X509Certificate2's "Issued From" and "Issued To" Properties in PowerShell - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="One of my problems with the X509Certificate2 object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2013/03/getting-x509certificate2s-issued-from-and-issued-to-properti.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Getting X509Certificate2's "Issued From" and "Issued to" Properties in PowerShell</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-14T14:36:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>One of my problems with the <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To&rdquo; data, properties which show by default when viewing certificates in the Windows Certificate MMC snap-in. This makes it difficult to match certificates you see the Certificates MMC with certificates you see in PowerShell.</p>
+
+<p>Today I <a href="http://social.msdn.microsoft.com/Forums/en-US/csharpgeneral/thread/a74e3465-7e36-43a9-a83a-fb28a629218f">discovered</a> the <a href="http://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2.getnameinfo.aspx">GetNameInfo method</a>, which can return the &ldquo;Issued To/By&rdquo; text seen in the Certificates MMC snap-in:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Format-Table @{ Label = 'IssuedTo'; Expression = { $_.GetNameInfo( 'SimpleName', $false ) } },@{ Label = 'IssuedBy' ;Expression = { $_.GetNameInfo( 'SimpleName', $true ) } }
+</code></pre>
+
+<p>Here it is a little clearer:</p>
+
+<pre><code>$cert.GetNameInfo( 'SimpleName', $false ) # This is IssuedTo.
+$cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
+</code></pre>
+
+<p>You could also pipe your certificates to <a href="http://technet.microsoft.com/en-us/library/hh849879.aspx">Add-Member</a>:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Add-Member ScriptProperty -Name IssuedTo -Value { $this.GetNameInfo( 'SimpleName', $false) } -PassThru |
+    Add-Member ScriptProperty -Name IssuedBy -Value { $this.GetNameInfo( 'SimpleName', $true ) } -PassThru |
+    Format-Table -Property IssuedTo,IssuedBy -AutoSize
+</code></pre>
+
+<p>The next version of <a href="http://get-carbon.org">Carbon</a> will add <code>IssuedBy</code> and <code>IssuedTo</code> properties to <code>X509Certificate2</code> objects, so you can do this instead:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Format-Table IssuedTo,IssuedBy -AutoSize
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-14T14:36:00-07:00" pubdate data-updated="true"></time>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2013/03/getting-x509certificate2s-issued-from-and-issued-to-properti.html" data-via="pshdo" data-counturl="http://pshdo.com/2013/03/getting-x509certificate2s-issued-from-and-issued-to-properti.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/03/carbon-v100.html" title="Previous Post: Carbon v1.0.0 Released">&laquo; Carbon v1.0.0 Released</a>
+      
+      
+        <a class="basic-alignment right" href="/2013/03/monitoring-windows-process-start-and-exit-events.html" title="Next Post: Monitoring Windows Process Start and Exit Events">Monitoring Windows Process Start and Exit Events &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/02/carbon-2.4.1-released.html">Carbon 2.4.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/11/carbon-2.4.0-released.html">Carbon 2.4.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

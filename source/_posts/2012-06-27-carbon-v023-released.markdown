@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.2.3 Released
 date: 2012-06-27 9:56
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2012/6/27/carbon-v023-released.html
+categories: [Announcements, Carbon]
 ---
 
 I've released Carbon v0.2.3. [Download it from BitBucket.](https://bitbucket.org/splatteredbits/carbon/downloads)  It's mostly documentation updates, but I snuck a couple of bug fixes in there.

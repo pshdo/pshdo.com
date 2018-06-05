@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: desired state configuration | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/desired-state-configuration/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Desired State Configuration with PowerShell]]></title>
+    <link href="http://pshdo.com/2013/06/desired-state-configuration-with-powershell.html"/>
+    <updated>2013-06-13T13:17:00-07:00</updated>
+    <id>http://pshdo.com/2013/06/desired-state-configuration-with-powershell</id>
+    <content type="html"><![CDATA[<p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.</p>
+
+<p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
+]]></content>
+  </entry>
+  
+</feed>

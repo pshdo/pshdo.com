@@ -3,8 +3,7 @@ layout: post
 title: "New-Website"
 date: 2012-04-30 22:24
 comments: false
-tags: meta
-permalink: /archive/2012/4/30/new-website.html
+categories: [ meta ] 
 ---
 
 In Feburary 2011, I finally got tired of using MSBuild as a scripting language.  There are great frameworks out there that make it bearable, but trying to use a build language to script and program is a recipe for disaster and bloated scripts. 

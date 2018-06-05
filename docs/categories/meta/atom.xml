@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: meta | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/meta/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New-Website]]></title>
+    <link href="http://pshdo.com/2012/04/new-website.html"/>
+    <updated>2012-04-30T22:24:00-07:00</updated>
+    <id>http://pshdo.com/2012/04/new-website</id>
+    <content type="html"><![CDATA[<p>In Feburary 2011, I finally got tired of using MSBuild as a scripting language.  There are great frameworks out there that make it bearable, but trying to use a build language to script and program is a recipe for disaster and bloated scripts.</p>
+
+<p>I don&rsquo;t know what finally motivated me to learn PowerShell.  I ordered every PowerShell book from the library, but returned them as soon as I started Lee Holmes' <a href="http://shop.oreilly.com/product/9780596528492.do">PowerShell Cookbook</a>. Within a few days, I was writing scripts.  A year later, I have a hard time writing MSBuild.</p>
+
+<p>I&rsquo;m still kicking myself for waiting as long as I did.  I had heard lots of respectable developers extol PowerShell, but I never set aside the time to learn it.  What a waste.</p>
+
+<p>If you&rsquo;re a .NET developer, and still using cmd as your command prompt, or even worse cygwin (shudder), shame on you!  Take a deep breath, two days off, and read Lee Holmes' book.  You&rsquo;ll never look back.</p>
+]]></content>
+  </entry>
+  
+</feed>

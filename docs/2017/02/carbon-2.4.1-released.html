@@ -84,7 +84,7 @@
   
 
 
-<time datetime="2017-02-21T10:57:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2017</time>
+<time datetime="2017-02-21T10:57:00-08:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -93,21 +93,21 @@
 
 <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.4.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
 
-<h2 id="bug-fixes">Bug Fixes</h2>
+<h2>Bug Fixes</h2>
 
 <ul>
-  <li>Fixed: <code>Carbon_Permission</code> fails when revoking permissions and the <code>Permissions</code> property doesn’‘t have a value.</li>
-  <li>Fixed: <code>Protect-String</code> doesn’t convert secure strings properly so they get encrypted with extra bytes in them.</li>
-  <li>Fixed: `Revoke-Permission’ fails when an identity has multiple access control entries on an item. Thanks to [bozho<em>](https://bitbucket.org/bozho</em>/) for reporting <a href="https://bitbucket.org/splatteredbits/carbon/issues/221/community-revoke-permission-fails-if-the">issue #221</a> and contributing the fix.</li>
-  <li>Fixed: <code>Compress-Item</code>’ writes an error when using the <code>WhatIf</code> switch.</li>
-  <li>Fixed: <code>Install-IisWebsite</code> help examples contain invalid/broken code (thanks to John Mitchell for reporting).</li>
-  <li>Fixed: <code>Install-Service</code> fails when password contains double quote character, i.e. <code>"</code> (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/219/community-install-service-fails-to">issue #219</a>).</li>
-  <li>Fixed: <code>Read-File</code> and <code>Write-File</code> fail to retry writing to a locked file when <code>$Global:Error</code> is full. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/217/community-error-handling-in-read-file-and">issue #217</a>. </li>
-  <li>Fixed: <code>Get-FirewallRule</code> sets the <code>EdgeTraversalPolicy</code> to <code>DeferUser</code> on rules whose policy is “defer to application”. </li>
-  <li>Fixed: <code>Get-FirewallRule</code> fails on non-english-speaking computers. (It was parsing the output of <code>netsh advfirewall</code>. Now it uses the Windows Firewall with Advanced Security API.) [Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/208/community-get-firewallrule-could-not-find">issue #208</a>.</li>
-  <li>Fixed: <code>Get-FirewallRule</code> incorrectly parsed interface types. It assumed interface type was one of multiple values. In reality, it can be set to one or more different values. The underlying enumeration and its values have been updated to be a set of flags (i.e. a bit field).</li>
-  <li>Fixed: <code>Carbon_FirewallRule</code> fails when Profile property has more than one value.</li>
-  <li>Fixed: <code>Get-ScheduledTask</code> doesn’t handle when a scheduled task doesn’t exist on Windows 2008.</li>
+<li>Fixed: <code>Carbon_Permission</code> fails when revoking permissions and the <code>Permissions</code> property doesn'&rsquo;t have a value.</li>
+<li>Fixed: <code>Protect-String</code> doesn&rsquo;t convert secure strings properly so they get encrypted with extra bytes in them.</li>
+<li>Fixed: `Revoke-Permission' fails when an identity has multiple access control entries on an item. Thanks to <a href="https://bitbucket.org/bozho_/">bozho_</a> for reporting <a href="https://bitbucket.org/splatteredbits/carbon/issues/221/community-revoke-permission-fails-if-the">issue #221</a> and contributing the fix.</li>
+<li>Fixed: <code>Compress-Item</code>&lsquo; writes an error when using the <code>WhatIf</code> switch.</li>
+<li>Fixed: <code>Install-IisWebsite</code> help examples contain invalid/broken code (thanks to John Mitchell for reporting).</li>
+<li>Fixed: <code>Install-Service</code> fails when password contains double quote character, i.e. <code>"</code> (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/219/community-install-service-fails-to">issue #219</a>).</li>
+<li>Fixed: <code>Read-File</code> and <code>Write-File</code> fail to retry writing to a locked file when <code>$Global:Error</code> is full. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/217/community-error-handling-in-read-file-and">issue #217</a>.</li>
+<li>Fixed: <code>Get-FirewallRule</code> sets the <code>EdgeTraversalPolicy</code> to <code>DeferUser</code> on rules whose policy is &ldquo;defer to application&rdquo;.</li>
+<li>Fixed: <code>Get-FirewallRule</code> fails on non-english-speaking computers. (It was parsing the output of <code>netsh advfirewall</code>. Now it uses the Windows Firewall with Advanced Security API.) [Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/208/community-get-firewallrule-could-not-find">issue #208</a>.</li>
+<li>Fixed: <code>Get-FirewallRule</code> incorrectly parsed interface types. It assumed interface type was one of multiple values. In reality, it can be set to one or more different values. The underlying enumeration and its values have been updated to be a set of flags (i.e. a bit field).</li>
+<li>Fixed: <code>Carbon_FirewallRule</code> fails when Profile property has more than one value.</li>
+<li>Fixed: <code>Get-ScheduledTask</code> doesn&rsquo;t handle when a scheduled task doesn&rsquo;t exist on Windows 2008.</li>
 </ul>
 
 </div>
@@ -132,10 +132,7 @@
   
 
 
-<time datetime="2017-02-21T10:57:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2017</time>
-      
-
-
+<time datetime="2017-02-21T10:57:00-08:00" pubdate data-updated="true"></time>
     </p>
     
       <div class="sharing">
@@ -165,17 +162,13 @@
 		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
 	</p>
   
-    <section style="margin-top:2em;">
-
-	<p>
-		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
-		
-		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
-	</p>
-
-</section><section>
+    <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
     
       <li class="post">
         <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
@@ -197,8 +190,28 @@
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
       </li>
     
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
   </ul>
 </section>
+
+
+
+
 
   
 </aside>
@@ -207,7 +220,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Aaron Jensen -
+  Copyright &copy; 2018 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

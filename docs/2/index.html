@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>> pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="Carbon 2.3.0 is out. You can download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery. It may take a week &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2/index.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-09-29T12:31:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.3.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2>Enhancements</h2>
+
+<ul>
+<li><code>Protect-String</code> can now encrypt with a key, password, or passphrase (i.e. it can now encrypt with symmetric encryption).</li>
+<li><code>Unprotect-String</code> can now decrypt with a key, password, or passphrase (i.e. it can now decrypt using symmetric encryption).</li>
+<li><code>Set-HostsEntry</code> now supports IPv6 addresses (<a href="https://bitbucket.org/splatteredbits/carbon/issues/181/community-set-hostsentry-add-support-for">fixes issue</a>).</li>
+<li><code>Grant-Permission</code> now supports creating <code>Deny</code> access rules. Use the new <code>Type</code> parameter. <a href="https://bitbucket.org/splatteredbits/carbon/issues/152">Fixes issue #152.</a></li>
+<li><code>Set-EnvironmentVariable</code>:
+
+<ul>
+<li>Added <code>-Force</code> switch to make all variable modifications immediately visible in the current PowerShell process&rsquo;s <code>env:</code> drive. Restarts are no longer required.</li>
+<li>You can now set an environment variable for other users. Use the <code>Credential</code> parameter to specify the user&rsquo;s credentials. <a href="https://bitbucket.org/splatteredbits/carbon/issues/151">Fixes issue #151.</a></li>
+</ul>
+</li>
+<li><code>Remove-EnvironmentVariable</code>:
+
+<ul>
+<li>Added <code>-Force</code> switch to make all variable removals immediately visible in the current PowerShell process&rsquo;s <code>env:</code> drive. Restarts are no longer required.</li>
+<li>You can now remove variables from multiple targets/scopes at once.</li>
+<li>You can now remove an environment variable for other users. Use the <code>Credential</code> parameter to specify the user&rsquo;s credentials.</li>
+</ul>
+</li>
+<li><code>Invoke-PowerShell</code>:
+
+<ul>
+<li>It now runs PowerShell commands. Pass a string of PowerShell code with the <code>Command</code> parameter.</li>
+<li>It now runs encoded PowerShell commands. Pass the string of PowerShell code with the <code>Command</code> parameter and use the <code>-Encode</code> switch.</li>
+<li>It now runs scripts and commands as another user. Use the <code>Credential</code> parameter to pass the user&rsquo;s credentials along with the <code>FilePath</code> and <code>Command</code> parameters to run scripts and commands, respectively.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Bug Fixes</h2>
+
+<ul>
+<li>Fixed: <code>Set-RegistryKeyValue</code> fails when <code>-String</code> parameter&rsquo;s value is <code>$null</code> or empty (<a href="https://bitbucket.org/splatteredbits/carbon/issues/211/set-registrykeyvalue-null-string-invalid">fixes issue #211</a>).</li>
+<li>Fixed: Can&rsquo;t import Carbon in a 32-bit PowerShell 4 session on a 64-bit operating system (<a href="https://bitbucket.org/splatteredbits/carbon/issues/199/community-issue-importing-carbon-on-x64">fixes issue #199</a>).</li>
+<li>Fixed: Documentation for the <code>Install-ScheduledTask</code> function&rsquo;s <code>HighestAvailableRunLevel</code> is lying (<a href="https://bitbucket.org/splatteredbits/carbon/issues/205/documentation-install-scheduledtask-typo">fixes issue #205</a>).</li>
+<li>Fixed: <code>Carbon_FirewallRule</code> fails when <code>Profile</code> property set to multiple values (<a href="https://bitbucket.org/splatteredbits/carbon/issues/209/dsc-carbon_firewallrule-does-not-accept">fixes issue #209</a>).</li>
+<li>Fixed: <code>Install-IisAppPool</code> can&rsquo;t set .NET framework version to <code>No Managed Code</code> (<a href="https://bitbucket.org/splatteredbits/carbon/issues/210/install-iisapppool-need-to-be-able-to-set">fixes issue #210</a>).</li>
+<li>Fixed: <code>Get-SslCertificateBinding</code> fails if the operating system&rsquo;s culture is not <code>en-US</code> (<a href="https://bitbucket.org/splatteredbits/carbon/issues/171/get-sslcertificatebinding-fails-when-os">fixes issue #171</a>).</li>
+<li>Fixed: <code>Install-ScheduledTask</code> fails when creating a task that runs during a specific week of the month on Sundays. (You&rsquo;re going to love this: the underlying int value for <code>[DayOfWeek]::Sunday</code> is <code>0</code>, so when testing if a <code>DayOfWeek</code> typed variable set to <code>Sunday</code> has a value, it returns <code>$false</code>. This made <code>Install-ScheduledTask</code> add the <code>/D</code> parameter without a value.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-05-11T21:55:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.2.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2>Enhancements</h2>
+
+<ul>
+<li>Aded a <code>LiteralPath</code> parameter to <code>Test-PathIsJunction</code> for testing paths that contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+<li><code>Remove-Junction</code> now supports removing multiple junctions with wildcards.</li>
+<li>Added a <code>LiteralPath</code> parameter to <code>Remove-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+<li>Added a <code>LiteralPath</code> parameter to <code>Uninstall-Junction</code> for deleting junctions whose paths contain wildcard characters (e.g. <code>[</code>, <code>]</code>, etc.).</li>
+<li>Created <code>Remove-DotNetAppSetting</code> function for removing app settings from .NET framework machine.config files.</li>
+<li>Created <code>Read-File</code> function for reading text files and retrying if the read fails. Good for reading files that get intermittently locked, like the Windows hosts file.</li>
+<li>Created <code>Write-File</code> function for writing text files and retrying if the write fails. Good for writing files that get intermittently locked, like the Windows hosts file.</li>
+<li>Made the following functions obsolete:
+
+<ul>
+<li><code>Get-WindowsFeature</code></li>
+<li><code>Install-Msmq</code></li>
+<li><code>Install-WindowsFeature</code></li>
+<li><code>Resolve-WindowsFeatureName</code></li>
+<li><code>Uninstall-WindowsFeature</code></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Bug Fixes</h2>
+
+<ul>
+<li>Fixed: <code>Add-GroupMember</code>, over PowerShell remoting, fails to add a member to groups that have non-local users/groups (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/187/add-groupmember-fails-when-using">issue #187: Add-GroupMember fails when using PowerShell Remoting</a>)</li>
+<li>Fixed: <code>Remove-GroupMember</code>, over PowerShell remoting, fails to remove a member from groups that have non-local users/groups.</li>
+<li>Fixed: <code>Test-PathIsJunction</code> returns multiple results if the <code>Path</code> parameter contains wildcards and matches multiple items.</li>
+<li>Fixed: <code>Install-Junction</code> can&rsquo;t install a junction whose path contains wildcard characters (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/190/install-junction-fails-when-the-path">issue #190</a>).</li>
+<li>Fixed: <code>New-Junction</code> writes wrong error when creating an existing junction whose path contains wildcard characters.</li>
+<li>Fixed: <code>Install-Service</code> doesn&rsquo;t update/change an existing service&rsquo;s account when using the <code>Credential</code> parameter (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/185/install-service-never-updates-logon-as-if">issue #185</a>).</li>
+<li>Fixed: <code>Uninstall-FileShare</code> fails if a share&rsquo;s physical path doesn&rsquo;t exist.</li>
+<li>Fixed (hopefully): <code>Get-FileSharePermission</code> writes an error if a share&rsquo;s security information is corrupted (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/188/get-filesharepermission-crashes-when-a">issue #188</a>). I was unable to reproduce the error, and the error was reported anonyously, so I did my best.</li>
+<li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns multiple paths if the standard PowerShell module path is listed twice in the <code>PSModulePath</code> environment variable.</li>
+<li>Fixed: Chocolatey package fails if the standard PowerShell module path is listed twice in the<code>PSModulePath</code> environment (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/192/installation-of-carbon-via-chocolatey">issue #192</a>).</li>
+<li>Fixed: <code>Get-PowerShellModuleInstallPath</code> doesn&rsquo;t return the module install path if it doesn&rsquo;t exist. Sometimes it doesn&rsquo;t yet.</li>
+<li>Fixed: <code>Carbon_ScheduledTask</code> and <code>Carbon_IniFile</code> DSC resources' <code>Get-TargetResource</code> functions don&rsquo;t return correct resource properties and causes <code>Get-DscConfiguration</code> to fail (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/193/get-targetresource-returns-taskname-in-its">issue #193</a>).</li>
+<li>Fixed: <code>Carbon_FirewallRule</code> DSC resource always re-installs a firewall rule if <code>Profile</code> property contains multiple values (i.e. it doesn&rsquo;t properly parse netsh output).</li>
+<li>Fixed: <code>about_Carbon_Installation</code> help topic had a typo.</li>
+<li>Fixed: <code>Set-HostsEntry</code> fails to stop when the hosts file is in use and can&rsquo;t be read.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-25T09:44:00-08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.1.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2>Bug Fixes</h2>
+
+<ul>
+<li>Fixed: unable to publish module to PowerShell Gallery because <code>RequiredAssemblies</code> module manifest data used an absolute path generated with <code>Join-Path</code> and <code>$PSScriptRoot</code>, which aren&rsquo;t allowed in module manifests.</li>
+<li>Fixed: missing PowerShell Gallery tags, license URI, project URI, and release notes metadata.</li>
+<li>Fixed: copyright date in module manifest is 2015.</li>
+<li>Fixed: PowerShell gallery missing function list.</li>
+<li>Fixed: Restricted user accounts can&rsquo;t import Carbon (<a href="https://bitbucket.org/splatteredbits/carbon/issues/180">issue #180</a>).</li>
+<li>Fixed: <code>Carbon_Privilege</code> DSC resource fails to remove all a user&rsquo;s privileges (<a href="https://bitbucket.org/splatteredbits/carbon/issues/178">issue #178</a>).</li>
+<li>Fixed: <code>Remove-IniEntry</code> fails to remove last INI entry in a file (<a href="https://bitbucket.org/splatteredbits/carbon/issues/179">issue #179</a>).</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-08T16:32:00-08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.1.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2>New Functions</h2>
+
+<ul>
+<li><code>Get-HttpUrlAcl</code>: uses Windows API to return HTTP URL ACLs; replaces the <code>netsh http show urlacl</code> command.</li>
+<li><code>Grant-HttpUrlPermission</code>: uses Windows API to grant listen/delegate permissions on HTTP URLs; replaces the <code>netsh http add urlacl</code> command.</li>
+<li><code>Revoke-HttpUrlPermission</code>: uses Windows API to revoke all a user or group&rsquo;s permissions on HTTP URLs; replaces the <code>netsh http delete urlacl</code> command.</li>
+<li><code>Install-Directory</code>: creates a directory (and any missing parents), if it doesn&rsquo;t exist already. Finally!</li>
+<li><code>Uninstall-Directory</code>: removes a directory, if it exists. Finally!</li>
+<li><code>Uninstall-Group</code>: uses the <code>DirectoryServices.AccountManagement</code> .NET API to remove a group, if it exists.</li>
+<li><code>Test-GroupMember</code>: uses the <code>DirectoryServices.AccountManagemetn</code> .NET API to test if a principal is a member of a group.</li>
+</ul>
+
+
+<h2>New DSC Resource</h2>
+
+<ul>
+<li><code>Carbon_Group</code>: resource for configuring local groups.</li>
+</ul>
+
+
+<h2>Bug Fixes</h2>
+
+<ul>
+<li>Fixed: <code>Install-FileShare</code> always re-configures existing shares; it doesn&rsquo;t properly detect permissions that need to be removed.</li>
+<li>Fixed: <code>Set-IniEntry</code> fails to preserve unicode characters with diacritics in INI entry names and values.</li>
+<li>Fixed: <code>Remove-IniEntry</code> fails to preserve unicode characters with diacritics in INI entry names and values.</li>
+<li>Fixed: <code>Set-HostsEntry</code> leaves trailing tabs and whitespace after all but the last line.</li>
+<li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns wrong path for PowerShell 4.</li>
+<li>Fixed: <code>Protect-String</code> fails when Carbon is installed in a module path that contains spaces (<a href="https://bitbucket.org/splatteredbits/carbon/issues/174/protect-string-throws-when-module-path">fixes issue #174</a>).</li>
+<li>Fixed: <code>New-RsaKeyPair</code> generates a key pair that isn&rsquo;t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
+<li>Fixed: <code>Get-ScheduledTask</code> returns invalid task commands when those commands contain quotes (works around an issue where <code>schtasks.exe</code> CSV output can&rsquo;t be parsed correctly by <code>ConvertFrom-Csv</code>).</li>
+<li>Fixed: <code>Add-GroupMember</code> and <code>Remove-GroupMember</code> fail when adding <code>Everyone</code> or <code>NT Service\*</code> accounts to a group (<a href="https://bitbucket.org/splatteredbits/carbon/issues/177/add-groupmembers-201-doesnt-like-vsa-names">fixes issue #177</a>).</li>
+<li>Fixed: <code>Get-SheduledTask</code> writes an error if a scheduled task&rsquo;s XML definition is for an executable and doesn&rsquo;t contain an arguments element.</li>
+</ul>
+
+
+<h2>Other Improvements</h2>
+
+<ul>
+<li>Obsolete function parameters will no longer show in Intellisense (added the <code>DontShow</code> parameter property).</li>
+<li><code>Test-AdminPrivilege</code>: changed its verbose message to a debug message.</li>
+<li><code>Set-HostsEntry</code>:
+
+<ul>
+<li>only updates hosts file if it needs to change</li>
+<li>added an improved verbose message when setting a hosts entry</li>
+<li>improved error handling when hosts file can&rsquo;t be opened for reading</li>
+</ul>
+</li>
+<li><code>Install-Certificate</code> can now install a certificate on a remote computer.</li>
+<li><code>Initialize-Lcm</code> now uses <code>Install-Certificate</code> to install the decryption certificate on the remote computer.</li>
+<li><code>Uninstall-Certificate</code> can now uninstall a certificate on a remote computer.</li>
+<li>The following functions now write warning if you pass them a plain-text password. You should pass a <code>SecureString</code> instead.
+
+<ul>
+<li><code>Install-Certificate</code></li>
+<li><code>Initialize-Lcm</code></li>
+</ul>
+</li>
+<li><code>New-RsaKeyPair</code>:
+
+<ul>
+<li>Refactored to use <code>certreq.exe</code> instead of <code>makecert.exe</code> and <code>pvk2pfx.exe</code>.</li>
+<li>Can now run non-interactively: added a <code>-Password</code> parameter used to protect the private key (it used to prompt you).</li>
+<li>Fixed: generates a key pair that isn&rsquo;t supported for encrypting/decrypting DSC credentials or supported by the CMS message cmdlets.</li>
+<li>Made the <code>-ValidFrom</code> and <code>-Authority</code> parameters obsolete.</li>
+</ul>
+</li>
+<li>Added some verbose messages to <code>Install-Group</code> and <code>Add-MemberToGroup</code> when they create/modify their objects.</li>
+<li><code>Install-Group</code> only saves changes to a group if changes were made.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-19T23:08:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.0.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<ul>
+<li>Fixed: errors importing Carbon when IIS not installed on Windows 2012 R2 and Windows 10 (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/168">issue 168: Cannot import Carbon 2.0 module due to issues with IIS related functionality</a>).</li>
+<li>Fixed Carbon copyright statements.</li>
+<li>Improved Carbon&rsquo;s module description.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="3">&larr; Olderfsdfsdfsdaf</a>
+    
+    <a href="/archive">Archive</a>
+    
+    <a class="next" href="1">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/02/carbon-2.4.1-released.html">Carbon 2.4.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/11/carbon-2.4.0-released.html">Carbon 2.4.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

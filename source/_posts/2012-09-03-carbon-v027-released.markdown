@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.2.7 Released
 date: 2012-09-03 9:25
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2012/9/3/carbon-v027-released.html
+categories: [Announcements, Carbon]
 ---
 
 I've released version 0.2.7 of Carbon this morning.  This release contains only new functionality:

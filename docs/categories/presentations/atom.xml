@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: presentations | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/presentations/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Setup Automation with PowerShell Slides]]></title>
+    <link href="http://pshdo.com/2012/07/setup-automation-with-powershell-slides.html"/>
+    <updated>2012-07-07T16:23:00-07:00</updated>
+    <id>http://pshdo.com/2012/07/setup-automation-with-powershell-slides</id>
+    <content type="html"><![CDATA[<p>For the twelve of you who attended, <a href="/storage/slides/SetupAutomationWithPowerShell.pdf">here are my slides</a> from my <a href="http://opensourcebridge.org/sessions/829">Setup Automation with PowerShell session</a> at Open Source Bridge 2012.</p>
+]]></content>
+  </entry>
+  
+</feed>

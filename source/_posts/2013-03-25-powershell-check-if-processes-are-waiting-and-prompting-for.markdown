@@ -3,8 +3,7 @@ layout: post
 title: "PowerShell: Check if Processes Are Waiting and Prompting for User Input"
 date: 2013-03-25 13:13
 comments: false
-tags: [Mercurial, Start-Process, Stop-Process, System.Diagnostics.Process, Wait-Process, hg merge, powershell]
-permalink: /archive/2013/3/25/powershell-check-if-processes-are-waiting-and-prompting-for.html
+categories: [Mercurial, Start-Process, Stop-Process, System.Diagnostics.Process, Wait-Process, "hg merge", powershell]
 ---
 
 I'm currently writing a PowerShell script that will commit changes to a [Mercurial](http://mercurial.selenic.com) repository, then push those changes out to our central Mercurial server.  If there are new changes on the server, the script will need to pull those changes down before it pushes, merge them, commit the merge, then re-push to the server.  Rinse and repeat until the push succeeds.  Because it will run under our continuous integration build server, it needs to be able to run headless (i.e., non-interactively).

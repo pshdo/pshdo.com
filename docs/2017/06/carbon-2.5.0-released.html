@@ -84,7 +84,7 @@
   
 
 
-<time datetime="2017-06-19T23:20:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2017</time>
+<time datetime="2017-06-19T23:20:00-07:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -93,28 +93,29 @@
 
 <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.5.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
 
-<h2 id="enhancements">Enhancements</h2>
+<h2>Enhancements</h2>
 
 <ul>
-  <li>Added <code>DelayedAutoStart</code> boolean property to objects returned by <code>Get-ServiceConfiguration</code>. This flag is <code>true</code> when a service is set to start automatically, delayed. <code>False</code> otherwise. Added extended </li>
-  <li>The <code>Install-Service</code> function and the <code>Carbon_Service</code> DSC resource can now set a service’s startup type to <code>Automatic (Delayed)</code>. Pass <code>Automatic</code> to the <code>StartupType</code> parameter and use the new <code>Delayed</code> switch. The <code>Delayed</code> switch is ignored unless <code>StartupType</code> is <code>Automatic</code>. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/216/community-add-automaticdelayed-in">issue #216</a>.</li>
-  <li>The <code>Uninstall-Certificate</code> function can now delete a certificate by just its thumbprint. The certificate will be uninstalled from <em>all</em> stores. You can pipe the thumbprint or a certificate object to <code>Uninstall-Certificate</code>.</li>
-  <li>Added an <code>EnsureRunning</code> switch to <code>Install-Service</code> function to ensure that any service is started after configuring. (By default, <code>Install-Service</code> leaves a service stopped if it was stopped when <code>Install-Service</code> begins.)</li>
-  <li>Added <code>IsSymbolicLink</code> extended type property to directory and file objects (i.e. <code>System.IO.DirectoryInfo</code> and <code>System.IO.FileInfo</code> objects).</li>
-  <li>Added <code>TargetPath</code> extended type property to file (i.e. <code>System.IO.FileInfo</code>) objects. If a file is a symbolic link, this property will return the file the link points to.</li>
-  <li>The <code>TargetPath</code> extended type property on directory (i.e. `System.IO.DirectoryInfo) objects now returns target paths when a directory is a symbolic link.</li>
-  <li><code>Initiazlie-Lcm</code> can’t be used on Windows Server 2016 and later to put the DSC local configuration manager into pull mode. <code>Initialize-Lcm</code> now writes an error when you try.</li>
+<li>Added <code>DelayedAutoStart</code> boolean property to objects returned by <code>Get-ServiceConfiguration</code>. This flag is <code>true</code> when a service is set to start automatically, delayed. <code>False</code> otherwise. Added extended</li>
+<li>The <code>Install-Service</code> function and the <code>Carbon_Service</code> DSC resource can now set a service&rsquo;s startup type to <code>Automatic (Delayed)</code>. Pass <code>Automatic</code> to the <code>StartupType</code> parameter and use the new <code>Delayed</code> switch. The <code>Delayed</code> switch is ignored unless <code>StartupType</code> is <code>Automatic</code>. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/216/community-add-automaticdelayed-in">issue #216</a>.</li>
+<li>The <code>Uninstall-Certificate</code> function can now delete a certificate by just its thumbprint. The certificate will be uninstalled from <em>all</em> stores. You can pipe the thumbprint or a certificate object to <code>Uninstall-Certificate</code>.</li>
+<li>Added an <code>EnsureRunning</code> switch to <code>Install-Service</code> function to ensure that any service is started after configuring. (By default, <code>Install-Service</code> leaves a service stopped if it was stopped when <code>Install-Service</code> begins.)</li>
+<li>Added <code>IsSymbolicLink</code> extended type property to directory and file objects (i.e. <code>System.IO.DirectoryInfo</code> and <code>System.IO.FileInfo</code> objects).</li>
+<li>Added <code>TargetPath</code> extended type property to file (i.e. <code>System.IO.FileInfo</code>) objects. If a file is a symbolic link, this property will return the file the link points to.</li>
+<li>The <code>TargetPath</code> extended type property on directory (i.e. `System.IO.DirectoryInfo) objects now returns target paths when a directory is a symbolic link.</li>
+<li><code>Initiazlie-Lcm</code> can&rsquo;t be used on Windows Server 2016 and later to put the DSC local configuration manager into pull mode. <code>Initialize-Lcm</code> now writes an error when you try.</li>
 </ul>
 
-<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h2>Bug Fixes</h2>
 
 <ul>
-  <li><code>Install-Service</code> and the <code>Carbon_Service</code> DSC resource write errors when a service is running and its startup type is changed to <code>Disabled</code>.</li>
-  <li>The <code>Carbon_ScheduledTask</code> DSC resource writes incorrect information to verbose log when the current and desired credential for the scheduled task are different.</li>
-  <li>The <code>Carbon_ScheduledTask</code> DSC resource doesn’t correctly detect when a task’s identity has changed (it wasn’t converting usernames to their canonical representation before comparing the existing identity with the desired identity).</li>
-  <li>Fixed: Importing Carbon in 32-bit PowerShell fails on a 64-bit operating system. DSC isn’t available so the <code>Initialize-Lcm</code> function can’t be exported. Thanks to <a href="https://bitbucket.org/McAndersDK/">Anders Andersson</a> for contribuging the fix.</li>
-  <li>Fixed: <code>Install-Service</code> and <code>Carbon_Service</code> DSC resource fail to change the identity a service runs as if switching from a custom account to the default <code>NetworkService</code> account.</li>
-  <li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.</li>
+<li><code>Install-Service</code> and the <code>Carbon_Service</code> DSC resource write errors when a service is running and its startup type is changed to <code>Disabled</code>.</li>
+<li>The <code>Carbon_ScheduledTask</code> DSC resource writes incorrect information to verbose log when the current and desired credential for the scheduled task are different.</li>
+<li>The <code>Carbon_ScheduledTask</code> DSC resource doesn&rsquo;t correctly detect when a task&rsquo;s identity has changed (it wasn&rsquo;t converting usernames to their canonical representation before comparing the existing identity with the desired identity).</li>
+<li>Fixed: Importing Carbon in 32-bit PowerShell fails on a 64-bit operating system. DSC isn&rsquo;t available so the <code>Initialize-Lcm</code> function can&rsquo;t be exported. Thanks to <a href="https://bitbucket.org/McAndersDK/">Anders Andersson</a> for contribuging the fix.</li>
+<li>Fixed: <code>Install-Service</code> and <code>Carbon_Service</code> DSC resource fail to change the identity a service runs as if switching from a custom account to the default <code>NetworkService</code> account.</li>
+<li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.</li>
 </ul>
 
 </div>
@@ -139,10 +140,7 @@
   
 
 
-<time datetime="2017-06-19T23:20:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2017</time>
-      
-
-
+<time datetime="2017-06-19T23:20:00-07:00" pubdate data-updated="true"></time>
     </p>
     
       <div class="sharing">
@@ -159,6 +157,8 @@
         <a class="basic-alignment left" href="/2017/04/libgit2-0.3.2-released.html" title="Previous Post: LibGit2 0.3.2 Released">&laquo; LibGit2 0.3.2 Released</a>
       
       
+        <a class="basic-alignment right" href="/2018/06/carbon-2.5.4-released.html" title="Next Post: Carbon 2.5.4 Released">Carbon 2.5.4 Released &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -170,17 +170,13 @@
 		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
 	</p>
   
-    <section style="margin-top:2em;">
-
-	<p>
-		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
-		
-		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
-	</p>
-
-</section><section>
+    <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
     
       <li class="post">
         <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
@@ -202,8 +198,28 @@
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
       </li>
     
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
   </ul>
 </section>
+
+
+
+
 
   
 </aside>
@@ -212,7 +228,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Aaron Jensen -
+  Copyright &copy; 2018 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

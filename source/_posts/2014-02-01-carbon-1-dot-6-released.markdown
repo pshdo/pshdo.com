@@ -3,7 +3,7 @@ layout: post
 title: "Carbon 1.6 Released"
 date: 2014-02-01 12:14
 comments: true
-tags: Carbon, Announcements
+categories: [ Carbon, Announcements ]
 ---
 
 [Carbon](http://get-carbon.org) 1.6 is out and is [backwards compatible](http://semver.org) with 1.0 through 1.5.1.  It supports PowerShell 2.  It contains a few bug fixes and many enhancements.

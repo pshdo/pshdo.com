@@ -84,7 +84,7 @@
   
 
 
-<time datetime="2016-11-09T11:00:00-08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2016</time>
+<time datetime="2016-11-09T11:00:00-08:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -93,23 +93,24 @@
 
 <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 2.4.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
 
-<h2 id="enhancements">Enhancements</h2>
+<h2>Enhancements</h2>
 
 <ul>
-  <li><code>Protect-String</code> can now encrypt a <code>SecureString</code>. The <code>String</code> parameter’s type was changed to <code>[object]</code>. When you pass in a <code>SecureString</code>, it is converted to an array of bytes, encrypted, and the array of bytes are cleared from memory.</li>
-  <li>Renamed <code>Protect-Acl</code> to <code>Disable-AclInheritance</code> to make it clearer what the function does. Created a <code>Protect-Acl</code> alias in place to preserve backwards-compatability.</li>
-  <li><code>Disable-AclInheritance</code> only disables inheritance if it is currently enabled.</li>
-  <li>Created <code>Enable-AclInheritance</code> to re-enable access rule inheritance on file system and registry ACLs. This function is paired with <code>Disable-AclInheritance</code>.</li>
+<li><code>Protect-String</code> can now encrypt a <code>SecureString</code>. The <code>String</code> parameter&rsquo;s type was changed to <code>[object]</code>. When you pass in a <code>SecureString</code>, it is converted to an array of bytes, encrypted, and the array of bytes are cleared from memory.</li>
+<li>Renamed <code>Protect-Acl</code> to <code>Disable-AclInheritance</code> to make it clearer what the function does. Created a <code>Protect-Acl</code> alias in place to preserve backwards-compatability.</li>
+<li><code>Disable-AclInheritance</code> only disables inheritance if it is currently enabled.</li>
+<li>Created <code>Enable-AclInheritance</code> to re-enable access rule inheritance on file system and registry ACLs. This function is paired with <code>Disable-AclInheritance</code>.</li>
 </ul>
 
-<h2 id="bug-fixes">Bug Fixes</h2>
+
+<h2>Bug Fixes</h2>
 
 <ul>
-  <li>Fixed: <code>Get-ProgramInstallInfo</code> fails when a program’s <code>Version</code> registry key value can’t be converted into a <code>Version</code> object.</li>
-  <li>Fixed: <code>Test-Service</code> failed to detect if a device driver service is installed.</li>
-  <li>Fixed: <code>Install-Service</code> fails if a service depends on a device driver. (Note: in our testing, we can’t get a device driver set as a dependency. If you know what the secret sauce is to get this to work with sc.exe (or another means), please let us know.)</li>
-  <li>Fixed: <code>Disable-AclInheritance</code> (ne <code>Protect-Acl</code>) fails when piped a registry key.</li>
-  <li>Fixed: <code>Get-PathProvider</code> fails when passed a fully-qualified registry key PowerShell path, e.g. <code>Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\Software</code>.</li>
+<li>Fixed: <code>Get-ProgramInstallInfo</code> fails when a program&rsquo;s <code>Version</code> registry key value can&rsquo;t be converted into a <code>Version</code> object.</li>
+<li>Fixed: <code>Test-Service</code> failed to detect if a device driver service is installed.</li>
+<li>Fixed: <code>Install-Service</code> fails if a service depends on a device driver. (Note: in our testing, we can&rsquo;t get a device driver set as a dependency. If you know what the secret sauce is to get this to work with sc.exe (or another means), please let us know.)</li>
+<li>Fixed: <code>Disable-AclInheritance</code> (ne <code>Protect-Acl</code>) fails when piped a registry key.</li>
+<li>Fixed: <code>Get-PathProvider</code> fails when passed a fully-qualified registry key PowerShell path, e.g. <code>Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\Software</code>.</li>
 </ul>
 
 </div>
@@ -134,10 +135,7 @@
   
 
 
-<time datetime="2016-11-09T11:00:00-08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2016</time>
-      
-
-
+<time datetime="2016-11-09T11:00:00-08:00" pubdate data-updated="true"></time>
     </p>
     
       <div class="sharing">
@@ -167,17 +165,13 @@
 		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
 	</p>
   
-    <section style="margin-top:2em;">
-
-	<p>
-		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
-		
-		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
-	</p>
-
-</section><section>
+    <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
     
       <li class="post">
         <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
@@ -199,8 +193,28 @@
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
       </li>
     
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
   </ul>
 </section>
+
+
+
+
 
   
 </aside>
@@ -209,7 +223,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Aaron Jensen -
+  Copyright &copy; 2018 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

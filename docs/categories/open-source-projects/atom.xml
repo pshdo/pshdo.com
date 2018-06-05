@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: open source projects | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/open-source-projects/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Serilog]]></title>
+    <link href="http://pshdo.com/2013/04/serilog.html"/>
+    <updated>2013-04-25T14:43:00-07:00</updated>
+    <id>http://pshdo.com/2013/04/serilog</id>
+    <content type="html"><![CDATA[<p>I like the idea behind the new <a href="http://nblumhardt.com/2013/03/serilog/">Serilog</a> .NET logging framework: instead of logging strings, you actually log objects.  Cool idea.  The code is <a href="https://github.com/nblumhardt/serilog">hosted on Github</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

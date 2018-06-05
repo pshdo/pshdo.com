@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.4.0.0 Released
 date: 2012-11-17 20:33
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2012/11/17/carbon-v0400.html
+categories: [Announcements, Carbon]
 ---
 
 I'm extremely proud to announce Carbon v0.4.0.0, my favorite release so far.  This release contains **some backwards incompatible changes**, so be sure to read the *Upgrade Instructions*.

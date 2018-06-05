@@ -3,8 +3,7 @@ layout: post
 title: Carbon v1.1 Released
 date: 2013-04-01 13:32
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2013/4/1/carbon-v11-released.html
+categories: [Announcements, Carbon]
 ---
 
 Carbon v1.1 is out. It is [backwards-compatible](http://semver.org) with v1.0.  [Get the bits at BitBucket](https://bitbucket.org/splatteredbits/carbon/downloads).

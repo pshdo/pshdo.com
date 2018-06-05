@@ -84,7 +84,7 @@
   
 
 
-<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
+<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -93,56 +93,63 @@
 
 <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.4.  This release adds a few new features and some bug fixes to improve PowerShell 3 support.</p>
 
-<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn’t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You’re welcome.  <code>;-)</code></p>
+<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn&rsquo;t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You&rsquo;re welcome.  <code>;-)</code></p>
 
 <p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
 
-<h2 id="enhancements">Enhancements</h2>
+<h2>Enhancements</h2>
 
-<h3 id="iis">IIS</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> now attempts to start a website whose ID has changed, since IIS stops a website whenever its ID changes.</li>
-</ul>
-
-<h3 id="network">Network</h3>
+<h3>IIS</h3>
 
 <ul>
-  <li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer’s network interfaces.</li>
-  <li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer’s network interfaces.</li>
+<li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> now attempts to start a website whose ID has changed, since IIS stops a website whenever its ID changes.</li>
 </ul>
 
-<h3 id="path">Path</h3>
+
+<h3>Network</h3>
 
 <ul>
-  <li>Added <a href="http://get-carbon.org/help/Test-UncPath.html">Test-UncPath</a> function for testing if a path is a UNC or not.</li>
+<li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer&rsquo;s network interfaces.</li>
+<li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer&rsquo;s network interfaces.</li>
 </ul>
 
-<h3 id="powershell">PowerShell</h3>
+
+<h3>Path</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs script blocks in PowerShell 3 under a v2.0 CLR.</li>
+<li>Added <a href="http://get-carbon.org/help/Test-UncPath.html">Test-UncPath</a> function for testing if a path is a UNC or not.</li>
 </ul>
 
-<h3 id="shares">Shares</h3>
+
+<h3>PowerShell</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share’s directory if it doesn’t exist.</li>
+<li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs script blocks in PowerShell 3 under a v2.0 CLR.</li>
 </ul>
 
-<h2 id="bug-fixes">Bug Fixes</h2>
 
-<h3 id="certificates">Certificates</h3>
+<h3>Shares</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn’t have permission to write to Windows’ MachineKeys directory.  It now writes an error instead.</li>
+<li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share&rsquo;s directory if it doesn&rsquo;t exist.</li>
 </ul>
 
-<h3 id="powershell-1">PowerShell</h3>
+
+<h2>Bug Fixes</h2>
+
+<h3>Certificates</h3>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn’t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
+<li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn&rsquo;t have permission to write to Windows' MachineKeys directory.  It now writes an error instead.</li>
 </ul>
+
+
+<h3>PowerShell</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn&rsquo;t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
+</ul>
+
 </div>
 
 
@@ -165,10 +172,7 @@
   
 
 
-<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
-      
-
-
+<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true"></time>
     </p>
     
       <div class="sharing">
@@ -198,17 +202,13 @@
 		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
 	</p>
   
-    <section style="margin-top:2em;">
-
-	<p>
-		<a href="http://twitter.com/pshdo"><img src="/storage/twitter.png" alt="" width="32" height="32" style="border:none;vertical-align:middle;" ></a>
-		
-		<a href="http://twitter.com/pshdo" >Follow on Twitter</a>
-	</p>
-
-</section><section>
+    <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
     
       <li class="post">
         <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
@@ -230,8 +230,28 @@
         <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
       </li>
     
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
   </ul>
 </section>
+
+
+
+
 
   
 </aside>
@@ -240,7 +260,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Aaron Jensen -
+  Copyright &copy; 2018 - Aaron Jensen -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -4,7 +4,7 @@ title: "Carbon 1.8 Released"
 date: 2014-09-07 10:14
 comments: false
 categories: 
-tags: Carbon, Announcements
+categories: [ Carbon, Announcements ]
 ---
 
 [Carbon](http://get-carbon.org) 1.8 is out and is [backwards compatible](http://semver.org) with 1.0 through 1.7.  It supports PowerShell 2 and 3. Highlights include:

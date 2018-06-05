@@ -3,7 +3,7 @@ layout: post
 title: "Blade 0.15.0 Released"
 date: 2015-10-12 17:17
 comments: true
-categories: 
+categories: [ Announcements, Blade ]
 ---
 [Blade](http://get-blade.org) 0.15.0 is out. You can [download Blade as a .ZIP archive or from the PowerShell Gallery](http://get-blade.org/).
 

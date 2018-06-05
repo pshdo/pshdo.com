@@ -3,8 +3,7 @@ layout: post
 title: Stupid Feed Tricks
 date: 2013-03-29 3:58
 comments: false
-tags: [linked list, software]
-permalink: /archive/2013/3/29/stupid-feed-tricks.html
+categories: [ "Linked List", "Software" ]
 ---
 
 [Brent Simmons, who goes on to quote Brian Reischl:](http://inessential.com/2013/03/18/brians_stupid_feed_tricks)

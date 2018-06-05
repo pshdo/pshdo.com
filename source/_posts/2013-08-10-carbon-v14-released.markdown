@@ -3,7 +3,7 @@ layout: post
 title: "Carbon v1.4 Released"
 date: 2013-08-10 3:50
 comments: false
-tags: Carbon, Announcements
+categories: Carbon, Announcements
 ---
 
 [Carbon](http://get-carbon.org) v1.4 is out and is [backwards compatible](http://semver.org) with v1.0 through v1.3.  This release adds a few new features and some bug fixes introduced in v1.3.

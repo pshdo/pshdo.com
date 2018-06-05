@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: blade | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/blade/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Blade 0.15.0 Released]]></title>
+    <link href="http://pshdo.com/2015/10/blade-0.15.0-released.html"/>
+    <updated>2015-10-12T17:17:00-07:00</updated>
+    <id>http://pshdo.com/2015/10/blade-0.15.0-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-blade.org">Blade</a> 0.15.0 is out. You can <a href="http://get-blade.org/">download Blade as a .ZIP archive or from the PowerShell Gallery</a>.</p>
+
+<ul>
+<li><code>blade.ps1</code> no longer returns a <code>Blade.RunResult</code> object.</li>
+<li>Improved verbose output to only show test fixtures and individual test names with results.</li>
+<li>Fixed: NUnit output report fails to parse under Team City.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.3.0 Released
 date: 2012-09-28 15:59
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2012/9/28/carbon-v030-released.html
+categories: [Announcements, Carbon]
 ---
 
 I've released version 0.3.0 of Carbon.  This release contains some minor enhancements, several bug fixes, and backwards-**incompatible** changes to the following functions:

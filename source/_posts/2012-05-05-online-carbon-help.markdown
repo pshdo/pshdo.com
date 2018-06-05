@@ -3,8 +3,7 @@ layout: post
 title: Online Carbon Help
 date: 2012-05-30 12:11
 comments: false
-tags: [announcements, carbon]
-permalink: /archive/2012/5/30/online-carbon-help.html
+categories: [Announcements, Carbon]
 ---
 
 The current version of the [Carbon](http://get-carbon.org) help is now [online](http://get-carbon.org/help/).  There are still a lot of functions that have little to no documentation.  Now that I've put it online, and have automated scripts that will generate it for me, I'll be steadily improving the documentation.  It's my number one priority before I release version 1.0.

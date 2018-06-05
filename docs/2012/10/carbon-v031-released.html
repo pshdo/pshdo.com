@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Carbon v0.3.1 Released - > pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="I&rsquo;ve released Carbon v0.3.1, a 100% enhancement and new feature release. New Features Created Get-ComPermissions function for getting COM &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/2012/10/carbon-v031-released.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Carbon v0.3.1 Released</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-29T21:58:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;ve released Carbon v0.3.1, a 100% enhancement and new feature release.</p>
+
+<h2>New Features</h2>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Get-ComPermissions.html">Get-ComPermissions</a> function for getting COM Access or Launch and Activation Permissions.  These are the permissions you see in Component Services (i.e. dcomcnfg) when you right-click <code>My Computer</code>, select <code>Properties</code>, click the <code>COM Security</code> tab then click the <code>Edit Default..</code> or <code>Edit Limits...</code> buttons under <strong>Access Permissions</strong> or <strong>Launch and Activation Permissions</strong>, respectively.</li>
+<li>Created <a href="http://get-carbon.org/help/Grant-ComPermissions.html">Grant-ComPermissions</a> for granting COM Access and/or Launch and Activation permissions.</li>
+<li>Created <a href="http://get-carbon.org/help/Revoke-ComPermissions.html">Revoke-ComPermissions</a> for revoking COM Access and/or Launch and ACtivation permissions.</li>
+<li>Created <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> function for testing if user or group exists on the local computer or in a domain.</li>
+<li>Created <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> function for determinig a user/group&rsquo;s canonical name.  For example, it converts <code>Administrators</code> into <code>BUILTIN\Administrators</code>.</li>
+<li>Created <a href="http://get-carbon.org/help/Reset-MsmqQueueManagerID.html">Reset-MsmqQueueManagerID</a> function, which resets MSMQ&rsquo;s Queue Manager ID.</li>
+</ul>
+
+
+<h2>Enhancements</h2>
+
+<ul>
+<li>Improved <a href="http://get-carbon.org/help/Disable-IEEnhancedSecurityConfiguration.html">Disable-IEEnhancedSecurityConfiguration</a> and <a href="http://get-carbon.org/help/Enable-IEActivationPermissions.html">Enable-IEActivationPermissions</a> for enabling Internet Explorer to run headless by non-priveleged users.</li>
+<li>Changed the way <a href="http://get-carbon.org/help/Invoke-WindowsInstaller.html">Invoke-WindowsInstaller</a> waits for MSI to finish installing: instead of searching for any MSI process, it now searches for an MSI process that is a child of the current PowerShell process.</li>
+<li>Simplified how <a href="http://get-carbon.org/help/Add-GroupMembers.html">Add-GroupMembers</a> adds group members.</li>
+<li>The version number in the module manifest now gets updated correctly for each release.  You should now be able to tell what version you&rsquo;re running by looking in <code>Carbon\Carbon.psd1</code>, or, if Carbon is imported in your console, running <code>Get-Module Carbon | Select-Object Version</code>.</li>
+<li>Improved the way the Windows Features functions detect the best way to manage Windows features.  The old way would write an error to the error stream, which bubbled up at weird times and made diagnosing real errors harder.</li>
+<li>Added a <code>Quiet</code> parameter to <a href="http://get-carbon.org/help/Set-RegistryKeyValue.html">Set-RegistryKeyValue</a> so that <code>Write-Host</code> output is muffled.</li>
+</ul>
+
+
+<p>I&rsquo;m pretty proud of the COM functions.  I&rsquo;ll try to carve out some time in the next week to describe them in more detail and why they&rsquo;re important.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Aaron Jensen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-29T21:58:00-07:00" pubdate data-updated="true"></time>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pshdo.com/2012/10/carbon-v031-released.html" data-via="pshdo" data-counturl="http://pshdo.com/2012/10/carbon-v031-released.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/09/carbon-v030-released.html" title="Previous Post: Carbon v0.3.0 Released">&laquo; Carbon v0.3.0 Released</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/11/carbon-v0400.html" title="Next Post: Carbon v0.4.0.0 Released">Carbon v0.4.0.0 Released &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+	<p>
+		<a href="http://twitter.com/pshdo">Follow on Twitter</a>.
+	</p>
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/02/carbon-2.4.1-released.html">Carbon 2.4.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/11/carbon-2.4.0-released.html">Carbon 2.4.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

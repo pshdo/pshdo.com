@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.5.0.0 Released
 date: 2013-01-07 22:15
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2013/1/7/carbon-v0500.html
+categories: [Announcements, Carbon]
 ---
 
 I'm extremely happy to announce Carbon v0.5.0.0.  This should be the last release of Carbon before v1.0, which will probably be released in late February or early March.  This is the most stable version of Carbon yet, and should be considered a beta of version 1.0.

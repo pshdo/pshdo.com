@@ -3,7 +3,7 @@ layout: post
 title: "Carbon v1.2 Released"
 date: 2013-06-25 21:32
 comments: false
-tags: Carbon, Announcements
+categories: Carbon, Announcements
 ---
 
 [Carbon](http://get-carbon.org) v1.2 is out, is [backwards compatible](http://semver.org) with v1.0 and v1.1 and supports PowerShell 3.  (Future releases of Carbon will most likely *only* support PowerShell 3.)  This release features mostly new functionality, including new functions for managing NTFS compression and performing XDT transformations.  Thanks to Mark Sargent and Philip Teilmeier for contributing enhancements.

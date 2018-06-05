@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.2.6 Released
 date: 2012-06-30 12:49
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2012/6/30/carbon-v026-released.html
+categories: [Announcements, Carbon]
 ---
 I've releaed [Carbon](http://get-carbon.org) v0.2.6.  [Download it from BitBucket.](https://bitbucket.org/splatteredbits/carbon/downloads)  
 

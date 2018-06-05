@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.5.0.1 Released
 date: 2013-01-09 00:21
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2013/1/9/carbon-v0501.html
+categories: [Announcements, Carbon]
 ---
 
 OK.  The guilt was too overwhelming.  I've released Carbon v0.5.0.1, which adds a bunch of aliases for the functions renamed in v0.5.0.0.  This should make upgrading from previous releases easier.  

@@ -3,7 +3,7 @@ layout: post
 title: "Carbon 1.9.0 Released"
 date: 2014-11-08 23:18
 comments: true
-categories: Carbon, Announcements
+categories: [ Carbon, Announcements ]
 ---
 
 [Carbon](http://get-carbon.org) 1.9 is out and is [backwards compatible](http://semver.org) with 1.0 through 1.8.  It supports PowerShell 2 and 3.

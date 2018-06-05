@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Announcements | > pshdo]]></title>
+  <title><![CDATA[Category: announcements | > pshdo]]></title>
   <link href="http://pshdo.com/categories/announcements/atom.xml" rel="self"/>
   <link href="http://pshdo.com/"/>
-  <updated>2017-06-19T23:39:44-07:00</updated>
+  <updated>2018-06-04T17:06:13-07:00</updated>
   <id>http://pshdo.com/</id>
   <author>
     <name><![CDATA[Aaron Jensen]]></name>
@@ -14,86 +14,127 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Carbon 1.9.0 Released]]></title>
-    <link href="http://pshdo.com/2014/11/carbon-1.9.0-released.html"/>
-    <updated>2014-11-08T23:18:00-08:00</updated>
-    <id>http://pshdo.com/2014/11/carbon-1.9.0-released</id>
-    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 1.9 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.8.  It supports PowerShell 2 and 3.</p>
+    <title type="html"><![CDATA[Carbon 2.5.4 Released]]></title>
+    <link href="http://pshdo.com/2018/06/carbon-2.5.4-released.html"/>
+    <updated>2018-06-04T14:30:00-07:00</updated>
+    <id>http://pshdo.com/2018/06/carbon-2.5.4-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.5.4 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
 
-<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads/Carbon-1.9.0.zip">Download from Bitbucket.</a></p>
+<p>What happened to 2.5.1, 2.5.2, and 2.5.3? Well, we switched to new build and deployment automation that had bugs in the deployment part, so we ended up publishing 2.5.1 four times. Version 2.5.4 was published consistently to all platforms.</p>
 
-<p>This is the last minor release for version 1.0. Future 1.0-compatible releases will <em>only</em> contain bug fixes, no new features. It takes too much time to maintain two versions, and I’d rather spend my time getting 2.0 out the door.  Carbon 2.0 will require PowerShell 4.0, so start planning.</p>
-
-<h2 id="enhancements">Enhancements</h2>
-
-<h3 id="certificates">Certificates</h3>
+<h2>Bug Fixes</h2>
 
 <ul>
-  <li>Added <code>KeyStorageFlags</code> parameter to <a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> when loading a certificate from a file for better control when storing the certificate.</li>
+<li>Fixed: Carbon takes 10 to 20 seconds to load. In trying to detect if the Win32_OptionalFeature class is available on the current operating system, it was actually loading all the Win32_OptionalFeature instances. Oops. Now, it just checks for the existence of the Win32_OptionalFeature class. Load times should now be about two to three seconds. (<a href="https://github.com/pshdo/Carbon/issues/35">Fixes issue #35.</a>)</li>
+<li>Import-Carbon.ps1 now hides verbose messages typically shown by Import-Module and Remove-Module cmdlets.</li>
+<li>Fixed: <code>Assert-FirewallConfigurable</code> fails on Windows 10.</li>
 </ul>
 
-<h3 id="hosts-file">Hosts File</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon 2.5.0 Released]]></title>
+    <link href="http://pshdo.com/2017/06/carbon-2.5.0-released.html"/>
+    <updated>2017-06-19T23:20:00-07:00</updated>
+    <id>http://pshdo.com/2017/06/carbon-2.5.0-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.5.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2>Enhancements</h2>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-HostsEntry.html">Set-HostsEntry</a> now handles writing to an in-use/locked hosts file, retrying up to 10 times before writing an error, waiting a random amount of time (from 0 to 1000 milliseconds) between each retry attempt.</li>
+<li>Added <code>DelayedAutoStart</code> boolean property to objects returned by <code>Get-ServiceConfiguration</code>. This flag is <code>true</code> when a service is set to start automatically, delayed. <code>False</code> otherwise. Added extended</li>
+<li>The <code>Install-Service</code> function and the <code>Carbon_Service</code> DSC resource can now set a service&rsquo;s startup type to <code>Automatic (Delayed)</code>. Pass <code>Automatic</code> to the <code>StartupType</code> parameter and use the new <code>Delayed</code> switch. The <code>Delayed</code> switch is ignored unless <code>StartupType</code> is <code>Automatic</code>. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/216/community-add-automaticdelayed-in">issue #216</a>.</li>
+<li>The <code>Uninstall-Certificate</code> function can now delete a certificate by just its thumbprint. The certificate will be uninstalled from <em>all</em> stores. You can pipe the thumbprint or a certificate object to <code>Uninstall-Certificate</code>.</li>
+<li>Added an <code>EnsureRunning</code> switch to <code>Install-Service</code> function to ensure that any service is started after configuring. (By default, <code>Install-Service</code> leaves a service stopped if it was stopped when <code>Install-Service</code> begins.)</li>
+<li>Added <code>IsSymbolicLink</code> extended type property to directory and file objects (i.e. <code>System.IO.DirectoryInfo</code> and <code>System.IO.FileInfo</code> objects).</li>
+<li>Added <code>TargetPath</code> extended type property to file (i.e. <code>System.IO.FileInfo</code>) objects. If a file is a symbolic link, this property will return the file the link points to.</li>
+<li>The <code>TargetPath</code> extended type property on directory (i.e. `System.IO.DirectoryInfo) objects now returns target paths when a directory is a symbolic link.</li>
+<li><code>Initiazlie-Lcm</code> can&rsquo;t be used on Windows Server 2016 and later to put the DSC local configuration manager into pull mode. <code>Initialize-Lcm</code> now writes an error when you try.</li>
 </ul>
 
-<h3 id="iis">IIS</h3>
+
+<h2>Bug Fixes</h2>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a>, <a href="http://get-carbon.org/help/Remove-IisMimeMap.html">Remove-IisMimeMap</a>, and <a href="http://get-carbon.org/help/Set-IisMimeMap.html">Set-IisMimeMap</a> now support managing MIME types for websites, virtual directories, and applications.</li>
+<li><code>Install-Service</code> and the <code>Carbon_Service</code> DSC resource write errors when a service is running and its startup type is changed to <code>Disabled</code>.</li>
+<li>The <code>Carbon_ScheduledTask</code> DSC resource writes incorrect information to verbose log when the current and desired credential for the scheduled task are different.</li>
+<li>The <code>Carbon_ScheduledTask</code> DSC resource doesn&rsquo;t correctly detect when a task&rsquo;s identity has changed (it wasn&rsquo;t converting usernames to their canonical representation before comparing the existing identity with the desired identity).</li>
+<li>Fixed: Importing Carbon in 32-bit PowerShell fails on a 64-bit operating system. DSC isn&rsquo;t available so the <code>Initialize-Lcm</code> function can&rsquo;t be exported. Thanks to <a href="https://bitbucket.org/McAndersDK/">Anders Andersson</a> for contribuging the fix.</li>
+<li>Fixed: <code>Install-Service</code> and <code>Carbon_Service</code> DSC resource fail to change the identity a service runs as if switching from a custom account to the default <code>NetworkService</code> account.</li>
+<li>Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.Fixed: <code>Get-PowerShellModuleInstallPath</code> returns nothing when run under 32-bit (x86) PowerShell on 64-bit Windows.</li>
 </ul>
 
-<h3 id="scheduled-tasks">Scheduled Tasks</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LibGit2 0.3.2 Released]]></title>
+    <link href="http://pshdo.com/2017/04/libgit2-0.3.2-released.html"/>
+    <updated>2017-04-07T11:26:00-07:00</updated>
+    <id>http://pshdo.com/2017/04/libgit2-0.3.2-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-libgit2.org">LibGit2</a> 0.3.2 is out and is available <a href="http://get-libgit2.org/about_LibGit2_Installation.html">as a ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>.</p>
 
 <ul>
-  <li>Created <a href="http://get-carbon.org/help/Get-ScheduledTask.html">Get-ScheduledTask</a> function for getting the scheduled tasks on the local computer using <code>schtasks.exe</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Install-ScheduledTask.html">Install-ScheduledTask</a> function for installing a scheduled task using <code>schtasks.exe</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Test-ScheduledTask.html">Test-ScheduledTask</a> function for testing if a scheduled tasks on the local computer exists using <code>schtasks.exe</code>.</li>
-  <li>Created <a href="http://get-carbon.org/help/Uninstall-ScheduledTask.html">Uninstall-ScheduledTask</a> function for deleting a scheduled task using <code>schtasks.exe</code>.</li>
+<li>Fixed: <code>Copy-GitRepository</code> intermittently fails when using SSH.</li>
+<li>Fixed: <code>Copy-GitRepository</code> takes an order of magnitude longer than normal Git because it updates the clone&rsquo;s progress too frequently. It now only updates progress every 1/10th of a second, which has minimal impact on clone speed.</li>
 </ul>
 
-<h3 id="services">Services</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon 2.4.1 Released]]></title>
+    <link href="http://pshdo.com/2017/02/carbon-2.4.1-released.html"/>
+    <updated>2017-02-21T10:57:00-08:00</updated>
+    <id>http://pshdo.com/2017/02/carbon-2.4.1-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.4.1 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
+
+<h2>Bug Fixes</h2>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> now supports setting a command to run when a service fails.</li>
+<li>Fixed: <code>Carbon_Permission</code> fails when revoking permissions and the <code>Permissions</code> property doesn'&rsquo;t have a value.</li>
+<li>Fixed: <code>Protect-String</code> doesn&rsquo;t convert secure strings properly so they get encrypted with extra bytes in them.</li>
+<li>Fixed: `Revoke-Permission' fails when an identity has multiple access control entries on an item. Thanks to <a href="https://bitbucket.org/bozho_/">bozho_</a> for reporting <a href="https://bitbucket.org/splatteredbits/carbon/issues/221/community-revoke-permission-fails-if-the">issue #221</a> and contributing the fix.</li>
+<li>Fixed: <code>Compress-Item</code>&lsquo; writes an error when using the <code>WhatIf</code> switch.</li>
+<li>Fixed: <code>Install-IisWebsite</code> help examples contain invalid/broken code (thanks to John Mitchell for reporting).</li>
+<li>Fixed: <code>Install-Service</code> fails when password contains double quote character, i.e. <code>"</code> (fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/219/community-install-service-fails-to">issue #219</a>).</li>
+<li>Fixed: <code>Read-File</code> and <code>Write-File</code> fail to retry writing to a locked file when <code>$Global:Error</code> is full. Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/217/community-error-handling-in-read-file-and">issue #217</a>.</li>
+<li>Fixed: <code>Get-FirewallRule</code> sets the <code>EdgeTraversalPolicy</code> to <code>DeferUser</code> on rules whose policy is &ldquo;defer to application&rdquo;.</li>
+<li>Fixed: <code>Get-FirewallRule</code> fails on non-english-speaking computers. (It was parsing the output of <code>netsh advfirewall</code>. Now it uses the Windows Firewall with Advanced Security API.) [Fixes <a href="https://bitbucket.org/splatteredbits/carbon/issues/208/community-get-firewallrule-could-not-find">issue #208</a>.</li>
+<li>Fixed: <code>Get-FirewallRule</code> incorrectly parsed interface types. It assumed interface type was one of multiple values. In reality, it can be set to one or more different values. The underlying enumeration and its values have been updated to be a set of flags (i.e. a bit field).</li>
+<li>Fixed: <code>Carbon_FirewallRule</code> fails when Profile property has more than one value.</li>
+<li>Fixed: <code>Get-ScheduledTask</code> doesn&rsquo;t handle when a scheduled task doesn&rsquo;t exist on Windows 2008.</li>
 </ul>
 
-<h2 id="bug-fixes">Bug Fixes</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon 2.4.0 Released]]></title>
+    <link href="http://pshdo.com/2016/11/carbon-2.4.0-released.html"/>
+    <updated>2016-11-09T11:00:00-08:00</updated>
+    <id>http://pshdo.com/2016/11/carbon-2.4.0-released</id>
+    <content type="html"><![CDATA[<p><a href="http://get-carbon.org">Carbon</a> 2.4.0 is out. You can <a href="http://get-carbon.org/about_Carbon_Installation.html">download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery</a>. It may take a week or two for the package to show up at chocolatey.org.</p>
 
-<h3 id="general">General</h3>
+<h2>Enhancements</h2>
 
 <ul>
-  <li><code>Import-Carbon</code> fails when <code>-WhatIf</code> switch is used.</li>
-  <li>Importing Carbon no longer writes an error if the <code>PATH</code> environment variable contains a path to a non-existent drive (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/134/import-carbon-fails-with-path-environment">#134</a>).</li>
+<li><code>Protect-String</code> can now encrypt a <code>SecureString</code>. The <code>String</code> parameter&rsquo;s type was changed to <code>[object]</code>. When you pass in a <code>SecureString</code>, it is converted to an array of bytes, encrypted, and the array of bytes are cleared from memory.</li>
+<li>Renamed <code>Protect-Acl</code> to <code>Disable-AclInheritance</code> to make it clearer what the function does. Created a <code>Protect-Acl</code> alias in place to preserve backwards-compatability.</li>
+<li><code>Disable-AclInheritance</code> only disables inheritance if it is currently enabled.</li>
+<li>Created <code>Enable-AclInheritance</code> to re-enable access rule inheritance on file system and registry ACLs. This function is paired with <code>Disable-AclInheritance</code>.</li>
 </ul>
 
-<h3 id="ini">INI</h3>
+
+<h2>Bug Fixes</h2>
 
 <ul>
-  <li><a href="http://get-carbon.org/help/Set-IniEntry.html">Set-IniEntry</a> fails when adding the first section-less setting to a file.</li>
-</ul>
-
-<h3 id="internet-explorer">Internet Explorer</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Enable-IEActivationPermission.html">Enable-IEActivationPermission</a> no longer returns the <code>hkcr:</code> drive.</li>
-</ul>
-
-<h3 id="security">Security</h3>
-
-<ul>
-  <li>Fixed an error that occurs when setting permissions on a private key fails: the error message is created using an invalid format string (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/133/set-cryptokeysecurity-invalid-parameters">#133</a>).</li>
-  <li>Fixed an exception that gets thrown when setting a private key’s permissions and the only certificate key is AT_SIGNATURE (issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/132/set-cryptokeysecurity-throws-exception">#132</a>).</li>
-</ul>
-
-<h3 id="services-1">Services</h3>
-
-<ul>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> stops Windows service even when no settings/configuration has changed (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/131/install-service-always-restarts-service">#131</a>). </li>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> didn’t clear services depended on during a re-install.</li>
-  <li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> wasn’t restarting a manual service if it was running when configuration began.</li>
-  <li><a href="http://get-carbon.org/help/Uninstall-Service.html">Uninstall-Service</a> hard codes the path to the Windows directory (fixes issue <a href="https://bitbucket.org/splatteredbits/carbon/issue/143/uninstall-service-script-has-hard-coded">#143</a>). Thanks to <a href="https://bitbucket.org/tdmathison">Travis Mathison</a> for the fix.</li>
+<li>Fixed: <code>Get-ProgramInstallInfo</code> fails when a program&rsquo;s <code>Version</code> registry key value can&rsquo;t be converted into a <code>Version</code> object.</li>
+<li>Fixed: <code>Test-Service</code> failed to detect if a device driver service is installed.</li>
+<li>Fixed: <code>Install-Service</code> fails if a service depends on a device driver. (Note: in our testing, we can&rsquo;t get a device driver set as a dependency. If you know what the secret sauce is to get this to work with sc.exe (or another means), please let us know.)</li>
+<li>Fixed: <code>Disable-AclInheritance</code> (ne <code>Protect-Acl</code>) fails when piped a registry key.</li>
+<li>Fixed: <code>Get-PathProvider</code> fails when passed a fully-qualified registry key PowerShell path, e.g. <code>Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\Software</code>.</li>
 </ul>
 
 ]]></content>

@@ -3,7 +3,7 @@ layout: post
 title: "Carbon v1.5.1 Released"
 date: 2013-10-03 16:10
 comments: false
-tags: Carbon, Announcements
+categories: [ Carbon, Announcements ]
 ---
 
 [Carbon](http://get-carbon.org) v1.5.1 is out and is [backwards compatible](http://semver.org) with v1.0 through v1.5.  It supports PowerShell 2.  It contains two bug fixes.

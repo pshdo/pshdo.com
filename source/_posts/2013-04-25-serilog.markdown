@@ -3,8 +3,7 @@ layout: post
 title: Serilog
 date: 2013-04-25 14:43
 comments: false
-tags: [linked list, logging, open source projects, serilog]
-permalink: /archive/2013/4/25/serilog.html
+categories: [ "Linked List", Logging, "Open Source Projects", Serilog]
 ---
 
 I like the idea behind the new [Serilog](http://nblumhardt.com/2013/03/serilog/) .NET logging framework: instead of logging strings, you actually log objects.  Cool idea.  The code is [hosted on Github](https://github.com/nblumhardt/serilog).

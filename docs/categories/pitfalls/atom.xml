@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: pitfalls | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/pitfalls/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Beware Get-ChildItem]]></title>
+    <link href="http://pshdo.com/2012/05/beware-get-childitem.html"/>
+    <updated>2012-05-04T16:05:00-07:00</updated>
+    <id>http://pshdo.com/2012/05/beware-get-childitem</id>
+    <content type="html"><![CDATA[<p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+
+<pre><code>&gt; Get-ChildItem .
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem $null
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem @()
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem ''
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+</code></pre>
+
+<p>Yikes!  I would expect it to write an error or just return nothing.</p>
+
+<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
+
+<pre><code>function Remove-ExtraFiles($Items, $Exclude)
+{
+    Get-ChildItem $Items -Exclude $Exclude -Recurse |
+        Where-Object { -not $_.PsIsContainer } |
+        Remove-Item
+}
+</code></pre>
+
+<p>I was testing this script when I saw that files under my local directory were getting deleted.  By the time I killed the script, it was too late: the last two hours of work were gone.  It turns out that <code>Remove-ExtraFiles</code> was getting called with an empty array as the <code>$Items</code> parameter value.</p>
+
+<p>In my case, the solution was to add some validation to the <code>$Items</code> parameter:</p>
+
+<pre><code>function Remove-ExtraFiles
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [string[]]
+        $Items,
+
+        [string[]]
+        $Exclude)
+    )
+    Get-ChildItem $Items -Exclude $Exclude -Recurse |
+        Where-Object { -not $_.PsIsContainer } |
+        Remove-Item
+}
+</code></pre>
+
+<p>Making the parameter mandatory causes a script error if calling <code>Remove-ExtraFiles</code> with null, an empty array, or an empty string.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: windows | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/windows/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Who Is Modifying That File?]]></title>
+    <link href="http://pshdo.com/2013/04/who-is-modifying-that-file.html"/>
+    <updated>2013-04-25T14:51:00-07:00</updated>
+    <id>http://pshdo.com/2013/04/who-is-modifying-that-file</id>
+    <content type="html"><![CDATA[<p>Raymond Chen recently explained <a href="http://blogs.msdn.com/b/oldnewthing/archive/2013/04/18/10412074.aspx">how to turn on file system auditing</a> in Windows, which will help you figure out <strong>who keeps modifiying that file</strong>.</p>
+]]></content>
+  </entry>
+  
+</feed>

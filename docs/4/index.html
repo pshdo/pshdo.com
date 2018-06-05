@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>> pshdo</title>
+  <meta name="author" content="Aaron Jensen">
+
+  
+  <meta name="description" content="Carbon 1.7 is out and is backwards compatible with 1.0 through 1.6. It supports PowerShell 2. It contains mostly bug fixes and some enhancements. Get &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pshdo.com/4/index.html">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/pshdo.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/archive/atom.xml" rel="alternate" title="> pshdo" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">> pshdo</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/archive/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:pshdo.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+	<li><a href="/about">About</a></li>
+	<li><a href="/archive">Archive</a></li>
+	<li><a href="/projects">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/04/carbon-1-dot-7-released.html">Carbon 1.7 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-30T13:40:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.7 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.6.  It supports PowerShell 2. It contains mostly bug fixes and some enhancements.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<p>There is now <a href="https://groups.google.com/forum/#!forum/carbonps">a Carbon support mailing list</a>.</p>
+
+<h2>Enhancements</h2>
+
+<h3>General</h3>
+
+<ul>
+<li>Import-Carbon.ps1 now supports the <code>-WhatIf</code> switch.</li>
+<li>Import-Carbon.ps1 now hides verbose log messages when removing/importing Carbon even when supplying the <code>-Verbose</code> switch because I think the verbose output is too verbose and not helpful at all.</li>
+<li>Import-Carbon.ps1 now supports adding a prefix when importing the Carbon module (with the <code>Prefix</code> parameter) to avoid name collisions and <a href="http://blogs.msdn.com/b/powershell/archive/2014/04/07/what-s-in-a-name-using-the-ps-prefix.aspx">follow best practices</a>.</li>
+</ul>
+
+
+<h3>Certificates</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Get-CertificateStore.html">Get-CertificateStore</a> now supports non-standard, custom certificate stores.</li>
+<li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> now supports non-standard, custom certificate stores.</li>
+<li><a href="http://get-carbon.org/help/Install-Certificate.html">Install-Certificate</a> now supports non-standard, custom certificate stores.</li>
+<li><a href="http://get-carbon.org/help/Uninstall-Certificate.html">Uninstall-Certificate</a> now supports non-standard, custom certificate stores.</li>
+</ul>
+
+
+<h2>Bug Fixes</h2>
+
+<h3>General</h3>
+
+<ul>
+<li>No more silent errors when importing Carbon on Windows 2012 R2.</li>
+</ul>
+
+
+<h3>Certificates</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> no longer writes a silent error when a certificate does not exist. Instead, no error is written.</li>
+</ul>
+
+
+<h3>File System</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> fails when target path is hidden.</li>
+<li><a href="http://get-carbon.org/help/Test-NtfsCompression.html">Test-NtfsCompression</a> fails when file/directory is hidden.</li>
+<li><a href="http://get-carbon.org/help/Test-PathIsJunction.html">Test-PathIsJunction</a> fails when tested directory is hidden.</li>
+</ul>
+
+
+<h3>Security</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> fails when item is hidden.</li>
+<li><a href="http://get-carbon.org/help/Grant-Permission.html">Grant-Permission</a> doesn&rsquo;t handle non-existent paths, causing cascading errors.</li>
+<li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> always returns <code>$false</code> when testing leaf-level permissions and the <code>ApplyTo</code> parameter is provided, i.e. it doesn&rsquo;t ignore inheritance/propagation flags on leaves.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/02/carbon-1-dot-6-released.html">Carbon 1.6 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-01T12:14:00-08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> 1.6 is out and is <a href="http://semver.org">backwards compatible</a> with 1.0 through 1.5.1.  It supports PowerShell 2.  It contains a few bug fixes and many enhancements.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2>Bug Fixes</h2>
+
+<h3>File System</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> doesn&rsquo;t delete a junction when given a relative path to the junction.</li>
+</ul>
+
+
+<h3>Services</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-Service.html">Install-Service</a> doesn&rsquo;t properly resolve a service&rsquo;s path.</li>
+</ul>
+
+
+<h3>Shares</h3>
+
+<ul>
+<li>Fixed <a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> example to use correct syntax. <a href="https://bitbucket.org/splatteredbits/carbon/issue/111">#111.</a></li>
+</ul>
+
+
+<h2>Enhancements</h2>
+
+<h3>Hosts File</h3>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Remove-HostsEntry.html">Remove-HostsEntry</a> function for removing hostnames from a hosts file.</li>
+</ul>
+
+
+<h3>IIS</h3>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Join-IisVirtualPath.html">Join-IisVirtualPath</a> for joining paths used by the IIS APIs.</li>
+<li>Renamed all IIS <code>Path</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
+
+<ul>
+<li><a href="http://get-carbon.org/help/Disable-IisSecurityAuthentication.html">Disable-IisSecurityAuthentication</a></li>
+<li><a href="http://get-carbon.org/help/Enable-IisDirectoryBrowsing.html">Enable-IisDirectoryBrowsing</a></li>
+<li><a href="http://get-carbon.org/help/Enable-IisSecurityAuthentication.html">Enable-IisSecurityAuthentication</a></li>
+<li><a href="http://get-carbon.org/help/Enable-IisSsl.html">Enable-IisSsl</a></li>
+<li><a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a></li>
+<li><a href="http://get-carbon.org/help/Get-IisConfigurationSection.html">Get-IisConfigurationSection</a></li>
+<li><a href="http://get-carbon.org/help/Get-IisHttpHeader.html">Get-IisHttpHeader</a></li>
+<li><a href="http://get-carbon.org/help/Get-IisHttpRedirect.html">Get-IisHttpRedirect</a></li>
+<li><a href="http://get-carbon.org/help/Get-IisMimeMap.html">Get-IisMimeMap</a></li>
+<li><a href="http://get-carbon.org/help/Get-IisSecurityAuthentication.html">Get-IisSecurityAuthentication</a></li>
+<li><a href="http://get-carbon.org/help/Set-IisHttpHeader.html">Set-IisHttpHeader</a></li>
+<li><a href="http://get-carbon.org/help/Set-IisHttpRedirect.html">Set-IisHttpRedirect</a></li>
+<li><a href="http://get-carbon.org/help/Set-IisWindowsAuthentication.html">Set-IisWindowsAuthentication</a></li>
+<li><a href="http://get-carbon.org/help/Test-IisConfigurationSection.html">Test-IisConfigurationSection</a></li>
+<li><a href="http://get-carbon.org/help/Test-IisSecurityAuthentication.html">Test-IisSecurityAuthentication</a></li>
+</ul>
+</li>
+<li>Renamed <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a>&rsquo;s <code>SiteName</code> parameter to <code>Name</code> (with a backwards-compatible alias).</li>
+<li>Renamed all IIS <code>Name</code> parameters which represented virtual paths to <code>VirtualPath</code> (with backwards-compatible aliases):
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
+<li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
+</ul>
+</li>
+<li>Renamed all IIS <code>Path</code> parameters which represented physical paths to <code>PhysicalPath</code> (with backwards-compatible aliases):
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a></li>
+<li><a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a></li>
+<li><a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>.NET</h3>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Test-DotNet.html">Test-DotNet</a> for testing if v2 or v4 of the .NET framework is installed.</li>
+</ul>
+
+
+<h3>Path</h3>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Get-PathProvider.html">Get-PathProvider</a> function for getting a path&rsquo;s PowerShell provider.</li>
+</ul>
+
+
+<h3>PowerShell</h3>
+
+<ul>
+<li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to test if the appropriate .NET framework is installed if the user chooses an explicit runtime to use.</li>
+</ul>
+
+
+<h3>Security</h3>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> function for checking if a user/group has a set of permissions and, optionally, a set of inheritance and propagation flags on a file, directory, or registry key.</li>
+<li><a href="http://get-carbon.org/help/Test-Permission.html">Test-Permission</a> now automatically includes the <code>Synchronize</code> permission when checking for exact permissions, since this permission is always on and can never be removed from a file/directory.</li>
+</ul>
+
+
+<h3>Services</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-User.html">Install-Service</a> no longer requires a password, in order to support <a href="http://technet.microsoft.com/en-us/library/dd548356.aspx">managed service accounts and virtual accounts</a>.  We have no idea if this works, since we can&rsquo;t test locally.  Please let us know if this fix works for you. <a href="https://bitbucket.org/splatteredbits/carbon/issue/114">#114</a></li>
+</ul>
+
+
+<h3>Users and Groups</h3>
+
+<ul>
+<li>Updated <a href="http://get-carbon.org/help/Install-User.html">Install-User</a> to support passwords longer than 14 characters.  Thanks to <a href="http://www.jamescrowley.co.uk/">James Crowley</a> for the fix.</li>
+</ul>
+
+
+<h3>Windows Features</h3>
+
+<ul>
+<li>Marked Assert-WindowsFeatureFunctionsSupported as an internal function.  Please don&rsquo;t use.  It will be removed from future versions of PowerShell.</li>
+<li>Updated <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Test-WindowsFeature</a> to work on Windows 8/2012.</li>
+<li>Created new <code>Carbon.Identity</code> class for representing identities.  It also contains a static <code>FindByName</code> method which uses The Windows <code>LookupAccountName</code> function to find full account names, domains, and sids.</li>
+<li>Updated <a href="http://get-carbon.org/help/Test-Identity.html">Test-Identity</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
+<li>Updated <a href="http://get-carbon.org/help/Resolve-IdentityName.html">Resolve-IdentityName</a> to use <code>[Carbon.Identity]::FindByName</code> to find identities so it no longer throws exceptions when an identity can&rsquo;t be found.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/10/carbon-v151-released.html">Carbon v1.5.1 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-03T16:10:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5.1 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.5.  It supports PowerShell 2.  It contains two bug fixes.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2>Bug Fixes</h2>
+
+<h3>IIS</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> wasn&rsquo;t consistently starting a website after changing its ID.</li>
+</ul>
+
+
+<h3>Shares</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> writes an error when running under strict mode.  (It has an unused variable which uses an undefined variable to create its value.  Removed the unused variable.)</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/09/carbon-v15-released.html">Carbon v1.5 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-06T09:35:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.5 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.4.  This release adds a few new features and some bug fixes to improve PowerShell 3 support.</p>
+
+<p>This is definitely the last release to support PowerShell 2.  There were enough bug fixes that I didn&rsquo;t feel good about making people upgrade to a backwards-incompatible version to get them, so I jumped through some extra hoops to test on PowerShell 2.  You&rsquo;re welcome.  <code>;-)</code></p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2>Enhancements</h2>
+
+<h3>IIS</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Set-IisWebsiteID.html">Set-IisWebsiteID</a> now attempts to start a website whose ID has changed, since IIS stops a website whenever its ID changes.</li>
+</ul>
+
+
+<h3>Network</h3>
+
+<ul>
+<li>Added <a href="http://get-carbon.org/help/Get-IPAddress.html">Get-IPAddress</a> function for getting the IPv4/IPv6 addresses currently in use on the local computer&rsquo;s network interfaces.</li>
+<li>Added <a href="http://get-carbon.org/help/Test-IPAddress.html">Test-IPAddress</a> function for testing if an IP address is in use on one the local computer&rsquo;s network interfaces.</li>
+</ul>
+
+
+<h3>Path</h3>
+
+<ul>
+<li>Added <a href="http://get-carbon.org/help/Test-UncPath.html">Test-UncPath</a> function for testing if a path is a UNC or not.</li>
+</ul>
+
+
+<h3>PowerShell</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> now runs script blocks in PowerShell 3 under a v2.0 CLR.</li>
+</ul>
+
+
+<h3>Shares</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-SmbShare.html">Install-SmbShare</a> now creates the share&rsquo;s directory if it doesn&rsquo;t exist.</li>
+</ul>
+
+
+<h2>Bug Fixes</h2>
+
+<h3>Certificates</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Get-Certificate.html">Get-Certificate</a> throws an exception and halts script execution when loading a certificate file with a private key and the user doesn&rsquo;t have permission to write to Windows' MachineKeys directory.  It now writes an error instead.</li>
+</ul>
+
+
+<h3>PowerShell</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> doesn&rsquo;t run under a v2.0 CLR when using parameters <code>-Runtime 'v2.0'</code>.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/08/carbon-v14-released.html">Carbon v1.4 Released</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T03:50:00-07:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://get-carbon.org">Carbon</a> v1.4 is out and is <a href="http://semver.org">backwards compatible</a> with v1.0 through v1.3.  This release adds a few new features and some bug fixes introduced in v1.3.</p>
+
+<p>This will most likely be the last version of Carbon tested and supported on PowerShell 2.  We&rsquo;ll be moving the build server to PowerShell 3 sometime around August 15th, which means that&rsquo;s the version of PowerShell the automated tests will use.  We encourage everyone to upgrade to PowerShell 3 as soon as possible.</p>
+
+<p><a href="https://bitbucket.org/splatteredbits/carbon/downloads">Get the bits at BitBucket.</a></p>
+
+<h2>Enhancements</h2>
+
+<h3>File System</h3>
+
+<ul>
+<li>Created <a href="http://get-carbon.org/help/Install-Junction.html">Install-Junction</a> function for creating new and/or updating existing junctions. This is a more idempotent way of creating junctions, as opposed to <a href="http://get-carbon.org/help/New-Junction.html">New-Junction</a> and <a href="http://get-carbon.org/help/Remove-Junction.html">Remove-Junction</a> which report errors if a junction already exists or doesn&rsquo;t exist, respectively.</li>
+</ul>
+
+
+<h3>IIS</h3>
+
+<ul>
+<li>Objects returned by <a href="http://get-carbon.org/help/Get-IisWebsite.html">Get-IisWebsite</a> now have a dynamic <code>PhysicalPath</code> script property, so you don&rsquo;t have to traverse down into the default application&rsquo;s default virtual directory object to get it.</li>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a>, <a href="http://get-carbon.org/help/Install-IisWebsite.html">Install-IisWebsite</a>, and <a href="http://get-carbon.org/help/Install-IisVirtualDirectory.html">Install-IisVirtualDirectory</a> now canonicalize physical paths, i.e. they convert any path with a relative part (e.g. &lsquo;..&rsquo;) to a full path.  It turns out IIS doesn&rsquo;t like paths with relative parts.</li>
+<li>Created <a href="http://get-carbon.org/help/Get-IisApplication.html">Get-IisApplication</a> function to get <code>Microsoft.Web.Administration.Application</code> objects for all or specific applications under a website.</li>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> now uses the <code>Microsoft.Web.Administration</code> API instead of <code>appcmd.exe</code>.</li>
+</ul>
+
+
+<h3>PowerShell</h3>
+
+<ul>
+<li>Added <code>ExecutionPolicy</code> parameter to <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to allow setting a custom exeuction policy when using <a href="http://get-carbon.org/help/Invoke-PowerShell.html">Invoke-PowerShell</a> to run a script.</li>
+</ul>
+
+
+<h2>Bug Fixes</h2>
+
+<h3>IIS</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Install-IisApplication.html">Install-IisApplication</a> not updating/changing physical path on existing application.</li>
+</ul>
+
+
+<h3>.NET</h3>
+
+<ul>
+<li><a href="http://get-carbon.org/help/Set-DotNetAppSetting.html">Set-DotNetAppSetting</a> and <a href="http://get-carbon.org/help/Set-DotNetConnectionString.html">Set-DotNetConnectionString</a> failed if setting .NET configuration under an architecture where the PowerShell execution policy doesn&rsquo;t allow running scripts.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="5">&larr; Olderfsdfsdfsdaf</a>
+    
+    <a href="/archive">Archive</a>
+    
+    <a class="next" href="3">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2018/06/carbon-2.5.4-released.html">Carbon 2.5.4 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/06/carbon-2.5.0-released.html">Carbon 2.5.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/04/libgit2-0.3.2-released.html">LibGit2 0.3.2 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2017/02/carbon-2.4.1-released.html">Carbon 2.4.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/11/carbon-2.4.0-released.html">Carbon 2.4.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/09/carbon-2.3.0-released.html">Carbon 2.3.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/05/carbon-2.2.0-released.html">Carbon 2.2.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.1-released.html">Carbon 2.1.1 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2016/02/carbon-2.1.0-released.html">Carbon 2.1.0 Released</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/10/carbon-2.0.1-released.html">Carbon 2.0.1 Released</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Aaron Jensen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

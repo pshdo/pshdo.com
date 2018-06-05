@@ -1,0 +1,18 @@
+---
+layout: post
+title: "Carbon 2.5.4 Released"
+date: 2018-06-04 14:30
+comments: true
+categories: [ Announcements, Carbon ]
+---
+
+[Carbon](http://get-carbon.org) 2.5.4 is out. You can [download Carbon as a .ZIP archive, NuGet package, Chocolatey package, or from the PowerShell Gallery](http://get-carbon.org/about_Carbon_Installation.html). It may take a week or two for the package to show up at chocolatey.org.
+
+What happened to 2.5.1, 2.5.2, and 2.5.3? Well, we switched to new build and deployment automation that had bugs in the deployment part, so we ended up publishing 2.5.1 four times. Version 2.5.4 was published consistently to all platforms.
+
+
+## Bug Fixes
+
+* Fixed: Carbon takes 10 to 20 seconds to load. In trying to detect if the Win32_OptionalFeature class is available on the current operating system, it was actually loading all the Win32_OptionalFeature instances. Oops. Now, it just checks for the existence of the Win32_OptionalFeature class. Load times should now be about two to three seconds. ([Fixes issue #35.](https://github.com/pshdo/Carbon/issues/35))
+* Import-Carbon.ps1 now hides verbose messages typically shown by Import-Module and Remove-Module cmdlets.
+* Fixed: `Assert-FirewallConfigurable` fails on Windows 10.

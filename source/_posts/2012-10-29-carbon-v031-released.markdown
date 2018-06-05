@@ -3,8 +3,7 @@ layout: post
 title: Carbon v0.3.1 Released
 date: 2012-10-29 21:58
 comments: false
-tags: [Announcements, Carbon]
-permalink: /archive/2012/10/29/carbon-v031-released.html
+categories: [Announcements, Carbon]
 ---
 
 I've released Carbon v0.3.1, a 100% enhancement and new feature release.

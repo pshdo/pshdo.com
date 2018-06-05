@@ -3,8 +3,7 @@ layout: post
 title: "Carbon 2.0-alpha.26 Released"
 date: 2014-09-29 21:33
 comments: false
-categories: 
-tags: Carbon, Announcements
+categories: Carbon, Announcements
 ---
 
 ## Overview

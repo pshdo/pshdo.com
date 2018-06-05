@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linked list | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/linked-list/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Desired State Configuration with PowerShell]]></title>
+    <link href="http://pshdo.com/2013/06/desired-state-configuration-with-powershell.html"/>
+    <updated>2013-06-13T13:17:00-07:00</updated>
+    <id>http://pshdo.com/2013/06/desired-state-configuration-with-powershell</id>
+    <content type="html"><![CDATA[<p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.</p>
+
+<p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Who Is Modifying That File?]]></title>
+    <link href="http://pshdo.com/2013/04/who-is-modifying-that-file.html"/>
+    <updated>2013-04-25T14:51:00-07:00</updated>
+    <id>http://pshdo.com/2013/04/who-is-modifying-that-file</id>
+    <content type="html"><![CDATA[<p>Raymond Chen recently explained <a href="http://blogs.msdn.com/b/oldnewthing/archive/2013/04/18/10412074.aspx">how to turn on file system auditing</a> in Windows, which will help you figure out <strong>who keeps modifiying that file</strong>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Serilog]]></title>
+    <link href="http://pshdo.com/2013/04/serilog.html"/>
+    <updated>2013-04-25T14:43:00-07:00</updated>
+    <id>http://pshdo.com/2013/04/serilog</id>
+    <content type="html"><![CDATA[<p>I like the idea behind the new <a href="http://nblumhardt.com/2013/03/serilog/">Serilog</a> .NET logging framework: instead of logging strings, you actually log objects.  Cool idea.  The code is <a href="https://github.com/nblumhardt/serilog">hosted on Github</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stupid Feed Tricks]]></title>
+    <link href="http://pshdo.com/2013/03/stupid-feed-tricks.html"/>
+    <updated>2013-03-29T03:58:00-07:00</updated>
+    <id>http://pshdo.com/2013/03/stupid-feed-tricks</id>
+    <content type="html"><![CDATA[<p><a href="http://inessential.com/2013/03/18/brians_stupid_feed_tricks">Brent Simmons, who goes on to quote Brian Reischl:</a></p>
+
+<blockquote><p>At NewsGator and Sepia Labs I worked with Brian Reischl, one of the server-side guys. Among other things, he worked on NewsGator’s RSS content service, which reads n million feeds once an hour.</p>
+
+<p>(I don’t know if I can say what n is. It surprised me when I heard it. The system is still running, by the way.)</p>
+
+<p>Brian is intimately acquainted with the different ways feeds can be screwed up. So he posted <a href="https://docs.google.com/document/d/1cvq67iQpk2C7ufOsefsfKnGCXeUIv46NQHbnHkm8PtU/edit?usp=sharing">Stupid Feed Tricks</a> on Google Docs.</p>
+
+<p>I quote the entire thing below for people like me who don’t have Google accounts. The below is all by Brian:</p></blockquote>
+
+<p>He then goes on to list several dozen edge cases the feed reader had to handle.</p>
+
+<p><strong>Writing software is hard.</strong></p>
+]]></content>
+  </entry>
+  
+</feed>

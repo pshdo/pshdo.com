@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: powershell | > pshdo]]></title>
+  <link href="http://pshdo.com/categories/powershell/atom.xml" rel="self"/>
+  <link href="http://pshdo.com/"/>
+  <updated>2018-06-04T17:06:13-07:00</updated>
+  <id>http://pshdo.com/</id>
+  <author>
+    <name><![CDATA[Aaron Jensen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Desired State Configuration with PowerShell]]></title>
+    <link href="http://pshdo.com/2013/06/desired-state-configuration-with-powershell.html"/>
+    <updated>2013-06-13T13:17:00-07:00</updated>
+    <id>http://pshdo.com/2013/06/desired-state-configuration-with-powershell</id>
+    <content type="html"><![CDATA[<p>I recommend finding time to watch Jeffrey Snover and Kenneth Hansen&rsquo;s <a href="http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B302">Desired State Configuration in Windows Server 2012 R2 PowerShell</a> talk from TechEd 2013.  Desired State Configuration is a way of specifying, via new PowerShell language features, how you want a server to get setup and configured.  PowerShell then takes that configuration data, and applies it on the server or servers of your choice. It looks like a great piece of technology.</p>
+
+<p>Remember, <em>keep your configuration and your scripts separate</em>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PowerShell: Check if Processes Are Waiting and Prompting for User Input]]></title>
+    <link href="http://pshdo.com/2013/03/powershell-check-if-processes-are-waiting-and-prompting-for.html"/>
+    <updated>2013-03-25T13:13:00-07:00</updated>
+    <id>http://pshdo.com/2013/03/powershell-check-if-processes-are-waiting-and-prompting-for</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m currently writing a PowerShell script that will commit changes to a <a href="http://mercurial.selenic.com">Mercurial</a> repository, then push those changes out to our central Mercurial server.  If there are new changes on the server, the script will need to pull those changes down before it pushes, merge them, commit the merge, then re-push to the server.  Rinse and repeat until the push succeeds.  Because it will run under our continuous integration build server, it needs to be able to run headless (i.e., non-interactively).</p>
+
+<p>During a merge, Mercurial will sometimes prompt the user for input (e.g. if a file was deleted by someone, but modified by someone else, Mercurial asks if you want to keep the change or keep the deletion).  Prompting for input won&rsquo;t work under a continuous integration server because no one&rsquo;s around to answer.  So, my script needs to detect when Mercurial is prompting for input, kill it, then notify those responsible that manual intervention is necessary.</p>
+
+<p>Google turned up <em><a href="http://stackoverflow.com/questions/1704791/is-my-process-waiting-for-input">Is My Process Waiting for Input?</a></em> on StackOverflow.  The .NET <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.process.aspx">System.Net.Diagnostics.Process</a> class has a <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.process.threads.aspx">Threads</a> property, which is a collection of <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.aspx">ProcessThread</a> objects.  If a process is waiting for input, one of its threads will be in a wait state (i.e. its <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.threadstate.aspx">ThreadState</a> property will be <code>Wait</code>), waiting for user input (i.e., its <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.processthread.waitreason.aspx">WaitReason</a> property will be <code>LpcReply</code>).</p>
+
+<p>So, to get all process in PowerShell that are waiting for user input, you can do something like this:</p>
+
+<pre><code>Get-Process | Where-Object { 
+    Select-Object -ExpandProperty Threads | 
+        Where-Object { $_.ThreadState -eq 'Wait' -and $_.WaitReason -eq 'LpcReply' }
+}
+</code></pre>
+
+<p>Of course, this is the easy part.  Here&rsquo;s my final script.  In addition to using <code>Start-Process</code> to start the merge so we can monitor the process while its running, it redirects STDOUT and STDERR to files, so we can see it in our build log.</p>
+
+<pre><code># Create some files for storing STDOUT and STDERR streams
+$randomFileName = [IO.Path]::GetRandomFileName()
+
+$stdOutFile = 'hg.merge.StdOut.{0}' -f $randomFileName
+$stdOutFile = Join-Path $env:Temp $stdOutFile
+
+$stdErrFile = 'hg.merge.StdErr.{0}' -f $randomFileName
+$stdErrFile = Join-Path $env:Temp $stdErrFile
+
+# Start the merge.
+$mergeProcess = Start-Process -FilePath hg.exe `
+                              -ArgumentList 'merge','-r',$Revision `
+                              -PassThru `
+                              -NoNewWindow `
+                              -RedirectStandardOutput $stdOutFile `
+                              -RedirectStandardError $stdErrFile
+try
+{
+    do
+    {
+        # If the merge every prompts the user for input, kill it.
+        Start-Sleep -Milliseconds 100
+        $waitingForInput = $mergeProcess.Threads | 
+                                Where-Object { $_.ThreadState -eq 'Wait' -and $_.WaitReason -eq 'LpcReply' }
+        if( $waitingForInput )
+        {
+            Write-Error -Message ('Stopping non-interactive merge: Mercurial is prompting for input.') `
+                        -RecommendedAction 'Please merge manually.'
+            $null = $mergeProcess | Stop-Process -PassThru | Wait-Process
+            break
+        }
+    }
+    while( -not $mergeProcess.HasExited )
+
+    # Display STDOUT.
+    Get-Content -Path $stdOutFile | Write-Host
+
+    # Display STDERR
+    # For some reason, it takes a little time to read the Standard Error file.
+    $errors = $null
+    $readFile = $false
+    do
+    {
+        Start-Sleep -Milliseconds 100
+        try
+        {
+            $errors = [IO.File]::ReadAllText($stdErrFile)
+            $readFile = $true
+        }
+        catch
+        {
+        }
+    }
+    while( -not $readFile )
+
+    if( $errors )
+    {
+        Write-Error -Message $errors
+    }
+
+}
+finally
+{
+    # Clean up the temporary files used to capture STDOUT and STDERR
+    ($stdOutFile,$stdErrFile) | Where-Object { Test-Path -Path $_ -PathType Leaf } | Remove-Item
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Getting X509Certificate2's "Issued From" and "Issued To" Properties in PowerShell]]></title>
+    <link href="http://pshdo.com/2013/03/getting-x509certificate2s-issued-from-and-issued-to-properti.html"/>
+    <updated>2013-03-14T14:36:00-07:00</updated>
+    <id>http://pshdo.com/2013/03/getting-x509certificate2s-issued-from-and-issued-to-properti</id>
+    <content type="html"><![CDATA[<p>One of my problems with the <a href="http://msdn.microsoft.com/en-us/library/ms148409.aspx">X509Certificate2</a> object is that it doesn&rsquo;t expose properties for the &ldquo;Issued From&rdquo; and &ldquo;Issued To&rdquo; data, properties which show by default when viewing certificates in the Windows Certificate MMC snap-in. This makes it difficult to match certificates you see the Certificates MMC with certificates you see in PowerShell.</p>
+
+<p>Today I <a href="http://social.msdn.microsoft.com/Forums/en-US/csharpgeneral/thread/a74e3465-7e36-43a9-a83a-fb28a629218f">discovered</a> the <a href="http://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2.getnameinfo.aspx">GetNameInfo method</a>, which can return the &ldquo;Issued To/By&rdquo; text seen in the Certificates MMC snap-in:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Format-Table @{ Label = 'IssuedTo'; Expression = { $_.GetNameInfo( 'SimpleName', $false ) } },@{ Label = 'IssuedBy' ;Expression = { $_.GetNameInfo( 'SimpleName', $true ) } }
+</code></pre>
+
+<p>Here it is a little clearer:</p>
+
+<pre><code>$cert.GetNameInfo( 'SimpleName', $false ) # This is IssuedTo.
+$cert.GetNameInfo( 'SimpleName', $true )  # This is IssuedBy.
+</code></pre>
+
+<p>You could also pipe your certificates to <a href="http://technet.microsoft.com/en-us/library/hh849879.aspx">Add-Member</a>:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Add-Member ScriptProperty -Name IssuedTo -Value { $this.GetNameInfo( 'SimpleName', $false) } -PassThru |
+    Add-Member ScriptProperty -Name IssuedBy -Value { $this.GetNameInfo( 'SimpleName', $true ) } -PassThru |
+    Format-Table -Property IssuedTo,IssuedBy -AutoSize
+</code></pre>
+
+<p>The next version of <a href="http://get-carbon.org">Carbon</a> will add <code>IssuedBy</code> and <code>IssuedTo</code> properties to <code>X509Certificate2</code> objects, so you can do this instead:</p>
+
+<pre><code>Get-ChildItem cert:\CurrentUser\My |
+    Format-Table IssuedTo,IssuedBy -AutoSize
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Best Practices for Importing PowerShell Modules]]></title>
+    <link href="http://pshdo.com/2012/06/best-practices-for-importing-powershell-modules.html"/>
+    <updated>2012-06-04T14:59:00-07:00</updated>
+    <id>http://pshdo.com/2012/06/best-practices-for-importing-powershell-modules</id>
+    <content type="html"><![CDATA[<h2>Importing Modules Is Messy</h2>
+
+<p>An error users encounter with <a href="http://get-carbon.org">Carbon</a> is double-importing its extended type data file.  If Carbon has been imported in another module (i.e. Carbon is a sub-module of that module), when you use <code>Import-Module</code> to import Carbon, PowerShell will sometimes complain about not being able to load Carbon&rsquo;s extended data file:</p>
+
+<pre><code>&gt; Import-Module SubModuleWhichImportsCarbon
+&gt; Import-Module Carbon
+Import-Module : The following error occurred while loading the extended type data file:
+Microsoft.PowerShell, Carbon.types.ps1xml : File skipped because it was already present from "Microsoft.PowerShell".
+</code></pre>
+
+<p>I&rsquo;ve tried a bunch of things to mitigate this error.  I&rsquo;ve always just wanted to import Carbon with one line of code:</p>
+
+<pre><code>Import-Module Carbon
+</code></pre>
+
+<p>At first, I tried using the <code>-Force</code> parameter to <code>Import-Module</code>, but that didn&rsquo;t work.  Then I tried removing Carbon if it was present before importing it again:</p>
+
+<pre><code>if( (Get-Module Carbon) )
+{
+    Remove-Module Carbon
+}
+Import-Module Carbon
+</code></pre>
+
+<p>Unfortunately, the above code doesn&rsquo;t work when Carbon is a sub-module because <code>Get-Module</code> doesn&rsquo;t return sub-modules.</p>
+
+<p>Next, I updated all my modules that imported Carbon to check for and remove any stand-alone Carbon modules before importing Carbon.  I basically added the code above to all the modules that used Carbon.  This approach worked most of the time, but there were still weird edge cases that caused the double-import error.  The only solution left, I thought, was to re-write all my scripts to add additional code to detect a Carbon sub-module.  That&rsquo;s a lot of scripts to update and a lot of duplicate code between scripts.</p>
+
+<h2>The Solution</h2>
+
+<p>Looking back, I can see that my brain was stuck in the rut of trying to solve the problem in each of my scripts using as few lines as possible.  It hit me the other day that I should write an <code>Import-Carbon.ps1</code> script which properly handles all the weird edge cases. With this script in place, I could update all my scripts that use Carbon to call <code>Import-Carbon.ps1</code> to do the import.</p>
+
+<pre><code>$PSScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
+&amp; (Join-Path $PSScriptRoot Tools\Carbon\Import-Carbon.ps1 -Resolve)
+</code></pre>
+
+<p>Finally!  One line of code to import a module.  And, only one place to change if additional weird edge cases pop up.</p>
+
+<h2>Sub-module Detection</h2>
+
+<p>Now, I just had to write code to detect a Carbon sub-module.  The best way to do this is to check for the presence of a variable or function specific to a module.  In this case, I use the <code>$CarbonImported</code> variable, which I added to Carbon for just this purpose:</p>
+
+<pre><code>if( (Get-Module Carbon) )
+{
+    Remove-Module Carbon
+}
+elseif( Test-Path "variable:CarbonImported" )
+{
+    $var = Get-Variable 'CarbonImported'
+    $varModule = Get-Module $var.Module
+    Write-Warning ("Carbon already present as nested module in {0} module ({1})." -f $var.Module, $varModule.ModuleBase)    
+    return
+}
+
+Import-Module Carbon
+</code></pre>
+
+<p>If Carbon is present as a sub-module, I write out a warning and return without attempting a re-import.</p>
+
+<h2>Therefore, What?</h2>
+
+<p>When writing a module, <strong>always write and include a script that safely imports the module</strong>.  I recommend using the above code as a template.  If you&rsquo;re using a module that doesn&rsquo;t include a safe import scrpt, write one yourself.  Test for a variable or function that is specific to the module.  (That&rsquo;s not fool-proof, however.  Users can always import individual functions and variables from your module.  In that case, the function/variable you&rsquo;re detecting may not have been imported, and the detection will fail.)</p>
+
+<p><strong>Don&rsquo;t</strong> detect the presence of your assemblies or types.  They remain loaded even if your module has been removed.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Beware Get-ChildItem]]></title>
+    <link href="http://pshdo.com/2012/05/beware-get-childitem.html"/>
+    <updated>2012-05-04T16:05:00-07:00</updated>
+    <id>http://pshdo.com/2012/05/beware-get-childitem</id>
+    <content type="html"><![CDATA[<p>I discovered today that the <code>Get-ChildItem</code> cmdlet wasn&rsquo;t behaving as I expected.  Passing it <code>$null</code>, <code>@()</code>, or <code>''</code> will return the contents of the current directory:</p>
+
+<pre><code>&gt; Get-ChildItem .
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem $null
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem @()
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+
+
+&gt; Get-ChildItem ''
+
+
+   Directory: C:\Temp\BewareGetChildItem
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          5/4/2012   4:08 PM          6 Get-ChildItem.txt
+</code></pre>
+
+<p>Yikes!  I would expect it to write an error or just return nothing.</p>
+
+<p>We have a function in our website deployment script that takes in a list of items and a filter, and deletes any item that doesn&rsquo;t match the filter, like this:</p>
+
+<pre><code>function Remove-ExtraFiles($Items, $Exclude)
+{
+    Get-ChildItem $Items -Exclude $Exclude -Recurse |
+        Where-Object { -not $_.PsIsContainer } |
+        Remove-Item
+}
+</code></pre>
+
+<p>I was testing this script when I saw that files under my local directory were getting deleted.  By the time I killed the script, it was too late: the last two hours of work were gone.  It turns out that <code>Remove-ExtraFiles</code> was getting called with an empty array as the <code>$Items</code> parameter value.</p>
+
+<p>In my case, the solution was to add some validation to the <code>$Items</code> parameter:</p>
+
+<pre><code>function Remove-ExtraFiles
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [string[]]
+        $Items,
+
+        [string[]]
+        $Exclude)
+    )
+    Get-ChildItem $Items -Exclude $Exclude -Recurse |
+        Where-Object { -not $_.PsIsContainer } |
+        Remove-Item
+}
+</code></pre>
+
+<p>Making the parameter mandatory causes a script error if calling <code>Remove-ExtraFiles</code> with null, an empty array, or an empty string.</p>
+]]></content>
+  </entry>
+  
+</feed>

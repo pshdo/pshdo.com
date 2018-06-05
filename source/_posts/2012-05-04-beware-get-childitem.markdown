@@ -3,8 +3,7 @@ layout: post
 title: "Beware Get-ChildItem"
 date: 2012-05-04 16:05
 comments: false
-tags: [Get-ChildItem, pitfalls, powershell]
-permalink: /archive/2012/5/4/beware-get-childitem.html
+categories: [Get-ChildItem, pitfalls, powershell]
 ---
 
 I discovered today that the `Get-ChildItem` cmdlet wasn't behaving as I expected.  Passing it `$null`, `@()`, or `''` will return the contents of the current directory:
